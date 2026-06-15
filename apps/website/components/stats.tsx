@@ -12,6 +12,37 @@ const defaultStats = {
 	sponsors: 50,
 };
 
+const GRID_PATTERNS: number[][][] = [
+	[
+		[7, 1],
+		[8, 3],
+		[9, 2],
+		[10, 4],
+		[11, 1],
+	],
+	[
+		[7, 2],
+		[8, 5],
+		[9, 1],
+		[10, 3],
+		[11, 4],
+	],
+	[
+		[8, 1],
+		[9, 4],
+		[10, 2],
+		[11, 5],
+		[7, 3],
+	],
+	[
+		[7, 4],
+		[8, 2],
+		[9, 5],
+		[10, 1],
+		[11, 3],
+	],
+];
+
 export function StatsSection() {
 	const [githubStars, setGithubStars] = useState(defaultStats.githubStars);
 	const [dockerDownloads, setDockerDownloads] = useState(
@@ -61,12 +92,12 @@ export function StatsSection() {
 			</div>
 			<div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 md:gap-2 lg:grid-cols-4">
 				{getGrid({ githubStars, dockerDownloads, contributors }).map(
-					(feature) => (
+					(feature, index) => (
 						<div
 							key={feature.title}
 							className="relative overflow-hidden rounded-3xl bg-gradient-to-b  from-neutral-900 to-neutral-950 p-6"
 						>
-							<Grid size={20} />
+							<Grid pattern={GRID_PATTERNS[index % GRID_PATTERNS.length]} size={20} />
 
 							<p className="relative z-20 flex flex-row items-center gap-4 text-base font-bold text-white">
 								{feature.title}
@@ -159,13 +190,7 @@ export const Grid = ({
 	pattern?: number[][];
 	size?: number;
 }) => {
-	const p = pattern ?? [
-		[Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
-		[Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
-		[Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
-		[Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
-		[Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
-	];
+	const p = pattern ?? GRID_PATTERNS[0];
 	return (
 		<div className="pointer-events-none absolute left-1/2 top-0  -ml-20 -mt-2 h-full w-full [mask-image:linear-gradient(white,transparent)]">
 			<div className="absolute inset-0 bg-gradient-to-r  from-zinc-900/30 to-zinc-900/30 opacity-100 [mask-image:radial-gradient(farthest-side_at_top,white,transparent)]">

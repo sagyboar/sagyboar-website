@@ -50,3 +50,31 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes auth-wave-scroll-forward {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes auth-wave-scroll-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.auth-wave-track-forward {
+  animation: auth-wave-scroll-forward var(--auth-wave-duration, 20s) linear infinite;
+  animation-delay: var(--auth-wave-delay, 0s);
+}
+
+.auth-wave-track-reverse {
+  animation: auth-wave-scroll-reverse var(--auth-wave-duration, 20s) linear infinite;
+  animation-delay: var(--auth-wave-delay, 0s);
+}
