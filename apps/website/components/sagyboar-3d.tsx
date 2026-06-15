@@ -25,9 +25,5 @@ const Sagyboar3DScene = dynamic(
 );
 
 export function Sagyboar3D({ className }: { className?: string }) {
-	return (
-		<Sagyboar3DScene
-			className={cn("h-[320px] w-full sm:h-[380px] md:h-[420px]", className)}
-		/>
-	);
+	return <Sagyboar3DScene className={cn("h-full w-full", className)} />;
 }

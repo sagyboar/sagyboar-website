@@ -34,6 +34,43 @@ function getAlphaImageData(texture: THREE.Texture) {
 	};
 }
 
+export function createCutoutTexture(source: THREE.Texture) {
+	const { image, imageData } = getAlphaImageData(source);
+	const canvas = document.createElement("canvas");
+	canvas.width = image.width;
+	canvas.height = image.height;
+	const ctx = canvas.getContext("2d");
+
+	if (!ctx) {
+		throw new Error("Could not create canvas context for cutout texture");
+	}
+
+	const cutout = new ImageData(image.width, image.height);
+
+	for (let i = 0; i < imageData.data.length; i += 4) {
+		const r = imageData.data[i];
+		const g = imageData.data[i + 1];
+		const b = imageData.data[i + 2];
+		const alpha = imageData.data[i + 3];
+		const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+		const isBackground = alpha < 20 || luminance < 0.14;
+
+		cutout.data[i] = r;
+		cutout.data[i + 1] = g;
+		cutout.data[i + 2] = b;
+		cutout.data[i + 3] = isBackground ? 0 : alpha;
+	}
+
+	ctx.putImageData(cutout, 0, 0);
+
+	const texture = new THREE.CanvasTexture(canvas);
+	texture.colorSpace = THREE.SRGBColorSpace;
+	texture.anisotropy = 16;
+	texture.needsUpdate = true;
+
+	return texture;
+}
+
 export function createReliefGeometryFromTexture(
 	texture: THREE.Texture,
 	{ width = 3.2, depth = 0.45, segments = 160 }: ReliefOptions = {},
@@ -64,7 +101,8 @@ export function createReliefGeometryFromTexture(
 		const g = imageData.data[index + 1];
 		const b = imageData.data[index + 2];
 		const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-		const relief = alpha * depth * (0.35 + luminance * 0.65);
+		const visibility = alpha > 0.08 && luminance >= 0.14 ? alpha : 0;
+		const relief = visibility * depth * (0.35 + luminance * 0.65);
 		positions.setZ(i, Number.isFinite(relief) ? relief : 0);
 	}
 
@@ -72,10 +110,7 @@ export function createReliefGeometryFromTexture(
 	return geometry;
 }
 
-export function createBackingGeometry(
-	texture: THREE.Texture,
-	{ width = 3.2, depth = 0.18 }: ReliefOptions = {},
-) {
+export function getSubjectBounds(texture: THREE.Texture) {
 	const { image, imageData } = getAlphaImageData(texture);
 	const threshold = 40;
 
@@ -86,8 +121,15 @@ export function createBackingGeometry(
 
 	for (let y = 0; y < image.height; y++) {
 		for (let x = 0; x < image.width; x++) {
-			const alpha = imageData.data[(y * image.width + x) * 4 + 3];
-			if (alpha > threshold) {
+			const index = (y * image.width + x) * 4;
+			const alpha = imageData.data[index + 3];
+			const luminance =
+				(0.299 * imageData.data[index] +
+					0.587 * imageData.data[index + 1] +
+					0.114 * imageData.data[index + 2]) /
+				255;
+
+			if (alpha > threshold && luminance >= 0.14) {
 				minX = Math.min(minX, x);
 				maxX = Math.max(maxX, x);
 				minY = Math.min(minY, y);
@@ -97,22 +139,17 @@ export function createBackingGeometry(
 	}
 
 	if (minX >= maxX || minY >= maxY) {
-		return new THREE.BoxGeometry(width, width, depth);
+		return { centerX: 0, centerY: 0, width: 3.2, height: 3.2 };
 	}
 
+	const modelWidth = 3.4;
 	const aspect = image.width / image.height;
-	const fullHeight = width / aspect;
-	const boundsWidth = ((maxX - minX) / image.width) * width;
-	const boundsHeight = ((maxY - minY) / image.height) * fullHeight;
-	const centerX = ((minX + maxX) / 2 / image.width - 0.5) * width;
-	const centerY = (0.5 - (minY + maxY) / 2 / image.height) * fullHeight;
+	const modelHeight = modelWidth / aspect;
 
-	const geometry = new THREE.BoxGeometry(
-		Math.max(boundsWidth * 0.92, 0.5),
-		Math.max(boundsHeight * 0.92, 0.5),
-		depth,
-	);
-	geometry.translate(centerX, centerY, 0);
-
-	return geometry;
+	return {
+		centerX: ((minX + maxX) / 2 / image.width - 0.5) * modelWidth,
+		centerY: (0.5 - (minY + maxY) / 2 / image.height) * modelHeight,
+		width: ((maxX - minX) / image.width) * modelWidth,
+		height: ((maxY - minY) / image.height) * modelHeight,
+	};
 }
