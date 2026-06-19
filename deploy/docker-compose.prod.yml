@@ -1,0 +1,22 @@
+# Reference compose file for the GCP server.
+# Caddy (already on the host) should reverse_proxy to these localhost ports.
+services:
+  website:
+    image: ghcr.io/sagyboar/sagyboar-website/website:latest
+    container_name: sagyboar-website
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8002:8002"
+    environment:
+      PORT: "8002"
+      HOSTNAME: "0.0.0.0"
+
+  docs:
+    image: ghcr.io/sagyboar/sagyboar-website/docs:latest
+    container_name: sagyboar-docs
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8003:8003"
+    environment:
+      PORT: "8003"
+      HOSTNAME: "0.0.0.0"
