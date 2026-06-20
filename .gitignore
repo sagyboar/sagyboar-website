@@ -43,3 +43,7 @@ yarn-error.log*
 *.pem
 
 # Generated files
+
+# TypeScript
+*.tsbuildinfo
+/build

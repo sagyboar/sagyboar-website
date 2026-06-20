@@ -59,6 +59,7 @@ jobs:
 
             echo "${GHCR_TOKEN}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
+            # Pull, replace, and start the website container on localhost:8002.
             bash -s "${WEBSITE_IMAGE}" sagyboar-website 8002 <<'DEPLOY'
             set -euo pipefail
             IMAGE="${1:?image required}"

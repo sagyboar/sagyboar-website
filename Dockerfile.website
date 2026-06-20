@@ -7,10 +7,10 @@ FROM base AS build
 WORKDIR /usr/src/app
 COPY . .
 
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --filter=./apps/website --frozen-lockfile
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 ENV NODE_ENV=production
-RUN pnpm --filter=./apps/website run build
+RUN pnpm run build
 
 FROM node:24.4-alpine AS runner
 WORKDIR /app
@@ -22,12 +22,12 @@ ENV HOSTNAME=0.0.0.0
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
-COPY --from=build /usr/src/app/apps/website/.next/standalone ./
-COPY --from=build /usr/src/app/apps/website/.next/static ./apps/website/.next/static
-COPY --from=build /usr/src/app/apps/website/public ./apps/website/public
+COPY --from=build /usr/src/app/.next/standalone ./
+COPY --from=build /usr/src/app/.next/static ./.next/static
+COPY --from=build /usr/src/app/public ./public
 
 USER nextjs
 
 EXPOSE 8002
 
-CMD ["node", "apps/website/server.js"]
+CMD ["node", "server.js"]
