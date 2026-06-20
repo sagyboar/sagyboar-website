@@ -90,7 +90,7 @@ export function FirstFeaturesSection() {
 	];
 	return (
 		<div className="mt-20 flex flex-col items-center  justify-center px-4">
-			<h2 className="text-center font-display text-3xl tracking-tight text-primary sm:text-4xl">
+			<h2 className="text-center font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 				Powerful Deployment Tailored to You
 			</h2>
 			<p className="mt-4 text-center text-lg  tracking-tight text-muted-foreground">
@@ -121,26 +121,25 @@ const Feature = ({
 	return (
 		<div
 			className={cn(
-				"group/feature relative flex  flex-col border-neutral-800 py-10 lg:border-r",
-				(index === 0 || index === 4 || index === 8) &&
-					"dark:border-neutral-800 lg:border-l",
-				(index < 4 || index < 8) && "dark:border-neutral-800 lg:border-b",
+				"group/feature relative flex flex-col border-border py-10 lg:border-r",
+				(index === 0 || index === 4 || index === 8) && "lg:border-l",
+				index < 8 && "lg:border-b",
 			)}
 		>
 			{index < 4 && (
-				<div className="pointer-events-none absolute inset-0 h-full w-full bg-gradient-to-t from-neutral-800 to-transparent opacity-0 transition duration-200 group-hover/feature:opacity-100" />
+				<div className="pointer-events-none absolute inset-0 h-full w-full bg-gradient-to-t from-muted/80 to-transparent opacity-0 transition duration-200 group-hover/feature:opacity-100 dark:from-neutral-800" />
 			)}
 			{index >= 4 && (
-				<div className="pointer-events-none absolute inset-0 h-full w-full bg-gradient-to-b from-neutral-800 to-transparent opacity-0 transition duration-200 group-hover/feature:opacity-100" />
+				<div className="pointer-events-none absolute inset-0 h-full w-full bg-gradient-to-b from-muted/80 to-transparent opacity-0 transition duration-200 group-hover/feature:opacity-100 dark:from-neutral-800" />
 			)}
-			<div className="relative z-10 mb-4 px-10 text-neutral-400">{icon}</div>
+			<div className="relative z-10 mb-4 px-10 text-muted-foreground">{icon}</div>
 			<div className="relative z-10 mb-2 px-10 text-lg font-bold">
-				<div className="absolute inset-y-0 left-0 h-6 w-1 origin-center rounded-br-full rounded-tr-full bg-neutral-700 transition-all duration-200 group-hover/feature:h-8 group-hover/feature:bg-white" />
-				<span className="inline-block text-neutral-100 transition duration-200 group-hover/feature:translate-x-2">
+				<div className="absolute inset-y-0 left-0 h-6 w-1 origin-center rounded-br-full rounded-tr-full bg-border transition-all duration-200 group-hover/feature:h-8 group-hover/feature:bg-primary dark:bg-neutral-700 dark:group-hover/feature:bg-primary" />
+				<span className="inline-block text-foreground transition duration-200 group-hover/feature:translate-x-2">
 					{title}
 				</span>
 			</div>
-			<p className="relative z-10 px-10 text-sm text-neutral-300 lg:max-w-xs">
+			<p className="relative z-10 px-10 text-sm text-muted-foreground lg:max-w-xs">
 				{description}
 			</p>
 		</div>

@@ -123,15 +123,6 @@ export default function DeployAIPage() {
 							<Button className="rounded-full" asChild>
 								<Link href="/contact">Contact sales</Link>
 							</Button>
-							<Button variant="outline" className="rounded-full" asChild>
-								<Link
-									href="https://docs.dokploy.com/docs/core"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									View documentation
-								</Link>
-							</Button>
 						</div>
 					</div>
 				</Container>
@@ -276,17 +267,6 @@ export default function DeployAIPage() {
 							your team a private, internal AI coding environment, and no data
 							leaves your infrastructure.
 						</p>
-						<div className="mt-10">
-							<Button variant="outline" className="rounded-full" asChild>
-								<Link
-									href="https://docs.dokploy.com/docs/templates/openclaw"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									Read the Openclaw docs
-								</Link>
-							</Button>
-						</div>
 					</div>
 				</Container>
 			</section>
@@ -307,7 +287,7 @@ export default function DeployAIPage() {
 						<div className="mt-10">
 							<Button className="rounded-full" asChild>
 								<Link
-									href="https://app.dokploy.com/register"
+									href="https://dashboard.sagyboar.space"
 									target="_blank"
 									rel="noopener noreferrer"
 								>

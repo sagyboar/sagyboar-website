@@ -426,14 +426,13 @@ export default function TermsOfServicePage() {
 					We implement industry-standard security measures to protect Customer
 					Data in our Cloud Services, including encryption in transit and at
 					rest, access controls, and regular security assessments. Our security
-					practices are described in our Security Documentation available at{" "}
+					practices are described in our Security Documentation, available upon
+					request via our{" "}
 					<a
-						href="https://docs.dokploy.com/docs/core/remote-servers/security"
-						target="_blank"
-						rel="noopener noreferrer"
+						href="/contact"
 						className="text-primary underline hover:no-underline"
 					>
-						docs.dokploy.com/docs/core/remote-servers/security
+						contact page
 					</a>
 					.
 				</p>

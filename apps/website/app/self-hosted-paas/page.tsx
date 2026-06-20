@@ -273,15 +273,6 @@ export default function SelfHostedPaasPage() {
 							<Button className="rounded-full" asChild>
 								<Link href="/contact">Contact sales</Link>
 							</Button>
-							<Button variant="outline" className="rounded-full" asChild>
-								<Link
-									href="https://docs.dokploy.com/docs/core"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									View documentation
-								</Link>
-							</Button>
 						</div>
 
 						{/* Install command */}
@@ -526,7 +517,7 @@ export default function SelfHostedPaasPage() {
 						<div className="mt-10">
 							<Button className="rounded-full" asChild>
 								<Link
-									href="https://app.dokploy.com/register"
+									href="https://dashboard.sagyboar.space"
 									target="_blank"
 									rel="noopener noreferrer"
 								>

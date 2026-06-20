@@ -99,15 +99,6 @@ export default function RoleBasedAccessControlPage() {
 							<Button className="rounded-full" asChild>
 								<Link href="/contact">Contact sales</Link>
 							</Button>
-							<Button variant="outline" className="rounded-full" asChild>
-								<Link
-									href="https://docs.dokploy.com/docs/core"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									View documentation
-								</Link>
-							</Button>
 						</div>
 					</div>
 				</Container>

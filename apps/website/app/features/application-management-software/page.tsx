@@ -188,15 +188,6 @@ export default function ApplicationManagementSoftwarePage() {
 							<Button className="rounded-full" asChild>
 								<Link href="/contact">Contact sales</Link>
 							</Button>
-							<Button variant="outline" className="rounded-full" asChild>
-								<Link
-									href="https://docs.dokploy.com/docs/core"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									Read our docs
-								</Link>
-							</Button>
 						</div>
 					</div>
 				</Container>
@@ -460,7 +451,7 @@ export default function ApplicationManagementSoftwarePage() {
 						</p>
 						<div className="mt-10">
 							<Button className="rounded-full" asChild>
-								<Link href="https://app.dokploy.com">Create your account</Link>
+								<Link href="https://dashboard.sagyboar.space">Create your account</Link>
 							</Button>
 						</div>
 					</div>

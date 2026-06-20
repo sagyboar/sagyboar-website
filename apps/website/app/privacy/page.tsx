@@ -18,9 +18,8 @@ export default function PrivacyPage() {
 				<p>
 					At Dokploy, we are committed to protecting your privacy. This Privacy
 					Policy explains how we collect, use and safeguard your personal
-					information when you use our website (dokploy.com), documentation
-					(docs.dokploy.com) and services, including our hosted platform
-					(app.dokploy.com). By using Dokploy, you agree to the practices
+					information when you use our website and services, including our hosted platform
+					(dashboard.sagyboar.space). By using Sagyboar, you agree to the practices
 					described in this policy. If you do not agree with these practices,
 					please do not use our services.
 				</p>
@@ -30,12 +29,10 @@ export default function PrivacyPage() {
 				<h2 className="text-2xl font-semibold">1. Information We Collect</h2>
 
 				<div className="flex flex-col gap-2">
-					<h3 className="text-xl font-medium">
-						Website and documentation analytics
-					</h3>
+					<h3 className="text-xl font-medium">Website analytics</h3>
 					<p>
-						We use Google Analytics to measure traffic and usage on dokploy.com
-						and docs.dokploy.com. Google Analytics collects cookies, IP
+						We use Google Analytics to measure traffic and usage on our website.
+						Google Analytics collects cookies, IP
 						addresses, device and browser information and usage statistics (for
 						example, page views and session duration) to generate anonymised
 						reports. This data helps us understand how users interact with the
@@ -47,7 +44,7 @@ export default function PrivacyPage() {
 				<div className="flex flex-col gap-2">
 					<h3 className="text-xl font-medium">Application analytics</h3>
 					<p>
-						Our hosted platform (app.dokploy.com) uses{" "}
+						Our hosted platform (dashboard.sagyboar.space) uses{" "}
 						<a
 							href="https://legal.hubspot.com/privacy-policy"
 							target="_blank"
@@ -157,8 +154,8 @@ export default function PrivacyPage() {
 				</p>
 				<ul className="list-inside list-disc space-y-1">
 					<li>
-						<strong>Google Analytics</strong> – provides anonymised website and
-						documentation analytics.
+						<strong>Google Analytics</strong> – provides anonymised website
+						analytics.
 					</li>
 					<li>
 						<strong>HubSpot</strong> – provides analytics and marketing services

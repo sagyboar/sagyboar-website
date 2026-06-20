@@ -171,15 +171,6 @@ export default function ContainerServerMonitoringPage() {
 							<Button className="rounded-full" asChild>
 								<Link href="/contact">Contact sales</Link>
 							</Button>
-							<Button variant="outline" className="rounded-full" asChild>
-								<Link
-									href="https://docs.dokploy.com/docs/core"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									View documentation
-								</Link>
-							</Button>
 						</div>
 					</div>
 				</Container>
@@ -412,15 +403,6 @@ export default function ContainerServerMonitoringPage() {
 						<div className="mt-10 flex flex-wrap items-center justify-center gap-4">
 							<Button className="rounded-full" asChild>
 								<Link href="/contact">Contact sales</Link>
-							</Button>
-							<Button variant="outline" className="rounded-full" asChild>
-								<Link
-									href="https://docs.dokploy.com/docs/core"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									View documentation
-								</Link>
 							</Button>
 						</div>
 					</div>

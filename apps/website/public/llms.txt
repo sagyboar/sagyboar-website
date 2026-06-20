@@ -11,43 +11,8 @@ Key facts:
 - Multi-server and Docker Swarm cluster support with zero-configuration setup
 - Enterprise features include SSO/SAML (Okta, Azure), fine-grained RBAC, audit logs, and white labelling
 - One-click templates for popular tools including Supabase, Cal.com, and PocketBase
-- Full REST API, CLI access, and Swagger documentation
+- Full REST API, CLI access, and Swagger API reference
 - Notifications via Slack, Discord, Telegram, email, and webhooks
-
-## Docs
-
-- [Welcome to Dokploy](https://docs.dokploy.com/docs/core): Overview, philosophy, and getting started
-- [Architecture](https://docs.dokploy.com/docs/core/architecture): How Dokploy's core components fit together
-- [Features](https://docs.dokploy.com/docs/core/features): Full feature list
-- [Installation](https://docs.dokploy.com/docs/core/installation): Install Dokploy on a server with a single command
-- [Manual Installation](https://docs.dokploy.com/docs/core/manual-installation): Step-by-step manual setup
-- [Applications](https://docs.dokploy.com/docs/core/applications): Deploy and manage applications
-- [Docker Compose](https://docs.dokploy.com/docs/core/docker-compose): Native Docker Compose support
-- [Databases](https://docs.dokploy.com/docs/core/databases): Deploy and manage databases
-- [Domains](https://docs.dokploy.com/docs/core/domains): Custom domain and SSL/TLS configuration
-- [Environment Variables](https://docs.dokploy.com/docs/core/variables): Manage environment variables across services
-- [Backups](https://docs.dokploy.com/docs/core/backups): Volume and database backup configuration
-- [Remote Servers](https://docs.dokploy.com/docs/core/remote-servers): Multi-server deployment setup
-- [Cluster (Docker Swarm)](https://docs.dokploy.com/docs/core/cluster): Scale with Docker Swarm
-- [Auto Deploy](https://docs.dokploy.com/docs/core/auto-deploy): Trigger deployments automatically via webhooks
-- [Schedule Jobs](https://docs.dokploy.com/docs/core/schedule-jobs): Scheduled tasks and cron jobs
-- [AI Assistant](https://docs.dokploy.com/docs/core/ai): AI-assisted deployment and MCP integration
-- [Multi-Tenancy](https://docs.dokploy.com/docs/core/multi-tenancy): Organisation and project isolation
-- [Monitoring](https://docs.dokploy.com/docs/core/monitoring): Real-time CPU, memory, and network metrics
-- [SSH Keys](https://docs.dokploy.com/docs/core/ssh-keys): Manage SSH key access
-- [Certificates](https://docs.dokploy.com/docs/core/certificates): TLS certificate management
-- [Registry](https://docs.dokploy.com/docs/core/registry): Docker registry configuration
-- [Troubleshooting](https://docs.dokploy.com/docs/core/troubleshooting): Common issues and fixes
-- [Dokploy Cloud vs Self-Hosted](https://docs.dokploy.com/docs/core/differences): Feature and operational differences
-
-## Enterprise docs
-
-- [Enterprise Introduction](https://docs.dokploy.com/docs/core/enterprise): Overview of enterprise capabilities
-- [License Keys](https://docs.dokploy.com/docs/core/enterprise/license-keys): Activating enterprise features
-- [SSO](https://docs.dokploy.com/docs/core/enterprise/sso): Single sign-on with Okta, Azure, and more
-- [Custom Roles](https://docs.dokploy.com/docs/core/enterprise/custom-roles): Fine-grained RBAC configuration
-- [Audit Logs](https://docs.dokploy.com/docs/core/enterprise/audit-logs): Track changes across your organisation
-- [White Labelling](https://docs.dokploy.com/docs/core/enterprise/whitelabeling): Brand Dokploy for your organisation or customers
 
 ## Product pages
 
@@ -72,14 +37,10 @@ Key facts:
 - [Dokploy vs Portainer](https://dokploy.com/dokploy-vs-portainer)
 - [Dokploy vs CapRover](https://dokploy.com/dokploy-vs-caprover)
 - [Dokploy vs Dokku](https://dokploy.com/dokploy-vs-dokku)
-- [Feature Comparison](https://docs.dokploy.com/docs/core/comparison)
 
 ## Resources
 
 - [Blog](https://dokploy.com/blog): Deployment guides and product updates
-- [Documentation](https://docs.dokploy.com/docs/core): Full technical documentation
-- [Guides: Cloudflare Tunnels](https://docs.dokploy.com/docs/core/guides/cloudflare-tunnels)
-- [Guides: EC2 Setup](https://docs.dokploy.com/docs/core/guides/ec2-instructions)
 - [Partners / Agency Programme](https://dokploy.com/partners)
 
 ## External pages

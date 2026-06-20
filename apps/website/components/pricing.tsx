@@ -17,9 +17,8 @@ import { Button, buttonVariants } from "./ui/button";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import { PricingFeatureTable } from "./pricing/PricingFeatureTable";
 import AnimatedGridPattern from "./ui/animated-grid-pattern";
+import { SAGYBOAR_PORTAL_URL } from "@/constants/branding";
 import { cn } from "@/lib/utils";
-
-const CLOUD_APP_URL = "https://app.dokploy.com";
 
 const pricingFaqs = [
 	{
@@ -222,7 +221,7 @@ export function Pricing() {
 							</ul>
 							<div className="mt-auto pt-6">
 								<Link
-									href={`${CLOUD_APP_URL}/register`}
+									href={SAGYBOAR_PORTAL_URL}
 									target="_blank"
 									className={buttonVariants({
 										variant: "default",
@@ -274,7 +273,7 @@ export function Pricing() {
 							</ul>
 							<div className="mt-auto pt-6">
 								<Link
-									href={`${CLOUD_APP_URL}/register`}
+									href={SAGYBOAR_PORTAL_URL}
 									target="_blank"
 									className={buttonVariants({
 										variant: "default",

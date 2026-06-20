@@ -1,3 +1,4 @@
+import { SAGYBOAR_PORTAL_URL } from "@/constants/branding";
 import { Container } from "@/components/Container";
 import Link from "next/link";
 import { Button } from "./ui/button";
@@ -40,7 +41,7 @@ export function CallToAction() {
 
 					<Button className="mt-10 rounded-full" asChild>
 						<Link
-							href={"https://app.dokploy.com/register"}
+							href={SAGYBOAR_PORTAL_URL}
 							aria-label="Dokploy on GitHub"
 							target="_blank"
 							className="flex flex-row items-center gap-2"

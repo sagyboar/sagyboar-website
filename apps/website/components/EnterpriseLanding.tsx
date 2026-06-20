@@ -166,11 +166,6 @@ export function EnterpriseLanding() {
 								<Button className="rounded-full" onClick={() => setContactOpen(true)}>
 									Contact sales
 								</Button>
-								<Button variant="outline" className="rounded-full" asChild>
-									<Link href="https://docs.dokploy.com" target="_blank">
-										View documentation
-									</Link>
-								</Button>
 							</motion.div>
 						</div>
 					</Container>

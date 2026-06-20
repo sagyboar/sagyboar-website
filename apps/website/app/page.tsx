@@ -10,10 +10,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
 	title: {
-		absolute: "Dokploy - Deploy your applications with ease",
+		absolute: "Sagyboar - One stop solution for your deployment",
 	},
 	description:
-		"Open-source self-hostable Platform as a Service (PaaS) that simplifies the deployment and management of applications and databases",
+		"Deploy applications, manage databases, and monitor your infrastructure from a single platform.",
 };
 
 export default function Home() {

@@ -1,12 +1,13 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import clsx from "clsx";
 import type { Metadata } from "next";
-import { Inter, Lexend } from "next/font/google";
+import { Instrument_Serif, Inter, Lexend } from "next/font/google";
 import type { ReactNode } from "react";
 import "@/styles/tailwind.css";
 import "react-photo-view/dist/react-photo-view.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { ThemeProvider } from "@/components/theme-provider";
 
 type Props = {
 	children: ReactNode;
@@ -47,6 +48,13 @@ const lexend = Lexend({
 	display: "swap",
 	variable: "--font-lexend",
 });
+
+const instrumentSerif = Instrument_Serif({
+	subsets: ["latin"],
+	weight: "400",
+	display: "swap",
+	variable: "--font-instrument-serif",
+});
 // Since we have a `not-found.tsx` page on the root, a layout file
 // is required, even if it's just passing children through.
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -54,10 +62,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 		<html
 			lang="en"
 			className={clsx(
-				"h-full scroll-smooth antialiased",
+				"h-full scroll-smooth antialiased dark",
 				inter.variable,
 				lexend.variable,
+				instrumentSerif.variable,
 			)}
+			suppressHydrationWarning
 		>
 			<head>
 				<script
@@ -69,12 +79,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 				/>
 			</head>
 			<body>
-				<GoogleAnalytics gaId="G-0RTZ5EPB26" />
-				<div className="flex h-full flex-col">
-					<Header />
-					{children}
-					<Footer />
-				</div>
+				<ThemeProvider>
+					<GoogleAnalytics gaId="G-0RTZ5EPB26" />
+					<div className="flex h-full flex-col bg-background">
+						<Header />
+						{children}
+						<Footer />
+					</div>
+				</ThemeProvider>
 			</body>
 		</html>
 	);

@@ -47,7 +47,6 @@ feat: add new feature
 - The `main` branch is the source of truth and should always reflect the latest stable release.
 - Create a new branch for each feature or bug fix.
 - Make sure to add tests for your changes.
-- Make sure to update the documentation for any changes Go to the [docs.dokploy.com](https://docs.dokploy.com) website to see the changes.
 - When creating a pull request, please provide a clear and concise description of the changes made.
 - If you include a video or screenshot, would be awesome so we can see the changes in action.
 - If your pull request fixes an open issue, please reference the issue in the pull request description.
@@ -55,30 +54,16 @@ feat: add new feature
 
 Thank you for your contribution!
 
-## Docs
-
-To run the docs locally, run the following command:
-
-```bash
-pnpm run docs:dev
-```
-
-To build the docs, run the following command:
-
-```bash
-pnpm run docs:build
-```
-
 ## Website
 
-To run the website locally, run the following command:
+To run the website locally:
 
 ```bash
-pnpm run website:dev
+pnpm dev
 ```
 
-To build the website, run the following command:
+To build the website:
 
 ```bash
-pnpm run website:build
+pnpm build
 ```

@@ -77,6 +77,7 @@ const config = {
 			fontFamily: {
 				sans: "var(--font-inter)",
 				display: "var(--font-lexend)",
+				serif: "var(--font-instrument-serif), ui-serif, Georgia, serif",
 			},
 			keyframes: {
 				marquee: {

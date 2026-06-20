@@ -206,8 +206,7 @@ export function PricingLegacy() {
 											Unlimited Servers
 										</span>
 										<Link
-											href="https://docs.dokploy.com/docs/core/installation#docker"
-											target="_blank"
+											href="/self-hosted-paas"
 											className="flex items-start text-sm text-primary"
 										>
 											Start deploying{" "}
@@ -358,7 +357,7 @@ export function PricingLegacy() {
 									>
 										<div className="w-full justify-end">
 											<Link
-												href="https://app.dokploy.com/register"
+												href="https://dashboard.sagyboar.space"
 												target="_blank"
 												className={buttonVariants({
 													className: "w-full",

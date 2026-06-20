@@ -203,15 +203,6 @@ export default function DatabaseManagementToolPage() {
 							<Button className="rounded-full" asChild>
 								<Link href="/contact">Contact sales</Link>
 							</Button>
-							<Button variant="outline" className="rounded-full" asChild>
-								<Link
-									href="https://docs.dokploy.com/docs/core/databases"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									View documentation
-								</Link>
-							</Button>
 						</div>
 					</div>
 				</Container>
@@ -391,7 +382,7 @@ export default function DatabaseManagementToolPage() {
 						</p>
 						<div className="mt-10">
 							<Button className="rounded-full" asChild>
-								<Link href="https://app.dokploy.com">Create your account</Link>
+								<Link href="https://dashboard.sagyboar.space">Create your account</Link>
 							</Button>
 						</div>
 					</div>

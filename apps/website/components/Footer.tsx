@@ -70,11 +70,6 @@ const footerSections = [
 				label: "Dokploy vs. Dokku",
 			},
 			{ href: "/blog", label: "Blog" },
-			{
-				href: "https://docs.dokploy.com/docs/core",
-				label: "Documentation",
-				external: true,
-			},
 		],
 	},
 	{

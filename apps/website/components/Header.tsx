@@ -1,49 +1,163 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { SAGYBOAR_BRAND_NAME, SAGYBOAR_PORTAL_URL } from "@/constants/branding";
+import {
+	featureLinks,
+	resourceLinks,
+	solutionLinks,
+	type NavLinkItem,
+} from "@/constants/navigation";
 import { Popover, Transition } from "@headlessui/react";
-import { ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { Fragment, useEffect, type JSX, type SVGProps } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Container } from "./Container";
-import GithubStars from "./GithubStars";
 import { trackGAEvent } from "./analitycs";
 import { Logo } from "./shared/Logo";
+import { ThemeToggle } from "./theme-toggle";
 import { Button } from "./ui/button";
-import {
-	NavigationMenu,
-	NavigationMenuContent,
-	NavigationMenuItem,
-	NavigationMenuLink,
-	NavigationMenuList,
-	NavigationMenuTrigger,
-	navigationMenuTriggerStyle,
-} from "./ui/navigation-menu";
+
+const SCROLL_THRESHOLD = 15;
+
+type MegaMenuKey = "features" | "solutions" | "resources";
+
+const megaMenus: Record<
+	MegaMenuKey,
+	{ label: string; items: NavLinkItem[] }
+> = {
+	features: {
+		label: "Features",
+		items: featureLinks,
+	},
+	solutions: {
+		label: "Solutions",
+		items: solutionLinks,
+	},
+	resources: {
+		label: "Resources",
+		items: resourceLinks,
+	},
+};
+
+function trackNavClick(href: string) {
+	trackGAEvent({
+		action: "Nav Link Clicked",
+		category: "Navigation",
+		label: href,
+	});
+}
+
+function MegaMenuLink({ item }: { item: NavLinkItem }) {
+	const Icon = item.icon;
+
+	return (
+		<Link
+			href={item.href}
+			target={item.target}
+			onClick={() => trackNavClick(item.href)}
+			className="group flex flex-col justify-between h-full items-start min-w-[15rem] min-h-64 gap-3 p-3 transition-colors hover:bg-accent/60 rounded-2xl border"
+		>
+			<div className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-border/50 bg-accent/30 text-foreground transition-colors group-hover:bg-accent/60">
+				<Icon className="size-4" strokeWidth={1.75} />
+			</div>
+			<div className="min-w-0 flex-1 max-h-24">
+				<div className="text-sm font-medium text-foreground">{item.title}</div>
+				<p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+					{item.description}
+				</p>
+			</div>
+		</Link>
+	);
+}
+
+function MegaMenuPanel({
+	menuKey,
+	onMouseEnter,
+	onMouseLeave,
+}: {
+	menuKey: MegaMenuKey;
+	onMouseEnter: () => void;
+	onMouseLeave: () => void;
+}) {
+	const menu = megaMenus[menuKey];
+
+	return (
+		<div
+			className="absolute inset-x-0 top-full z-50 pt-6"
+			onMouseEnter={onMouseEnter}
+			onMouseLeave={onMouseLeave}
+		>
+			<div
+				className={cn(
+					"overflow-hidden rounded-3xl border border-border/60 bg-background p-4 shadow-xl",
+				)}
+			>
+				<div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,15rem),1fr))] gap-2">
+					{menu.items.map((item) => (
+						<MegaMenuLink key={item.href} item={item} />
+					))}
+				</div>
+			</div>
+		</div>
+	);
+}
+
+function DesktopNavItem({
+	menuKey,
+	isOpen,
+	onOpen,
+}: {
+	menuKey: MegaMenuKey;
+	isOpen: boolean;
+	onOpen: () => void;
+}) {
+	return (
+		<div onMouseEnter={onOpen}>
+			<button
+				type="button"
+				className={cn(
+					"inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors hover:text-foreground",
+					isOpen ? "text-foreground" : "text-muted-foreground",
+				)}
+				aria-expanded={isOpen}
+			>
+				{megaMenus[menuKey].label}
+				<ChevronDown
+					className={cn(
+						"size-3.5 transition-transform duration-200",
+						isOpen && "rotate-180",
+					)}
+				/>
+			</button>
+		</div>
+	);
+}
 
 function MobileNavLink({
 	href,
 	children,
 	target,
+	icon: Icon,
 }: {
 	href: string;
 	children: React.ReactNode;
 	target?: string;
+	icon?: NavLinkItem["icon"];
 }) {
 	return (
 		<Popover.Button
-			onClick={() => {
-				trackGAEvent({
-					action: "Nav Link Clicked",
-					category: "Navigation",
-					label: href,
-				});
-			}}
+			onClick={() => trackNavClick(href)}
 			as={Link}
 			href={href}
 			target={target}
-			className="block w-full p-2"
+			className="flex w-full items-center gap-3 rounded-xl px-2 py-2.5 text-left text-sm"
 		>
+			{Icon && (
+				<div className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-border/50 bg-accent/30">
+					<Icon className="size-3.5" strokeWidth={1.75} />
+				</div>
+			)}
 			{children}
 		</Popover.Button>
 	);
@@ -53,7 +167,7 @@ function MobileNavIcon({ open }: { open: boolean }) {
 	return (
 		<svg
 			aria-hidden="true"
-			className="h-3.5 w-3.5 overflow-visible stroke-muted-foreground"
+			className="h-3.5 w-3.5 overflow-visible stroke-current"
 			fill="none"
 			strokeWidth={2}
 			strokeLinecap="round"
@@ -90,15 +204,19 @@ function MobileNavigation() {
 				<>
 					<BodyScrollLock lock={open} />
 					<Popover.Button
-						className="relative z-10 flex h-8 w-8 items-center justify-center ui-not-focus-visible:outline-none"
+						className="relative z-10 flex h-9 w-9 items-center justify-center rounded-full border border-border/40"
 						aria-label="Toggle Navigation"
 					>
 						<MobileNavIcon open={open} />
 					</Popover.Button>
-					{open && createPortal(
-						<div className="fixed inset-0 z-40 bg-background/50" onClick={() => close()} />,
-						document.body
-					)}
+					{open &&
+						createPortal(
+							<div
+								className="fixed inset-0 z-40 bg-background/50"
+								onClick={() => close()}
+							/>,
+							document.body,
+						)}
 					<Transition.Root>
 						<Transition.Child
 							as={Fragment as any}
@@ -109,56 +227,32 @@ function MobileNavigation() {
 							leaveFrom="opacity-100 scale-100"
 							leaveTo="opacity-0 scale-95"
 						>
-							<Popover.Panel
-								as="div"
-								className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl border border-border bg-background p-4 text-lg tracking-tight text-primary shadow-xl ring-1 ring-border/5 max-h-[80vh] overflow-y-auto"
-							>
-								<p className="px-2 py-1 text-xs font-semibold uppercase text-muted-foreground">
-									Features
-								</p>
-								<MobileNavLink href="/features/application-deployment-platform">Application Deployment</MobileNavLink>
-								<MobileNavLink href="/features/database-management-tool">Databases</MobileNavLink>
-								<MobileNavLink href="/features/application-management-software">Application Management</MobileNavLink>
-								<MobileNavLink href="/features/container-server-monitoring">Monitoring</MobileNavLink>
-								<MobileNavLink href="/deploy-ai">AI Deployment</MobileNavLink>
-								<hr className="m-2 border-border" />
+							<Popover.Panel className="absolute left-1/2 top-[calc(100%+0.75rem)] z-50 max-h-[80vh] w-[min(100vw-2rem,24rem)] -translate-x-1/2 overflow-y-auto rounded-3xl border border-border/60 bg-background p-4 shadow-xl">
+								{(Object.keys(megaMenus) as MegaMenuKey[]).map((key) => (
+									<div key={key} className="mb-4">
+										<p className="px-2 py-1 text-xs font-semibold uppercase text-muted-foreground">
+											{megaMenus[key].label}
+										</p>
+										{megaMenus[key].items.map((item) => (
+											<MobileNavLink
+												key={item.href}
+												href={item.href}
+												target={item.target}
+												icon={item.icon}
+											>
+												{item.title}
+											</MobileNavLink>
+										))}
+									</div>
+								))}
+								<hr className="my-2 border-border" />
 								<MobileNavLink href="/pricing">Pricing</MobileNavLink>
-								<hr className="m-2 border-border" />
-								<p className="px-2 py-1 text-xs font-semibold uppercase text-muted-foreground">
-									Solutions
-								</p>
-								<MobileNavLink href="/enterprise">Enterprise</MobileNavLink>
-								<MobileNavLink href="/partners">Partners</MobileNavLink>
-								<MobileNavLink href="/self-hosted-paas">Self-Hosted</MobileNavLink>
-								<hr className="m-2 border-border" />
+								<hr className="my-2 border-border" />
 								<MobileNavLink
-									href="https://docs.dokploy.com/docs/core"
+									href={SAGYBOAR_PORTAL_URL}
 									target="_blank"
 								>
-									Docs
-								</MobileNavLink>
-								<hr className="m-2 border-border" />
-								<p className="px-2 py-1 text-xs font-semibold uppercase text-muted-foreground">
-									Resources
-								</p>
-								<MobileNavLink href="https://templates.dokploy.com" target="_blank">Templates</MobileNavLink>
-								<MobileNavLink href="/comparison">Dokploy vs.</MobileNavLink>
-								<MobileNavLink href="/blog">Blog</MobileNavLink>
-								<MobileNavLink href="/#faqs">FAQ</MobileNavLink>
-								<MobileNavLink href="/jobs">Jobs</MobileNavLink>
-								<hr className="m-2 border-border" />
-								<MobileNavLink href="/jobs">Careers</MobileNavLink>
-								<MobileNavLink href="/contact">Contact</MobileNavLink>
-								<MobileNavLink
-									href="https://app.dokploy.com/register"
-									target="_blank"
-								>
-									<Button className="w-full" asChild>
-										<div className="group relative mx-auto flex w-full max-w-fit flex-row items-center justify-center rounded-2xl text-sm font-medium">
-											<span>Sign In</span>
-											<ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
-										</div>
-									</Button>
+									<Button className="mt-2 w-full rounded-full">Sign In</Button>
 								</MobileNavLink>
 							</Popover.Panel>
 						</Transition.Child>
@@ -169,241 +263,129 @@ function MobileNavigation() {
 	);
 }
 
-function ListItem({
-	className,
-	title,
-	href,
-	target,
-	children,
-}: {
-	className?: string;
-	title: string;
-	href: string;
-	target?: string;
-	children?: React.ReactNode;
-}) {
+export function Header() {
+	const [scrolled, setScrolled] = useState(false);
+	const [openMenu, setOpenMenu] = useState<MegaMenuKey | null>(null);
+	const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+	const handleScroll = useCallback(() => {
+		setScrolled(window.scrollY > SCROLL_THRESHOLD);
+	}, []);
+
+	const openMegaMenu = (key: MegaMenuKey) => {
+		if (closeTimer.current) clearTimeout(closeTimer.current);
+		setOpenMenu(key);
+	};
+
+	const closeMegaMenu = () => {
+		closeTimer.current = setTimeout(() => setOpenMenu(null), 120);
+	};
+
+	const keepMegaMenuOpen = () => {
+		if (closeTimer.current) clearTimeout(closeTimer.current);
+	};
+
+	useEffect(() => {
+		handleScroll();
+		window.addEventListener("scroll", handleScroll, { passive: true });
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, [handleScroll]);
+
+	useEffect(() => {
+		if (scrolled) setOpenMenu(null);
+	}, [scrolled]);
+
+	useEffect(() => {
+		return () => {
+			if (closeTimer.current) clearTimeout(closeTimer.current);
+		};
+	}, []);
+
 	return (
-		<li>
-			<NavigationMenuLink asChild>
-				<Link
-					href={href}
-					target={target}
-					onClick={() =>
-						trackGAEvent({
-							action: "Nav Link Clicked",
-							category: "Navigation",
-							label: href,
-						})
-					}
+		<header className="pointer-events-none fixed inset-x-0 top-0 z-50 bg-transparent px-4 pt-6 sm:px-6">
+			<div
+				className={cn(
+					"pointer-events-auto relative mx-auto transition-all duration-300 ease-out",
+					scrolled ? "w-full max-w-5xl" : "w-full max-w-7xl",
+				)}
+				onMouseLeave={closeMegaMenu}
+			>
+				<div
 					className={cn(
-						"block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-						className,
+						"relative rounded-3xl border px-4 py-3 transition-all duration-300 ease-out sm:px-5",
+						scrolled
+							? "border-border/60 bg-background shadow-md"
+							: "border-transparent bg-transparent shadow-none",
 					)}
 				>
-					<div className="text-sm font-medium leading-none">{title}</div>
-					{children && (
-						<p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-							{children}
-						</p>
+					<nav className="flex items-center justify-between gap-4 lg:gap-6">
+						<div className="flex min-w-0 items-center gap-3 lg:gap-6">
+							<Link
+								href="/"
+								aria-label={`${SAGYBOAR_BRAND_NAME} home`}
+								className="flex shrink-0 items-center gap-2.5"
+							>
+								<Logo className="h-8 w-auto sm:h-9" />
+								<span className="font-display text-base font-semibold tracking-tight text-foreground sm:text-lg">
+									{SAGYBOAR_BRAND_NAME}
+								</span>
+							</Link>
+
+							<div className="hidden items-center gap-0.5 lg:flex">
+								{(["features", "solutions", "resources"] as MegaMenuKey[]).map(
+									(key) => (
+										<DesktopNavItem
+											key={key}
+											menuKey={key}
+											isOpen={openMenu === key}
+											onOpen={() => openMegaMenu(key)}
+										/>
+									),
+								)}
+								<Link
+									href="/pricing"
+									onClick={() => trackNavClick("/pricing")}
+									className="rounded-full px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+								>
+									Pricing
+								</Link>
+							</div>
+						</div>
+
+						<div className="flex items-center gap-2 sm:gap-3">
+							<Button className="hidden rounded-full lg:inline-flex" asChild>
+								<Link
+									href={SAGYBOAR_PORTAL_URL}
+									target="_blank"
+									aria-label="Sign In"
+									onClick={() =>
+										trackNavClick(SAGYBOAR_PORTAL_URL)
+									}
+								>
+									<span className="group inline-flex items-center text-sm font-medium">
+										Dashboard
+										<ChevronRight className="ml-1 size-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+									</span>
+								</Link>
+							</Button>
+
+							<ThemeToggle />
+
+							<div className="lg:hidden">
+								<MobileNavigation />
+							</div>
+						</div>
+					</nav>
+
+					{openMenu && (
+						<MegaMenuPanel
+							menuKey={openMenu}
+							onMouseEnter={keepMegaMenuOpen}
+							onMouseLeave={closeMegaMenu}
+						/>
 					)}
-				</Link>
-			</NavigationMenuLink>
-		</li>
-	);
-}
-
-export function Header() {
-	return (
-		<header className="sticky top-0 z-50 border-b border-border/40 bg-background/95 py-5 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-			<Container>
-				<nav className="relative z-50 flex justify-between">
-					<div className="flex items-center md:gap-x-12">
-						<Link href="/" aria-label="Sagyboar home">
-							<Logo className="h-11 w-auto" />
-						</Link>
-						<div className="hidden md:flex">
-							<NavigationMenu>
-								<NavigationMenuList>
-									<NavigationMenuItem>
-										<NavigationMenuTrigger>Features</NavigationMenuTrigger>
-										<NavigationMenuContent>
-											<ul className="grid w-[200px] gap-1 p-2">
-												<ListItem href="/features/application-deployment-platform" title="Application Deployment">
-													Deploy and manage applications with ease
-												</ListItem>
-												<ListItem href="/features/database-management-tool" title="Databases">
-													Manage your databases effortlessly
-												</ListItem>
-												<ListItem href="/features/application-management-software" title="Application Management">
-													Monitor and control your applications
-												</ListItem>
-												<ListItem href="/features/container-server-monitoring" title="Monitoring">
-													Keep your systems running
-												</ListItem>
-												<ListItem href="/deploy-ai" title="AI Deployment">
-													Empower your team to deploy AI tools
-												</ListItem>
-											</ul>
-										</NavigationMenuContent>
-									</NavigationMenuItem>
-
-									<NavigationMenuItem>
-										<NavigationMenuLink
-											asChild
-											className={navigationMenuTriggerStyle()}
-										>
-											<Link
-												href="/pricing"
-												onClick={() =>
-													trackGAEvent({
-														action: "Nav Link Clicked",
-														category: "Navigation",
-														label: "/pricing",
-													})
-												}
-											>
-												Pricing
-											</Link>
-										</NavigationMenuLink>
-									</NavigationMenuItem>
-
-									<NavigationMenuItem>
-										<NavigationMenuTrigger>Solutions</NavigationMenuTrigger>
-										<NavigationMenuContent>
-											<ul className="grid w-[200px] gap-1 p-2">
-												<ListItem href="/enterprise" title="Enterprise">
-													Enterprise-grade deployment platform
-												</ListItem>
-												<ListItem href="/partners" title="Partners">
-													Partner program and integrations
-												</ListItem>
-												<ListItem href="/self-hosted-paas" title="Self-Hosted">
-													Self-hosted PaaS built for developers
-												</ListItem>
-											</ul>
-										</NavigationMenuContent>
-									</NavigationMenuItem>
-
-									<NavigationMenuItem>
-										<NavigationMenuLink
-											asChild
-											className={navigationMenuTriggerStyle()}
-										>
-											<Link
-												href="https://docs.dokploy.com/docs/core"
-												target="_blank"
-												onClick={() =>
-													trackGAEvent({
-														action: "Nav Link Clicked",
-														category: "Navigation",
-														label: "https://docs.dokploy.com/docs/core",
-													})
-												}
-											>
-												Docs
-											</Link>
-										</NavigationMenuLink>
-									</NavigationMenuItem>
-
-									<NavigationMenuItem>
-										<NavigationMenuLink
-											asChild
-											className={navigationMenuTriggerStyle()}
-										>
-											<Link
-												href="/jobs"
-												onClick={() =>
-													trackGAEvent({
-														action: "Nav Link Clicked",
-														category: "Navigation",
-														label: "/jobs",
-													})
-												}
-											>
-												Careers
-											</Link>
-										</NavigationMenuLink>
-									</NavigationMenuItem>
-
-									<NavigationMenuItem>
-										<NavigationMenuTrigger>Resources</NavigationMenuTrigger>
-										<NavigationMenuContent>
-											<ul className="grid w-[200px] gap-1 p-2">
-												<ListItem href="https://templates.dokploy.com" target="_blank" title="Templates">
-													Ready-to-deploy templates
-												</ListItem>
-												<ListItem href="/comparison" title="Dokploy vs.">
-													Compare Dokploy to alternatives
-												</ListItem>
-												<ListItem href="/blog" title="Blog">
-													Latest news and updates
-												</ListItem>
-												<ListItem href="/#faqs" title="FAQ">
-													Frequently asked questions
-												</ListItem>
-												<ListItem href="/jobs" title="Jobs">
-													See open positions at Dokploy
-												</ListItem>
-											</ul>
-										</NavigationMenuContent>
-									</NavigationMenuItem>
-								</NavigationMenuList>
-							</NavigationMenu>
-						</div>
-					</div>
-					<div className="flex items-center gap-x-4 md:gap-x-5">
-						<GithubStars className="max-md:hidden" />
-
-						<Link href="https://x.com/getdokploy" target="_blank">
-							<svg
-								stroke="currentColor"
-								fill="currentColor"
-								strokeWidth="0"
-								viewBox="0 0 512 512"
-								xmlns="http://www.w3.org/2000/svg"
-								className="h-5 w-5 fill-muted-foreground hover:fill-muted-foreground/80 group-hover:fill-muted-foreground/70"
-							>
-								<path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
-							</svg>
-						</Link>
-
-						<Button
-							variant="outline"
-							className="rounded-full max-md:hidden"
-							asChild
-						>
-							<Link
-								href="/contact"
-								onClick={() => {
-									trackGAEvent({
-										action: "Contact Button Clicked",
-										category: "Contact",
-										label: "Header",
-									});
-								}}
-							>
-								Contact
-							</Link>
-						</Button>
-
-						<Button className="rounded-full max-md:hidden" asChild>
-							<Link
-								href="https://app.dokploy.com/register"
-								aria-label="Sign In Dokploy Cloud"
-								target="_blank"
-							>
-								<div className="group relative mx-auto flex w-full max-w-fit flex-row items-center justify-center rounded-2xl text-sm font-medium">
-									<span>Sign In</span>
-									<ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
-								</div>
-							</Link>
-						</Button>
-						<div className="-mr-1 md:hidden">
-							<MobileNavigation />
-						</div>
-					</div>
-				</nav>
-			</Container>
+				</div>
+			</div>
 		</header>
 	);
 }

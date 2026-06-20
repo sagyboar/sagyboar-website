@@ -174,7 +174,7 @@ export default function DokployVsPortainerPage() {
 
 						<Button className="mt-10 rounded-full" asChild>
 							<Link
-								href="https://app.dokploy.com/register"
+								href="https://dashboard.sagyboar.space"
 								target="_blank"
 								rel="noopener noreferrer"
 							>
