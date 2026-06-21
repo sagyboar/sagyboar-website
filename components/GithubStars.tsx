@@ -37,7 +37,7 @@ function extractRepoInfo(url: string): { owner: string; repo: string } | null {
 
 export function GithubStars({
 	className,
-	repoUrl = "https://github.com/dokploy/dokploy",
+	repoUrl = "https://github.com/Sagyboar/Sagyboar",
 	label = "GitHub Stars",
 	count: defaultCount = "26.4k",
 }: GithubStarsProps) {

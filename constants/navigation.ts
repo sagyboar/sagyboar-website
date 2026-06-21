@@ -1,18 +1,17 @@
 import type { LucideIcon } from "lucide-react";
 import {
 	Activity,
-	BookOpen,
 	Bot,
-	Briefcase,
 	Building2,
-	CircleHelp,
 	Database,
-	GitCompare,
 	Handshake,
+	KeyRound,
 	LayoutDashboard,
-	LayoutTemplate,
+	Paintbrush,
 	Rocket,
+	ScrollText,
 	Server,
+	Shield,
 } from "lucide-react";
 
 export type NavLinkItem = {
@@ -21,11 +20,24 @@ export type NavLinkItem = {
 	description: string;
 	icon: LucideIcon;
 	target?: string;
+	footerLabel?: string;
 };
 
-export const featureLinks: NavLinkItem[] = [
+export type FooterLink = {
+	href: string;
+	label: string;
+};
+
+export type SocialLink = {
+	href: string;
+	label: string;
+	network: "x" | "github" | "instagram" | "linkedin" | "youtube";
+};
+
+export const platformFeatureLinks: NavLinkItem[] = [
 	{
 		title: "Application Deployment",
+		footerLabel: "Application Deployment Platform",
 		href: "/features/application-deployment-platform",
 		description: "Deploy and manage applications with ease",
 		icon: Rocket,
@@ -50,10 +62,56 @@ export const featureLinks: NavLinkItem[] = [
 	},
 	{
 		title: "AI Deployment",
+		footerLabel: "Deploy AI",
 		href: "/deploy-ai",
 		description: "Empower your team to deploy AI tools",
 		icon: Bot,
 	},
+];
+
+export const enterpriseFeatureLinks: NavLinkItem[] = [
+	{
+		title: "RBAC",
+		href: "/features/role-based-access-control",
+		description: "Fine-grained role-based access control",
+		icon: Shield,
+	},
+	{
+		title: "SSO",
+		href: "/features/single-sign-on",
+		description: "Single sign-on for your organization",
+		icon: KeyRound,
+	},
+	{
+		title: "Audit Logs",
+		href: "/features/audit-logs",
+		description: "Full visibility into every action",
+		icon: ScrollText,
+	},
+	{
+		title: "White Labeling",
+		href: "/features/white-labeling",
+		description: "Deploy under your own brand",
+		icon: Paintbrush,
+	},
+];
+
+/** Grouped feature links — matches footer Platform + Enterprise Features sections */
+export const featureMenuGroups = [
+	{
+		label: "Platform",
+		items: platformFeatureLinks,
+	},
+	{
+		label: "Enterprise",
+		items: enterpriseFeatureLinks,
+	},
+] as const;
+
+/** All feature pages (flat list for mobile, etc.) */
+export const featureLinks: NavLinkItem[] = [
+	...platformFeatureLinks,
+	...enterpriseFeatureLinks,
 ];
 
 export const solutionLinks: NavLinkItem[] = [
@@ -71,42 +129,100 @@ export const solutionLinks: NavLinkItem[] = [
 	},
 	{
 		title: "Self-Hosted",
+		footerLabel: "Self-Hosted PaaS",
 		href: "/self-hosted-paas",
 		description: "Self-hosted PaaS built for developers",
 		icon: Server,
 	},
 ];
 
-export const resourceLinks: NavLinkItem[] = [
+export const topNavLinks: FooterLink[] = [
+	{ href: "/pricing", label: "Pricing" },
+	{ href: "/blog", label: "Blog" },
+];
+
+export const companyLinks: FooterLink[] = [
+	{ href: "/blog", label: "Blog" },
+	{ href: "/jobs", label: "Careers" },
+	{ href: "/terms-of-service", label: "Terms of Service" },
+	{ href: "/privacy", label: "Privacy Policy" },
+];
+
+export type FooterSectionGroup = {
+	label: string;
+	links: FooterLink[];
+};
+
+export type FooterSection = {
+	title: string;
+	ariaLabel: string;
+	links?: FooterLink[];
+	groups?: FooterSectionGroup[];
+};
+
+function toFooterLink(item: NavLinkItem): FooterLink {
+	return {
+		href: item.href,
+		label: item.footerLabel ?? item.title,
+	};
+}
+
+export const productLinks: FooterLink[] = [
+	{ href: "/", label: "Home" },
+	{ href: "/pricing", label: "Pricing" },
+	{ href: "/contact", label: "Contact" },
+];
+
+export const footerSections: FooterSection[] = [
 	{
-		title: "Templates",
-		href: "https://templates.dokploy.com",
-		description: "Ready-to-deploy templates",
-		icon: LayoutTemplate,
-		target: "_blank",
+		title: "Features",
+		ariaLabel: "Features",
+		groups: featureMenuGroups.map((group) => ({
+			label: group.label,
+			links: group.items.map(toFooterLink),
+		})),
 	},
 	{
-		title: "Dokploy vs.",
-		href: "/comparison",
-		description: "Compare Dokploy to alternatives",
-		icon: GitCompare,
+		title: "Solutions",
+		ariaLabel: "Solutions",
+		links: solutionLinks.map(toFooterLink),
 	},
 	{
-		title: "Blog",
-		href: "/blog",
-		description: "Latest news and updates",
-		icon: BookOpen,
+		title: "Product",
+		ariaLabel: "Product",
+		links: productLinks,
 	},
 	{
-		title: "FAQ",
-		href: "/#faqs",
-		description: "Frequently asked questions",
-		icon: CircleHelp,
+		title: "Company",
+		ariaLabel: "Company",
+		links: companyLinks,
+	},
+];
+
+export const socialLinks: SocialLink[] = [
+	{
+		href: "https://x.com/getSagyboar",
+		label: "Sagyboar on X",
+		network: "x",
 	},
 	{
-		title: "Careers",
-		href: "/jobs",
-		description: "See open positions at Dokploy",
-		icon: Briefcase,
+		href: "https://github.com/Sagyboar/Sagyboar",
+		label: "Sagyboar on GitHub",
+		network: "github",
+	},
+	{
+		href: "https://instagram.com/sagyboar",
+		label: "Sagyboar on Instagram",
+		network: "instagram",
+	},
+	{
+		href: "https://linkedin.com/company/sagyboar",
+		label: "Sagyboar on LinkedIn",
+		network: "linkedin",
+	},
+	{
+		href: "https://youtube.com/@sagyboar",
+		label: "Sagyboar on YouTube",
+		network: "youtube",
 	},
 ];

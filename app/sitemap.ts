@@ -1,7 +1,7 @@
-import { getPosts } from "@/lib/ghost";
+import { getDummyPosts } from "@/constants/blog-posts";
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://dokploy.com";
+const BASE_URL = "https://Sagyboar.com";
 
 const corePages: { path: string; priority: number }[] = [
 	{ path: "/pricing", priority: 0.9 },
@@ -12,6 +12,7 @@ const corePages: { path: string; priority: number }[] = [
 	{ path: "/partners", priority: 0.6 },
 	{ path: "/changelog", priority: 0.6 },
 	{ path: "/jobs", priority: 0.7 },
+	{ path: "/blog", priority: 0.7 },
 ];
 
 const featurePages = [
@@ -22,20 +23,13 @@ const featurePages = [
 	"/features/single-sign-on",
 	"/features/audit-logs",
 	"/features/white-labeling",
-];
-
-const comparisonPages = [
-	"/comparison",
-	"/dokploy-vs-coolify",
-	"/dokploy-vs-portainer",
-	"/dokploy-vs-caprover",
-	"/dokploy-vs-dokku",
+	"/features/container-server-monitoring",
 ];
 
 const legalPages = ["/terms-of-service", "/terms", "/privacy"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-	const posts = await getPosts();
+	const posts = getDummyPosts();
 	const now = new Date();
 
 	return [
@@ -44,12 +38,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			lastModified: now,
 			changeFrequency: "monthly",
 			priority: 1,
-		},
-		{
-			url: `${BASE_URL}/blog`,
-			lastModified: now,
-			changeFrequency: "weekly",
-			priority: 0.8,
 		},
 		...corePages.map(({ path, priority }) => ({
 			url: `${BASE_URL}${path}`,
@@ -62,12 +50,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			lastModified: now,
 			changeFrequency: "monthly" as const,
 			priority: 0.7,
-		})),
-		...comparisonPages.map((path) => ({
-			url: `${BASE_URL}${path}`,
-			lastModified: now,
-			changeFrequency: "monthly" as const,
-			priority: 0.6,
 		})),
 		...legalPages.map((path) => ({
 			url: `${BASE_URL}${path}`,

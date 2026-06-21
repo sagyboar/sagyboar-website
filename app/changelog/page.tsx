@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
 	title: "Changelog",
 	description:
-		"Stay updated with the latest changes, improvements, and features in Dokploy",
+		"Stay updated with the latest changes, improvements, and features in Sagyboar",
 };
 
 const changelogEntries = [

@@ -1,6 +1,7 @@
 import { Container } from "@/components/Container";
 import { CallToAction } from "@/components/CallToAction";
-import AnimatedGridPattern from "@/components/ui/animated-grid-pattern";
+import { HeroParticleWave } from "@/components/hero/hero-particle-wave";
+import { HeroParticleField } from "@/components/hero/hero-particle-field";
 import {
 	Accordion,
 	AccordionContent,
@@ -33,7 +34,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
 	title: "Database Management Tool & Deployment Software",
 	description:
-		"Create, manage, and back up databases easily with Dokploy's database management tool, and customize the process to suit your project needs.",
+		"Create, manage, and back up databases easily with Sagyboar's database management tool, and customize the process to suit your project needs.",
 };
 
 const databaseSystems = [
@@ -80,13 +81,13 @@ const protectionFeatures = [
 		icon: FileText,
 		title: "Logs",
 		description:
-			"View real-time logs from any running database directly in your Dokploy dashboard. Spot errors as they happen, trace unexpected behavior back to its source, and keep a clear record of what\u2019s happening inside your containers.",
+			"View real-time logs from any running database directly in your Sagyboar dashboard. Spot errors as they happen, trace unexpected behavior back to its source, and keep a clear record of what\u2019s happening inside your containers.",
 	},
 	{
 		icon: RotateCcw,
 		title: "Restore",
 		description:
-			"Restore any database from a backup stored in your S3 bucket in a few clicks\u2014critical for disaster recovery when you need to act fast. Select the source bucket, search for your backup file with autocomplete, and kick off the restoration process\u2014Dokploy handles the correct restore commands automatically.",
+			"Restore any database from a backup stored in your S3 bucket in a few clicks\u2014critical for disaster recovery when you need to act fast. Select the source bucket, search for your backup file with autocomplete, and kick off the restoration process\u2014Sagyboar handles the correct restore commands automatically.",
 	},
 	{
 		icon: Link2,
@@ -140,7 +141,7 @@ const securityFeatures = [
 		icon: Lock,
 		title: "Your server, your data",
 		description:
-			"Dokploy creates Docker containers on your own server. Your database data never leaves your infrastructure\u2014you have full ownership and control over where it lives.",
+			"Sagyboar creates Docker containers on your own server. Your database data never leaves your infrastructure\u2014you have full ownership and control over where it lives.",
 	},
 	{
 		icon: KeyRound,
@@ -152,7 +153,7 @@ const securityFeatures = [
 		icon: ShieldCheck,
 		title: "No third-party access",
 		description:
-			"Dokploy doesn\u2019t store or proxy your data. Everything runs on your machine, so there\u2019s no middleman between your applications and your databases.",
+			"Sagyboar doesn\u2019t store or proxy your data. Everything runs on your machine, so there\u2019s no middleman between your applications and your databases.",
 	},
 ];
 
@@ -165,12 +166,12 @@ const faqs = [
 	{
 		question: "What is the best database management tool?",
 		answer:
-			"There\u2019s no single best tool. The right choice depends on your specific use cases, team size, and infrastructure. Some tools require expertise to configure and come with a steeper learning curve, which can slow teams down. Dokploy is designed to remove that friction and improve database performance, offering a secure, scalable solution that covers deployment, monitoring, backups, and data privacy without requiring specialist knowledge. It won\u2019t replace dedicated analysis or AI assistant tooling, but it gives developers a reliable foundation for managing databases in production.",
+			"There\u2019s no single best tool. The right choice depends on your specific use cases, team size, and infrastructure. Some tools require expertise to configure and come with a steeper learning curve, which can slow teams down. Sagyboar is designed to remove that friction and improve database performance, offering a secure, scalable solution that covers deployment, monitoring, backups, and data privacy without requiring specialist knowledge. It won\u2019t replace dedicated analysis or AI assistant tooling, but it gives developers a reliable foundation for managing databases in production.",
 	},
 	{
-		question: "What database systems does Dokploy support?",
+		question: "What database systems does Sagyboar support?",
 		answer:
-			"Dokploy supports five widely used database tools: PostgreSQL, MySQL, MariaDB, MongoDB, and Redis. That covers the most common SQL server databases and NoSQL use cases, from relational workloads that rely on structured query language to flexible document and key-value stores. All five\u2014both SQL databases and noSQL systems\u2014can be deployed, backed up, and monitored using the same tools and workflows inside Dokploy.",
+			"Sagyboar supports five widely used database tools: PostgreSQL, MySQL, MariaDB, MongoDB, and Redis. That covers the most common SQL server databases and NoSQL use cases, from relational workloads that rely on structured query language to flexible document and key-value stores. All five\u2014both SQL databases and noSQL systems\u2014can be deployed, backed up, and monitored using the same tools and workflows inside Sagyboar.",
 	},
 ];
 
@@ -178,23 +179,19 @@ export default function DatabaseManagementToolPage() {
 	return (
 		<div className="min-h-screen bg-background">
 			{/* Hero Section */}
-			<section className="relative overflow-hidden border-b border-border/30 bg-black py-20 sm:py-32">
-				<AnimatedGridPattern
-					numSquares={30}
-					maxOpacity={0.1}
-					height={40}
-					width={40}
-					duration={3}
-					repeatDelay={1}
-					className="[mask-image:radial-gradient(800px_circle_at_center,white,transparent)] absolute inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
+			<section className="relative overflow-hidden border-b border-border bg-background py-20 sm:py-32">
+				<HeroParticleWave />
+				<div
+					aria-hidden
+					className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[58%] bg-gradient-to-b from-background via-background/95 to-transparent"
 				/>
 				<Container className="relative z-10">
-					<div className="mx-auto max-w-4xl text-center">
-						<h1 className="font-display text-4xl tracking-tight text-white sm:text-5xl lg:text-6xl">
+					<div className="mx-auto max-w-5xl text-center">
+						<h1 className="font-display text-4xl tracking-tight text-foreground sm:text-5xl lg:text-6xl">
 							Database Management, Done Right
 						</h1>
 						<p className="mt-6 text-lg text-muted-foreground">
-							Create, manage, and back up databases easily with Dokploy&apos;s
+							Create, manage, and back up databases easily with Sagyboar&apos;s
 							database tool, and customize the process to suit your project
 							needs. Deploy in minutes, maintain full control over your stored
 							data, and recover fast when it matters.
@@ -209,14 +206,14 @@ export default function DatabaseManagementToolPage() {
 			</section>
 
 			{/* Deploy the database you already use */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			<section className="border-b border-border py-20 sm:py-32">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
+					<div className="mx-auto max-w-5xl text-center">
 						<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
 							Deploy the database you already use
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
-							Dokploy&apos;s database management tool supports five widely used
+							Sagyboar&apos;s database management tool supports five widely used
 							database systems out of the box, so you&apos;re not locked into a
 							single technology. You pick what fits your stack and your data
 							management needs.
@@ -226,7 +223,7 @@ export default function DatabaseManagementToolPage() {
 						{databaseSystems.map((db) => (
 							<div
 								key={db.title}
-								className="rounded-xl border border-border/50 bg-card p-6"
+								className="rounded-xl border border-border bg-card p-6"
 							>
 								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 									<db.icon className="h-6 w-6" />
@@ -242,31 +239,47 @@ export default function DatabaseManagementToolPage() {
 			</section>
 
 			{/* Watch your databases in real time */}
-			<section className="border-b border-border/30 bg-black py-20 sm:py-32">
-				<Container>
-					<div className="mx-auto max-w-3xl text-center">
+			<section className="relative overflow-hidden border-b border-border bg-background pb-16 pt-20 sm:pb-20 sm:pt-32">
+				<HeroParticleField />
+				<div
+					aria-hidden
+					className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[42%] bg-gradient-to-b from-background via-background/85 to-transparent"
+				/>
+				<Container className="relative z-10">
+					<div className="mx-auto max-w-5xl text-center">
 						<div className="mb-6 flex justify-center">
 							<div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/20 text-primary">
 								<Activity className="h-7 w-7" />
 							</div>
 						</div>
-						<h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
+						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 							Watch your databases in real time
 						</h2>
 						<p className="mt-6 text-lg text-muted-foreground">
-							Dokploy surfaces live monitoring graphs for memory, CPU, disk, and
+							Sagyboar surfaces live monitoring graphs for memory, CPU, disk, and
 							network directly in the dashboard. The data updates as you view
 							it, so you can see exactly what your database is doing and catch
 							problems before they become incidents.
 						</p>
 					</div>
+
+					<div className="mx-auto mt-12 max-w-7xl overflow-hidden rounded-xl border border-border bg-card shadow-2xl sm:mt-16">
+						<Image
+							src="/primary/monitoring.png"
+							alt="Sagyboar database monitoring dashboard showing CPU, memory, and network metrics"
+							width={1200}
+							height={750}
+							className="w-full object-cover"
+							sizes="(max-width: 768px) 100vw, 1200px"
+						/>
+					</div>
 				</Container>
 			</section>
 
 			{/* Protect, recover, and connect with confidence */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			<section className="border-b border-border py-20 sm:py-32">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
+					<div className="mx-auto max-w-5xl text-center">
 						<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
 							Protect, recover, and connect with confidence
 						</h2>
@@ -280,7 +293,7 @@ export default function DatabaseManagementToolPage() {
 						{protectionFeatures.map((feature) => (
 							<div
 								key={feature.title}
-								className="rounded-xl border border-border/50 bg-card p-6"
+								className="rounded-xl border border-border bg-card p-6"
 							>
 								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 									<feature.icon className="h-6 w-6" />
@@ -296,28 +309,28 @@ export default function DatabaseManagementToolPage() {
 			</section>
 
 			{/* Advanced options, your way */}
-			<section className="border-b border-border/30 bg-black py-20 sm:py-32">
+			<section className="border-b border-border bg-muted/30 py-20 sm:py-32 dark:bg-muted/10">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
-						<h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
+					<div className="mx-auto max-w-5xl text-center">
+						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 							Advanced options, your way
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
-							Dokploy goes beyond the basics, giving you granular control over
+							Sagyboar goes beyond the basics, giving you granular control over
 							how each database runs, from the image it uses to the resources it
 							consumes and everything in between.
 						</p>
 					</div>
-					<div className="mx-auto mt-16 grid max-w-6xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
+					<div className="mx-auto mt-16 grid max-w-7xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
 						{advancedOptions.map((option) => (
 							<div
 								key={option.title}
-								className="rounded-xl border border-border/50 bg-card p-6"
+								className="rounded-xl border border-border bg-card p-6"
 							>
 								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 									<option.icon className="h-6 w-6" />
 								</div>
-								<h3 className="text-lg font-semibold text-white">
+								<h3 className="text-lg font-semibold text-foreground">
 									{option.title}
 								</h3>
 								<p className="mt-3 text-sm text-muted-foreground">
@@ -330,9 +343,9 @@ export default function DatabaseManagementToolPage() {
 			</section>
 
 			{/* Your data stays secure */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			<section className="border-b border-border py-20 sm:py-32">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
+					<div className="mx-auto max-w-5xl text-center">
 						<div className="mb-6 flex justify-center">
 							<div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/20 text-primary">
 								<Shield className="h-7 w-7" />
@@ -342,7 +355,7 @@ export default function DatabaseManagementToolPage() {
 							Your data stays secure
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
-							Your database data is stored on your own server. Dokploy creates
+							Your database data is stored on your own server. Sagyboar creates
 							Docker containers on your infrastructure, so you have full
 							control over your data&mdash;no third parties, no external
 							dependencies.
@@ -352,7 +365,7 @@ export default function DatabaseManagementToolPage() {
 						{securityFeatures.map((feature) => (
 							<div
 								key={feature.title}
-								className="rounded-xl border border-border/50 bg-card p-6 text-center"
+								className="rounded-xl border border-border bg-card p-6 text-center"
 							>
 								<div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 									<feature.icon className="h-6 w-6" />
@@ -367,44 +380,22 @@ export default function DatabaseManagementToolPage() {
 				</Container>
 			</section>
 
-			{/* Start managing databases smarter */}
-			<section className="border-b border-border/30 bg-black py-20 sm:py-32">
-				<Container>
-					<div className="mx-auto max-w-3xl text-center">
-						<h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
-							Start managing databases smarter
-						</h2>
-						<p className="mt-6 text-lg text-muted-foreground">
-							Dokploy gives you everything you need to deploy, monitor, and
-							protect your databases&mdash;without the complexity. Create your
-							account and have your first database running in minutes with our
-							database management tool.
-						</p>
-						<div className="mt-10">
-							<Button className="rounded-full" asChild>
-								<Link href="https://dashboard.sagyboar.space">Create your account</Link>
-							</Button>
-						</div>
-					</div>
-				</Container>
-			</section>
-
 			{/* Database management tool FAQs */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			<section className="border-b border-border py-20 sm:py-32">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
-						<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
+					<div className="mx-auto max-w-5xl text-center">
+						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 							Database management tool FAQs
 						</h2>
 					</div>
 					<Accordion
 						type="single"
 						collapsible
-						className="mx-auto mt-12 w-full max-w-3xl"
+						className="mx-auto mt-12 w-full max-w-5xl rounded-2xl border border-border bg-card/50 px-6 shadow-sm backdrop-blur-sm dark:bg-card/30"
 					>
 						{faqs.map((faq, index) => (
-							<AccordionItem value={`faq-${index}`} key={index}>
-								<AccordionTrigger className="text-left">
+							<AccordionItem value={`faq-${index}`} key={index} className="border-border">
+								<AccordionTrigger className="text-left text-foreground hover:text-foreground">
 									{faq.question}
 								</AccordionTrigger>
 								<AccordionContent>{faq.answer}</AccordionContent>

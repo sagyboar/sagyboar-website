@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Dokploy Security Migration Script
-# Configures a unique BETTER_AUTH_SECRET for Dokploy installations
+# Sagyboar Security Migration Script
+# Configures a unique BETTER_AUTH_SECRET for Sagyboar installations
 
 set -e
 
@@ -11,14 +11,14 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-# Check if Dokploy is installed
-if ! docker service ls 2>/dev/null | grep -q dokploy; then
-    echo "Error: Dokploy service not found. Is Dokploy installed?" >&2
+# Check if Sagyboar is installed
+if ! docker service ls 2>/dev/null | grep -q Sagyboar; then
+    echo "Error: Sagyboar service not found. Is Sagyboar installed?" >&2
     exit 1
 fi
 
 # Check if already configured
-if docker secret ls 2>/dev/null | grep -q "dokploy-auth-secret"; then
+if docker secret ls 2>/dev/null | grep -q "Sagyboar-auth-secret"; then
     echo "✅ Auth secret is already configured!"
     echo "   (Stored securely in Docker Secrets)"
     echo ""
@@ -26,11 +26,11 @@ if docker secret ls 2>/dev/null | grep -q "dokploy-auth-secret"; then
 fi
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "  Dokploy Auth Secret Migration"
+echo "  Sagyboar Auth Secret Migration"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 echo "👋 This script will generate a unique auth secret for your"
-echo "   Dokploy installation and migrate any existing 2FA data."
+echo "   Sagyboar installation and migrate any existing 2FA data."
 echo ""
 
 # Generate new secret
@@ -38,31 +38,31 @@ echo "🔐 Generating secure auth secret..."
 NEW_SECRET=$(openssl rand -hex 32)
 
 # Store in Docker Secret
-echo "$NEW_SECRET" | docker secret create dokploy-auth-secret -
+echo "$NEW_SECRET" | docker secret create Sagyboar-auth-secret -
 echo "✅ Auth secret saved in Docker Secrets"
 
-# Run 2FA migration inside the Dokploy container
+# Run 2FA migration inside the Sagyboar container
 echo "🔄 Migrating existing 2FA records..."
-DOKPLOY_CONTAINER=$(docker ps --filter "name=dokploy" --format "{{.ID}}" | head -n1)
+Sagyboar_CONTAINER=$(docker ps --filter "name=Sagyboar" --format "{{.ID}}" | head -n1)
 
-if [ -n "$DOKPLOY_CONTAINER" ]; then
+if [ -n "$Sagyboar_CONTAINER" ]; then
     docker exec \
         -e OLD_SECRET=better-auth-secret-123456789 \
         -e NEW_SECRET="$NEW_SECRET" \
-        "$DOKPLOY_CONTAINER" \
+        "$Sagyboar_CONTAINER" \
         sh -c "cd /app && pnpm run migrate-auth-secret"
     echo "✅ 2FA records migrated"
 else
-    echo "⚠️  Dokploy container not found, skipping 2FA migration"
+    echo "⚠️  Sagyboar container not found, skipping 2FA migration"
 fi
 
-# Update Dokploy service to use the Docker Secret
-echo "🔄 Updating Dokploy service..."
+# Update Sagyboar service to use the Docker Secret
+echo "🔄 Updating Sagyboar service..."
 docker service update \
-    --secret-add source=dokploy-auth-secret,target=/run/secrets/dokploy-auth-secret \
-    --env-add BETTER_AUTH_SECRET_FILE=/run/secrets/dokploy-auth-secret \
+    --secret-add source=Sagyboar-auth-secret,target=/run/secrets/Sagyboar-auth-secret \
+    --env-add BETTER_AUTH_SECRET_FILE=/run/secrets/Sagyboar-auth-secret \
     --env-rm BETTER_AUTH_SECRET \
-    dokploy
+    Sagyboar
 
 echo "⏳ Waiting for service to restart..."
 sleep 5
@@ -76,7 +76,7 @@ echo "📋 What was configured:"
 echo "   • Unique auth secret generated with openssl rand -hex 32"
 echo "   • Secret stored in Docker Secrets (encrypted, in-memory only)"
 echo "   • Existing 2FA records re-encrypted with the new secret"
-echo "   • Dokploy service updated to use the new secret"
+echo "   • Sagyboar service updated to use the new secret"
 echo ""
 echo "💡 Next steps:"
 echo "   • All active sessions have been invalidated — users will need to log in again"

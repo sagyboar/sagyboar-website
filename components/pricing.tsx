@@ -4,7 +4,8 @@ import clsx from "clsx";
 import { Check } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { Container } from "./Container";
+import { Container } from "@/components/Container";
+import { HeroParticleWave } from "@/components/hero/hero-particle-wave";
 import { ContactFormModal } from "./ContactFormModal";
 import {
 	Accordion,
@@ -16,9 +17,7 @@ import { Badge } from "./ui/badge";
 import { Button, buttonVariants } from "./ui/button";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import { PricingFeatureTable } from "./pricing/PricingFeatureTable";
-import AnimatedGridPattern from "./ui/animated-grid-pattern";
 import { SAGYBOAR_PORTAL_URL } from "@/constants/branding";
-import { cn } from "@/lib/utils";
 
 const pricingFaqs = [
 	{
@@ -59,7 +58,7 @@ const pricingFaqs = [
 	{
 		question: "Do I need to provide my own server?",
 		answer:
-			"Yes, you provide your own server (e.g., Hetzner, Hostinger, AWS, etc.) VPS, and we manage the Dokploy UI infrastructure for you.",
+			"Yes, you provide your own server (e.g., Hetzner, Hostinger, AWS, etc.) VPS, and we manage the Sagyboar UI infrastructure for you.",
 	},
 ];
 
@@ -133,36 +132,30 @@ export function Pricing() {
 	const startupBaseAnnual = startupBaseMonthly * 12 * 0.8;
 
 	return (
-		<section
-			id="pricing"
-			aria-label="Pricing"
-			className="relative border-t border-border/30 bg-black py-20 sm:py-32 overflow-hidden"
-		>
-			<Container className="relative">
-				<div className="relative text-center overflow-hidden py-8 -my-8">
-					<AnimatedGridPattern
-						numSquares={20}
-						maxOpacity={0.1}
-						height={40}
-						width={40}
-						duration={3}
-						repeatDelay={1}
-						className={cn(
-							"[mask-image:radial-gradient(600px_circle_at_50%_50%,white,transparent)]",
-							"absolute inset-0",
-						)}
-					/>
-					<h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
-						<span className="relative whitespace-nowrap">
-							<SwirlyDoodle className="absolute left-0 top-1/2 h-[1em] w-full fill-muted-foreground" />
-							<span className="relative">Simple Affordable</span>
-						</span>{" "}
-						Pricing.
-					</h2>
-					<p className="mt-4 text-lg text-muted-foreground">
-						Infrastructure, we take care of it for you.
-					</p>
-				</div>
+		<div className="min-h-screen bg-background">
+			<section
+				id="pricing"
+				aria-label="Pricing"
+				className="relative overflow-hidden border-b border-border py-20 sm:py-32"
+			>
+				<HeroParticleWave />
+				<div
+					aria-hidden
+					className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[58%] bg-gradient-to-b from-background via-background/95 to-transparent"
+				/>
+				<Container className="relative z-10">
+					<div className="relative py-8 text-center">
+						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
+							<span className="relative whitespace-nowrap">
+								<SwirlyDoodle className="absolute left-0 top-1/2 h-[1em] w-full fill-muted-foreground" />
+								<span className="relative">Simple Affordable</span>
+							</span>{" "}
+							Pricing.
+						</h2>
+						<p className="mt-4 text-lg text-muted-foreground">
+							Infrastructure, we take care of it for you.
+						</p>
+					</div>
 
 				{/* Billing toggle */}
 				<div className="mx-auto mt-10 flex flex-col items-center gap-6">
@@ -180,16 +173,16 @@ export function Pricing() {
 					</Tabs>
 				</div>
 
-				<div className="mx-auto mt-12 flex max-w-6xl flex-col gap-8">
+				<div className="mx-auto mt-12 flex max-w-7xl flex-col gap-8">
 						{/* Hobby, Startup, Enterprise - 3 column grid */}
 						<div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 						{/* Hobby */}
 						<section
 							className={clsx(
-								"flex flex-col rounded-3xl border-2 border-dashed border-border/50 bg-black/50 px-6 py-8",
+								"flex flex-col rounded-3xl border-2 border-dashed border-border bg-card px-6 py-8",
 							)}
 						>
-							<h3 className="text-lg font-medium text-white">Hobby</h3>
+							<h3 className="text-lg font-medium text-foreground">Hobby</h3>
 							<p className="mt-1 text-sm text-muted-foreground">
 								Everything an individual developer needs
 							</p>
@@ -236,13 +229,13 @@ export function Pricing() {
 						{/* Startup */}
 						<section
 							className={clsx(
-								"relative flex flex-col rounded-3xl border-2 border-primary/50 bg-black/80 px-6 py-8",
+								"relative flex flex-col rounded-3xl border-2 border-primary/50 bg-card px-6 py-8",
 							)}
 						>
 							<Badge className="absolute -top-2.5 left-6">
 								Recommended
 							</Badge>
-							<h3 className="text-lg font-medium text-white">Startup</h3>
+							<h3 className="text-lg font-medium text-foreground">Startup</h3>
 							<p className="mt-1 text-sm text-muted-foreground">
 								Perfect for small to mid-size teams
 							</p>
@@ -287,23 +280,23 @@ export function Pricing() {
 						{/* Enterprise */}
 						<section
 							className={clsx(
-								"flex flex-col rounded-3xl border-2 border-dashed border-border/50 bg-black/50 px-6 py-8",
+								"flex flex-col rounded-3xl border-2 border-dashed border-border bg-card px-6 py-8",
 							)}
 						>
-							<h3 className="text-lg font-medium text-white">Enterprise</h3>
+							<h3 className="text-lg font-medium text-foreground">Enterprise</h3>
 							<p className="mt-1 text-sm text-muted-foreground">
 								For large organizations who want more control
 							</p>
 							{/* Cloud & Self Hosted options */}
 							<div className="mt-4 grid grid-cols-2 gap-3">
-								<div className="rounded-xl border border-border/50 bg-background/50 px-4 py-3">
-									<p className="font-medium text-white text-center">Cloud</p>
+								<div className="rounded-xl border border-border bg-muted/30 px-4 py-3 dark:bg-muted/10">
+									<p className="text-center font-medium text-foreground">Cloud</p>
 									<p className="mt-0.5 text-xs text-muted-foreground text-center">
 										We host and manage everything for you
 									</p>
 								</div>
-								<div className="rounded-xl border border-border/50 bg-background/50 px-4 py-3">
-									<p className="font-medium text-white text-center">Self Hosted</p>
+								<div className="rounded-xl border border-border bg-muted/30 px-4 py-3 dark:bg-muted/10">
+									<p className="text-center font-medium text-foreground">Self Hosted</p>
 									<p className="mt-0.5 text-xs text-muted-foreground text-center">
 										Install on-prem or in your own cloud
 									</p>
@@ -331,14 +324,14 @@ export function Pricing() {
 						{/* Agency - below the 3 main plans */}
 						<section
 							className={clsx(
-								"flex flex-col rounded-3xl border-2 border-dashed border-border/50 bg-black/50 px-6 py-8",
+								"flex flex-col rounded-3xl border-2 border-dashed border-border bg-card px-6 py-8",
 							)}
 						>
-							<h3 className="text-lg font-medium text-white">Agency</h3>
+							<h3 className="text-lg font-medium text-foreground">Agency</h3>
 							<p className="mt-1 text-sm text-muted-foreground">
 								Our Agency plan is uniquely tailored to the needs of agencies.
 								Please contact us below to learn more about this option, as well
-								as about becoming a certified Dokploy partner.{" "}
+								as about becoming a certified Sagyboar partner.{" "}
 								<Link
 									href="/partners"
 									className="text-primary hover:underline"
@@ -359,8 +352,8 @@ export function Pricing() {
 				</div>
 
 				{/* Feature breakdown */}
-				<div className="mx-auto mt-24 max-w-6xl">
-						<h3 className="text-center text-2xl font-semibold text-white">
+				<div className="mx-auto mt-24 max-w-7xl">
+						<h3 className="text-center text-2xl font-semibold text-foreground">
 							Feature breakdown by plan
 						</h3>
 						<div className="mt-8">
@@ -369,8 +362,8 @@ export function Pricing() {
 				</div>
 
 				{/* Pricing FAQ */}
-				<div className="mx-auto mt-24 max-w-3xl">
-					<h3 className="text-center text-2xl font-semibold text-white">
+				<div className="mx-auto mt-24 max-w-5xl">
+					<h3 className="text-center text-2xl font-semibold text-foreground">
 						Frequently asked questions
 					</h3>
 					<p className="mt-4 text-center text-sm text-muted-foreground">
@@ -379,11 +372,11 @@ export function Pricing() {
 					<Accordion
 						type="single"
 						collapsible
-						className="mt-8 w-full"
+						className="mx-auto mt-8 w-full rounded-2xl border border-border bg-card/50 px-6 shadow-sm backdrop-blur-sm dark:bg-card/30"
 					>
 						{pricingFaqs.map((faq, index) => (
-							<AccordionItem value={`${index}`} key={index}>
-								<AccordionTrigger className="text-left">
+							<AccordionItem value={`${index}`} key={index} className="border-border">
+								<AccordionTrigger className="text-left text-foreground hover:text-foreground">
 									{faq.question}
 								</AccordionTrigger>
 								<AccordionContent>{faq.answer}</AccordionContent>
@@ -392,6 +385,7 @@ export function Pricing() {
 					</Accordion>
 				</div>
 			</Container>
+			</section>
 
 			<ContactFormModal
 				open={openContactModal}
@@ -403,6 +397,6 @@ export function Pricing() {
 				onOpenChange={setOpenPartnerModal}
 				defaultInquiryType="sales"
 			/>
-		</section>
+		</div>
 	);
 }

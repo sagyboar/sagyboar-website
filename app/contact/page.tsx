@@ -2,8 +2,8 @@
 
 import { Container } from "@/components/Container";
 import { ContactForm } from "@/components/ContactForm";
-import AnimatedGridPattern from "@/components/ui/animated-grid-pattern";
-import { cn } from "@/lib/utils";
+import { HeroParticleWave } from "@/components/hero/hero-particle-wave";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 export default function ContactPage() {
@@ -11,62 +11,65 @@ export default function ContactPage() {
 
 	if (isSubmitted) {
 		return (
-			<div className="bg-background py-24 sm:py-32">
-				<Container>
-					<div className="mx-auto max-w-2xl text-center">
-						<h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-							Thank you for contacting us!
-						</h1>
-						<p className="mt-6 text-lg leading-8 text-muted-foreground">
-							We've received your message and will get back to you as soon as
-							possible.
-						</p>
-						<div className="mt-10">
-							<button
-								type="button"
-								onClick={() => setIsSubmitted(false)}
-								className="rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
-							>
-								Send Another Message
-							</button>
+			<div className="min-h-screen bg-background">
+				<section className="relative overflow-hidden border-b border-border pt-28 pb-16 sm:pt-32 sm:pb-20">
+					<HeroParticleWave />
+					<div
+						aria-hidden
+						className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[58%] bg-gradient-to-b from-background via-background/95 to-transparent"
+					/>
+					<Container className="relative z-10">
+						<div className="mx-auto max-w-5xl text-center">
+							<h1 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
+								Thank you for contacting us!
+							</h1>
+							<p className="mt-6 text-lg text-muted-foreground">
+								We&apos;ve received your message and will get back to you as soon
+								as possible.
+							</p>
+							<div className="mt-10">
+								<Button
+									type="button"
+									variant="outline"
+									className="rounded-full"
+									onClick={() => setIsSubmitted(false)}
+								>
+									Send another message
+								</Button>
+							</div>
 						</div>
-					</div>
-				</Container>
+					</Container>
+				</section>
 			</div>
 		);
 	}
 
 	return (
-		<div className="relative bg-background py-24 sm:py-32">
-			<AnimatedGridPattern
-				numSquares={30}
-				maxOpacity={0.1}
-				height={40}
-				width={40}
-				duration={3}
-				repeatDelay={1}
-				className={cn(
-					"[mask-image:radial-gradient(800px_circle_at_center,white,transparent)]",
-					"absolute inset-x-0 inset-y-[-30%] h-[200%] skew-y-12",
-				)}
-			/>
-			<Container>
-				<div className="relative z-10 mx-auto max-w-3xl rounded-lg border border-border bg-black p-8">
-					<div className="text-center">
-						<h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-							Contact Us
-						</h1>
-						<p className="mt-6 text-lg leading-8 text-muted-foreground">
-							Get in touch with our team. We're here to help with any questions
-							about Dokploy.
-						</p>
-					</div>
+		<div className="min-h-screen bg-background">
+			<section className="relative overflow-hidden border-b border-border pt-28 pb-16 sm:pt-32 sm:pb-20">
+				<HeroParticleWave />
+				<div
+					aria-hidden
+					className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[58%] bg-gradient-to-b from-background via-background/95 to-transparent"
+				/>
+				<Container className="relative z-10">
+					<div className="mx-auto max-w-5xl rounded-2xl border border-border bg-card p-8 shadow-sm sm:p-10">
+						<div className="text-center">
+							<h1 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
+								Contact Us
+							</h1>
+							<p className="mt-6 text-lg text-muted-foreground">
+								Get in touch with our team. We&apos;re here to help with any
+								questions about Sagyboar.
+							</p>
+						</div>
 
-					<div className="mt-16">
-						<ContactForm onSuccess={() => setIsSubmitted(true)} />
+						<div className="mt-12">
+							<ContactForm onSuccess={() => setIsSubmitted(true)} />
+						</div>
 					</div>
-				</div>
-			</Container>
+				</Container>
+			</section>
 		</div>
 	);
 }

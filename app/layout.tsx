@@ -14,26 +14,26 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-	metadataBase: new URL("https://dokploy.com"),
+	metadataBase: new URL("https://Sagyboar.com"),
 	title: {
-		default: "Dokploy - Deploy your applications with ease",
-		template: "%s | Dokploy",
+		default: "Sagyboar - Deploy your applications with ease",
+		template: "%s | Sagyboar",
 	},
-	description: "Deploy your applications with ease using Dokploy",
+	description: "Deploy your applications with ease using Sagyboar",
 	icons: {
 		icon: "icon.svg",
 		apple: "apple-touch-icon.png",
 	},
 	openGraph: {
-		title: "Dokploy - Deploy your applications with ease",
-		description: "Deploy your applications with ease using Dokploy",
+		title: "Sagyboar - Deploy your applications with ease",
+		description: "Deploy your applications with ease using Sagyboar",
 		images: "/og.png",
 		type: "website",
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Dokploy - Deploy your applications with ease",
-		description: "Deploy your applications with ease using Dokploy",
+		title: "Sagyboar - Deploy your applications with ease",
+		description: "Deploy your applications with ease using Sagyboar",
 		images: ["/og.png"],
 	},
 };

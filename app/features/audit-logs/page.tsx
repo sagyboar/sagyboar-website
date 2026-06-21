@@ -1,8 +1,8 @@
 import { Container } from "@/components/Container";
-import AnimatedGridPattern from "@/components/ui/animated-grid-pattern";
+import { HeroParticleWave } from "@/components/hero/hero-particle-wave";
+import { HeroParticleField } from "@/components/hero/hero-particle-field";
 import { Button } from "@/components/ui/button";
 import {
-	ScrollText,
 	Building2,
 	Search,
 	FileCheck,
@@ -17,7 +17,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
 	title: "Audit Logs for Enterprise Compliance",
 	description:
-		"Track every action across your Dokploy organization. Audit logs give enterprise teams the visibility they need for security and compliance.",
+		"Track every action across your Sagyboar organization. Audit logs give enterprise teams the visibility they need for security and compliance.",
 };
 
 const coreFeatures = [
@@ -25,13 +25,13 @@ const coreFeatures = [
 		icon: Building2,
 		title: "Track actions across your whole organization",
 		description:
-			"Audit logs capture authentication events, user management changes, deployment activity, infrastructure updates, environment variable changes, backup configuration, and more. If it happened in Dokploy, it\u2019s recorded.",
+			"Audit logs capture authentication events, user management changes, deployment activity, infrastructure updates, environment variable changes, backup configuration, and more. If it happened in Sagyboar, it\u2019s recorded.",
 	},
 	{
 		icon: AlertCircle,
 		title: "Investigate issues quickly",
 		description:
-			"Each log entry includes a timestamp, the user who performed the action, the action type, the resource affected, and the user\u2019s role in Dokploy at the time. When something goes wrong, you have everything you need to trace it back to its source.",
+			"Each log entry includes a timestamp, the user who performed the action, the action type, the resource affected, and the user\u2019s role in Sagyboar at the time. When something goes wrong, you have everything you need to trace it back to its source.",
 	},
 	{
 		icon: Search,
@@ -66,7 +66,7 @@ const relatedFeatures = [
 		icon: Paintbrush,
 		title: "White labeling",
 		description:
-			"Present Dokploy as your own product, with custom branding for your clients or organization.",
+			"Present Sagyboar as your own product, with custom branding for your clients or organization.",
 		href: "/features/white-labeling",
 	},
 ];
@@ -75,23 +75,19 @@ export default function AuditLogsPage() {
 	return (
 		<div className="min-h-screen bg-background">
 			{/* Hero Section */}
-			<section className="relative overflow-hidden border-b border-border/30 bg-black py-20 sm:py-32">
-				<AnimatedGridPattern
-					numSquares={30}
-					maxOpacity={0.1}
-					height={40}
-					width={40}
-					duration={3}
-					repeatDelay={1}
-					className="[mask-image:radial-gradient(800px_circle_at_center,white,transparent)] absolute inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
+			<section className="relative overflow-hidden border-b border-border bg-background py-20 sm:py-32">
+				<HeroParticleWave />
+				<div
+					aria-hidden
+					className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[58%] bg-gradient-to-b from-background via-background/95 to-transparent"
 				/>
 				<Container className="relative z-10">
-					<div className="mx-auto max-w-4xl text-center">
-						<h1 className="font-display text-4xl tracking-tight text-white sm:text-5xl lg:text-6xl">
+					<div className="mx-auto max-w-5xl text-center">
+						<h1 className="font-display text-4xl tracking-tight text-foreground sm:text-5xl lg:text-6xl">
 							Full visibility into every action taken
 						</h1>
 						<p className="mt-6 text-lg text-muted-foreground">
-							Know exactly who did what, and when, across your entire Dokploy
+							Know exactly who did what, and when, across your entire Sagyboar
 							organization.
 						</p>
 						<div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -104,9 +100,9 @@ export default function AuditLogsPage() {
 			</section>
 
 			{/* A complete record of every change */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			<section className="border-b border-border py-20 sm:py-32">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
+					<div className="mx-auto max-w-5xl text-center">
 						<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
 							A complete record of every change
 						</h2>
@@ -120,7 +116,7 @@ export default function AuditLogsPage() {
 						{coreFeatures.map((feature) => (
 							<div
 								key={feature.title}
-								className="rounded-xl border border-border/50 bg-card p-6"
+								className="rounded-xl border border-border bg-card p-6"
 							>
 								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 									<feature.icon className="h-6 w-6" />
@@ -136,14 +132,19 @@ export default function AuditLogsPage() {
 			</section>
 
 			{/* Powerful features for growing teams */}
-			<section className="border-b border-border/30 bg-black py-20 sm:py-32">
-				<Container>
-					<div className="mx-auto max-w-2xl text-center">
-						<h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
+			<section className="relative overflow-hidden border-b border-border bg-background pb-16 pt-20 sm:pb-20 sm:pt-32">
+				<HeroParticleField />
+				<div
+					aria-hidden
+					className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[42%] bg-gradient-to-b from-background via-background/85 to-transparent"
+				/>
+				<Container className="relative z-10">
+					<div className="mx-auto max-w-5xl text-center">
+						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 							Powerful features for growing teams
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
-							Dokploy scales with your team, with features and plans for when
+							Sagyboar scales with your team, with features and plans for when
 							you&apos;re ready to take the next step.
 						</p>
 					</div>
@@ -152,12 +153,12 @@ export default function AuditLogsPage() {
 							<Link
 								key={feature.title}
 								href={feature.href}
-								className="rounded-xl border border-border/50 bg-card p-6 transition hover:border-border"
+								className="rounded-xl border border-border bg-card p-6 transition hover:border-primary/50"
 							>
 								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 									<feature.icon className="h-6 w-6" />
 								</div>
-								<h3 className="text-lg font-semibold text-white">
+								<h3 className="text-lg font-semibold text-foreground">
 									{feature.title}
 								</h3>
 								<p className="mt-3 text-sm text-muted-foreground">
@@ -170,14 +171,14 @@ export default function AuditLogsPage() {
 			</section>
 
 			{/* CTA */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			<section className="border-b border-border py-20 sm:py-32">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
+					<div className="mx-auto max-w-5xl text-center">
 						<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
 							Ready to take control?
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
-							Talk to us about audit logs and the rest of Dokploy&apos;s
+							Talk to us about audit logs and the rest of Sagyboar&apos;s
 							higher-tier features.
 						</p>
 						<div className="mt-10">

@@ -1,6 +1,7 @@
 import { Container } from "@/components/Container";
 import { CallToAction } from "@/components/CallToAction";
-import AnimatedGridPattern from "@/components/ui/animated-grid-pattern";
+import { HeroParticleWave } from "@/components/hero/hero-particle-wave";
+import { HeroParticleField } from "@/components/hero/hero-particle-field";
 import {
 	Accordion,
 	AccordionContent,
@@ -31,7 +32,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
 	title: "Application Management Software and Solutions",
 	description:
-		"Monitor, control, and maintain your business applications from a single dashboard with Dokploy's application management software.",
+		"Monitor, control, and maintain your business applications from a single dashboard with Sagyboar's application management software.",
 };
 
 const coreFeatures = [
@@ -51,7 +52,7 @@ const coreFeatures = [
 		icon: RotateCcw,
 		title: "Rollback in seconds",
 		description:
-			"Recover fast when a release goes wrong. Dokploy supports Docker Swarm automatic rollback when health checks fail, as well as registry-based rollback to any previous deployment version when a Docker registry is configured.",
+			"Recover fast when a release goes wrong. Sagyboar supports Docker Swarm automatic rollback when health checks fail, as well as registry-based rollback to any previous deployment version when a Docker registry is configured.",
 	},
 	{
 		icon: Clock,
@@ -145,17 +146,17 @@ const faqs = [
 	{
 		question: "What is application performance management software?",
 		answer:
-			"Application performance management software helps IT teams monitor application health, track resource usage, and identify performance issues before they affect users. Key features typically include real-time monitoring of CPU, memory, disk, and network usage, alongside log access and alerting. Dokploy covers the operational side of application performance management: giving teams live usage data, deployment history, and rollback capabilities from a single dashboard, without requiring specialist expertise or separate tooling.",
+			"Application performance management software helps IT teams monitor application health, track resource usage, and identify performance issues before they affect users. Key features typically include real-time monitoring of CPU, memory, disk, and network usage, alongside log access and alerting. Sagyboar covers the operational side of application performance management: giving teams live usage data, deployment history, and rollback capabilities from a single dashboard, without requiring specialist expertise or separate tooling.",
 	},
 	{
 		question: "What is the best application management software?",
 		answer:
-			"The best application management software depends on your business needs, team size, and technical expertise. Enterprise platforms often come with deep integration capabilities and reporting features, but they can require significant investment and a steeper learning curve. Dokploy is built for teams that want operational efficiency without that overhead. It covers the key processes of application management, including monitoring, rollbacks, environment configuration, and scheduled jobs, in a platform you can self-host or run in the cloud so that your IT team can run on your own infrastructure if they want. It\u2019s a strong fit for organizations that want to manage business applications with full control and without vendor lock-in.",
+			"The best application management software depends on your business needs, team size, and technical expertise. Enterprise platforms often come with deep integration capabilities and reporting features, but they can require significant investment and a steeper learning curve. Sagyboar is built for teams that want operational efficiency without that overhead. It covers the key processes of application management, including monitoring, rollbacks, environment configuration, and scheduled jobs, in a platform you can self-host or run in the cloud so that your IT team can run on your own infrastructure if they want. It\u2019s a strong fit for organizations that want to manage business applications with full control and without vendor lock-in.",
 	},
 	{
 		question: "What is application lifecycle management software?",
 		answer:
-			"Application lifecycle management (ALM) software supports the full lifecycle of a software application, from requirements and development through deployment, ongoing maintenance, and eventual retirement. It connects strategic planning and business objectives with day-to-day operational execution. Dokploy focuses on the operational slice of that lifecycle\u2014standardizing how applications are deployed, monitored, rolled back, and maintained\u2014which is where most teams experience the most friction. For organizations going through digital transformation or modernization initiatives, having that operational foundation in place is what makes broader lifecycle management sustainable.",
+			"Application lifecycle management (ALM) software supports the full lifecycle of a software application, from requirements and development through deployment, ongoing maintenance, and eventual retirement. It connects strategic planning and business objectives with day-to-day operational execution. Sagyboar focuses on the operational slice of that lifecycle\u2014standardizing how applications are deployed, monitored, rolled back, and maintained\u2014which is where most teams experience the most friction. For organizations going through digital transformation or modernization initiatives, having that operational foundation in place is what makes broader lifecycle management sustainable.",
 	},
 ];
 
@@ -163,24 +164,20 @@ export default function ApplicationManagementSoftwarePage() {
 	return (
 		<div className="min-h-screen bg-background">
 			{/* Hero Section */}
-			<section className="relative overflow-hidden border-b border-border/30 bg-black py-20 sm:py-32">
-				<AnimatedGridPattern
-					numSquares={30}
-					maxOpacity={0.1}
-					height={40}
-					width={40}
-					duration={3}
-					repeatDelay={1}
-					className="[mask-image:radial-gradient(800px_circle_at_center,white,transparent)] absolute inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
+			<section className="relative overflow-hidden border-b border-border bg-background py-20 sm:py-32">
+				<HeroParticleWave />
+				<div
+					aria-hidden
+					className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[58%] bg-gradient-to-b from-background via-background/95 to-transparent"
 				/>
 				<Container className="relative z-10">
-					<div className="mx-auto max-w-4xl text-center">
-						<h1 className="font-display text-4xl tracking-tight text-white sm:text-5xl lg:text-6xl">
+					<div className="mx-auto max-w-5xl text-center">
+						<h1 className="font-display text-4xl tracking-tight text-foreground sm:text-5xl lg:text-6xl">
 							Application Management Software That Works
 						</h1>
 						<p className="mt-6 text-lg text-muted-foreground">
 							Monitor, control, and maintain your business applications from a
-							single dashboard. Dokploy gives your IT team the visibility and
+							single dashboard. Sagyboar gives your IT team the visibility and
 							tools to keep every application running at peak
 							performance&mdash;without the complexity.
 						</p>
@@ -194,15 +191,15 @@ export default function ApplicationManagementSoftwarePage() {
 			</section>
 
 			{/* Visibility across every application */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			<section className="border-b border-border py-20 sm:py-32">
 				<Container>
-					<div className="mx-auto max-w-3xl text-center">
+					<div className="mx-auto max-w-5xl text-center">
 						<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
 							Visibility across every application as you scale
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
 							Bring your entire application landscape into one place with
-							Dokploy. Get a clear view of application health, resource usage,
+							Sagyboar. Get a clear view of application health, resource usage,
 							and deployment history.
 						</p>
 					</div>
@@ -210,28 +207,33 @@ export default function ApplicationManagementSoftwarePage() {
 			</section>
 
 			{/* Everything your team needs in one platform */}
-			<section className="border-b border-border/30 bg-black py-20 sm:py-32">
-				<Container>
-					<div className="mx-auto max-w-2xl text-center">
-						<h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
+			<section className="relative overflow-hidden border-b border-border bg-background pb-16 pt-20 sm:pb-20 sm:pt-32">
+				<HeroParticleField />
+				<div
+					aria-hidden
+					className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[42%] bg-gradient-to-b from-background via-background/85 to-transparent"
+				/>
+				<Container className="relative z-10">
+					<div className="mx-auto max-w-5xl text-center">
+						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 							Everything your team needs in one platform
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
 							Improving visibility into your application portfolio is the first
-							step toward better application management. Dokploy surfaces the
+							step toward better application management. Sagyboar surfaces the
 							signals your IT team needs, in real time, in one place.
 						</p>
 					</div>
-					<div className="mx-auto mt-16 grid max-w-6xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
+					<div className="mx-auto mt-16 grid max-w-7xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
 						{coreFeatures.map((feature) => (
 							<div
 								key={feature.title}
-								className="rounded-xl border border-border/50 bg-card p-6"
+								className="rounded-xl border border-border bg-card p-6"
 							>
 								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 									<feature.icon className="h-6 w-6" />
 								</div>
-								<h3 className="text-lg font-semibold text-white">
+								<h3 className="text-lg font-semibold text-foreground">
 									{feature.title}
 								</h3>
 								<p className="mt-3 text-sm text-muted-foreground">
@@ -240,11 +242,22 @@ export default function ApplicationManagementSoftwarePage() {
 							</div>
 						))}
 					</div>
+
+					<div className="mx-auto mt-12 max-w-7xl overflow-hidden rounded-xl border border-border bg-card shadow-2xl sm:mt-16">
+						<Image
+							src="/dashboard.png"
+							alt="Sagyboar dashboard showing application status and deployment history"
+							width={1200}
+							height={750}
+							className="w-full object-cover"
+							sizes="(max-width: 768px) 100vw, 1200px"
+						/>
+					</div>
 				</Container>
 			</section>
 
 			{/* Standardize your management process */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			<section className="border-b border-border py-20 sm:py-32">
 				<Container>
 					<div className="mx-auto max-w-5xl lg:grid lg:grid-cols-2 lg:gap-16">
 						<div>
@@ -258,7 +271,7 @@ export default function ApplicationManagementSoftwarePage() {
 								shared standards instead of tribal knowledge.
 							</p>
 							<p className="mt-4 text-sm text-muted-foreground">
-								Dokploy gives teams a consistent application management system
+								Sagyboar gives teams a consistent application management system
 								for deployments, environment configuration, and rollback
 								workflows, so reliability doesn&apos;t depend on who happens to
 								be on call.
@@ -275,12 +288,12 @@ export default function ApplicationManagementSoftwarePage() {
 							</ul>
 						</div>
 						<div className="mt-10 lg:mt-0">
-							<div className="rounded-xl border border-border/50 bg-card p-6">
+							<div className="rounded-xl border border-border bg-card p-6">
 								<div className="space-y-3">
 									{applicationStatuses.map((app) => (
 										<div
 											key={app.name}
-											className="flex items-center justify-between rounded-lg border border-border/30 bg-background/50 px-4 py-3"
+											className="flex items-center justify-between rounded-lg border border-border bg-background/50 px-4 py-3"
 										>
 											<span className="text-sm font-medium">{app.name}</span>
 											<span
@@ -304,10 +317,10 @@ export default function ApplicationManagementSoftwarePage() {
 			</section>
 
 			{/* Full control over your application portfolio */}
-			<section className="border-b border-border/30 bg-black py-20 sm:py-32">
+			<section className="border-b border-border bg-muted/30 py-20 sm:py-32 dark:bg-muted/10">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
-						<h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
+					<div className="mx-auto max-w-5xl text-center">
+						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 							Full control over your application portfolio
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
@@ -316,16 +329,16 @@ export default function ApplicationManagementSoftwarePage() {
 							and workflow automation.
 						</p>
 					</div>
-					<div className="mx-auto mt-16 grid max-w-6xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
+					<div className="mx-auto mt-16 grid max-w-7xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
 						{controlFeatures.map((feature) => (
 							<div
 								key={feature.title}
-								className="rounded-xl border border-border/50 bg-card p-6"
+								className="rounded-xl border border-border bg-card p-6"
 							>
 								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 									<feature.icon className="h-6 w-6" />
 								</div>
-								<h3 className="text-lg font-semibold text-white">
+								<h3 className="text-lg font-semibold text-foreground">
 									{feature.title}
 								</h3>
 								<p className="mt-3 text-sm text-muted-foreground">
@@ -337,22 +350,22 @@ export default function ApplicationManagementSoftwarePage() {
 				</Container>
 			</section>
 
-			{/* Run Dokploy where your business needs it */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			{/* Run Sagyboar where your business needs it */}
+			<section className="border-b border-border py-20 sm:py-32">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
+					<div className="mx-auto max-w-5xl text-center">
 						<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
-							Run Dokploy where your business needs it
+							Run Sagyboar where your business needs it
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
-							Deploy Dokploy on your own infrastructure or ours. Both options
+							Deploy Sagyboar on your own infrastructure or ours. Both options
 							give you the same application management capabilities, and you
 							choose what fits your operational model and regulatory compliance
 							requirements.
 						</p>
 					</div>
-					<div className="mx-auto mt-16 grid max-w-4xl gap-8 sm:grid-cols-2">
-						<div className="rounded-xl border border-border/50 bg-card p-8">
+					<div className="mx-auto mt-16 grid max-w-5xl gap-8 sm:grid-cols-2">
+						<div className="rounded-xl border border-border bg-card p-8">
 							<div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 								<Server className="h-6 w-6" />
 							</div>
@@ -369,11 +382,11 @@ export default function ApplicationManagementSoftwarePage() {
 								))}
 							</ul>
 						</div>
-						<div className="rounded-xl border border-border/50 bg-card p-8">
+						<div className="rounded-xl border border-border bg-card p-8">
 							<div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 								<Cloud className="h-6 w-6" />
 							</div>
-							<h3 className="text-xl font-semibold">Dokploy Cloud</h3>
+							<h3 className="text-xl font-semibold">Sagyboar Cloud</h3>
 							<ul className="mt-4 space-y-2">
 								{cloudItems.map((item) => (
 									<li
@@ -391,17 +404,17 @@ export default function ApplicationManagementSoftwarePage() {
 			</section>
 
 			{/* Deploy AI in a controlled environment */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			<section className="border-b border-border bg-muted/30 py-20 sm:py-32 dark:bg-muted/10">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
-						<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
+					<div className="mx-auto max-w-5xl text-center">
+						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 							Deploy AI in a controlled environment
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
-							Use Dokploy to create sandbox environments separated from production infrastructure, where technical and non-technical employees can launch AI-coded apps safely.
+							Use Sagyboar to create sandbox environments separated from production infrastructure, where technical and non-technical employees can launch AI-coded apps safely.
 						</p>
 					</div>
-					<div className="mx-auto mt-16 grid max-w-4xl gap-8 sm:grid-cols-3">
+					<div className="mx-auto mt-16 grid max-w-5xl gap-8 sm:grid-cols-3">
 						{[
 							{
 								number: "1",
@@ -413,7 +426,7 @@ export default function ApplicationManagementSoftwarePage() {
 								number: "2",
 								title: "Deploy from any source",
 								description:
-									"Once Dokploy is set up, team members can take AI-coded apps from a Git repo, Docker image, or Compose file to a running environment without engineering support.",
+									"Once Sagyboar is set up, team members can take AI-coded apps from a Git repo, Docker image, or Compose file to a running environment without engineering support.",
 							},
 							{
 								number: "3",
@@ -424,7 +437,7 @@ export default function ApplicationManagementSoftwarePage() {
 						].map((step) => (
 							<div
 								key={step.number}
-								className="relative rounded-xl border border-border/50 bg-card p-6"
+								className="relative rounded-xl border border-border bg-card p-6"
 							>
 								<div className="absolute right-6 top-6 font-display text-4xl font-bold text-primary/30">
 									{step.number}
@@ -437,43 +450,22 @@ export default function ApplicationManagementSoftwarePage() {
 				</Container>
 			</section>
 
-			{/* Take control of your application landscape */}
-			<section className="border-b border-border/30 bg-black py-20 sm:py-32">
-				<Container>
-					<div className="mx-auto max-w-3xl text-center">
-						<h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
-							Take control of your application landscape
-						</h2>
-						<p className="mt-6 text-lg text-muted-foreground">
-							Dokploy gives your IT team the application management software it
-							needs to monitor, maintain, and scale business applications with
-							confidence. Create your account and get started in minutes.
-						</p>
-						<div className="mt-10">
-							<Button className="rounded-full" asChild>
-								<Link href="https://dashboard.sagyboar.space">Create your account</Link>
-							</Button>
-						</div>
-					</div>
-				</Container>
-			</section>
-
 			{/* FAQs */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			<section className="border-b border-border py-20 sm:py-32">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
-						<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
+					<div className="mx-auto max-w-5xl text-center">
+						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 							Application management software FAQs
 						</h2>
 					</div>
 					<Accordion
 						type="single"
 						collapsible
-						className="mx-auto mt-12 w-full max-w-3xl"
+						className="mx-auto mt-12 w-full max-w-5xl rounded-2xl border border-border bg-card/50 px-6 shadow-sm backdrop-blur-sm dark:bg-card/30"
 					>
 						{faqs.map((faq, index) => (
-							<AccordionItem value={`faq-${index}`} key={index}>
-								<AccordionTrigger className="text-left">
+							<AccordionItem value={`faq-${index}`} key={index} className="border-border">
+								<AccordionTrigger className="text-left text-foreground hover:text-foreground">
 									{faq.question}
 								</AccordionTrigger>
 								<AccordionContent>{faq.answer}</AccordionContent>

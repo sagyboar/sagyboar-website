@@ -83,61 +83,61 @@ const reviews = [
 	{
 		name: "apis",
 		username: "@apis",
-		body: "I replaced my previous setup with Dokploy today. It’s stable, easy to use, and offers excellent support!",
+		body: "I replaced my previous setup with Sagyboar today. It’s stable, easy to use, and offers excellent support!",
 		img: "https://avatar.vercel.sh/apis",
 	},
 	{
 		name: "yayza_",
 		username: "@yayza_",
-		body: "Migrated all my services to Dokploy—it worked seamlessly! The level of configuration is perfect for all kinds of projects.",
+		body: "Migrated all my services to Sagyboar—it worked seamlessly! The level of configuration is perfect for all kinds of projects.",
 		img: "https://avatar.vercel.sh/yayza",
 	},
 	{
 		name: "Vaurion",
 		username: "@vaurion",
-		body: "Dokploy makes my deployments incredibly easy. I just test locally, push a preview to GitHub, and Dokploy takes care of the rest.",
+		body: "Sagyboar makes my deployments incredibly easy. I just test locally, push a preview to GitHub, and Sagyboar takes care of the rest.",
 		img: "https://avatar.vercel.sh/vaurion",
 	},
 	{
 		name: "vinum?",
 		username: "@vinum",
-		body: "Dokploy is everything I wanted in a PaaS. The functionality is impressive, and it's completely free!",
+		body: "Sagyboar is everything I wanted in a PaaS. The functionality is impressive, and it's completely free!",
 		img: "https://avatar.vercel.sh/vinum",
 	},
 	{
 		name: "vadzim",
 		username: "@vadzim",
-		body: "Dokploy is fantastic! I rarely encounter any deployment issues, and the community support is top-notch.",
+		body: "Sagyboar is fantastic! I rarely encounter any deployment issues, and the community support is top-notch.",
 		img: "https://avatar.vercel.sh/vadzim",
 	},
 	{
 		name: "Slurpy Beckerman",
 		username: "@slurpy",
-		body: "This is exactly what I want in a deployment system. I’ve restructured my dev process around Dokploy!",
+		body: "This is exactly what I want in a deployment system. I’ve restructured my dev process around Sagyboar!",
 		img: "https://avatar.vercel.sh/slurpy",
 	},
 	{
 		name: "lua",
 		username: "@lua",
-		body: "Dokploy is genuinely so nice to use. The hard work behind it really shows.",
+		body: "Sagyboar is genuinely so nice to use. The hard work behind it really shows.",
 		img: "https://avatar.vercel.sh/lua",
 	},
 	{
 		name: "johnnygri",
 		username: "@johnnygri",
-		body: "Dokploy is a complete joy to use. I’m running a mix of critical and low-priority services seamlessly across servers.",
+		body: "Sagyboar is a complete joy to use. I’m running a mix of critical and low-priority services seamlessly across servers.",
 		img: "https://avatar.vercel.sh/johnnygri",
 	},
 	{
 		name: "HiJoe",
 		username: "@hijoe",
-		body: "Setting up Dokploy was great—simple, intuitive, and reliable. Perfect for small to medium-sized businesses.",
+		body: "Setting up Sagyboar was great—simple, intuitive, and reliable. Perfect for small to medium-sized businesses.",
 		img: "https://avatar.vercel.sh/hijoe",
 	},
 	{
 		name: "johannes0910",
 		username: "@johannes0910",
-		body: "Dokploy has been a game-changer for my side projects. Solid UI, straightforward Docker abstraction, and great design.",
+		body: "Sagyboar has been a game-changer for my side projects. Solid UI, straightforward Docker abstraction, and great design.",
 		img: "https://avatar.vercel.sh/johannes0910",
 	},
 ];
@@ -189,11 +189,11 @@ export function Testimonials() {
 		>
 			<div className="mx-auto max-w-2xl px-4 md:text-center">
 				<h2 className="text-center font-display text-3xl  tracking-tight sm:text-4xl">
-					Why Developers Love Dokploy
+					Why Developers Love Sagyboar
 				</h2>
 				<p className="mt-4 text-center text-lg tracking-tight text-muted-foreground">
 					Think we’re bragging? Hear from the devs who once doubted too—until
-					Dokploy made their lives (and deployments) surprisingly easier.
+					Sagyboar made their lives (and deployments) surprisingly easier.
 				</p>
 			</div>
 

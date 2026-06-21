@@ -1,4 +1,4 @@
-import { getPost } from "@/lib/ghost";
+import { getDummyPost } from "@/constants/blog-posts";
 import { generateOGImage } from "@/lib/og-image";
 import type { NextRequest } from "next/server";
 
@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
 			return new Response("Missing slug parameter", { status: 400 });
 		}
 
-		const post = await getPost(slug);
+		const post = getDummyPost(slug);
 
 		if (!post) {
 			console.error("Post not found for slug:", slug);

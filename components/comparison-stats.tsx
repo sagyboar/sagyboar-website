@@ -24,7 +24,7 @@ export function ComparisonStats() {
 	useEffect(() => {
 		const fetchStats = async () => {
 			const [starsRes, dockerRes, contribRes] = await Promise.allSettled([
-				fetch("/api/github-stars?owner=dokploy&repo=dokploy"),
+				fetch("/api/github-stars?owner=Sagyboar&repo=Sagyboar"),
 				fetch("/api/docker-stats"),
 				fetch("/api/github-contributors"),
 			]);
@@ -53,11 +53,11 @@ export function ComparisonStats() {
 			<Container>
 				<div className="mx-auto max-w-2xl text-center">
 					<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
-						Thousands have chosen Dokploy
+						Thousands have chosen Sagyboar
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground">
 						Just a few numbers to show we're not completely making this up.
-						Turns out, Dokploy has actually helped a few people – who knew?
+						Turns out, Sagyboar has actually helped a few people – who knew?
 					</p>
 				</div>
 

@@ -3,9 +3,10 @@
 import { cn } from "@/lib/utils";
 import { SAGYBOAR_BRAND_NAME, SAGYBOAR_PORTAL_URL } from "@/constants/branding";
 import {
-	featureLinks,
-	resourceLinks,
+	companyLinks,
+	featureMenuGroups,
 	solutionLinks,
+	topNavLinks,
 	type NavLinkItem,
 } from "@/constants/navigation";
 import { Popover, Transition } from "@headlessui/react";
@@ -20,7 +21,7 @@ import { Button } from "./ui/button";
 
 const SCROLL_THRESHOLD = 15;
 
-type MegaMenuKey = "features" | "solutions" | "resources";
+type MegaMenuKey = "features" | "solutions";
 
 const megaMenus: Record<
 	MegaMenuKey,
@@ -28,17 +29,36 @@ const megaMenus: Record<
 > = {
 	features: {
 		label: "Features",
-		items: featureLinks,
+		items: featureMenuGroups.flatMap((group) => group.items),
 	},
 	solutions: {
 		label: "Solutions",
 		items: solutionLinks,
 	},
-	resources: {
-		label: "Resources",
-		items: resourceLinks,
-	},
 };
+
+function MegaMenuListItem({ item }: { item: NavLinkItem }) {
+	const Icon = item.icon;
+
+	return (
+		<Link
+			href={item.href}
+			target={item.target}
+			onClick={() => trackNavClick(item.href)}
+			className="group flex items-center gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-accent/60"
+		>
+			<div className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-border/50 bg-accent/30 text-foreground transition-colors group-hover:bg-accent/60">
+				<Icon className="size-3.5" strokeWidth={1.75} />
+			</div>
+			<div className="min-w-0">
+				<div className="text-sm font-medium text-foreground">{item.title}</div>
+				<p className="truncate text-xs text-muted-foreground">
+					{item.description}
+				</p>
+			</div>
+		</Link>
+	);
+}
 
 function trackNavClick(href: string) {
 	trackGAEvent({
@@ -71,6 +91,41 @@ function MegaMenuLink({ item }: { item: NavLinkItem }) {
 	);
 }
 
+function FeaturesMegaMenuPanel({
+	onMouseEnter,
+	onMouseLeave,
+}: {
+	onMouseEnter: () => void;
+	onMouseLeave: () => void;
+}) {
+	return (
+		<div
+			className="absolute inset-x-0 top-full z-50 pt-6"
+			onMouseEnter={onMouseEnter}
+			onMouseLeave={onMouseLeave}
+		>
+			<div className="overflow-hidden rounded-3xl border border-border/60 bg-background p-4 shadow-xl">
+				<div className="grid gap-6 sm:grid-cols-2">
+					{featureMenuGroups.map((group) => (
+						<div key={group.label}>
+							<p className="px-2 py-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+								{group.label}
+							</p>
+							<ul className="mt-1 space-y-0.5">
+								{group.items.map((item) => (
+									<li key={item.href}>
+										<MegaMenuListItem item={item} />
+									</li>
+								))}
+							</ul>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	);
+}
+
 function MegaMenuPanel({
 	menuKey,
 	onMouseEnter,
@@ -80,6 +135,15 @@ function MegaMenuPanel({
 	onMouseEnter: () => void;
 	onMouseLeave: () => void;
 }) {
+	if (menuKey === "features") {
+		return (
+			<FeaturesMegaMenuPanel
+				onMouseEnter={onMouseEnter}
+				onMouseLeave={onMouseLeave}
+			/>
+		);
+	}
+
 	const menu = megaMenus[menuKey];
 
 	return (
@@ -88,11 +152,7 @@ function MegaMenuPanel({
 			onMouseEnter={onMouseEnter}
 			onMouseLeave={onMouseLeave}
 		>
-			<div
-				className={cn(
-					"overflow-hidden rounded-3xl border border-border/60 bg-background p-4 shadow-xl",
-				)}
-			>
+			<div className="overflow-hidden rounded-3xl border border-border/60 bg-background p-4 shadow-xl">
 				<div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,15rem),1fr))] gap-2">
 					{menu.items.map((item) => (
 						<MegaMenuLink key={item.href} item={item} />
@@ -228,25 +288,61 @@ function MobileNavigation() {
 							leaveTo="opacity-0 scale-95"
 						>
 							<Popover.Panel className="absolute left-1/2 top-[calc(100%+0.75rem)] z-50 max-h-[80vh] w-[min(100vw-2rem,24rem)] -translate-x-1/2 overflow-y-auto rounded-3xl border border-border/60 bg-background p-4 shadow-xl">
-								{(Object.keys(megaMenus) as MegaMenuKey[]).map((key) => (
-									<div key={key} className="mb-4">
-										<p className="px-2 py-1 text-xs font-semibold uppercase text-muted-foreground">
-											{megaMenus[key].label}
-										</p>
-										{megaMenus[key].items.map((item) => (
-											<MobileNavLink
-												key={item.href}
-												href={item.href}
-												target={item.target}
-												icon={item.icon}
-											>
-												{item.title}
+								<div className="mb-4">
+									<p className="px-2 py-1 text-xs font-semibold uppercase text-muted-foreground">
+										Features
+									</p>
+									{featureMenuGroups.map((group) => (
+										<div key={group.label} className="mt-2">
+											<p className="px-2 py-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground/80">
+												{group.label}
+											</p>
+											{group.items.map((item) => (
+												<MobileNavLink
+													key={item.href}
+													href={item.href}
+													target={item.target}
+													icon={item.icon}
+												>
+													{item.title}
+												</MobileNavLink>
+											))}
+										</div>
+									))}
+								</div>
+								<div className="mb-4">
+									<p className="px-2 py-1 text-xs font-semibold uppercase text-muted-foreground">
+										{megaMenus.solutions.label}
+									</p>
+									{megaMenus.solutions.items.map((item) => (
+										<MobileNavLink
+											key={item.href}
+											href={item.href}
+											target={item.target}
+											icon={item.icon}
+										>
+											{item.title}
+										</MobileNavLink>
+									))}
+								</div>
+								<hr className="my-2 border-border" />
+								{topNavLinks.map((link) => (
+									<MobileNavLink key={link.href} href={link.href}>
+										{link.label}
+									</MobileNavLink>
+								))}
+								<div className="mt-4">
+									<p className="px-2 py-1 text-xs font-semibold uppercase text-muted-foreground">
+										Company
+									</p>
+									{companyLinks
+										.filter((link) => !topNavLinks.some((t) => t.href === link.href))
+										.map((link) => (
+											<MobileNavLink key={link.href} href={link.href}>
+												{link.label}
 											</MobileNavLink>
 										))}
-									</div>
-								))}
-								<hr className="my-2 border-border" />
-								<MobileNavLink href="/pricing">Pricing</MobileNavLink>
+								</div>
 								<hr className="my-2 border-border" />
 								<MobileNavLink
 									href={SAGYBOAR_PORTAL_URL}
@@ -332,7 +428,7 @@ export function Header() {
 							</Link>
 
 							<div className="hidden items-center gap-0.5 lg:flex">
-								{(["features", "solutions", "resources"] as MegaMenuKey[]).map(
+								{(["features", "solutions"] as MegaMenuKey[]).map(
 									(key) => (
 										<DesktopNavItem
 											key={key}
@@ -342,13 +438,16 @@ export function Header() {
 										/>
 									),
 								)}
-								<Link
-									href="/pricing"
-									onClick={() => trackNavClick("/pricing")}
-									className="rounded-full px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-								>
-									Pricing
-								</Link>
+								{topNavLinks.map((link) => (
+									<Link
+										key={link.href}
+										href={link.href}
+										onClick={() => trackNavClick(link.href)}
+										className="rounded-full px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+									>
+										{link.label}
+									</Link>
+								))}
 							</div>
 						</div>
 

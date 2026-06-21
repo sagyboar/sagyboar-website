@@ -13,8 +13,8 @@ interface GenerateOGImageOptions {
 	readingTime?: number;
 }
 
-// Logo de Dokploy como SVG string (versión simplificada)
-const DOKPLOY_LOGO = {
+// Logo de Sagyboar como SVG string (versión simplificada)
+const Sagyboar_LOGO = {
 	type: "svg",
 	props: {
 		width: "100%",
@@ -87,7 +87,7 @@ export async function generateOGImage({
 							color: "#fff",
 							zIndex: 1,
 						},
-						children: "Dokploy - Blog Post",
+						children: "Sagyboar - Blog Post",
 					},
 				},
 				{
@@ -106,7 +106,7 @@ export async function generateOGImage({
 							transform: "rotate(-10deg)",
 							color: "#ffffff",
 						},
-						children: DOKPLOY_LOGO,
+						children: Sagyboar_LOGO,
 					},
 				},
 				{

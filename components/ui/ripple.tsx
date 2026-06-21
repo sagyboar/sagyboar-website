@@ -35,26 +35,26 @@ const Ripple = React.memo(function Ripple({
 		{
 			name: "Hostinger",
 			image: "https://avatars.githubusercontent.com/u/2630767?s=200&v=4",
-			link: "https://www.hostinger.com/vps-hosting?ref=dokploy",
+			link: "https://www.hostinger.com/vps-hosting?ref=Sagyboar",
 			type: "hero",
 		},
 		{
 			name: "LinkDR",
 			image: "linkdr-logo.svg",
-			link: "https://linkdr.com/?ref=dokploy",
+			link: "https://linkdr.com/?ref=Sagyboar",
 			type: "supporting",
 		},
 		{
 			name: "Lxaer",
 			image:
-				"https://raw.githubusercontent.com/Dokploy/dokploy/canary/.github/sponsors/lxaer.png",
-			link: "https://www.lxaer.com?ref=dokploy",
+				"https://raw.githubusercontent.com/Sagyboar/Sagyboar/canary/.github/sponsors/lxaer.png",
+			link: "https://www.lxaer.com?ref=Sagyboar",
 			type: "hero",
 		},
 		{
 			name: "LambdaTest",
 			image: "https://www.lambdatest.com/blue-logo.png",
-			link: "https://www.lambdatest.com/?utm_source=dokploy&utm_medium=sponsor",
+			link: "https://www.lambdatest.com/?utm_source=Sagyboar&utm_medium=sponsor",
 			type: "premium",
 		},
 	];
@@ -62,14 +62,14 @@ const Ripple = React.memo(function Ripple({
 		{
 			name: "Supafort",
 			image: "supafort.png",
-			link: "https://supafort.com/?ref=dokploy",
+			link: "https://supafort.com/?ref=Sagyboar",
 			type: "premium",
 		},
 		{
 			name: "AgentDock",
 			image:
-				"https://raw.githubusercontent.com/Dokploy/dokploy/refs/heads/canary/.github/sponsors/agentdock.png",
-			link: "https://agentdock.ai/?ref=dokploy",
+				"https://raw.githubusercontent.com/Sagyboar/Sagyboar/refs/heads/canary/.github/sponsors/agentdock.png",
+			link: "https://agentdock.ai/?ref=Sagyboar",
 			type: "premium",
 		},
 	];
@@ -79,7 +79,7 @@ const Ripple = React.memo(function Ripple({
 			name: "AmericanCloud",
 			image:
 				"https://media.licdn.com/dms/image/v2/D560BAQGQ0rVfEgLUMQ/company-logo_200_200/company-logo_200_200/0/1722459194382/americancloud_logo?e=2147483647&v=beta&t=990H-OldnorPQbgbN3jHihJijOb2aDmhwFl8DU_d680",
-			link: "https://americancloud.com/?ref=dokploy",
+			link: "https://americancloud.com/?ref=Sagyboar",
 			type: "elite",
 		},
 		{
@@ -94,27 +94,27 @@ const Ripple = React.memo(function Ripple({
 		{
 			name: "Cloudblast",
 			image: "https://cloudblast.io/img/logo-icon.193cf13e.svg",
-			link: "https://cloudblast.io/?ref=dokploy",
+			link: "https://cloudblast.io/?ref=Sagyboar",
 			type: "supporting",
 		},
 		
 		{
 			name: "Synexa",
 			image:
-				"https://raw.githubusercontent.com/Dokploy/dokploy/refs/heads/canary/.github/sponsors/synexa.png",
-			link: "https://synexa.ai/?ref=dokploy",
+				"https://raw.githubusercontent.com/Sagyboar/Sagyboar/refs/heads/canary/.github/sponsors/synexa.png",
+			link: "https://synexa.ai/?ref=Sagyboar",
 			type: "supporting",
 		},
 		{
 			name: "HahuCloud",
 			image: "hahucloud_logo_1.png",
-			link: "https://www.hahucloud.com/?ref=dokploy",
+			link: "https://www.hahucloud.com/?ref=Sagyboar",
 			type: "supporting",
 		},
 		{
 			name: "Teramont",
 			image: "terramont.ico",
-			link: "https://teramont.net/dokploy",
+			link: "https://teramont.net/Sagyboar",
 			type: "supporting",
 		},
 	];

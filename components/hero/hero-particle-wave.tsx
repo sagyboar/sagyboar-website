@@ -1,5 +1,6 @@
 "use client";
 
+import { useTheme } from "next-themes";
 import { useEffect, useRef } from "react";
 
 type Particle = {
@@ -13,8 +14,14 @@ type Particle = {
 	speed: number;
 };
 
-export function HeroParticleWave() {
+type HeroParticleWaveProps = {
+	/** Match hero (page bg) or elevated section bands (stone / neutral). */
+	surface?: "default" | "elevated";
+};
+
+export function HeroParticleWave({ surface = "default" }: HeroParticleWaveProps) {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
+	const { resolvedTheme } = useTheme();
 
 	useEffect(() => {
 		const canvas = canvasRef.current;
@@ -28,8 +35,12 @@ export function HeroParticleWave() {
 		let width = 0;
 		let height = 0;
 
-		const readTheme = () =>
-			document.documentElement.classList.contains("dark");
+		const readTheme = () => {
+			if (resolvedTheme === "light" || resolvedTheme === "dark") {
+				return resolvedTheme === "dark";
+			}
+			return document.documentElement.classList.contains("dark");
+		};
 
 		let isDark = readTheme();
 
@@ -91,31 +102,67 @@ export function HeroParticleWave() {
 			}
 			if (depth > 0.65) {
 				return isDark
-					? `rgba(147,197,253,${alpha})`
-					: `rgba(59,130,246,${alpha * 0.55})`;
+					? surface === "elevated"
+						? `rgba(115,115,115,${alpha * 0.85})`
+						: `rgba(147,197,253,${alpha})`
+					: surface === "elevated"
+						? `rgba(120,113,108,${alpha * 0.45})`
+						: `rgba(59,130,246,${alpha * 0.55})`;
 			}
-			const tone = isDark ? 210 + depth * 45 : 245 + depth * 10;
+			if (isDark) {
+				const tone =
+					surface === "elevated" ? 120 + depth * 55 : 210 + depth * 45;
+				return `rgba(${tone},${tone},${tone},${alpha})`;
+			}
+			const tone =
+				surface === "elevated" ? 168 + depth * 12 : 245 + depth * 10;
 			return `rgba(${tone},${tone},${tone},${alpha})`;
 		};
 
-		const draw = (timestamp: number) => {
-			const time = timestamp * 0.001;
-			const horizon = waveHorizon();
+		const drawMist = (horizon: number) => {
+			const mist = ctx.createLinearGradient(
+				0,
+				horizon - height * 0.08,
+				0,
+				height,
+			);
 
-			ctx.clearRect(0, 0, width, height);
-
-			const mist = ctx.createLinearGradient(0, horizon - height * 0.08, 0, height);
 			if (isDark) {
-				mist.addColorStop(0, "rgba(0,0,0,0)");
-				mist.addColorStop(0.35, "rgba(15,23,42,0.25)");
-				mist.addColorStop(1, "rgba(15,23,42,0.85)");
+				if (surface === "elevated") {
+					mist.addColorStop(0, "rgba(23,23,23,0)");
+					mist.addColorStop(0.35, "rgba(38,38,38,0.35)");
+					mist.addColorStop(1, "rgba(23,23,23,0.92)");
+				} else {
+					mist.addColorStop(0, "rgba(0,0,0,0)");
+					mist.addColorStop(0.35, "rgba(15,23,42,0.25)");
+					mist.addColorStop(1, "rgba(15,23,42,0.85)");
+				}
+			} else if (surface === "elevated") {
+				mist.addColorStop(0, "rgba(250,250,249,0)");
+				mist.addColorStop(0.35, "rgba(250,250,249,0.55)");
+				mist.addColorStop(1, "rgba(231,229,228,0.85)");
 			} else {
 				mist.addColorStop(0, "rgba(255,255,255,0)");
 				mist.addColorStop(0.35, "rgba(248,250,252,0.45)");
 				mist.addColorStop(1, "rgba(203,213,225,0.75)");
 			}
+
 			ctx.fillStyle = mist;
-			ctx.fillRect(0, horizon - height * 0.08, width, height - horizon + height * 0.08);
+			ctx.fillRect(
+				0,
+				horizon - height * 0.08,
+				width,
+				height - horizon + height * 0.08,
+			);
+		};
+
+		const draw = (timestamp: number) => {
+			isDark = readTheme();
+			const time = timestamp * 0.001;
+			const horizon = waveHorizon();
+
+			ctx.clearRect(0, 0, width, height);
+			drawMist(horizon);
 
 			const sorted = [...particles].sort((a, b) => a.depth - b.depth);
 
@@ -127,7 +174,9 @@ export function HeroParticleWave() {
 					particle.yRatio * spread +
 					Math.sin(time * 1.8 + particle.phase) * (2 + particle.depth * 4);
 
-				const ridgeFocus = 1 - Math.min(1, Math.abs(y - ridge - spread * 0.15) / (spread * 0.35));
+				const ridgeFocus =
+					1 -
+					Math.min(1, Math.abs(y - ridge - spread * 0.15) / (spread * 0.35));
 				const fadeTop = Math.min(1, (y - ridge + 12) / 48);
 				const fadeBottom = Math.min(1, (height - y) / 60);
 				const alpha =
@@ -173,7 +222,7 @@ export function HeroParticleWave() {
 			window.removeEventListener("resize", resize);
 			observer.disconnect();
 		};
-	}, []);
+	}, [resolvedTheme, surface]);
 
 	return (
 		<canvas

@@ -1,8 +1,8 @@
 import { Container } from "@/components/Container";
-import AnimatedGridPattern from "@/components/ui/animated-grid-pattern";
+import { HeroParticleWave } from "@/components/hero/hero-particle-wave";
+import { HeroParticleField } from "@/components/hero/hero-particle-field";
 import { Button } from "@/components/ui/button";
 import {
-	Paintbrush,
 	Type,
 	Palette,
 	Link2,
@@ -17,7 +17,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
 	title: "White Label Deployment Platform",
 	description:
-		"Rebrand Dokploy as your own product. Customize the name, logo, colors and more to deliver a seamless experience under your own brand.",
+		"Rebrand Sagyboar as your own product. Customize the name, logo, colors and more to deliver a seamless experience under your own brand.",
 };
 
 const coreFeatures = [
@@ -25,7 +25,7 @@ const coreFeatures = [
 		icon: Type,
 		title: "Customize your name and logo",
 		description:
-			"Replace Dokploy across the entire interface with your own application name. Upload your logo for the sidebar, header, and login page, and set a custom favicon so your branding carries through to the browser tab.",
+			"Replace Sagyboar across the entire interface with your own application name. Upload your logo for the sidebar, header, and login page, and set a custom favicon so your branding carries through to the browser tab.",
 	},
 	{
 		icon: Palette,
@@ -37,7 +37,7 @@ const coreFeatures = [
 		icon: Link2,
 		title: "Control the metadata and support links",
 		description:
-			"Set your own page title, footer text, sidebar links, and more for documentation and support, so users are always directed to your resources, not Dokploy\u2019s.",
+			"Set your own page title, footer text, sidebar links, and more for documentation and support, so users are always directed to your resources, not Sagyboar\u2019s.",
 	},
 	{
 		icon: MonitorCheck,
@@ -52,7 +52,7 @@ const relatedFeatures = [
 		icon: Shield,
 		title: "RBAC",
 		description:
-			"Define exactly what each user can do once they\u2019re in Dokploy, with fine-grained permissions across projects, features, and services.",
+			"Define exactly what each user can do once they\u2019re in Sagyboar, with fine-grained permissions across projects, features, and services.",
 		href: "/features/role-based-access-control",
 	},
 	{
@@ -75,23 +75,19 @@ export default function WhiteLabelingPage() {
 	return (
 		<div className="min-h-screen bg-background">
 			{/* Hero Section */}
-			<section className="relative overflow-hidden border-b border-border/30 bg-black py-20 sm:py-32">
-				<AnimatedGridPattern
-					numSquares={30}
-					maxOpacity={0.1}
-					height={40}
-					width={40}
-					duration={3}
-					repeatDelay={1}
-					className="[mask-image:radial-gradient(800px_circle_at_center,white,transparent)] absolute inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
+			<section className="relative overflow-hidden border-b border-border bg-background py-20 sm:py-32">
+				<HeroParticleWave />
+				<div
+					aria-hidden
+					className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[58%] bg-gradient-to-b from-background via-background/95 to-transparent"
 				/>
 				<Container className="relative z-10">
-					<div className="mx-auto max-w-4xl text-center">
-						<h1 className="font-display text-4xl tracking-tight text-white sm:text-5xl lg:text-6xl">
+					<div className="mx-auto max-w-5xl text-center">
+						<h1 className="font-display text-4xl tracking-tight text-foreground sm:text-5xl lg:text-6xl">
 							Deploy applications under your own brand
 						</h1>
 						<p className="mt-6 text-lg text-muted-foreground">
-							Replace every Dokploy mention with your own name, logo, branding,
+							Replace every Sagyboar mention with your own name, logo, branding,
 							and visual identity.
 						</p>
 						<div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -104,14 +100,14 @@ export default function WhiteLabelingPage() {
 			</section>
 
 			{/* Your product, your brand */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			<section className="border-b border-border py-20 sm:py-32">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
+					<div className="mx-auto max-w-5xl text-center">
 						<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
 							Your product, your brand
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
-							Dokploy&apos;s white labeling lets enterprise teams and agencies
+							Sagyboar&apos;s white labeling lets enterprise teams and agencies
 							deliver a fully branded, professional deployment platform.
 						</p>
 					</div>
@@ -119,7 +115,7 @@ export default function WhiteLabelingPage() {
 						{coreFeatures.map((feature) => (
 							<div
 								key={feature.title}
-								className="rounded-xl border border-border/50 bg-card p-6"
+								className="rounded-xl border border-border bg-card p-6"
 							>
 								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 									<feature.icon className="h-6 w-6" />
@@ -135,14 +131,19 @@ export default function WhiteLabelingPage() {
 			</section>
 
 			{/* Powerful features for growing teams */}
-			<section className="border-b border-border/30 bg-black py-20 sm:py-32">
-				<Container>
-					<div className="mx-auto max-w-2xl text-center">
-						<h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
+			<section className="relative overflow-hidden border-b border-border bg-background pb-16 pt-20 sm:pb-20 sm:pt-32">
+				<HeroParticleField />
+				<div
+					aria-hidden
+					className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[42%] bg-gradient-to-b from-background via-background/85 to-transparent"
+				/>
+				<Container className="relative z-10">
+					<div className="mx-auto max-w-5xl text-center">
+						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 							Powerful features for growing teams
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
-							Dokploy scales with your team, with features and plans for when
+							Sagyboar scales with your team, with features and plans for when
 							you&apos;re ready to take the next step.
 						</p>
 					</div>
@@ -151,12 +152,12 @@ export default function WhiteLabelingPage() {
 							<Link
 								key={feature.title}
 								href={feature.href}
-								className="rounded-xl border border-border/50 bg-card p-6 transition hover:border-border"
+								className="rounded-xl border border-border bg-card p-6 transition hover:border-primary/50"
 							>
 								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 									<feature.icon className="h-6 w-6" />
 								</div>
-								<h3 className="text-lg font-semibold text-white">
+								<h3 className="text-lg font-semibold text-foreground">
 									{feature.title}
 								</h3>
 								<p className="mt-3 text-sm text-muted-foreground">
@@ -169,14 +170,14 @@ export default function WhiteLabelingPage() {
 			</section>
 
 			{/* CTA */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			<section className="border-b border-border py-20 sm:py-32">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
+					<div className="mx-auto max-w-5xl text-center">
 						<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
 							Ready to launch your own platform?
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
-							Talk to us about white labeling and the rest of Dokploy&apos;s
+							Talk to us about white labeling and the rest of Sagyboar&apos;s
 							higher-tier features.
 						</p>
 						<div className="mt-10">

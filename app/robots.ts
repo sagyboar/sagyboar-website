@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
 			userAgent: "*",
 			allow: "/",
 		},
-		sitemap: ["https://dokploy.com/sitemap.xml", "https://dokploy.com/llms.txt"],
+		sitemap: ["https://Sagyboar.com/sitemap.xml", "https://Sagyboar.com/llms.txt"],
 	};
 }

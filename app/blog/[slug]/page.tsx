@@ -1,4 +1,7 @@
-import { getPost, getPosts } from "@/lib/ghost";
+import {
+	getDummyPost,
+	getDummyPosts,
+} from "@/constants/blog-posts";
 import type { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,7 +30,7 @@ export async function generateMetadata(
 	parent: ResolvingMetadata,
 ): Promise<Metadata> {
 	const { slug } = await params;
-	const post = await getPost(slug);
+	const post = getDummyPost(slug);
 
 	if (!post) {
 		return {
@@ -38,7 +41,7 @@ export async function generateMetadata(
 	const ogUrl = new URL(
 		"/api/og",
 		process.env.NODE_ENV === "production"
-			? "https://dokploy.com"
+			? "https://Sagyboar.com"
 			: "http://localhost:3001",
 	);
 	ogUrl.searchParams.set("slug", slug);
@@ -69,10 +72,14 @@ export async function generateMetadata(
 	};
 }
 
+export async function generateStaticParams() {
+	return getDummyPosts().map((post) => ({ slug: post.slug }));
+}
+
 export default async function BlogPostPage({ params }: Props) {
 	const { slug } = await params;
-	const post = await getPost(slug);
-	const allPosts = await getPosts();
+	const post = getDummyPost(slug);
+	const allPosts = getDummyPosts();
 
 	const relatedPosts = allPosts.filter((p) => p.id !== post?.id).slice(0, 3);
 

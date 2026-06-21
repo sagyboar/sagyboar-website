@@ -1,6 +1,7 @@
 import { Container } from "@/components/Container";
 import { CallToAction } from "@/components/CallToAction";
-import AnimatedGridPattern from "@/components/ui/animated-grid-pattern";
+import { HeroParticleWave } from "@/components/hero/hero-particle-wave";
+import { HeroParticleField } from "@/components/hero/hero-particle-field";
 import {
 	Accordion,
 	AccordionContent,
@@ -36,7 +37,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
 	title: "Application & Software Deployment Platform",
 	description:
-		"Dokploy's flexible, powerful application and software deployment platform enables you to put code written in Node.js, PHP, Python, Go, and Ruby live.",
+		"Sagyboar's flexible, powerful application and software deployment platform enables you to put code written in Node.js, PHP, Python, Go, and Ruby live.",
 };
 
 const professionalFeatures = [
@@ -44,13 +45,13 @@ const professionalFeatures = [
 		icon: Code2,
 		title: "Support for multiple languages",
 		description:
-			"Deploy apps written in Node, PHP, Python, Go, Ruby, and more. Dokploy does not restrict programming languages.",
+			"Deploy apps written in Node, PHP, Python, Go, Ruby, and more. Sagyboar does not restrict programming languages.",
 	},
 	{
 		icon: Layers,
 		title: "Deploy any app with any stack",
 		description:
-			"Dokploy supports single services and multi-service apps. Deploy from Git, a container registry, or Docker Compose.",
+			"Sagyboar supports single services and multi-service apps. Deploy from Git, a container registry, or Docker Compose.",
 	},
 	{
 		icon: Wrench,
@@ -148,7 +149,7 @@ const aiDeploymentFeatures = [
 		icon: Users,
 		title: "Anyone can deploy",
 		description:
-			"Once Dokploy is set up, non-technical users can take code from an AI tool to a running app without engineering support.",
+			"Once Sagyboar is set up, non-technical users can take code from an AI tool to a running app without engineering support.",
 	},
 	{
 		icon: Layers,
@@ -160,7 +161,7 @@ const aiDeploymentFeatures = [
 		icon: Bot,
 		title: "AI agents via MCP",
 		description:
-			"Dokploy's MCP server lets AI agents trigger deployments, query app state, and manage services without a custom integration.",
+			"Sagyboar's MCP server lets AI agents trigger deployments, query app state, and manage services without a custom integration.",
 	},
 	{
 		icon: Shield,
@@ -172,14 +173,14 @@ const aiDeploymentFeatures = [
 
 const faqs = [
 	{
-		question: "Can I deploy Docker Compose apps with Dokploy?",
+		question: "Can I deploy Docker Compose apps with Sagyboar?",
 		answer:
-			"Yes. Dokploy supports deploying applications with Docker Compose, which is ideal when your implementation spans multiple services, data stores, and supporting tools. You can deploy a Compose stack as part of your deployment workflows, keep configuration in configuration files, and manage environments without increasing complexity as you scale.",
+			"Yes. Sagyboar supports deploying applications with Docker Compose, which is ideal when your implementation spans multiple services, data stores, and supporting tools. You can deploy a Compose stack as part of your deployment workflows, keep configuration in configuration files, and manage environments without increasing complexity as you scale.",
 	},
 	{
 		question: "Which Git providers can I deploy from?",
 		answer:
-			"Dokploy integrates seamlessly with popular version control systems and workflows, including GitHub and other git providers such as GitLab, Gitea, Bitbucket, and other Atlassian tools. You can connect repos from these version control systems, automate deployments on code changes, and align deployment workflows with CI/CD practices. If your team already uses GitHub Actions or Atlassian tools, Dokploy fits into that process without forcing a new way of working.",
+			"Sagyboar integrates seamlessly with popular version control systems and workflows, including GitHub and other git providers such as GitLab, Gitea, Bitbucket, and other Atlassian tools. You can connect repos from these version control systems, automate deployments on code changes, and align deployment workflows with CI/CD practices. If your team already uses GitHub Actions or Atlassian tools, Sagyboar fits into that process without forcing a new way of working.",
 	},
 	{
 		question: "Can I deploy from a Docker registry?",
@@ -187,9 +188,9 @@ const faqs = [
 			"Yes. You can deploy a Docker image directly from a registry, which is useful when you already build artifacts elsewhere or want tighter control over technologies and build tooling. This approach supports consistent deployments across environments and production, especially when combined with automation and rollback capabilities for safer releases.",
 	},
 	{
-		question: "How do preview deployments work in Dokploy?",
+		question: "How do preview deployments work in Sagyboar?",
 		answer:
-			"Preview deployments create environments for testing code changes before they reach production environments. When a pull request or branch updates, Dokploy can trigger automated deployments and deployment workflows so developers can validate functionality, reliability, and security in an isolated environment. This setup supports multiple environments, speeds up testing for new features, and helps teams reduce errors before customers and users see changes in production.",
+			"Preview deployments create environments for testing code changes before they reach production environments. When a pull request or branch updates, Sagyboar can trigger automated deployments and deployment workflows so developers can validate functionality, reliability, and security in an isolated environment. This setup supports multiple environments, speeds up testing for new features, and helps teams reduce errors before customers and users see changes in production.",
 	},
 	{
 		question: "What is a deployment platform?",
@@ -203,9 +204,9 @@ const faqs = [
 			"In practice, they overlap. A deployment platform often focuses on the mechanics of deployment tools and infrastructure, while a software deployment platform emphasizes end-to-end software delivery, including CI/CD, continuous integration, and continuous delivery. A software deployment platform typically ties deployment workflows to version control systems, configuration files, and multiple environments, so teams can maintain consistency from development to production, with rollback capabilities when code changes introduce issues.",
 	},
 	{
-		question: "Can I use Dokploy to deploy AI-generated apps?",
+		question: "Can I use Sagyboar to deploy AI-generated apps?",
 		answer:
-			"Yes. Dokploy works with code from any source, including apps built or scaffolded by AI coding tools. You deploy using the same Git, Docker, and Compose workflows as any other application—there's no separate process for AI-generated code.",
+			"Yes. Sagyboar works with code from any source, including apps built or scaffolded by AI coding tools. You deploy using the same Git, Docker, and Compose workflows as any other application—there's no separate process for AI-generated code.",
 	},
 ];
 
@@ -213,19 +214,15 @@ export default function ApplicationDeploymentPlatformPage() {
 	return (
 		<div className="min-h-screen bg-background">
 			{/* Hero Section */}
-			<section className="relative overflow-hidden border-b border-border/30 bg-black py-20 sm:py-32">
-				<AnimatedGridPattern
-					numSquares={30}
-					maxOpacity={0.1}
-					height={40}
-					width={40}
-					duration={3}
-					repeatDelay={1}
-					className="[mask-image:radial-gradient(800px_circle_at_center,white,transparent)] absolute inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
+			<section className="relative overflow-hidden border-b border-border bg-background py-20 sm:py-32">
+				<HeroParticleWave />
+				<div
+					aria-hidden
+					className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[58%] bg-gradient-to-b from-background via-background/95 to-transparent"
 				/>
 				<Container className="relative z-10">
-					<div className="mx-auto max-w-4xl text-center">
-						<h1 className="font-display text-4xl tracking-tight text-white sm:text-5xl lg:text-6xl">
+					<div className="mx-auto max-w-5xl text-center">
+						<h1 className="font-display text-4xl tracking-tight text-foreground sm:text-5xl lg:text-6xl">
 							The Ultimate Application Deployment Platform
 						</h1>
 						<p className="mt-6 text-lg text-muted-foreground">
@@ -243,9 +240,9 @@ export default function ApplicationDeploymentPlatformPage() {
 			</section>
 
 			{/* Professional features for every developer */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			<section className="border-b border-border py-20 sm:py-32">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
+					<div className="mx-auto max-w-5xl text-center">
 						<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
 							Professional features for every developer
 						</h2>
@@ -258,7 +255,7 @@ export default function ApplicationDeploymentPlatformPage() {
 						{professionalFeatures.map((feature) => (
 							<div
 								key={feature.title}
-								className="rounded-xl border border-border/50 bg-card p-6"
+								className="rounded-xl border border-border bg-card p-6"
 							>
 								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 									<feature.icon className="h-6 w-6" />
@@ -274,21 +271,21 @@ export default function ApplicationDeploymentPlatformPage() {
 			</section>
 
 			{/* AI deployment */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			<section className="border-b border-border py-20 sm:py-32">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
+					<div className="mx-auto max-w-5xl text-center">
 						<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
 							Deploy the apps your teams are already building with AI
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
-							AI coding tools are changing how applications get written. Dokploy handles the deployment side, from AI-generated code to a live URL, powered by your existing workflows.
+							AI coding tools are changing how applications get written. Sagyboar handles the deployment side, from AI-generated code to a live URL, powered by your existing workflows.
 						</p>
 					</div>
 					<div className="mx-auto mt-16 grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-4">
 						{aiDeploymentFeatures.map((feature) => (
 							<div
 								key={feature.title}
-								className="rounded-xl border border-border/50 bg-card p-6"
+								className="rounded-xl border border-border bg-card p-6"
 							>
 								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 									<feature.icon className="h-6 w-6" />
@@ -300,14 +297,14 @@ export default function ApplicationDeploymentPlatformPage() {
 							</div>
 						))}
 					</div>
-					<div className="mx-auto mt-16 max-w-2xl rounded-xl border border-border/50 bg-card p-8 text-center">
+					<div className="mx-auto mt-16 max-w-5xl rounded-xl border border-border bg-card p-8 text-center">
 						<h3 className="text-xl font-semibold">Need a governed environment for AI tools?</h3>
 						<p className="mt-3 text-muted-foreground">
-							See how Dokploy handles sandboxed deploys, non-technical users, and enterprise security for AI-built apps.
+							See how Sagyboar handles sandboxed deploys, non-technical users, and enterprise security for AI-built apps.
 						</p>
 						<div className="mt-6">
 							<Button className="rounded-full" asChild>
-								<Link href="/enterprise">Deploy AI tools with Dokploy</Link>
+								<Link href="/enterprise">Deploy AI tools with Sagyboar</Link>
 							</Button>
 						</div>
 					</div>
@@ -315,15 +312,15 @@ export default function ApplicationDeploymentPlatformPage() {
 			</section>
 
 			{/* Ship from GitHub, Bitbucket, and more */}
-			<section className="border-b border-border/30 bg-black py-20 sm:py-32">
+			<section className="border-b border-border bg-muted/30 py-20 sm:py-32 dark:bg-muted/10">
 				<Container>
-					<div className="mx-auto max-w-3xl text-center">
+					<div className="mx-auto max-w-5xl text-center">
 						<div className="mb-6 flex justify-center">
 							<div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/20 text-primary">
 								<GitBranch className="h-7 w-7" />
 							</div>
 						</div>
-						<h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
+						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 							Ship from GitHub, Bitbucket, and more
 						</h2>
 						<p className="mt-6 text-lg text-muted-foreground">
@@ -337,9 +334,9 @@ export default function ApplicationDeploymentPlatformPage() {
 			</section>
 
 			{/* Automate deployments and test changes */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			<section className="border-b border-border py-20 sm:py-32">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
+					<div className="mx-auto max-w-5xl text-center">
 						<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
 							Automate deployments and test changes
 						</h2>
@@ -348,11 +345,11 @@ export default function ApplicationDeploymentPlatformPage() {
 							control of what ships and when.
 						</p>
 					</div>
-					<div className="mx-auto mt-16 grid max-w-4xl gap-8 sm:grid-cols-3">
+					<div className="mx-auto mt-16 grid max-w-5xl gap-8 sm:grid-cols-3">
 						{automationFeatures.map((feature) => (
 							<div
 								key={feature.title}
-								className="rounded-xl border border-border/50 bg-card p-6 text-center"
+								className="rounded-xl border border-border bg-card p-6 text-center"
 							>
 								<div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 									<feature.icon className="h-6 w-6" />
@@ -367,28 +364,28 @@ export default function ApplicationDeploymentPlatformPage() {
 				</Container>
 			</section>
 
-			{/* Host Dokploy where your business needs it */}
-			<section className="border-b border-border/30 bg-black py-20 sm:py-32">
+			{/* Host Sagyboar where your business needs it */}
+			<section className="border-b border-border bg-muted/30 py-20 sm:py-32 dark:bg-muted/10">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
-						<h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
-							Host Dokploy where your business needs it
+					<div className="mx-auto max-w-5xl text-center">
+						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
+							Host Sagyboar where your business needs it
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
 							Choose a deployment option that suits your business–on your
 							infrastructure or ours.
 						</p>
 					</div>
-					<div className="mx-auto mt-16 grid max-w-4xl gap-8 sm:grid-cols-2">
+					<div className="mx-auto mt-16 grid max-w-5xl gap-8 sm:grid-cols-2">
 						{deploymentOptions.map((option) => (
 							<div
 								key={option.title}
-								className="rounded-xl border border-border/50 bg-card p-8"
+								className="rounded-xl border border-border bg-card p-8"
 							>
 								<div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 									<option.icon className="h-6 w-6" />
 								</div>
-								<h3 className="text-xl font-semibold text-white">
+								<h3 className="text-xl font-semibold text-foreground">
 									{option.title}
 								</h3>
 								<ul className="mt-4 space-y-2">
@@ -408,34 +405,34 @@ export default function ApplicationDeploymentPlatformPage() {
 				</Container>
 			</section>
 
-			{/* Hundreds of templates */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
-				<Container>
-					<div className="mx-auto max-w-3xl text-center">
+			{/* Hundreds of templates + dashboard preview */}
+			<section className="relative overflow-hidden border-b border-border bg-background pb-16 pt-20 sm:pb-20 sm:pt-32">
+				<HeroParticleField />
+				<div
+					aria-hidden
+					className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[42%] bg-gradient-to-b from-background via-background/85 to-transparent"
+				/>
+				<Container className="relative z-10">
+					<div className="mx-auto max-w-5xl text-center">
 						<div className="mb-6 flex justify-center">
 							<div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/20 text-primary">
 								<LayoutTemplate className="h-7 w-7" />
 							</div>
 						</div>
-						<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
+						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 							Hundreds of templates to get started
 						</h2>
 						<p className="mt-6 text-lg text-muted-foreground">
-							Deploy popular open-source apps in one click with Dokploy Templates,
+							Deploy popular open-source apps in one click with Sagyboar Templates,
 							a ready-to-run library of pre-configured apps you can deploy fast,
 							without rebuilding the same stack from scratch.
 						</p>
 					</div>
-				</Container>
-			</section>
 
-			{/* Dashboard screenshot */}
-			<section className="border-b border-border/30 py-12 sm:py-16">
-				<Container>
-					<div className="mx-auto max-w-6xl overflow-hidden rounded-xl border border-border/50 shadow-2xl">
+					<div className="mx-auto mt-12 max-w-7xl overflow-hidden rounded-xl border border-border bg-card shadow-2xl sm:mt-16">
 						<Image
 							src="/dashboard.png"
-							alt="Dokploy dashboard showing projects and deployed services"
+							alt="Sagyboar dashboard showing projects and deployed services"
 							width={1200}
 							height={750}
 							className="w-full object-cover"
@@ -447,27 +444,27 @@ export default function ApplicationDeploymentPlatformPage() {
 			</section>
 
 			{/* Everything you need in a deployment platform */}
-			<section className="border-b border-border/30 bg-black py-20 sm:py-32">
+			<section className="border-b border-border bg-muted/30 py-20 sm:py-32 dark:bg-muted/10">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
-						<h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
+					<div className="mx-auto max-w-5xl text-center">
+						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 							Everything you need in a deployment platform
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
-							Dokploy is the software deployment platform for shipping anything
+							Sagyboar is the software deployment platform for shipping anything
 							from a single service to a full multi-container stack.
 						</p>
 					</div>
-					<div className="mx-auto mt-16 grid max-w-6xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
+					<div className="mx-auto mt-16 grid max-w-7xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
 						{platformFeatures.map((feature) => (
 							<div
 								key={feature.title}
-								className="rounded-xl border border-border/50 bg-card p-6"
+								className="rounded-xl border border-border bg-card p-6"
 							>
 								<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
 									<feature.icon className="h-6 w-6" />
 								</div>
-								<h3 className="text-lg font-semibold text-white">
+								<h3 className="text-lg font-semibold text-foreground">
 									{feature.title}
 								</h3>
 								<p className="mt-3 text-sm text-muted-foreground">
@@ -480,21 +477,21 @@ export default function ApplicationDeploymentPlatformPage() {
 			</section>
 
 			{/* Application deployment FAQs */}
-			<section className="border-b border-border/30 py-20 sm:py-32">
+			<section className="border-b border-border py-20 sm:py-32">
 				<Container>
-					<div className="mx-auto max-w-2xl text-center">
-						<h2 className="font-display text-3xl tracking-tight sm:text-4xl">
+					<div className="mx-auto max-w-5xl text-center">
+						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 							Application deployment FAQs
 						</h2>
 					</div>
 					<Accordion
 						type="single"
 						collapsible
-						className="mx-auto mt-12 w-full max-w-3xl"
+						className="mx-auto mt-12 w-full max-w-5xl rounded-2xl border border-border bg-card/50 px-6 shadow-sm backdrop-blur-sm dark:bg-card/30"
 					>
 						{faqs.map((faq, index) => (
-							<AccordionItem value={`faq-${index}`} key={index}>
-								<AccordionTrigger className="text-left">
+							<AccordionItem value={`faq-${index}`} key={index} className="border-border">
+								<AccordionTrigger className="text-left text-foreground hover:text-foreground">
 									{faq.question}
 								</AccordionTrigger>
 								<AccordionContent>{faq.answer}</AccordionContent>
