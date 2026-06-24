@@ -2,9 +2,9 @@ import { Pricing } from "@/components/pricing";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Sagyboar Pricing—Simple, Affordable Pricing. For Your Team",
+	title: "Sagyboar Pricing — One Platform, Zero DevOps Headaches",
 	description:
-		"Deploy and manage apps with Sagyboar. Compare Sagyboar's Hobby, Startup, and Enterprise plans to find the right fit for your team.",
+		"Compare Sagyboar Hobby, Startup, and Enterprise plans. AI-powered deployment, monitoring, and a real team — from $49/month.",
 };
 
 export default function PricingPage() {

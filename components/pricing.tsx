@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { Check } from "lucide-react";
+import { ArrowUpRight, Check, Circle } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { Container } from "@/components/Container";
@@ -15,387 +15,330 @@ import {
 } from "./ui/accordion";
 import { Badge } from "./ui/badge";
 import { Button, buttonVariants } from "./ui/button";
-import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
-import { PricingFeatureTable } from "./pricing/PricingFeatureTable";
+import { MarketComparisonTable } from "./pricing/MarketComparisonTable";
+import {
+	generalTerms,
+	planFitGuide,
+	pricingFaqs,
+	pricingPlans,
+	pricingStats,
+	whyChooseSagyboar,
+} from "./pricing/pricing-data";
 import { SAGYBOAR_PORTAL_URL } from "@/constants/branding";
 
-const pricingFaqs = [
-	{
-		question: "What happens if I need more than one server?",
-		answer:
-			"You can add as many servers as you need. Each additional server costs $4.50/month on the Hobby plan. On the Startup plan, 3 servers are included in the base price, and you can add more at $4.50/month each.",
-	},
-	{
-		question: "How does the annual billing discount work?",
-		answer:
-			"When you choose annual billing, you get a 20% discount on all plans. For example, the Hobby plan goes from $4.50/month to $3.60/month per server, billed annually.",
-	},
-	{
-		question: "Can I switch between plans?",
-		answer:
-			"Yes, you can upgrade or downgrade your plan at any time. When upgrading, you'll be prorated for the remainder of your billing cycle. When downgrading, the change takes effect at the start of your next billing cycle.",
-	},
-	{
-		question: "Is there a limit on the number of deployments?",
-		answer:
-			"No, there is no limit on the number of deployments in any of the plans. You can deploy unlimited applications and databases.",
-	},
-	{
-		question: "What's included in the Enterprise plan?",
-		answer:
-			"The Enterprise plan includes unlimited servers and organizations, fine-grained RBAC, SSO/SAML integration (Azure, OKTA, etc.), audit logs, MSA/SLA, white labeling, and priority support. It's available as both Cloud and Self-Hosted.",
-	},
-	{
-		question: "Do you offer refunds?",
-		answer:
-			"We do not offer refunds. However, you can cancel your subscription at any time. Feel free to try our open-source version for free before making a purchase.",
-	},
-	{
-		question: "What kind of support do I get with each plan?",
-		answer:
-			"The Hobby plan includes community support via Discord. The Startup plan adds email and chat support. The Enterprise plan includes priority support and dedicated services.",
-	},
-	{
-		question: "Do I need to provide my own server?",
-		answer:
-			"Yes, you provide your own server (e.g., Hetzner, Hostinger, AWS, etc.) VPS, and we manage the Sagyboar UI infrastructure for you.",
-	},
-];
-
-function SwirlyDoodle(props: React.ComponentPropsWithoutRef<"svg">) {
-	return (
-		<svg
-			aria-hidden="true"
-			viewBox="0 0 281 40"
-			preserveAspectRatio="none"
-			{...props}
-		>
-			<path
-				fillRule="evenodd"
-				clipRule="evenodd"
-				d="M240.172 22.994c-8.007 1.246-15.477 2.23-31.26 4.114-18.506 2.21-26.323 2.977-34.487 3.386-2.971.149-3.727.324-6.566 1.523-15.124 6.388-43.775 9.404-69.425 7.31-26.207-2.14-50.986-7.103-78-15.624C10.912 20.7.988 16.143.734 14.657c-.066-.381.043-.344 1.324.456 10.423 6.506 49.649 16.322 77.8 19.468 23.708 2.65 38.249 2.95 55.821 1.156 9.407-.962 24.451-3.773 25.101-4.692.074-.104.053-.155-.058-.135-1.062.195-13.863-.271-18.848-.687-16.681-1.389-28.722-4.345-38.142-9.364-15.294-8.15-7.298-19.232 14.802-20.514 16.095-.934 32.793 1.517 47.423 6.96 13.524 5.033 17.942 12.326 11.463 18.922l-.859.874.697-.006c2.681-.026 15.304-1.302 29.208-2.953 25.845-3.07 35.659-4.519 54.027-7.978 9.863-1.858 11.021-2.048 13.055-2.145a61.901 61.901 0 0 0 4.506-.417c1.891-.259 2.151-.267 1.543-.047-.402.145-2.33.913-4.285 1.707-4.635 1.882-5.202 2.07-8.736 2.903-3.414.805-19.773 3.797-26.404 4.829Zm40.321-9.93c.1-.066.231-.085.29-.041.059.043-.024.096-.183.119-.177.024-.219-.007-.107-.079ZM172.299 26.22c9.364-6.058 5.161-12.039-12.304-17.51-11.656-3.653-23.145-5.47-35.243-5.576-22.552-.198-33.577 7.462-21.321 14.814 12.012 7.205 32.994 10.557 61.531 9.831 4.563-.116 5.372-.288 7.337-1.559Z"
-			/>
-		</svg>
-	);
-}
-
-const hobbyFeatures = [
-	"Unlimited Deployments",
-	"Unlimited Databases",
-	"Unlimited Applications",
-	"1 Server Included",
-	"1 Organization",
-	"1 User",
-	"2 Environments",
-	"1 Volume Backup per Application",
-	"1 Backup per Database",
-	"1 Scheduled Job per Application",
-	"Community Support (Discord)",
-];
-
-const startupFeatures = [
-	"All the features of Hobby, plus…",
-	"3 Servers Included",
-	"3 Organizations",
-	"Unlimited Users",
-	"Unlimited Environments",
-	"Unlimited Volume Backups",
-	"Unlimited Database Backups",
-	"Unlimited Scheduled Jobs",
-	"Basic RBAC (Admin, Developer)",
-	"2FA",
-	"Email and Chat Support",
-];
-
-const enterpriseFeatures = [
-	"All the features of Startup, plus…",
-	"Up to Unlimited Servers",
-	"Up to Unlimited Organizations",
-	"Fine-grained RBAC",
-	"Complete Hosting Flexibility",
-	"SSO / SAML (Azure, OKTA, etc)",
-	"Audit Logs",
-	"MSA/SLA",
-	"White Labeling",
-	"Priority Support and Services",
-];
-
 export function Pricing() {
-	const [isAnnual, setIsAnnual] = useState(false);
-	const [openContactModal, setOpenContactModal] = useState(false);
-	const [openPartnerModal, setOpenPartnerModal] = useState(false);
-
-	const hobbyMonthlyPrice = 4.5;
-	const hobbyAnnualTotal = hobbyMonthlyPrice * 12 * 0.8; // 20% discount, total per year
-	const hobbyAnnualPerMonth = hobbyAnnualTotal / 12;
-	const startupBaseMonthly = 15;
-	const startupBaseAnnual = startupBaseMonthly * 12 * 0.8;
+	const [openSalesModal, setOpenSalesModal] = useState(false);
+	const [openHelpModal, setOpenHelpModal] = useState(false);
 
 	return (
 		<div className="min-h-screen bg-background">
-			<section
-				id="pricing"
-				aria-label="Pricing"
-				className="relative overflow-hidden border-b border-border py-20 sm:py-32"
-			>
+			{/* Hero */}
+			<section className="relative overflow-hidden border-b border-border pt-28 pb-16 sm:pt-32 sm:pb-20">
 				<HeroParticleWave />
 				<div
 					aria-hidden
 					className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[58%] bg-gradient-to-b from-background via-background/95 to-transparent"
 				/>
 				<Container className="relative z-10">
-					<div className="relative py-8 text-center">
-						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
-							<span className="relative whitespace-nowrap">
-								<SwirlyDoodle className="absolute left-0 top-1/2 h-[1em] w-full fill-muted-foreground" />
-								<span className="relative">Simple Affordable</span>
-							</span>{" "}
-							Pricing.
-						</h2>
-						<p className="mt-4 text-lg text-muted-foreground">
-							Infrastructure, we take care of it for you.
+					<div className="mx-auto max-w-4xl text-center">
+						<h1 className="font-display text-3xl tracking-tight text-foreground sm:text-5xl">
+							One platform. Zero DevOps headaches.
+						</h1>
+						<p className="mt-6 text-lg text-muted-foreground sm:text-xl">
+							Deploy, monitor, and maintain your entire stack — with AI doing
+							the heavy lifting and a real team backing you up.
 						</p>
 					</div>
 
-				{/* Billing toggle */}
-				<div className="mx-auto mt-10 flex flex-col items-center gap-6">
-					<Tabs
-						defaultValue="monthly"
-						value={isAnnual ? "annual" : "monthly"}
-						onValueChange={(v) => setIsAnnual(v === "annual")}
-					>
-						<TabsList className=" w-full ">
-							<TabsTrigger value="annual">
-								Yearly (20% discount)
-							</TabsTrigger>
-							<TabsTrigger value="monthly">Monthly</TabsTrigger>
-						</TabsList>
-					</Tabs>
-				</div>
+					<div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-3">
+						{pricingStats.map((stat) => (
+							<div
+								key={stat.label}
+								className="rounded-2xl border border-border bg-card/50 px-6 py-5 text-center shadow-sm backdrop-blur-sm"
+							>
+								<p className="font-display text-3xl font-semibold text-primary sm:text-4xl">
+									{stat.value}
+								</p>
+								<p className="mt-2 text-sm text-muted-foreground">{stat.label}</p>
+							</div>
+						))}
+					</div>
+				</Container>
+			</section>
 
-				<div className="mx-auto mt-12 flex max-w-7xl flex-col gap-8">
-						{/* Hobby, Startup, Enterprise - 3 column grid */}
-						<div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-						{/* Hobby */}
-						<section
-							className={clsx(
-								"flex flex-col rounded-3xl border-2 border-dashed border-border bg-card px-6 py-8",
-							)}
-						>
-							<h3 className="text-lg font-medium text-foreground">Hobby</h3>
-							<p className="mt-1 text-sm text-muted-foreground">
-								Everything an individual developer needs
-							</p>
-							<div className="mt-4">
-								<span className="text-2xl font-semibold text-primary">
-									$
-									{isAnnual
-										? hobbyAnnualPerMonth.toFixed(2)
-										: hobbyMonthlyPrice.toFixed(2)}
-									/mo
-								</span>
-								{isAnnual ? (
-									<p className="mt-1 text-sm text-muted-foreground">
-										${hobbyAnnualTotal.toFixed(2)}/year per server
-									</p>
-								) : (
-									<span className="ml-2 text-sm text-muted-foreground">
-										per server (add as many servers as you&apos;d like for $4.50/mo)
-									</span>
+			{/* Pricing plans */}
+			<section
+				id="pricing"
+				aria-label="Pricing plans"
+				className="border-b border-border py-16 sm:py-24"
+			>
+				<Container>
+					<h2 className="text-center font-display text-2xl font-semibold text-foreground sm:text-3xl">
+						Pricing plans
+					</h2>
+
+					<div className="mx-auto mt-12 grid max-w-7xl gap-8 lg:grid-cols-3">
+						{pricingPlans.map((plan) => (
+							<section
+								key={plan.id}
+								className={clsx(
+									"relative flex flex-col rounded-3xl border-2 bg-card px-6 py-8",
+									plan.recommended
+										? "border-primary/50 shadow-md"
+										: "border-dashed border-border",
 								)}
-							</div>
-							<ul className="mt-6 flex flex-col gap-2 text-sm text-muted-foreground">
-								{hobbyFeatures.map((f) => (
-									<li key={f} className="flex gap-2">
-										<Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-										{f}
-									</li>
-								))}
-							</ul>
-							<div className="mt-auto pt-6">
-								<Link
-									href={SAGYBOAR_PORTAL_URL}
-									target="_blank"
-									className={buttonVariants({
-										variant: "default",
-										className: "w-full",
-									})}
-								>
-									Get Started
-								</Link>
-							</div>
-						</section>
-
-						{/* Startup */}
-						<section
-							className={clsx(
-								"relative flex flex-col rounded-3xl border-2 border-primary/50 bg-card px-6 py-8",
-							)}
-						>
-							<Badge className="absolute -top-2.5 left-6">
-								Recommended
-							</Badge>
-							<h3 className="text-lg font-medium text-foreground">Startup</h3>
-							<p className="mt-1 text-sm text-muted-foreground">
-								Perfect for small to mid-size teams
-							</p>
-							<div className="mt-4">
-								<span className="text-2xl font-semibold text-primary">
-									Starting at $
-									{isAnnual
-										? (startupBaseAnnual / 12).toFixed(2)
-										: startupBaseMonthly.toFixed(0)}
-									/mo
-								</span>
-								{isAnnual ? (
-									<p className="mt-1 text-sm text-muted-foreground">
-										${startupBaseAnnual.toFixed(0)}/year
-									</p>
+							>
+								{plan.recommended ? (
+									<Badge className="absolute -top-2.5 left-6">
+										Most popular
+									</Badge>
 								) : null}
-								<p className="mt-1 text-xs text-muted-foreground">
-									Add more servers as you&apos;d like for $4.50/mo
+
+								<h3 className="text-lg font-medium text-foreground">
+									{plan.name}
+								</h3>
+								<p className="mt-1 text-sm text-muted-foreground">
+									{plan.tagline}
+								</p>
+
+								<div className="mt-6">
+									<span className="text-3xl font-semibold text-primary">
+										${plan.price.toLocaleString()}
+									</span>
+									<span className="text-lg text-muted-foreground">/month</span>
+								</div>
+
+								<div className="mt-6">
+									<p className="text-xs font-semibold uppercase tracking-wider text-foreground">
+										Includes
+									</p>
+									<ul className="mt-3 flex flex-col gap-2.5 text-sm text-muted-foreground">
+										{plan.includes.map((item) => (
+											<li key={item} className="flex gap-2">
+												<Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+												{item}
+											</li>
+										))}
+									</ul>
+								</div>
+
+								{plan.fairUsage.length > 0 ? (
+									<div className="mt-6 rounded-xl border border-border/70 bg-muted/20 p-4 dark:bg-muted/10">
+										<p className="text-xs font-semibold uppercase tracking-wider text-foreground">
+											Fair usage
+										</p>
+										<ul className="mt-3 flex flex-col gap-2 text-xs leading-relaxed text-muted-foreground">
+											{plan.fairUsage.map((item) => (
+												<li key={item} className="flex gap-2">
+													<Circle className="mt-1.5 h-1.5 w-1.5 shrink-0 fill-muted-foreground text-muted-foreground" />
+													{item}
+												</li>
+											))}
+										</ul>
+									</div>
+								) : null}
+
+								{"infrastructureBilling" in plan &&
+								plan.infrastructureBilling.length > 0 ? (
+									<div className="mt-4 rounded-xl border border-border/70 bg-muted/20 p-4 dark:bg-muted/10">
+										<p className="text-xs font-semibold uppercase tracking-wider text-foreground">
+											Infrastructure & billing
+										</p>
+										<ul className="mt-3 flex flex-col gap-2 text-xs leading-relaxed text-muted-foreground">
+											{plan.infrastructureBilling.map((item) => (
+												<li key={item} className="flex gap-2">
+													<Circle className="mt-1.5 h-1.5 w-1.5 shrink-0 fill-muted-foreground text-muted-foreground" />
+													{item}
+												</li>
+											))}
+										</ul>
+									</div>
+								) : null}
+
+								<div className="mt-auto pt-8">
+									{plan.ctaHref ? (
+										<Link
+											href={SAGYBOAR_PORTAL_URL}
+											target="_blank"
+											className={buttonVariants({
+												variant: plan.recommended ? "default" : "outline",
+												className: "w-full gap-2",
+											})}
+										>
+											{plan.cta}
+											<ArrowUpRight className="h-4 w-4" />
+										</Link>
+									) : (
+										<Button
+											onClick={() => setOpenSalesModal(true)}
+											className="w-full gap-2"
+										>
+											{plan.cta}
+											<ArrowUpRight className="h-4 w-4" />
+										</Button>
+									)}
+								</div>
+							</section>
+						))}
+					</div>
+
+					<div className="mx-auto mt-12 max-w-4xl rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
+						<h3 className="text-center text-lg font-semibold text-foreground">
+							General terms
+						</h3>
+						<ul className="mt-4 flex flex-col gap-2.5 text-sm text-muted-foreground">
+							{generalTerms.map((term) => (
+								<li key={term} className="flex gap-2">
+									<Circle className="mt-2 h-1.5 w-1.5 shrink-0 fill-primary text-primary" />
+									{term}
+								</li>
+							))}
+						</ul>
+					</div>
+				</Container>
+			</section>
+
+			{/* Which plan is right for you */}
+			<section className="border-b border-border bg-muted/30 py-16 dark:bg-muted/10 sm:py-24">
+				<Container>
+					<h2 className="text-center font-display text-2xl font-semibold text-foreground sm:text-3xl">
+						Which plan is right for you?
+					</h2>
+
+					<div className="mx-auto mt-12 grid max-w-7xl gap-8 lg:grid-cols-3">
+						{planFitGuide.map((guide) => (
+							<div
+								key={guide.plan}
+								className="rounded-2xl border border-border bg-card p-6 shadow-sm"
+							>
+								<h3 className="text-lg font-semibold text-foreground">
+									{guide.plan}{" "}
+									<span className="text-primary">{guide.price}</span>
+								</h3>
+								<p className="mt-4 text-sm font-medium text-foreground">
+									{guide.audience}
+								</p>
+								<ul className="mt-3 flex flex-col gap-2 text-sm text-muted-foreground">
+									{guide.points.map((point) => (
+										<li key={point} className="flex gap-2">
+											<Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+											{point}
+										</li>
+									))}
+								</ul>
+							</div>
+						))}
+					</div>
+				</Container>
+			</section>
+
+			{/* Market comparison */}
+			<section className="border-b border-border py-16 sm:py-24">
+				<Container>
+					<h2 className="text-center font-display text-2xl font-semibold text-foreground sm:text-3xl">
+						How we compare to the market
+					</h2>
+					<div className="mx-auto mt-10 max-w-7xl">
+						<MarketComparisonTable />
+					</div>
+				</Container>
+			</section>
+
+			{/* Why choose SAGYBOAR */}
+			<section className="border-b border-border bg-muted/30 py-16 dark:bg-muted/10 sm:py-24">
+				<Container>
+					<h2 className="text-center font-display text-2xl font-semibold text-foreground sm:text-3xl">
+						Why choose SAGYBOAR?
+					</h2>
+
+					<div className="mx-auto mt-12 grid max-w-7xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+						{whyChooseSagyboar.map((item) => (
+							<div
+								key={item.title}
+								className="rounded-2xl border border-border bg-card p-6 shadow-sm"
+							>
+								<h3 className="text-base font-semibold text-foreground">
+									{item.title}
+								</h3>
+								<p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+									{item.description}
 								</p>
 							</div>
-							<ul className="mt-6 flex flex-col gap-2 text-sm text-muted-foreground">
-								{startupFeatures.map((f) => (
-									<li key={f} className="flex gap-2">
-										<Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-										{f}
-									</li>
-								))}
-							</ul>
-							<div className="mt-auto pt-6">
-								<Link
-									href={SAGYBOAR_PORTAL_URL}
-									target="_blank"
-									className={buttonVariants({
-										variant: "default",
-										className: "w-full",
-									})}
-								>
-									Get Started
-								</Link>
-							</div>
-						</section>
-						{/* Enterprise */}
-						<section
-							className={clsx(
-								"flex flex-col rounded-3xl border-2 border-dashed border-border bg-card px-6 py-8",
-							)}
-						>
-							<h3 className="text-lg font-medium text-foreground">Enterprise</h3>
-							<p className="mt-1 text-sm text-muted-foreground">
-								For large organizations who want more control
-							</p>
-							{/* Cloud & Self Hosted options */}
-							<div className="mt-4 grid grid-cols-2 gap-3">
-								<div className="rounded-xl border border-border bg-muted/30 px-4 py-3 dark:bg-muted/10">
-									<p className="text-center font-medium text-foreground">Cloud</p>
-									<p className="mt-0.5 text-xs text-muted-foreground text-center">
-										We host and manage everything for you
-									</p>
-								</div>
-								<div className="rounded-xl border border-border bg-muted/30 px-4 py-3 dark:bg-muted/10">
-									<p className="text-center font-medium text-foreground">Self Hosted</p>
-									<p className="mt-0.5 text-xs text-muted-foreground text-center">
-										Install on-prem or in your own cloud
-									</p>
-								</div>
-							</div>
-							<ul className="mt-6 flex flex-col gap-2 text-sm text-muted-foreground">
-								{enterpriseFeatures.map((f) => (
-									<li key={f} className="flex gap-2">
-										<Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-										{f}
-									</li>
-								))}
-							</ul>
-							<div className="mt-auto pt-6">
-								<Button
-									onClick={() => setOpenContactModal(true)}
-									className="w-full"
-								>
-									Contact Sales
-								</Button>
-							</div>
-						</section>
-						</div>
+						))}
+					</div>
+				</Container>
+			</section>
 
-						{/* Agency - below the 3 main plans */}
-						<section
-							className={clsx(
-								"flex flex-col rounded-3xl border-2 border-dashed border-border bg-card px-6 py-8",
-							)}
-						>
-							<h3 className="text-lg font-medium text-foreground">Agency</h3>
-							<p className="mt-1 text-sm text-muted-foreground">
-								Our Agency plan is uniquely tailored to the needs of agencies.
-								Please contact us below to learn more about this option, as well
-								as about becoming a certified Sagyboar partner.{" "}
-								<Link
-									href="/partners"
-									className="text-primary hover:underline"
-								>
-									Learn more here
-								</Link>
-							</p>
-							<div className="mt-6">
-								<Button
-									onClick={() => setOpenPartnerModal(true)}
-									className="w-full sm:w-auto"
-									variant="outline"
-								>
-									Contact The Partner Team
-								</Button>
-							</div>
-						</section>
-				</div>
-
-				{/* Feature breakdown */}
-				<div className="mx-auto mt-24 max-w-7xl">
-						<h3 className="text-center text-2xl font-semibold text-foreground">
-							Feature breakdown by plan
-						</h3>
-						<div className="mt-8">
-							<PricingFeatureTable />
-						</div>
-				</div>
-
-				{/* Pricing FAQ */}
-				<div className="mx-auto mt-24 max-w-5xl">
-					<h3 className="text-center text-2xl font-semibold text-foreground">
+			{/* FAQ */}
+			<section className="py-16 sm:py-24">
+				<Container>
+					<h2 className="text-center font-display text-2xl font-semibold text-foreground sm:text-3xl">
 						Frequently asked questions
-					</h3>
-					<p className="mt-4 text-center text-sm text-muted-foreground">
-						Have a different question? Contact us via Discord or email.
-					</p>
+					</h2>
 					<Accordion
 						type="single"
 						collapsible
-						className="mx-auto mt-8 w-full rounded-2xl border border-border bg-card/50 px-6 shadow-sm backdrop-blur-sm dark:bg-card/30"
+						className="mx-auto mt-10 w-full max-w-3xl rounded-2xl border border-border bg-card/50 px-6 shadow-sm backdrop-blur-sm dark:bg-card/30"
 					>
 						{pricingFaqs.map((faq, index) => (
-							<AccordionItem value={`${index}`} key={index} className="border-border">
+							<AccordionItem
+								value={`${index}`}
+								key={faq.question}
+								className="border-border"
+							>
 								<AccordionTrigger className="text-left text-foreground hover:text-foreground">
 									{faq.question}
 								</AccordionTrigger>
-								<AccordionContent>{faq.answer}</AccordionContent>
+								<AccordionContent className="text-muted-foreground">
+									{faq.answer}
+								</AccordionContent>
 							</AccordionItem>
 						))}
 					</Accordion>
-				</div>
-			</Container>
+				</Container>
+			</section>
+
+			{/* Bottom CTA */}
+			<section className="border-t border-border bg-muted/30 py-16 dark:bg-muted/10 sm:py-20">
+				<Container>
+					<div className="mx-auto max-w-3xl text-center">
+						<h2 className="font-display text-2xl font-semibold text-foreground sm:text-3xl">
+							Not sure which plan fits you?
+						</h2>
+						<p className="mt-4 text-muted-foreground">
+							Talk to us. We&apos;ll look at your project and tell you exactly
+							what you need — no upselling, no pressure.
+						</p>
+						<div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+							<Button
+								variant="outline"
+								className="gap-2 rounded-full"
+								onClick={() => setOpenHelpModal(true)}
+							>
+								Help me choose
+								<ArrowUpRight className="h-4 w-4" />
+							</Button>
+							<Button
+								className="gap-2 rounded-full"
+								onClick={() => setOpenSalesModal(true)}
+							>
+								Talk to sales
+								<ArrowUpRight className="h-4 w-4" />
+							</Button>
+						</div>
+					</div>
+				</Container>
 			</section>
 
 			<ContactFormModal
-				open={openContactModal}
-				onOpenChange={setOpenContactModal}
+				open={openSalesModal}
+				onOpenChange={setOpenSalesModal}
 				defaultInquiryType="sales"
 			/>
 			<ContactFormModal
-				open={openPartnerModal}
-				onOpenChange={setOpenPartnerModal}
-				defaultInquiryType="sales"
+				open={openHelpModal}
+				onOpenChange={setOpenHelpModal}
+				defaultInquiryType="other"
 			/>
 		</div>
 	);

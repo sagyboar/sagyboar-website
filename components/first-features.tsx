@@ -2,13 +2,14 @@
 import { cn } from "@/lib/utils";
 import {
 	IconActivity,
-	IconCloud,
+	IconCpu,
+	IconDashboard,
 	IconDatabase,
-	IconEaseInOut,
+	IconEye,
+	IconGitBranch,
 	IconRocket,
-	IconTemplate,
-	IconTerminal,
-	IconTerminal2,
+	IconShieldLock,
+	IconTicket,
 	IconUsers,
 } from "@tabler/icons-react";
 import { Layers, Lock, UnlockIcon } from "lucide-react";
@@ -16,87 +17,73 @@ import { Layers, Lock, UnlockIcon } from "lucide-react";
 export function FirstFeaturesSection() {
 	const features = [
 		{
-			title: "Flexible Application Deployment",
-			description:
-				"Deploy any application using Nixpacks, Heroku Buildpacks, or your custom Dockerfile, tailored to your stack.",
-			icon: <IconRocket />,
+		  title: "Unified Control Plane",
+		  description: "Manage your entire stack from a single dashboard. One-click deploy containerized apps and databases directly to our managed servers in minutes.",
+		  icon: <IconDashboard />,
 		},
 		{
-			title: "Native Docker Compose Support",
-			description:
-				"Deploy complex applications natively with full Docker Compose integration for seamless orchestration.",
-			icon: <Layers />,
+		  title: "Intelligent Deployment",
+		  description: "Stop writing boilerplate. Our AI auto-detects your stack, generates production-ready Dockerfiles, and recommends the exact infrastructure sizing you need.",
+		  icon: <Layers />,
 		},
 		{
-			title: "Multi-server Support",
-			description:
-				"Effortlessly deploy your applications on remote servers, with zero configuration hassle.",
-			icon: <IconCloud />,
+		  title: "AI Anomaly Detection",
+		  description: "Move from reactive to proactive. The AI monitoring engine analyzes logs and surfaces plain-language incident explanations before minor issues become downtime.",
+		  icon: <IconActivity />,
 		},
 		{
-			title: "Advanced User Management",
-			description:
-				"Control user access with detailed roles and permissions, keeping your deployments secure and organized.",
-			icon: <IconUsers />,
+		  title: "Automated Incident Management",
+		  description: "When issues occur, SAGYBOAR instantly generates a detailed ticket in your repository with problem descriptions, ETA, and priority, assigning it to the first available agent.",
+		  icon: <IconTicket />,
 		},
 		{
-			title: "Database Management with Backups",
-			description:
-				"Manage and back up MySQL, PostgreSQL, MongoDB, MariaDB, Redis directly from Sagyboar.",
-			icon: <IconDatabase />,
+		  title: "Cloud-Agnostic Portability",
+		  description: "Never get trapped by vendor lock-in. Enjoy seamless one-click deployments to our managed servers, while retaining the freedom to migrate to your own infrastructure anytime.",
+		  icon: <UnlockIcon />,
 		},
 		{
-			title: "API & CLI Access",
-			description:
-				"Need custom functionality? Sagyboar offers complete API and CLI access to fit your needs.",
-			icon: <IconTerminal />,
+		  title: "Smart Resource Sizing",
+		  description: "Eliminate resource waste. Our embedded AI continuously evaluates your workload to recommend optimal infrastructure configurations, balancing high performance with cost efficiency.",
+		  icon: <IconCpu />,
 		},
 		{
-			title: "Docker Swarm Clusters",
-			description:
-				"Scale your deployments seamlessly with built-in Docker Swarm support for robust, multi-node applications.",
-			icon: <IconUsers />,
+		  title: "Managed Database Orchestration",
+		  description: "Provision, scale, and back up complex databases with a single click. We handle the heavy lifting of data persistence so your team can focus purely on application logic.",
+		  icon: <IconDatabase />,
 		},
 		{
-			title: "Open Source Templates",
-			description:
-				"Get started quickly with pre-configured templates for popular tools like Supabase, Cal.com, and PocketBase.",
-			icon: <IconTemplate />,
+		  title: "Zero-Config CI/CD Pipelines",
+		  description: "Automate your path to production. Simply push code to your connected repository and let our built-in pipelines handle the build, test, and deployment phases instantly.",
+		  icon: <IconRocket />,
 		},
 		{
-			title: "No Vendor Lock-In",
-			description:
-				"Experience complete freedom to modify, scale, and customize Sagyboar to suit your specific needs.",
-			icon: <UnlockIcon />,
+		  title: "Deep Observability",
+		  description: "Gain total visibility into your stack. Access real-time system metrics, custom dashboards, and application traces without the need to integrate costly third-party monitoring tools.",
+		  icon: <IconEye />,
 		},
 		{
-			title: "Real-time Monitoring & Alerts",
-			description:
-				"Monitor CPU, memory, and network usage in real-time across your deployments for full visibility.",
-			icon: <IconActivity />,
+		  title: "Automated Security Scanning",
+		  description: "Ship with confidence. Continuous, automated vulnerability scanning for your containers and dependencies ensures your deployments remain secure and production-ready from day one.",
+		  icon: <IconShieldLock />,
 		},
 		{
-			title: "AI-assisted deployments",
-			description:
-				"Connect AI tools to Sagyboar via MCP, or deploy AI-built apps in a governed sandbox with SSO and multitenancy.",
-			icon: <IconTerminal2 />,
+		  title: "Seamless Git Integration",
+		  description: "Connect your preferred Git provider in seconds. Trigger deployments via commits, manage staging environments through branches, and utilize auto-generated preview links for pull requests.",
+		  icon: <IconGitBranch />,
 		},
 		{
-			title: "Self-hosted & Open Source",
-			description:
-				"Built for developers seeking control and flexibility, with self-hosting and open-source deployment.",
-			icon: <IconEaseInOut />,
-		},
-	];
+		  title: "On-Demand Engineering Squad",
+		  description: "Scale your operations instantly. Beyond the software, tap into our managed service to get a dedicated developer, DevOps engineer, and QA tester assigned to your project.",
+		  icon: <IconUsers />,
+		}
+	  ];
 	return (
 		<div className="mt-20 flex flex-col items-center  justify-center px-4">
 			<h2 className="text-center font-display text-3xl tracking-tight text-foreground sm:text-4xl">
-				Powerful Deployment Tailored to You
+				Engineering Freedom Meets <span className="text-blue-400 border-b-2 border-blue-400">AI Intelligence</span>
 			</h2>
 			<p className="mt-4 text-center text-lg  tracking-tight text-muted-foreground">
-				Unlock seamless multi-server deployments, advanced user control, and
-				flexible database management—all with Sagyboar’s developer-focused
-				features.
+				Get the flexibility of self-hosting with the frictionless experience of a fully managed platform.
 			</p>
 			<div className="relative z-10 mx-auto mt-10 grid  max-w-7xl grid-cols-1 py-10 max-sm:mx-0 max-sm:w-full max-sm:p-0 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 				{features.map((feature, index) => (
@@ -134,7 +121,7 @@ const Feature = ({
 			)}
 			<div className="relative z-10 mb-4 px-10 text-muted-foreground">{icon}</div>
 			<div className="relative z-10 mb-2 px-10 text-lg font-bold">
-				<div className="absolute inset-y-0 left-0 h-6 w-1 origin-center rounded-br-full rounded-tr-full bg-border transition-all duration-200 group-hover/feature:h-8 group-hover/feature:bg-primary dark:bg-neutral-700 dark:group-hover/feature:bg-primary" />
+				<div className="absolute inset-y-0 left-0 h-6 w-1 origin-center rounded-br-full rounded-tr-full bg-border transition-all duration-200 group-hover/feature:h-8 group-hover/feature:bg-blue-400 dark:bg-neutral-700 dark:group-hover/feature:bg-blue-700" />
 				<span className="inline-block text-foreground transition duration-200 group-hover/feature:translate-x-2">
 					{title}
 				</span>

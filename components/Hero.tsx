@@ -20,27 +20,26 @@ export function Hero() {
 			/>
 
 			<Container className="relative z-10 flex flex-1 flex-col pt-28 sm:pt-32 lg:pt-36">
-				<div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
+				<div className="mx-auto flex w-full max-w-4xl flex-col items-center text-center">
 					<div className="hero-fade-up inline-flex max-w-xl items-center rounded-full border border-border/80 bg-muted/60 px-4 py-1.5 text-xs leading-snug text-muted-foreground backdrop-blur-sm sm:text-sm">
 						<span className="font-medium text-foreground/80">New:</span>
 						<span className="ml-1.5">
-							One-click deployments with built-in monitoring and rollbacks
+						The AI-Native DevOps Platform for Engineering Teams
 						</span>
 					</div>
 
 					<h1 className="hero-fade-up hero-fade-up-delayed mt-8 font-serif text-4xl font-normal leading-[1.12] tracking-tight text-foreground sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]">
-						You ship features, we will take care of the deployment.
+					Deploy, monitor, and scale <br/>applications on <span className="text-blue-400 border-b-2 border-blue-400">your terms.</span>
 					</h1>
 
-					<p className="hero-fade-up hero-fade-up-delayed-2 mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg sm:leading-8">
-						Deploy apps, manage databases, and monitor your stack from one
-						platform. We handle the infrastructure—you focus on shipping.
+					<p className="hero-fade-up hero-fade-up-delayed-2 mt-6 mb-10 text-base leading-relaxed text-muted-foreground sm:text-lg sm:leading-8">
+					An AI-powered control plane that auto-generates configurations, detects anomalies, handles ticketing. Deploy to our managed servers in minutes with zero infrastructure hassle and zero cloud lock-in.
 					</p>
 
-					<div className="hero-fade-up hero-fade-up-delayed-3 mt-10 flex flex-col items-center gap-4 sm:flex-row">
+					<div className="hero-fade-up hero-fade-up-delayed-3 bg-blue-500 p-1.5 rounded-full">
 						<Button
 							size="lg"
-							className="h-12 rounded-full px-8 text-base shadow-sm"
+							className="rounded-full px-4 text-base shadow-sm"
 							asChild
 						>
 							<Link
@@ -52,20 +51,6 @@ export function Hero() {
 									Get started free
 									<ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
 								</span>
-							</Link>
-						</Button>
-						<Button
-							size="lg"
-							variant="ghost"
-							className="h-12 rounded-full px-6 text-base text-muted-foreground"
-							asChild
-						>
-							<Link
-								href={SAGYBOAR_G2_REVIEWS_URL}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								See G2 reviews
 							</Link>
 						</Button>
 					</div>

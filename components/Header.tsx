@@ -398,7 +398,7 @@ export function Header() {
 	}, []);
 
 	return (
-		<header className="pointer-events-none fixed inset-x-0 top-0 z-50 bg-transparent px-4 pt-6 sm:px-6">
+		<header className="pointer-events-none fixed inset-x-0 top-0 z-50 bg-transparent px-4 pt-2 sm:px-6">
 			<div
 				className={cn(
 					"pointer-events-auto relative mx-auto transition-all duration-300 ease-out",
