@@ -28,12 +28,6 @@ export type FooterLink = {
 	label: string;
 };
 
-export type SocialLink = {
-	href: string;
-	label: string;
-	network: "x" | "github" | "instagram" | "linkedin" | "youtube";
-};
-
 export const platformFeatureLinks: NavLinkItem[] = [
 	{
 		title: "Application Deployment",
@@ -196,33 +190,5 @@ export const footerSections: FooterSection[] = [
 		title: "Company",
 		ariaLabel: "Company",
 		links: companyLinks,
-	},
-];
-
-export const socialLinks: SocialLink[] = [
-	{
-		href: "https://x.com/getSagyboar",
-		label: "Sagyboar on X",
-		network: "x",
-	},
-	{
-		href: "https://github.com/Sagyboar/Sagyboar",
-		label: "Sagyboar on GitHub",
-		network: "github",
-	},
-	{
-		href: "https://instagram.com/sagyboar",
-		label: "Sagyboar on Instagram",
-		network: "instagram",
-	},
-	{
-		href: "https://linkedin.com/company/sagyboar",
-		label: "Sagyboar on LinkedIn",
-		network: "linkedin",
-	},
-	{
-		href: "https://youtube.com/@sagyboar",
-		label: "Sagyboar on YouTube",
-		network: "youtube",
 	},
 ];
