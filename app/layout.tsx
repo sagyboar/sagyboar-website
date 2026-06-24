@@ -81,7 +81,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			</head>
 			<body>
 				<ThemeProvider>
-					<GoogleAnalytics gaId="G-0RTZ5EPB26" />
+					<GoogleAnalytics gaId="G-3YPQZXP48E" />
 					<div className="flex h-full flex-col bg-background">
 						<Header />
 						{children}
