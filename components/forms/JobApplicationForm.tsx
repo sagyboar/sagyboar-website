@@ -1,9 +1,17 @@
 "use client";
 
+import { FileText, UploadCloud, X } from "lucide-react";
 import { useRef, useState } from "react";
 import { trackGAEvent } from "@/components/analitycs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+
+function formatBytes(bytes: number): string {
+	if (bytes < 1024) return `${bytes} B`;
+	if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+	return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
 
 type JobApplicationFormState = {
 	fullName: string;
@@ -41,7 +49,23 @@ export function JobApplicationForm({
 	const [submitting, setSubmitting] = useState(false);
 	const [submitted, setSubmitted] = useState(false);
 	const [serverError, setServerError] = useState<string | null>(null);
+	const [dragActive, setDragActive] = useState(false);
 	const fileRef = useRef<HTMLInputElement>(null);
+
+	const selectFile = (file: File | null) => {
+		setResume(file);
+		setErrors((prev) => {
+			if (!prev.resume) return prev;
+			const next = { ...prev };
+			delete next.resume;
+			return next;
+		});
+	};
+
+	const clearFile = () => {
+		setResume(null);
+		if (fileRef.current) fileRef.current.value = "";
+	};
 
 	const update = (field: keyof JobApplicationFormState, value: string) => {
 		setForm((prev) => ({ ...prev, [field]: value }));
@@ -223,30 +247,87 @@ export function JobApplicationForm({
 			</div>
 
 			<div className="space-y-2">
-				<label htmlFor="resume" className="block text-sm font-medium text-foreground">
+				<span className="block text-sm font-medium text-foreground">
 					Resume / CV <span className="text-red-500">*</span>
-				</label>
+				</span>
 				<input
 					ref={fileRef}
 					id="resume"
 					type="file"
 					accept=".pdf,.doc,.docx,image/png,image/jpeg,image/webp"
-					onChange={(e) => {
-						setResume(e.target.files?.[0] ?? null);
-						setErrors((prev) => {
-							if (!prev.resume) return prev;
-							const next = { ...prev };
-							delete next.resume;
-							return next;
-						});
-					}}
-					className="block w-full cursor-pointer rounded-md bg-input px-3 py-2 text-sm text-foreground file:mr-3 file:rounded-full file:border-0 file:bg-primary file:px-4 file:py-1.5 file:text-sm file:font-medium file:text-primary-foreground hover:file:bg-primary/90"
+					className="sr-only"
+					onChange={(e) => selectFile(e.target.files?.[0] ?? null)}
 				/>
-				<p className="text-xs text-muted-foreground">
-					PDF, Word, or image — up to 5 MB.
-				</p>
+
+				{resume ? (
+					<div className="flex items-center gap-3 rounded-xl border border-border bg-card/50 p-3">
+						<div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+							<FileText className="size-5" />
+						</div>
+						<div className="min-w-0 flex-1">
+							<p className="truncate text-sm font-medium text-foreground">
+								{resume.name}
+							</p>
+							<p className="text-xs text-muted-foreground">
+								{formatBytes(resume.size)}
+							</p>
+						</div>
+						<button
+							type="button"
+							onClick={() => fileRef.current?.click()}
+							className="rounded-full px-3 py-1.5 text-xs font-medium text-primary transition-colors hover:bg-accent"
+						>
+							Replace
+						</button>
+						<button
+							type="button"
+							onClick={clearFile}
+							aria-label="Remove file"
+							className="flex size-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+						>
+							<X className="size-4" />
+						</button>
+					</div>
+				) : (
+					<button
+						type="button"
+						onClick={() => fileRef.current?.click()}
+						onDragOver={(e) => {
+							e.preventDefault();
+							setDragActive(true);
+						}}
+						onDragLeave={(e) => {
+							e.preventDefault();
+							setDragActive(false);
+						}}
+						onDrop={(e) => {
+							e.preventDefault();
+							setDragActive(false);
+							const file = e.dataTransfer.files?.[0];
+							if (file) selectFile(file);
+						}}
+						className={cn(
+							"flex w-full flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed px-6 py-8 text-center transition-colors",
+							dragActive
+								? "border-primary bg-primary/5"
+								: "border-border bg-input/40 hover:border-primary/50 hover:bg-accent/40",
+						)}
+					>
+						<div className="flex size-11 items-center justify-center rounded-full bg-primary/10 text-primary">
+							<UploadCloud className="size-5" />
+						</div>
+						<span className="text-sm font-medium text-foreground">
+							<span className="text-primary">Click to upload</span> or drag and
+							drop
+						</span>
+						<span className="text-xs text-muted-foreground">
+							PDF, Word, or image — up to 5 MB
+						</span>
+					</button>
+				)}
+
 				{errors.resume && (
-					<span className="text-sm text-red-600">{errors.resume}</span>
+					<span className="block text-sm text-red-600">{errors.resume}</span>
 				)}
 			</div>
 

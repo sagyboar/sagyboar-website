@@ -1,50 +1,44 @@
 # Sagyboar
 
-> Sagyboar is a self-hostable Platform as a Service (PaaS) that simplifies the deployment and management of applications and databases. The core product is open source and free to self-host, making it a compelling alternative to platforms like Heroku, Vercel, and Netlify. It is built on Docker and Traefik, and is available as a self-hosted installation or as a managed cloud product. Enterprise features—including SSO, fine-grained RBAC, audit logs, and white labelling—require a commercial licence. Sagyboar is designed for individual developers, small teams, and large enterprises alike.
+> Sagyboar is an AI-native DevOps platform for deployment, monitoring, diagnosis, and managed engineering. Teams deploy from any Git provider or registry, operate with AI-assisted monitoring and self-healing, and scale from a free tier to fully managed enterprise infrastructure — without hiring a full DevOps department.
 
-Sagyboar lets teams deploy any application—using Nixpacks, Heroku Buildpacks, or a custom Dockerfile—alongside databases and Docker Compose stacks, across single or multiple servers. It supports Docker Swarm for clustering, real-time monitoring, automated backups, and granular role-based access control. AI-assisted deployments are supported via an MCP (Model Context Protocol) server, enabling AI agents and tools to interact with Sagyboar directly.
+- Website: https://Sagyboar.space
+- Dashboard: https://dashboard.Sagyboar.space
+- Support: help@Sagyboar.space
 
-Key facts:
-- Core product is open source (GitHub: github.com/Sagyboar/Sagyboar) with 26,000+ stars and 200+ contributors; enterprise features require a commercial licence
-- Over 6 million DockerHub downloads
-- Supports MySQL, PostgreSQL, MongoDB, MariaDB, and Redis with built-in backup management
-- Multi-server and Docker Swarm cluster support with zero-configuration setup
-- Enterprise features include SSO/SAML (Okta, Azure), fine-grained RBAC, audit logs, and white labelling
-- One-click templates for popular tools including Supabase, Cal.com, and PocketBase
-- Full REST API, CLI access, and Swagger API reference
-- Notifications via Slack, Discord, Telegram, email, and webhooks
+## Documentation
 
-## Product pages
+- [Full product knowledge base](https://Sagyboar.space/Sagyboar.md): Detailed features, solutions, pricing, and how the platform works
 
-- [Home](https://Sagyboar.com/): Product overview
-- [Application Deployment](https://Sagyboar.com/features/application-deployment): Deploy any stack from any source in minutes
-- [CI/CD & Git Integration](https://Sagyboar.com/features/ci-cd-git-integration): Automated pipelines from commit to production
-- [AI Monitoring & Observability](https://Sagyboar.com/features/ai-monitoring-observability): Active intelligence, not passive dashboards
-- [AI Error Diagnosis](https://Sagyboar.com/features/ai-error-diagnosis): From detection to assigned ticket in seconds
-- [Autonomous Self-Healing](https://Sagyboar.com/features/autonomous-self-healing): Automated remediation with human oversight
-- [Database Management](https://Sagyboar.com/features/database-management): Provision, back up, and restore databases
-- [Multi-Server & Infrastructure](https://Sagyboar.com/features/multi-server-infrastructure): Centralized control over distributed infrastructure
-- [Notifications & Alerting](https://Sagyboar.com/features/notifications-alerting): AI-enriched alerts where your team works
-- [Managed Team Services](https://Sagyboar.com/features/managed-team-services): A dedicated team to keep your product running
-- [Weekly Code Review](https://Sagyboar.com/features/weekly-code-review): AI-powered code health checks on your repositories
-- [Security & Access Control](https://Sagyboar.com/features/platform-security-access-control): Enterprise-grade RBAC, SSO, and audit logs
-- [Enterprise](https://Sagyboar.com/solutions/enterprise): Enterprise-grade features and support
+## Product
 
-## Pricing
+- [Home](https://Sagyboar.space/): Platform overview
+- [Features](https://Sagyboar.space/features): All platform capabilities
+- [Pricing](https://Sagyboar.space/pricing): Free, Hobby, Startup, and Enterprise plans
 
-- [Pricing](https://Sagyboar.com/pricing): Hobby ($4.50/mo per server), Startup (from $15/mo), Enterprise (contact sales), and Agency plans. The core product is open source and free to self-host; enterprise features (SSO, fine-grained RBAC, audit logs, white labelling) require a commercial licence.
+## Features
 
-## Compare & learn
+- [Application Deployment](https://Sagyboar.space/features/application-deployment)
+- [CI/CD & Git Integration](https://Sagyboar.space/features/ci-cd-git-integration)
+- [AI Monitoring & Observability](https://Sagyboar.space/features/ai-monitoring-observability)
+- [AI Error Diagnosis](https://Sagyboar.space/features/ai-error-diagnosis)
+- [Autonomous Self-Healing](https://Sagyboar.space/features/autonomous-self-healing)
+- [Database Management](https://Sagyboar.space/features/database-management)
+- [Multi-Server & Infrastructure](https://Sagyboar.space/features/multi-server-infrastructure)
+- [Notifications & Alerting](https://Sagyboar.space/features/notifications-alerting)
+- [Managed Team Services](https://Sagyboar.space/features/managed-team-services)
+- [Weekly Code Review](https://Sagyboar.space/features/weekly-code-review)
+- [Security & Access Control](https://Sagyboar.space/features/platform-security-access-control)
 
-- [Sagyboar vs Coolify](https://Sagyboar.com/Sagyboar-vs-coolify)
-- [Sagyboar vs Portainer](https://Sagyboar.com/Sagyboar-vs-portainer)
-- [Sagyboar vs CapRover](https://Sagyboar.com/Sagyboar-vs-caprover)
-- [Sagyboar vs Dokku](https://Sagyboar.com/Sagyboar-vs-dokku)
+## Solutions
 
-## External pages
+- [Hobby](https://Sagyboar.space/solutions/hobby): Solo developers and MVPs
+- [Startup](https://Sagyboar.space/solutions/startup): Growing teams without a full DevOps hire
+- [Enterprise](https://Sagyboar.space/solutions/enterprise): Dedicated infrastructure and managed platform team
 
-- [GitHub Repository](https://github.com/Sagyboar/Sagyboar): Source code, issues, and contributions
-- [Discord Community](https://discord.gg/2tBnJ3jDJc): Community support
-- [X / Twitter](https://x.com/getSagyboar): Product updates
-- [Careers](https://Sagyboar.com/jobs): Open roles at Sagyboar
-- [Contact / Sales](https://Sagyboar.com/contact): Enterprise and agency enquiries
+## Company
+
+- [Careers](https://Sagyboar.space/jobs)
+- [Contact](https://Sagyboar.space/contact)
+- [Privacy Policy](https://Sagyboar.space/privacy)
+- [Terms of Service](https://Sagyboar.space/terms-of-service)

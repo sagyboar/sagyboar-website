@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import ScrollStack, { ScrollStackItem } from "@/components/ui/scroll-stack";
 import { Container } from "@/components/Container";
 import { cn } from "@/lib/utils";
 import { whyWorkAtSagyboar } from "./jobs-data";
@@ -21,66 +20,57 @@ export function JobsWhyWork() {
 						Scroll to explore what makes building your career here different.
 					</p>
 				</div>
-			</Container>
 
-			<div className="mx-auto mt-10 max-w-6xl px-4 sm:px-6">
-				<ScrollStack
-					useWindowScroll
-					itemDistance={80}
-					itemScale={0.04}
-					itemStackDistance={24}
-					stackPosition="22%"
-					scaleEndPosition="12%"
-					baseScale={0.88}
-					blurAmount={1.5}
-					rotationAmount={0}
-				>
+				<div className="mx-auto mt-10 max-w-5xl sm:mt-14">
 					{whyWorkAtSagyboar.map((card, index) => {
 						const imageOnRight = index % 2 === 1;
 
 						return (
-							<ScrollStackItem
+							<div
 								key={card.title}
-								itemClassName="h-auto min-h-[22rem] overflow-hidden p-0 sm:min-h-[16rem]"
+								className="sticky pb-6 sm:pb-8"
+								style={{ top: `calc(5.5rem + ${index * 0.75}rem)` }}
 							>
-								<div className="grid h-full min-h-[22rem] sm:min-h-[16rem] sm:grid-cols-2">
-									<div
-										className={cn(
-											"relative min-h-[12rem] bg-muted/40 sm:min-h-full",
-											imageOnRight ? "order-1 sm:order-2" : "order-1",
-										)}
-									>
-										<Image
-											src={card.image}
-											alt={card.imageAlt}
-											fill
-											className="object-cover"
-											sizes="(max-width: 640px) 100vw, 50vw"
-										/>
-									</div>
+								<div className="overflow-hidden rounded-3xl border border-border bg-card shadow-lg">
+									<div className="grid sm:grid-cols-2">
+										<div
+											className={cn(
+												"relative aspect-[16/10] bg-muted/40 sm:aspect-auto sm:min-h-[19rem]",
+												imageOnRight ? "sm:order-2" : "sm:order-1",
+											)}
+										>
+											<Image
+												src={card.image}
+												alt={card.imageAlt}
+												fill
+												className="object-cover"
+												sizes="(max-width: 640px) 100vw, 50vw"
+											/>
+										</div>
 
-									<div
-										className={cn(
-											"order-2 flex flex-col justify-center p-6 sm:p-8",
-											imageOnRight && "sm:order-1",
-										)}
-									>
-										<p className="text-xs font-medium uppercase tracking-wider text-primary">
-											0{index + 1}
-										</p>
-										<h3 className="mt-3 font-display text-xl font-semibold text-foreground sm:text-2xl">
-											{card.title}
-										</h3>
-										<p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-											{card.description}
-										</p>
+										<div
+											className={cn(
+												"flex flex-col justify-center p-6 sm:p-10",
+												imageOnRight ? "sm:order-1" : "sm:order-2",
+											)}
+										>
+											<p className="text-xs font-medium uppercase tracking-wider text-primary">
+												0{index + 1}
+											</p>
+											<h3 className="mt-3 font-display text-xl font-semibold text-foreground sm:text-2xl">
+												{card.title}
+											</h3>
+											<p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+												{card.description}
+											</p>
+										</div>
 									</div>
 								</div>
-							</ScrollStackItem>
+							</div>
 						);
 					})}
-				</ScrollStack>
-			</div>
+				</div>
+			</Container>
 		</section>
 	);
 }

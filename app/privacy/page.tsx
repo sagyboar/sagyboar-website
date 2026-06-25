@@ -235,10 +235,10 @@ export default function PrivacyPage() {
 					To exercise these rights or opt out of analytics and marketing cookies,
 					please contact us at{" "}
 					<a
-						href="mailto:support@Sagyboar.com"
+						href="mailto:help@Sagyboar.space"
 						className="text-primary underline-offset-4 hover:underline"
 					>
-						support@Sagyboar.com
+						help@Sagyboar.space
 					</a>
 					. We will honour verified requests within the time frames required by
 					law.
@@ -266,10 +266,10 @@ export default function PrivacyPage() {
 				<p>
 					Email:{" "}
 					<a
-						href="mailto:support@Sagyboar.com"
+						href="mailto:help@Sagyboar.space"
 						className="text-primary underline-offset-4 hover:underline"
 					>
-						support@Sagyboar.com
+						help@Sagyboar.space
 					</a>
 				</p>
 			</section>

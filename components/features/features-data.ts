@@ -84,7 +84,7 @@ export const featurePages: FeaturePageData[] = [
 			{
 				name: "One-click managed hosting",
 				description:
-					"Deploy on SAGYBOAR's own infrastructure in minutes. No VPS setup, no SSH keys, no server provisioning required.",
+					"Deploy on Sagyboar's own infrastructure in minutes. No VPS setup, no SSH keys, no server provisioning required.",
 				badge: "MANAGED",
 			},
 		],
@@ -99,7 +99,7 @@ export const featurePages: FeaturePageData[] = [
 		headline: "Automated pipelines from commit to production",
 		headlineHighlight: "to production",
 		summary:
-			"Push to any branch and let SAGYBOAR build, preview, and ship — with zero-downtime rolling updates and automatic rollback baked in.",
+			"Push to any branch and let Sagyboar build, preview, and ship — with zero-downtime rolling updates and automatic rollback baked in.",
 		items: [
 			{
 				name: "Webhook-triggered deployments",
@@ -187,7 +187,7 @@ export const featurePages: FeaturePageData[] = [
 		headline: "From detection to assigned ticket in seconds",
 		headlineHighlight: "in seconds",
 		summary:
-			"SAGYBOAR analyses stack traces, identifies root causes, and auto-creates prioritized tickets in your repo — routed to the first available developer.",
+			"Sagyboar analyses stack traces, identifies root causes, and auto-creates prioritized tickets in your repo — routed to the first available developer.",
 		items: [
 			{
 				name: "Stack trace analysis",
@@ -210,7 +210,7 @@ export const featurePages: FeaturePageData[] = [
 			{
 				name: "Automatic issue ticketing",
 				description:
-					"When an error is detected, SAGYBOAR auto-creates a ticket in your connected repository (GitHub Issues, GitLab, Jira) with a full AI-generated description, priority, and estimated fix time.",
+					"When an error is detected, Sagyboar auto-creates a ticket in your connected repository (GitHub Issues, GitLab, Jira) with a full AI-generated description, priority, and estimated fix time.",
 				badge: "NEW",
 			},
 			{
@@ -401,7 +401,7 @@ export const featurePages: FeaturePageData[] = [
 		headline: "A dedicated team to keep your product running",
 		headlineHighlight: "running",
 		summary:
-			"Get a dedicated AI-assisted developer, a DevOps engineer, and on-demand QA — all running on fully managed SAGYBOAR infrastructure.",
+			"Get a dedicated AI-assisted developer, a DevOps engineer, and on-demand QA — all running on fully managed Sagyboar infrastructure.",
 		items: [
 			{
 				name: "Dedicated AI-assisted developer",
@@ -424,7 +424,7 @@ export const featurePages: FeaturePageData[] = [
 			{
 				name: "Fully managed infrastructure hosting",
 				description:
-					"All managed services run on SAGYBOAR's own infrastructure. No VPS to provision or maintain — we handle uptime, updates, and security patching.",
+					"All managed services run on Sagyboar's own infrastructure. No VPS to provision or maintain — we handle uptime, updates, and security patching.",
 				badge: "MANAGED",
 			},
 		],
@@ -439,12 +439,12 @@ export const featurePages: FeaturePageData[] = [
 		headline: "AI-powered code health checks on your connected repositories",
 		headlineHighlight: "connected repositories",
 		summary:
-			"Every week SAGYBOAR reviews your repos for quality, security, and technical debt — turning findings into prioritized, assignable tickets.",
+			"Every week Sagyboar reviews your repos for quality, security, and technical debt — turning findings into prioritized, assignable tickets.",
 		items: [
 			{
 				name: "Automated weekly code review",
 				description:
-					"Every week, SAGYBOAR runs an AI-powered review across all connected repositories — analysing code quality, complexity, duplication, and adherence to best practices without any manual trigger.",
+					"Every week, Sagyboar runs an AI-powered review across all connected repositories — analysing code quality, complexity, duplication, and adherence to best practices without any manual trigger.",
 				badge: "NEW",
 			},
 			{

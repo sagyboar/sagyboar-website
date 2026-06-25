@@ -134,8 +134,8 @@ export default function FeaturesPage() {
 					<div className="mx-auto max-w-3xl text-center">
 						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 							<HeadingHighlight
-								text="Ready to ship with SAGYBOAR?"
-								highlight="SAGYBOAR?"
+								text="Ready to ship with Sagyboar?"
+								highlight="Sagyboar?"
 							/>
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">

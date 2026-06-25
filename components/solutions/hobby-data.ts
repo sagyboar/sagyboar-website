@@ -26,35 +26,35 @@ export const hobbySolutionPage: SolutionPageData = {
 				title: "One application, fully managed",
 				description:
 					"Deploy a production app without wiring servers yourself. Hobby includes one managed application on Sagyboar infrastructure with SSL and a custom domain.",
-				image: "/primary/projects.png",
+				image: "/Default.png",
 				imageAlt: "Sagyboar projects dashboard",
 			},
 			{
 				title: "Managed hosting included",
 				description:
 					"Skip the infrastructure rabbit hole. Your app runs on our managed stack so you can focus on building — not patching servers or chasing uptime.",
-				image: "/primary/servers.png",
+				image: "/Default.png",
 				imageAlt: "Managed servers on Sagyboar",
 			},
 			{
 				title: "AI monitoring & alerts",
 				description:
 					"Basic AI monitoring watches your app around the clock and surfaces uptime issues before your users do.",
-				image: "/primary/monitoring.png",
+				image: "/Default.png",
 				imageAlt: "AI monitoring dashboard",
 			},
 			{
 				title: "Automated issue tickets",
 				description:
 					"When something breaks, Sagyboar can open structured issue tickets in your repo so fixes start faster.",
-				image: "/images/dokploy-deployment-log.png",
+				image: "/Default.png",
 				imageAlt: "Deployment and issue tracking",
 			},
 			{
 				title: "Database, storage & support",
 				description:
 					"Includes one managed database, 10 GB storage, and community support — everything a solo builder needs to ship confidently.",
-				image: "/primary/compose.png",
+				image: "/Default.png",
 				imageAlt: "Compose and database management",
 			},
 		],
@@ -68,7 +68,7 @@ export const hobbySolutionPage: SolutionPageData = {
 		cta: "Start with Hobby",
 		ctaHref: Sagyboar_PORTAL_URL,
 		ctaExternal: true,
-		image: "/primary/projects.png",
+		image: "/Hobby.png",
 		imageAlt: "Deploy a project on Sagyboar",
 	},
 	faq: {

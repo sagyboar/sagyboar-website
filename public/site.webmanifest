@@ -23,14 +23,8 @@
 			"type": "image/png"
 		}
 	],
-	"theme_color": [
-		{ "media": "(prefers-color-scheme: light)", "color": "#ffffff" },
-		{ "media": "(prefers-color-scheme: dark)", "color": "#0a0a0a" }
-	],
-	"background_color": [
-		{ "media": "(prefers-color-scheme: light)", "color": "#ffffff" },
-		{ "media": "(prefers-color-scheme: dark)", "color": "#0a0a0a" }
-	],
+	"theme_color": "#0a0a0a",
+	"background_color": "#0a0a0a",
 	"display": "standalone",
 	"orientation": "portrait-primary"
 }

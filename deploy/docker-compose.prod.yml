@@ -2,7 +2,7 @@
 # Caddy (already on the host) should reverse_proxy to localhost:8002.
 services:
   website:
-    image: ghcr.io/sagyboar/sagyboar-website/website
+    image: ghcr.io/Sagyboar/Sagyboar-website/website
     container_name: Sagyboar-website
     restart: unless-stopped
     ports:
@@ -10,3 +10,8 @@ services:
     environment:
       PORT: "8002"
       HOSTNAME: "0.0.0.0"
+      RESUME_UPLOAD_DIR: "/app/uploads/resumes"
+    volumes:
+      # Persist uploaded resumes across redeploys. Host dir must be owned by
+      # uid 1001 (the container's nextjs user): chown -R 1001:1001 <host dir>.
+      - /opt/sagyboar/uploads/resumes:/app/uploads/resumes

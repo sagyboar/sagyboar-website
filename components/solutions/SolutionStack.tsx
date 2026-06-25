@@ -46,7 +46,7 @@ export function SolutionStack({ data }: SolutionStackProps) {
 						return (
 							<ScrollStackItem
 								key={card.title}
-								itemClassName="h-auto min-h-[22rem] overflow-hidden p-0 sm:min-h-[16rem]"
+								itemClassName="h-auto min-h-[42rem] overflow-hidden p-0 sm:min-h-[16rem]"
 							>
 								<div className="grid h-full min-h-[22rem] sm:min-h-[16rem] sm:grid-cols-2">
 									<div
@@ -59,7 +59,7 @@ export function SolutionStack({ data }: SolutionStackProps) {
 											src={card.image}
 											alt={card.imageAlt}
 											fill
-											className="object-cover"
+											className="object-cover rounded-md"
 											sizes="(max-width: 640px) 100vw, 50vw"
 										/>
 									</div>

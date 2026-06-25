@@ -374,7 +374,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 		>
 			<div
 				className={cn(
-					"scroll-stack-inner min-h-screen px-4 pb-[40rem] pt-[10vh] sm:px-8 lg:px-16",
+					"scroll-stack-inner min-h-screen px-4 pb-[10rem] pt-[10vh] sm:px-8 lg:px-16",
 					innerClassName,
 				)}
 			>

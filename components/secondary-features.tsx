@@ -4,31 +4,32 @@ import { Tab } from "@headlessui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const features = [
     {
         title: "AI-Powered Developer",
         description:
             "Your dedicated developer handles routine code maintenance, dependency updates, and minor bug fixes, keeping your codebase clean and modern.",
-        image: "/logs.png",
+        image: "/Default.png",
     },
     {
         title: "Expert DevOps Engineer",
         description:
             "A dedicated engineer monitors system health 24/7, proactively manages server scaling, and ensures zero-downtime deployments.",
-        image: "/remote.png",
+        image: "/Default.png",
     },
     {
         title: "CI/CD Pipeline Management",
         description:
             "Our team fine-tunes your continuous integration and deployment pipelines to accelerate your time-to-market safely.",
-        image: "/logs.png",
+        image: "/Default.png",
     },
     {
         title: "24/7 Incident Resolution",
         description:
             "With our experts maintaining the engine, critical alerts are handled instantly without waking up your core engineering team.",
-        image: "/backups.png",
+        image: "/Default.png",
     },
 ];
 
@@ -158,19 +159,21 @@ export function SecondaryFeaturesSections() {
                                                 bounce: 0.2,
                                                 duration: 0.8,
                                             }}
-                                            className="mt-10 h-[24rem] w-[45rem] overflow-hidden rounded-xl border border-stone-200/80 bg-white shadow-xl dark:border-neutral-700 dark:bg-neutral-800 sm:w-auto lg:mt-0 lg:h-[40rem]"
+                                            className="mx-auto relative mt-10 flex w-full  aspect-video flex-col overflow-hidden rounded-xl border border-stone-200/80 bg-white shadow-xl dark:border-neutral-700 dark:bg-neutral-800 lg:mt-0"
                                         >
-                                            <div className="relative w-full">
-                                                <div className="mx-auto">
-                                                    <div className="flex h-11 w-full items-center justify-start space-x-1.5 rounded-t-lg bg-stone-100 px-3 dark:bg-neutral-900">
-                                                        <span className="h-3 w-3 rounded-full bg-red-400" />
-                                                        <span className="h-3 w-3 rounded-full bg-yellow-400" />
-                                                        <span className="h-3 w-3 rounded-full bg-green-400" />
-                                                    </div>
-                                                    <div className="h-96 w-full bg-stone-100 dark:bg-neutral-950">
-                                                        <img src={feature.image} alt={feature.title} />
-                                                    </div>
-                                                </div>
+                                            <div className="flex h-9 w-full shrink-0 items-center justify-start space-x-1.5 bg-stone-100 px-3 dark:bg-neutral-900 sm:h-11">
+                                                <span className="h-2.5 w-2.5 rounded-full bg-red-400 sm:h-3 sm:w-3" />
+                                                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400 sm:h-3 sm:w-3" />
+                                                <span className="h-2.5 w-2.5 rounded-full bg-green-400 sm:h-3 sm:w-3" />
+                                            </div>
+                                            <div className="aspect-[16/10] w-full bg-stone-100 dark:bg-neutral-950 lg:aspect-[16/11]">
+                                                <Image
+                                                    src={feature.image}
+                                                    alt={feature.title}
+                                                    fill
+                                                    className="h-full w-full object-cover object-left-top"
+                                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                                />
                                             </div>
                                         </motion.div>
                                     </Tab.Panel>

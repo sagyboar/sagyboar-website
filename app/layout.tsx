@@ -10,13 +10,18 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Sagyboar_LOGO_SRC } from "@/constants/branding";
 import {
-	DEFAULT_OG_IMAGE,
+	LLMS_FULL_PATH,
+	LLMS_TXT_PATH,
 	SITE_DESCRIPTION,
+	SITE_KEYWORDS,
 	SITE_NAME,
 	SITE_URL,
 	organizationJsonLd,
 	websiteJsonLd,
 } from "@/constants/seo-data";
+import { ogImageUrl } from "@/lib/seo";
+
+const DEFAULT_OG_IMAGE = ogImageUrl("Deploy with ease");
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -41,21 +46,28 @@ export const viewport: Viewport = {
 	width: "device-width",
 	initialScale: 1,
 	maximumScale: 5,
+	colorScheme: "light dark",
 	themeColor: [
 		{ media: "(prefers-color-scheme: light)", color: "#ffffff" },
 		{ media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
 	],
 };
 
+const ROOT_TITLE = `${SITE_NAME} — Deploy Your Applications With Ease`;
+
 export const metadata: Metadata = {
 	metadataBase: new URL(SITE_URL),
 	title: {
-		default: `${SITE_NAME} — Deploy Your Applications With Ease`,
+		default: ROOT_TITLE,
 		template: `%s | ${SITE_NAME}`,
 	},
 	description: SITE_DESCRIPTION,
+	keywords: SITE_KEYWORDS,
 	applicationName: SITE_NAME,
 	manifest: "/site.webmanifest",
+	alternates: {
+		canonical: "/",
+	},
 	icons: {
 		icon: [
 			{ url: "/favicon.ico" },
@@ -66,7 +78,7 @@ export const metadata: Metadata = {
 		apple: "/apple-touch-icon.png",
 	},
 	openGraph: {
-		title: `${SITE_NAME} — Deploy Your Applications With Ease`,
+		title: ROOT_TITLE,
 		description: SITE_DESCRIPTION,
 		url: SITE_URL,
 		siteName: SITE_NAME,
@@ -76,11 +88,21 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: `${SITE_NAME} — Deploy Your Applications With Ease`,
+		title: ROOT_TITLE,
 		description: SITE_DESCRIPTION,
 		images: [DEFAULT_OG_IMAGE],
 	},
-	robots: { index: true, follow: true },
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			"max-image-preview": "large",
+			"max-snippet": -1,
+			"max-video-preview": -1,
+		},
+	},
 	appleWebApp: {
 		capable: true,
 		title: SITE_NAME,
@@ -102,6 +124,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 		>
 			<head>
 				<link rel="manifest" href="/site.webmanifest" />
+				<link rel="llms-txt" href={LLMS_TXT_PATH} />
+				<link
+					rel="alternate"
+					type="text/markdown"
+					href={LLMS_FULL_PATH}
+					title="Full product knowledge base"
+				/>
 				<JsonLd data={[organizationJsonLd, websiteJsonLd]} />
 				<script
 					type="text/javascript"

@@ -24,35 +24,35 @@ export const enterpriseSolutionPage: SolutionPageData = {
 				title: "Unlimited applications",
 				description:
 					"Deploy across your entire product surface with unlimited managed applications, subject to fair usage. One platform for every service your business runs.",
-				image: "/primary/projects.png",
+				image: "/Default.png",
 				imageAlt: "Enterprise project management",
 			},
 			{
 				title: "Dedicated infrastructure",
 				description:
 					"Run on dedicated AWS, GCP, or Azure infrastructure — or bring your own cloud account. Full control with Sagyboar managing the operational layer.",
-				image: "/enterprise/servers-permission.png",
+				image: "/Default.png",
 				imageAlt: "Dedicated server permissions",
 			},
 			{
 				title: "Complete AI DevOps suite",
 				description:
 					"Advanced monitoring, log analysis, automated ticket routing, and escalation workflows tuned for high-stakes production environments.",
-				image: "/primary/monitoring.png",
+				image: "/Default.png",
 				imageAlt: "Enterprise monitoring suite",
 			},
 			{
 				title: "Dedicated platform team",
 				description:
 					"Get a dedicated AI-powered developer, DevOps engineer, and QA support on demand — an extension of your engineering org without the hiring cycle.",
-				image: "/enterprise/custom-roles.png",
+				image: "/Default.png",
 				imageAlt: "Custom roles and team access",
 			},
 			{
 				title: "SLA, onboarding & integrations",
 				description:
 					"99.9% uptime commitment, 4-hour critical response targets, custom integrations, and white-glove onboarding to get your stack production-ready.",
-				image: "/enterprise/git-permission.png",
+				image: "/Default.png",
 				imageAlt: "Git permissions and integrations",
 			},
 		],

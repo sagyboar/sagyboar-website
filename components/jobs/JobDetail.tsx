@@ -29,7 +29,7 @@ export function JobDetail({ job }: { job: JobPosting }) {
 		<div className="min-h-screen bg-background">
 			<section className="border-b border-border bg-muted/20 py-14 dark:bg-muted/10 sm:py-20">
 				<Container>
-					<div className="mx-auto max-w-3xl">
+					<div className="mx-auto max-w-7xl">
 						<Link
 							href="/jobs"
 							className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -70,7 +70,7 @@ export function JobDetail({ job }: { job: JobPosting }) {
 
 			<section className="py-14 sm:py-20">
 				<Container>
-					<div className="mx-auto flex max-w-3xl flex-col gap-10">
+					<div className="mx-auto flex max-w-7xl flex-col gap-10">
 						<JobSection
 							title="Responsibilities"
 							items={job.responsibilities}

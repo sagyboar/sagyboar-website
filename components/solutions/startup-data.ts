@@ -26,35 +26,35 @@ export const startupSolutionPage: SolutionPageData = {
 				title: "Up to five applications",
 				description:
 					"Run multiple production services from one platform. Startup supports up to five managed applications with one-click deployments and shared observability.",
-				image: "/primary/projects.png",
+				image: "/Default.png",
 				imageAlt: "Multiple projects on Sagyboar",
 			},
 			{
 				title: "One-click deployments",
 				description:
 					"Push to main and ship. Connect your repo and deploy with automated builds, rollbacks, and environment management built in.",
-				image: "/images/dokploy-deployment-log.png",
+				image: "/Default.png",
 				imageAlt: "One-click deployment logs",
 			},
 			{
 				title: "Advanced AI monitoring",
 				description:
 					"Go beyond uptime checks with log analysis, anomaly detection, and prioritized alerts so your team catches issues before customers do.",
-				image: "/images/dokploy-monitoring-dashboard.png",
+				image: "/Default.png",
 				imageAlt: "Advanced monitoring dashboard",
 			},
 			{
 				title: "AI-assisted engineering",
 				description:
 					"Get up to 10 hours per month of AI-assisted engineering for operational tasks, bug fixes, deployments, and minor enhancements.",
-				image: "/primary/servers.png",
+				image: "/Default.png",
 				imageAlt: "Managed infrastructure for startups",
 			},
 			{
 				title: "On-demand DevOps & support",
 				description:
 					"Email and chat support with a 48-hour response target, plus on-demand DevOps assistance when you need an expert in the loop.",
-				image: "/secondary/users.png",
+				image: "/Default.png",
 				imageAlt: "Team collaboration on Sagyboar",
 			},
 		],

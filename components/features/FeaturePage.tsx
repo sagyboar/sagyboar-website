@@ -2,12 +2,10 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/ui/button";
+import Grainient from "@/components/ui/grainient";
 import { HeadingHighlight } from "@/components/solutions/HeadingHighlight";
 import { Sagyboar_PORTAL_URL } from "@/constants/branding";
-import {
-	FeatureCtaBackground,
-	FeatureHeroBackground,
-} from "./FeatureBackgrounds";
+import { FeatureCtaBackground } from "./FeatureBackgrounds";
 import { FeatureCapabilities } from "./FeatureCapabilities";
 import { RelatedFeatureCard } from "./RelatedFeatureCard";
 import { featurePages, type FeaturePageData } from "./features-data";
@@ -22,7 +20,27 @@ export function FeaturePage({ feature }: { feature: FeaturePageData }) {
 		<div className="min-h-screen bg-background">
 			{/* Hero */}
 			<section className="relative overflow-hidden bg-background py-20 sm:py-28 lg:py-32">
-				<FeatureHeroBackground />
+				<div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+					<Grainient
+						color1="#FF9FFC"
+						color2="#5227FF"
+						color3="#B497CF"
+						timeSpeed={0.25}
+						warpStrength={1.0}
+						grainAmount={0.1}
+						contrast={1.5}
+						zoom={0.9}
+						className="opacity-60 dark:opacity-80"
+					/>
+				</div>
+				<div
+					aria-hidden
+					className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-3/4 bg-gradient-to-b from-transparent via-background/70 to-background"
+				/>
+				<div
+					aria-hidden
+					className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-1/4 bg-gradient-to-b from-background/80 to-transparent"
+				/>
 				<Container className="relative z-10">
 					<div className="mx-auto max-w-3xl text-center">
 						<div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-3 py-1 text-sm text-muted-foreground backdrop-blur-sm">

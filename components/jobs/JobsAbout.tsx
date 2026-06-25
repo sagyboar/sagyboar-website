@@ -23,7 +23,7 @@ export function JobsAbout() {
 
 					<div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border bg-muted/30 shadow-sm">
 						<Image
-							src="/home/Sagyboar.png"
+							src="/Sagyboar-logo.png"
 							alt="Sagyboar platform"
 							fill
 							className="object-cover"

@@ -13,7 +13,7 @@ export default function TermsOfServicePage() {
 				Terms of <span className="text-blue-400 border-b border-blue-400">Service</span>
 			</h1>
 			<p className="text-center text-sm text-muted-foreground">
-				Sagyboar.com · Last Updated: January 2026
+				Sagyboar.space · Last Updated: January 2026
 			</p>
 
 			<section className="flex flex-col gap-2">
@@ -226,10 +226,10 @@ export default function TermsOfServicePage() {
 					If you discover a violation of the AUP, you must report it within 24
 					(twenty-four) hours of the discovery to{" "}
 					<a
-						href="mailto:contact@Sagyboar.com"
+						href="mailto:help@Sagyboar.space"
 						className="text-primary underline hover:no-underline"
 					>
-						contact@Sagyboar.com
+						help@Sagyboar.space
 					</a>{" "}
 					with as much information as you have including, but not limited to,
 					the date and time of the violation and any identifying information
@@ -377,10 +377,10 @@ export default function TermsOfServicePage() {
 				<p>
 					We provide technical support for Cloud Services via{" "}
 					<a
-						href="mailto:support@Sagyboar.com"
+						href="mailto:help@Sagyboar.space"
 						className="text-primary underline hover:no-underline"
 					>
-						support@Sagyboar.com
+						help@Sagyboar.space
 					</a>{" "}
 					or chat during Monday-Friday, 9am-6pm EST. Response times vary by plan
 					tier as specified in your subscription agreement.
@@ -850,10 +850,10 @@ export default function TermsOfServicePage() {
 				<p>
 					Email:{" "}
 					<a
-						href="mailto:contact@Sagyboar.com"
+						href="mailto:help@Sagyboar.space"
 						className="text-primary underline hover:no-underline"
 					>
-						contact@Sagyboar.com
+						help@Sagyboar.space
 					</a>
 				</p>
 			</section>
@@ -981,10 +981,10 @@ export default function TermsOfServicePage() {
 					Cross-Border Transfers/Region-Specific Terms. For the complete
 					legal text of the Data Processing Addendum, please contact{" "}
 					<a
-						href="mailto:support@Sagyboar.com"
+						href="mailto:help@Sagyboar.space"
 						className="text-primary underline hover:no-underline"
 					>
-						support@Sagyboar.com
+						help@Sagyboar.space
 					</a>
 					.
 				</p>

@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  WEBSITE_IMAGE: ghcr.io/sagyboar/sagyboar-website/website
+  WEBSITE_IMAGE: ghcr.io/Sagyboar/Sagyboar-website/website
 
 permissions:
   contents: read
@@ -40,6 +40,7 @@ jobs:
   deploy:
     needs: [build-website]
     runs-on: ubuntu-latest
+    environment: Production
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -49,34 +50,52 @@ jobs:
         env:
           GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
           WEBSITE_IMAGE: ${{ env.WEBSITE_IMAGE }}:latest
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM }}
+          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
         with:
           host: ${{ secrets.GCP_SSH_HOST }}
           username: ${{ secrets.GCP_SSH_USER }}
           key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
-          envs: GHCR_TOKEN,WEBSITE_IMAGE
+          envs: GHCR_TOKEN,WEBSITE_IMAGE,MONGODB_URI,SMTP_HOST,SMTP_PORT,SMTP_USER,SMTP_PASS,SMTP_FROM,ADMIN_EMAIL
           script: |
             set -euo pipefail
 
             echo "${GHCR_TOKEN}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-            # Pull, replace, and start the website container on localhost:8002.
-            bash -s "${WEBSITE_IMAGE}" Sagyboar-website 8002 <<'DEPLOY'
-            set -euo pipefail
-            IMAGE="${1:?image required}"
-            CONTAINER="${2:?container name required}"
-            PORT="${3:?port required}"
+            # Persist uploaded resumes outside the container so they survive
+            # redeploys. The image runs as uid 1001 (nextjs), so the host dir
+            # must be owned by that uid to be writable.
+            RESUME_HOST_DIR=/opt/sagyboar/uploads/resumes
+            mkdir -p "${RESUME_HOST_DIR}"
+            chown -R 1001:1001 "${RESUME_HOST_DIR}" 2>/dev/null || sudo chown -R 1001:1001 "${RESUME_HOST_DIR}"
 
-            docker pull "${IMAGE}"
-            docker stop "${CONTAINER}" 2>/dev/null || true
-            docker rm "${CONTAINER}" 2>/dev/null || true
+            # Pull, replace, and start the website container on localhost:8002.
+            # Runtime secrets are read from the environment forwarded over SSH
+            # (sourced from the "Production" GitHub Environment secrets).
+            docker pull "${WEBSITE_IMAGE}"
+            docker stop Sagyboar-website 2>/dev/null || true
+            docker rm Sagyboar-website 2>/dev/null || true
             docker run -d \
-              --name "${CONTAINER}" \
+              --name Sagyboar-website \
               --restart unless-stopped \
-              -p "127.0.0.1:${PORT}:${PORT}" \
-              -e "PORT=${PORT}" \
+              -p "127.0.0.1:8002:8002" \
+              -v "${RESUME_HOST_DIR}:/app/uploads/resumes" \
+              -e "PORT=8002" \
               -e "HOSTNAME=0.0.0.0" \
-              "${IMAGE}"
-            DEPLOY
+              -e "RESUME_UPLOAD_DIR=/app/uploads/resumes" \
+              -e "MONGODB_URI=${MONGODB_URI}" \
+              -e "SMTP_HOST=${SMTP_HOST}" \
+              -e "SMTP_PORT=${SMTP_PORT}" \
+              -e "SMTP_USER=${SMTP_USER}" \
+              -e "SMTP_PASS=${SMTP_PASS}" \
+              -e "SMTP_FROM=${SMTP_FROM}" \
+              -e "ADMIN_EMAIL=${ADMIN_EMAIL}" \
+              "${WEBSITE_IMAGE}"
 
             docker image prune -af --filter "until=24h" || true
             docker logout ghcr.io || true

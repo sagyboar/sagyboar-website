@@ -85,16 +85,18 @@ export async function POST(request: NextRequest) {
 	}
 
 	// Read upload into a buffer; compress when it's an image (via sharp).
-	let buffer = Buffer.from(await resume.arrayBuffer());
+	let buffer: Buffer = Buffer.from(await resume.arrayBuffer());
 	let ext = path.extname(resume.name) || "";
 	let contentType = resume.type;
 
 	if (resume.type.startsWith("image/")) {
 		try {
-			buffer = await sharp(buffer)
-				.resize({ width: 1600, height: 1600, fit: "inside", withoutEnlargement: true })
-				.jpeg({ quality: 72 })
-				.toBuffer();
+			buffer = Buffer.from(
+				await sharp(buffer)
+					.resize({ width: 1600, height: 1600, fit: "inside", withoutEnlargement: true })
+					.jpeg({ quality: 72 })
+					.toBuffer(),
+			);
 			ext = ".jpg";
 			contentType = "image/jpeg";
 		} catch (error) {

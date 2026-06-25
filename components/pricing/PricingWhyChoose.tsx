@@ -1,10 +1,22 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import CardSwap, { Card } from "@/components/ui/card-swap";
 import { PricingSectionHeading } from "./PricingSectionHeading";
 import { whyChooseSagyboar } from "./pricing-data";
 
 export function PricingWhyChoose() {
+	const [isMobile, setIsMobile] = useState(false);
+
+	useEffect(() => {
+		const mq = window.matchMedia("(max-width: 768px)");
+		const onChange = ({ matches }: { matches: boolean }) =>
+			setIsMobile(matches);
+		onChange(mq);
+		mq.addEventListener("change", onChange);
+		return () => mq.removeEventListener("change", onChange);
+	}, []);
+
 	return (
 		<div className="mx-auto mt-12 grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
 			<div className="text-center lg:text-left">
@@ -18,17 +30,14 @@ export function PricingWhyChoose() {
 					Deploy faster, monitor smarter, and get a real team behind your stack —
 					all without hiring a full DevOps department.
 				</p>
-				<p className="mt-6 hidden text-sm text-muted-foreground lg:block">
-					Hover to pause · click any card to bring it to the front
-				</p>
 			</div>
 
-			<div className="relative mx-auto h-[28rem] w-full max-w-xl sm:h-[32rem] lg:mx-0 lg:ml-auto">
+			<div className="relative mx-auto h-[24rem] md:mt-0 mt-12 w-full max-w-xl sm:h-[30rem] lg:mx-0 lg:ml-auto lg:h-[32rem]">
 				<CardSwap
-					width={380}
-					height={300}
-					cardDistance={50}
-					verticalDistance={60}
+					width={isMobile ? 280 : 380}
+					height={isMobile ? 230 : 300}
+					cardDistance={isMobile ? 32 : 50}
+					verticalDistance={isMobile ? 40 : 60}
 					delay={4500}
 					pauseOnHover
 					skewAmount={5}
