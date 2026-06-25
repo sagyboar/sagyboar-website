@@ -1,15 +1,94 @@
+import type { LucideIcon } from "lucide-react";
+import {
+	Bot,
+	Building2,
+	GitBranch,
+	Rocket,
+	Shield,
+	Sparkles,
+	TrendingDown,
+	Users,
+} from "lucide-react";
+
 export const pricingStats = [
 	{
-		value: "87%",
+		prefix: "",
+		end: 87,
+		suffix: "%",
+		decimalPlaces: 0,
 		label: "avg cost saved vs hiring separately",
 	},
 	{
-		value: "<2 min",
+		prefix: "<",
+		end: 2,
+		suffix: " min",
+		decimalPlaces: 0,
 		label: "from code to live deployment",
 	},
 	{
-		value: "99.9%",
+		prefix: "",
+		end: 99.9,
+		suffix: "%",
+		decimalPlaces: 1,
 		label: "uptime SLA on Enterprise",
+	},
+] as const;
+
+export const freePlan = {
+	id: "free",
+	name: "Free",
+	label: "Free for users",
+	tagline:
+		"Connect GitHub and deploy simple frontend apps — like Vercel, no backend required.",
+	cta: "Deploy for free",
+	includes: [
+		"Connect GitHub or GitLab",
+		"Deploy static & frontend apps",
+		"Preview on every push",
+		"Sagyboar subdomain & SSL",
+		"Community support",
+	],
+} as const;
+
+export const planLimitations = [
+	{
+		id: "free",
+		name: "Free",
+		price: "$0/month",
+		items: [
+			"Frontend-only — no backend or database",
+			"Fair usage limits apply",
+		],
+	},
+	{
+		id: "hobby",
+		name: "Hobby",
+		price: "$49/month",
+		items: [
+			"Suitable for low-to-moderate traffic applications",
+			"Additional storage, bandwidth, or compute usage is billed separately",
+		],
+	},
+	{
+		id: "startup",
+		name: "Startup",
+		price: "$249/month",
+		items: [
+			"Includes standard infrastructure allocation",
+			"Additional cloud resources, storage, bandwidth, databases, or third-party costs are billed separately",
+			"Engineering support is limited to operational tasks, bug fixes, deployments, and minor enhancements",
+		],
+	},
+	{
+		id: "enterprise",
+		name: "Enterprise",
+		price: "$1,499/month",
+		items: [
+			"Unlimited applications and databases subject to fair usage",
+			"Client may use their own AWS, GCP, or Azure account",
+			"Infrastructure costs beyond included allocations are billed separately at actual cost",
+			"Custom enterprise requirements are quoted separately",
+		],
 	},
 ] as const;
 
@@ -24,17 +103,13 @@ export const pricingPlans = [
 		ctaHref: true,
 		includes: [
 			"1 application deployment",
-			"Managed hosting on SAGYBOAR infrastructure",
+			"Managed hosting on Sagyboar infrastructure",
 			"Basic AI monitoring & uptime alerts",
 			"Automated issue ticket creation",
 			"1 managed database",
 			"10 GB storage",
 			"Custom domain & SSL",
 			"Community support",
-		],
-		fairUsage: [
-			"Suitable for low-to-moderate traffic applications.",
-			"Additional storage, bandwidth, or compute usage is billed separately.",
 		],
 	},
 	{
@@ -56,11 +131,6 @@ export const pricingPlans = [
 			"AI-assisted engineering support (up to 10 hrs/month)",
 			"On-demand DevOps assistance",
 			"Email & chat support (48-hour response target)",
-		],
-		fairUsage: [
-			"Includes standard infrastructure allocation.",
-			"Additional cloud resources, storage, bandwidth, databases, or third-party service costs are billed separately.",
-			"Engineering support is limited to operational tasks, bug fixes, deployments, and minor enhancements.",
 		],
 	},
 	{
@@ -86,12 +156,6 @@ export const pricingPlans = [
 			"99.9% uptime commitment",
 			"Custom integrations & onboarding",
 		],
-		fairUsage: [] as string[],
-		infrastructureBilling: [
-			"Client may use their own AWS, GCP, or Azure account.",
-			"Infrastructure costs beyond included allocations are billed separately at actual cost.",
-			"Custom enterprise requirements are quoted separately.",
-		],
 	},
 ] as const;
 
@@ -104,9 +168,12 @@ export const generalTerms = [
 
 export const planFitGuide = [
 	{
+		id: "hobby",
 		plan: "Hobby",
 		price: "$49/month",
 		audience: "Best for…",
+		backgroundImage: "/Hobby.png",
+		icon: Sparkles,
 		points: [
 			"Solo developers building MVPs or personal projects",
 			"Low-to-moderate traffic applications",
@@ -115,9 +182,12 @@ export const planFitGuide = [
 		],
 	},
 	{
+		id: "startup",
 		plan: "Startup",
 		price: "$249/month",
 		audience: "Best for…",
+		backgroundImage: "/startup.png",
+		icon: Rocket,
 		points: [
 			"Growing startups scaling production apps",
 			"Teams that need DevOps without a full-time hire",
@@ -126,9 +196,12 @@ export const planFitGuide = [
 		],
 	},
 	{
+		id: "enterprise",
 		plan: "Enterprise",
 		price: "$1,499/month",
 		audience: "Best for…",
+		backgroundImage: "/Enterprise.png",
+		icon: Building2,
 		points: [
 			"Businesses needing dedicated infrastructure",
 			"A fully managed platform team on your stack",
@@ -142,145 +215,122 @@ export type ComparisonCell = string;
 
 export interface ComparisonRow {
 	feature: string;
-	sagyboar: ComparisonCell;
-	render: ComparisonCell;
-	railway: ComparisonCell;
-	coolify: ComparisonCell;
+	Sagyboar: ComparisonCell;
+	others: ComparisonCell;
 	hiringTeam: ComparisonCell;
-	heroku: ComparisonCell;
 }
 
 export const marketComparison: ComparisonRow[] = [
 	{
 		feature: "Starting price",
-		sagyboar: "$49/mo",
-		render: "$25/mo",
-		railway: "$25/mo",
-		coolify: "Free (self-host)",
+		Sagyboar: "$49/mo",
+		others: "~$7–25/mo",
 		hiringTeam: "$3,000+/mo",
-		heroku: "$7+/dyno",
 	},
 	{
 		feature: "Managed hosting",
-		sagyboar: "Yes",
-		render: "Yes",
-		railway: "Yes",
-		coolify: "Self-host",
+		Sagyboar: "Yes",
+		others: "Partial / self-host",
 		hiringTeam: "No",
-		heroku: "Yes",
 	},
 	{
 		feature: "AI monitoring",
-		sagyboar: "Full AI",
-		render: "None",
-		railway: "None",
-		coolify: "None",
+		Sagyboar: "Full AI",
+		others: "None",
 		hiringTeam: "Extra cost",
-		heroku: "None",
 	},
 	{
 		feature: "Auto repo issue tickets",
-		sagyboar: "Yes",
-		render: "No",
-		railway: "No",
-		coolify: "No",
+		Sagyboar: "Yes",
+		others: "No",
 		hiringTeam: "No",
-		heroku: "No",
 	},
 	{
 		feature: "Dedicated developer",
-		sagyboar: "Included",
-		render: "No",
-		railway: "No",
-		coolify: "No",
+		Sagyboar: "Included",
+		others: "No",
 		hiringTeam: "Yes (costly)",
-		heroku: "No",
 	},
 	{
 		feature: "DevOps engineer",
-		sagyboar: "Included",
-		render: "No",
-		railway: "No",
-		coolify: "No",
+		Sagyboar: "Included",
+		others: "No",
 		hiringTeam: "Yes (costly)",
-		heroku: "No",
 	},
 	{
 		feature: "QA tester",
-		sagyboar: "On demand",
-		render: "No",
-		railway: "No",
-		coolify: "No",
+		Sagyboar: "On demand",
+		others: "No",
 		hiringTeam: "Yes (costly)",
-		heroku: "No",
 	},
 	{
 		feature: "SLA uptime guarantee",
-		sagyboar: "99.9%",
-		render: "Basic",
-		railway: "No",
-		coolify: "No",
+		Sagyboar: "99.9%",
+		others: "Basic / none",
 		hiringTeam: "Custom",
-		heroku: "Basic",
 	},
 	{
 		feature: "1-click deploy",
-		sagyboar: "Yes",
-		render: "Yes",
-		railway: "Yes",
-		coolify: "Manual setup",
+		Sagyboar: "Yes",
+		others: "Mostly yes",
 		hiringTeam: "No",
-		heroku: "Yes",
 	},
 	{
 		feature: "AI Dockerfile generation",
-		sagyboar: "Yes",
-		render: "No",
-		railway: "No",
-		coolify: "No",
+		Sagyboar: "Yes",
+		others: "No",
 		hiringTeam: "No",
-		heroku: "No",
 	},
 ];
 
-export const whyChooseSagyboar = [
+export const whyChooseSagyboar: {
+	title: string;
+	description: string;
+	icon: LucideIcon;
+}[] = [
 	{
 		title: "AI that actually works for you",
 		description:
 			"Our AI monitors your logs 24/7, detects anomalies before they become outages, and auto-generates detailed issue tickets directly in your connected repo — with priority levels and estimated fix times.",
+		icon: Bot,
 	},
 	{
 		title: "A real team, not just a tool",
 		description:
 			"Unlike Render or Railway, we assign you an AI-powered developer, a DevOps engineer, and a QA tester. Your project gets maintained by humans + AI — not left for you to figure out alone.",
+		icon: Users,
 	},
 	{
 		title: "1-click deploy, zero config",
 		description:
 			"Deploy frontend, backend, or full-stack apps with a single click on our managed AWS infrastructure. No Dockerfile knowledge, no server setup, no infrastructure headaches.",
+		icon: Rocket,
 	},
 	{
 		title: "Save up to 92% vs market rates",
 		description:
 			"Enterprise clients save $7,000–$11,000/month vs hiring a developer + DevOps + QA separately. Startup clients save $1,100–$1,500/month vs piecing together tools and freelancers.",
+		icon: TrendingDown,
 	},
 	{
 		title: "Issues auto-flow to your repo",
 		description:
 			"When our AI detects a problem, it creates a GitHub/GitLab ticket with a full description, reproduction steps, severity level, and time estimate — high-priority issues go straight to an available agent.",
+		icon: GitBranch,
 	},
 	{
 		title: "Enterprise-grade reliability",
 		description:
 			"99.9% uptime SLA, 4-hour response guarantee, AWS-backed dedicated infrastructure, and full audit logs. We treat your product like it's our own — because our reputation depends on it.",
+		icon: Shield,
 	},
-] as const;
+];
 
 export const pricingFaqs = [
 	{
 		question: "Where are my apps hosted?",
 		answer:
-			"Hobby and Startup plans use managed hosting on SAGYBOAR infrastructure. Enterprise clients get dedicated infrastructure on AWS, GCP, Azure, or their own client-owned cloud account.",
+			"Hobby and Startup plans use managed hosting on Sagyboar infrastructure. Enterprise clients get dedicated infrastructure on AWS, GCP, Azure, or their own client-owned cloud account.",
 	},
 	{
 		question: "What does the AI-assisted engineering support include on Startup?",

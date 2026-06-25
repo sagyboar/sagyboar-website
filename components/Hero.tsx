@@ -1,6 +1,6 @@
 import {
-	SAGYBOAR_G2_REVIEWS_URL,
-	SAGYBOAR_PORTAL_URL,
+	Sagyboar_G2_REVIEWS_URL,
+	Sagyboar_PORTAL_URL,
 } from "@/constants/branding";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -43,7 +43,7 @@ export function Hero() {
 							asChild
 						>
 							<Link
-								href={SAGYBOAR_PORTAL_URL}
+								href={Sagyboar_PORTAL_URL}
 								target="_blank"
 								rel="noopener noreferrer"
 							>

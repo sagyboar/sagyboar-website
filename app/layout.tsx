@@ -3,12 +3,12 @@ import clsx from "clsx";
 import type { Metadata } from "next";
 import { Instrument_Serif, Inter, Lexend } from "next/font/google";
 import type { ReactNode } from "react";
-import "@/styles/tailwind.css";
+import "@/public/styles/tailwind.css";
 import "react-photo-view/dist/react-photo-view.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ThemeProvider } from "@/components/theme-provider";
-import { SAGYBOAR_LOGO_SRC } from "@/constants/branding";
+import { Sagyboar_LOGO_SRC } from "@/constants/branding";
 
 type Props = {
 	children: ReactNode;
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
 	},
 	description: "Deploy your applications with ease using Sagyboar",
 	icons: {
-		icon: SAGYBOAR_LOGO_SRC,
-		apple: SAGYBOAR_LOGO_SRC,
+		icon: Sagyboar_LOGO_SRC,
+		apple: Sagyboar_LOGO_SRC,
 	},
 	openGraph: {
 		title: "Sagyboar - Deploy your applications with ease",
@@ -79,7 +79,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					src="//js-eu1.hs-scripts.com/147033433.js"
 				/>
 			</head>
-			<body>
+			<body cz-shortcut-listen="true">
 				<ThemeProvider>
 					<GoogleAnalytics gaId="G-3YPQZXP48E" />
 					<div className="flex h-full flex-col bg-background">

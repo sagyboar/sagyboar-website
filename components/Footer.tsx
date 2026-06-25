@@ -1,31 +1,28 @@
 "use client";
 
-import { SAGYBOAR_BRAND_NAME } from "@/constants/branding";
-import { footerSections } from "@/constants/navigation";
+import { Sagyboar_BRAND_NAME } from "@/constants/branding";
+import {
+	footerSections,
+	type FooterLink,
+} from "@/constants/navigation";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Container } from "./Container";
 import { Logo } from "./shared/Logo";
 
-function FooterBrandWordmark() {
-	const characters = SAGYBOAR_BRAND_NAME.split("");
-
+function FooterLinkItem({ href, label, icon: Icon }: FooterLink) {
 	return (
-		<div
-			className="pointer-events-auto mt-6 w-full overflow-hidden pb-2 pt-4 sm:mt-8 sm:pt-6"
-			aria-hidden
+		<Link
+			href={href}
+			className="group flex items-center gap-3 rounded-lg py-1.5 transition-colors"
 		>
-			<div className="flex w-full items-end justify-center gap-[0.04em] sm:gap-[0.06em]">
-				{characters.map((char, index) => (
-					<span
-						key={`${char}-${index}`}
-						className="footer-brand-char font-display text-[clamp(2.75rem,16vw,9.5rem)] font-semibold leading-[0.85] tracking-tighter"
-					>
-						{char}
-					</span>
-				))}
+			<div className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-border/50 bg-accent/30 text-foreground transition-colors group-hover:bg-accent/60">
+				<Icon className="size-3.5" strokeWidth={1.75} />
 			</div>
-			<span className="sr-only">{SAGYBOAR_BRAND_NAME}</span>
-		</div>
+			<span className="text-sm text-muted-foreground transition-colors group-hover:text-foreground">
+				{label}
+			</span>
+		</Link>
 	);
 }
 
@@ -37,48 +34,30 @@ export function Footer() {
 		>
 			<Container>
 				<div className="py-12 md:py-16">
-					<div className="flex flex-col items-center gap-2 text-center md:items-start">
-						<Link
-							href="/"
-							aria-label="Sagyboar - Home"
-							className="flex items-center gap-2 rounded focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background"
-						>
-							<Logo className="h-10 w-auto" />
-							<span className="text-xl font-semibold text-foreground">
-								{SAGYBOAR_BRAND_NAME}
-							</span>
-						</Link>
-						<span className="text-sm font-medium text-muted-foreground">
-							Deploy your applications with ease
-						</span>
-					</div>
-
-					<div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+					<div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
 						{footerSections.map((section) => (
 							<nav
 								key={section.title}
 								aria-label={section.ariaLabel}
-								className="flex flex-col"
+								className={cn(
+									"flex flex-col",
+									section.groups && "sm:col-span-2 lg:col-span-2",
+								)}
 							>
 								<h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
 									{section.title}
 								</h3>
 								{section.groups ? (
-									<div className="mt-4 space-y-5">
+									<div className="mt-4 grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2">
 										{section.groups.map((group) => (
 											<div key={group.label}>
 												<p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground/80">
 													{group.label}
 												</p>
-												<ul className="mt-2 space-y-2">
+												<ul className="mt-2 space-y-1">
 													{group.links.map((item) => (
 														<li key={item.href + item.label}>
-															<Link
-																href={item.href}
-																className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-															>
-																{item.label}
-															</Link>
+															<FooterLinkItem {...item} />
 														</li>
 													))}
 												</ul>
@@ -86,15 +65,10 @@ export function Footer() {
 										))}
 									</div>
 								) : (
-									<ul className="mt-4 space-y-3">
+									<ul className="mt-4 space-y-1">
 										{section.links?.map((item) => (
 											<li key={item.href + item.label}>
-												<Link
-													href={item.href}
-													className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-												>
-													{item.label}
-												</Link>
+												<FooterLinkItem {...item} />
 											</li>
 										))}
 									</ul>
@@ -106,12 +80,19 @@ export function Footer() {
 
 				<div className="border-t border-border py-8">
 					<p className="text-center text-sm text-muted-foreground sm:text-left">
-						© {new Date().getFullYear()} {SAGYBOAR_BRAND_NAME}. All rights
+						© {new Date().getFullYear()} {Sagyboar_BRAND_NAME}. All rights
 						reserved.
 					</p>
 				</div>
-
-				<FooterBrandWordmark />
+				<div className="flex items-end justify-center">
+					<Logo className="h-full w-full max-w-80" />
+					<div className="flex flex-col items-center justify-center pb-12">
+						<span className="font-serif text-6xl font-bold text-foreground">
+							Sagyboar
+						</span>
+						<span>Deploy your applications with ease</span>
+					</div>
+				</div>
 			</Container>
 		</footer>
 	);

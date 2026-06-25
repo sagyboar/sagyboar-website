@@ -1,6 +1,6 @@
 # Add this site block to your existing Caddy config on the GCP server.
 # Container binds to localhost only; Caddy handles TLS and public routing.
 
-sagyboar.com, www.sagyboar.com {
+Sagyboar.com, www.Sagyboar.com {
 	reverse_proxy 127.0.0.1:8002
 }

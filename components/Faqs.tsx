@@ -10,7 +10,7 @@ const faqs = [
     {
         question: "What is Sagyboar?",
         answer:
-            "SAGYBOAR is an AI-native DevOps platform that transforms how engineering teams deploy, monitor, and manage applications. It provides a unified control plane to orchestrate multi-service workloads with zero cloud dependency.",
+            "Sagyboar is an AI-native DevOps platform that transforms how engineering teams deploy, monitor, and manage applications. It provides a unified control plane to orchestrate multi-service workloads with zero cloud dependency.",
     },
     {
         question: "Do I need to provide my own server to deploy applications?",

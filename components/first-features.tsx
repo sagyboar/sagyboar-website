@@ -33,7 +33,7 @@ export function FirstFeaturesSection() {
 		},
 		{
 		  title: "Automated Incident Management",
-		  description: "When issues occur, SAGYBOAR instantly generates a detailed ticket in your repository with problem descriptions, ETA, and priority, assigning it to the first available agent.",
+		  description: "When issues occur, Sagyboar instantly generates a detailed ticket in your repository with problem descriptions, ETA, and priority, assigning it to the first available agent.",
 		  icon: <IconTicket />,
 		},
 		{

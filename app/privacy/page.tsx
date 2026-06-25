@@ -12,8 +12,8 @@ export default function PrivacyPage() {
 		<div className="min-h-screen bg-background pt-28 pb-16 sm:pt-32 sm:pb-20">
 			<Container>
 				<article className="flex w-full flex-col gap-6 text-muted-foreground [&_a]:text-primary [&_a]:underline-offset-4 hover:[&_a]:underline [&_h1]:text-foreground [&_h2]:text-foreground [&_h3]:text-foreground [&_li]:leading-relaxed [&_p]:leading-relaxed [&_strong]:text-foreground">
-			<h1 className="mb-6 text-center font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-				 Sagyboar Privacy Policy
+			<h1 className="mb-6 text-center font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+				 Sagyboar <span className="text-blue-400 border-b border-blue-400">Privacy Policy</span> 
 			</h1>
 
 			<section className="flex flex-col gap-4">
@@ -22,7 +22,7 @@ export default function PrivacyPage() {
 					At Sagyboar, we are committed to protecting your privacy. This Privacy
 					Policy explains how we collect, use and safeguard your personal
 					information when you use our website and services, including our hosted platform
-					(dashboard.sagyboar.space). By using Sagyboar, you agree to the practices
+					(dashboard.Sagyboar.space). By using Sagyboar, you agree to the practices
 					described in this policy. If you do not agree with these practices,
 					please do not use our services.
 				</p>
@@ -47,7 +47,7 @@ export default function PrivacyPage() {
 				<div className="flex flex-col gap-2">
 					<h3 className="text-xl font-medium">Application analytics</h3>
 					<p>
-						Our hosted platform (dashboard.sagyboar.space) uses{" "}
+						Our hosted platform (dashboard.Sagyboar.space) uses{" "}
 						<a
 							href="https://legal.hubspot.com/privacy-policy"
 							target="_blank"

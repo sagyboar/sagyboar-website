@@ -1,9 +1,9 @@
 import type { Post } from "@/lib/ghost";
 
 const defaultAuthor = {
-	id: "author-sagyboar",
+	id: "author-Sagyboar",
 	name: "Sagyboar Team",
-	slug: "sagyboar-team",
+	slug: "Sagyboar-team",
 	profile_image: "/apple-touch-icon.png",
 	bio: "Updates from the Sagyboar team.",
 	twitter: null,
@@ -48,7 +48,7 @@ export const dummyBlogPosts: Post[] = [
 	makePost({
 		id: "post-1",
 		title: "Introducing Sagyboar Cloud: managed control plane, your servers",
-		slug: "introducing-sagyboar-cloud",
+		slug: "introducing-Sagyboar-cloud",
 		excerpt:
 			"Deploy faster with a managed Sagyboar control plane while your applications keep running on infrastructure you own.",
 		custom_excerpt:

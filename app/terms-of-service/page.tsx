@@ -12,8 +12,8 @@ export default function TermsOfServicePage() {
 		<div className="min-h-screen bg-background pt-28 pb-16 sm:pt-32 sm:pb-20">
 			<Container>
 				<article className="flex w-full flex-col gap-6 text-muted-foreground [&_a]:text-primary [&_a]:underline-offset-4 hover:[&_a]:underline [&_h1]:text-foreground [&_h2]:text-foreground [&_h3]:text-foreground [&_li]:leading-relaxed [&_p]:leading-relaxed [&_strong]:text-foreground">
-			<h1 className="mb-6 text-center font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-				Terms of Service
+			<h1 className="mb-6 text-center font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+				Terms of <span className="text-blue-400 border-b border-blue-400">Service</span>
 			</h1>
 			<p className="text-center text-sm text-muted-foreground">
 				Sagyboar.com · Last Updated: January 2026

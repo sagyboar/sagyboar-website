@@ -35,7 +35,7 @@ export function StatsSection() {
 					Engineered for <span className="text-blue-400 border-b-2 border-blue-400">Performance</span>
 				</h2>
 				<p className="mt-4 text-center text-lg tracking-tight text-muted-foreground">
-					We built SAGYBOAR to remove bottlenecks. Experience enterprise-grade reliability, instant deployments, and proactive AI monitoring from day one.
+					We built Sagyboar to remove bottlenecks. Experience enterprise-grade reliability, instant deployments, and proactive AI monitoring from day one.
 				</p>
 			</div>
 			<div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 md:gap-2 lg:grid-cols-4">

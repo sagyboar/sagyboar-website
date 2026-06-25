@@ -5,6 +5,9 @@ const BASE_URL = "https://Sagyboar.com";
 
 const corePages: { path: string; priority: number }[] = [
 	{ path: "/pricing", priority: 0.9 },
+	{ path: "/solutions/hobby", priority: 0.85 },
+	{ path: "/solutions/startup", priority: 0.85 },
+	{ path: "/solutions/enterprise", priority: 0.9 },
 	{ path: "/enterprise", priority: 0.9 },
 	{ path: "/deploy-ai", priority: 0.8 },
 	{ path: "/self-hosted-paas", priority: 0.8 },

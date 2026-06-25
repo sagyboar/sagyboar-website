@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { SAGYBOAR_BRAND_NAME, SAGYBOAR_PORTAL_URL } from "@/constants/branding";
+import { Sagyboar_BRAND_NAME, Sagyboar_PORTAL_URL } from "@/constants/branding";
 import {
 	companyLinks,
 	featureMenuGroups,
@@ -10,7 +10,7 @@ import {
 	type NavLinkItem,
 } from "@/constants/navigation";
 import { Popover, Transition } from "@headlessui/react";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ArrowRight, ArrowRightCircle, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -70,23 +70,58 @@ function trackNavClick(href: string) {
 
 function MegaMenuLink({ item }: { item: NavLinkItem }) {
 	const Icon = item.icon;
+	const hasBackground = Boolean(item.backgroundImage);
 
 	return (
 		<Link
 			href={item.href}
 			target={item.target}
 			onClick={() => trackNavClick(item.href)}
-			className="group flex flex-col justify-between h-full items-start min-w-[15rem] min-h-64 gap-3 p-3 transition-colors hover:bg-accent/60 rounded-2xl border"
+			className={cn(
+				"group relative flex min-h-64 min-w-[15rem] flex-col justify-between overflow-hidden rounded-2xl border border-border/60 p-4 transition-all hover:border-border hover:shadow-md",
+				hasBackground
+					? "bg-muted/30"
+					: "items-start gap-3 hover:bg-accent/60",
+			)}
 		>
-			<div className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-border/50 bg-accent/30 text-foreground transition-colors group-hover:bg-accent/60">
-				<Icon className="size-4" strokeWidth={1.75} />
-			</div>
-			<div className="min-w-0 flex-1 max-h-24">
-				<div className="text-sm font-medium text-foreground">{item.title}</div>
-				<p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-					{item.description}
-				</p>
-			</div>
+			{hasBackground ? (
+				<>
+					<div
+						aria-hidden
+						className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+						style={{ backgroundImage: `url(${item.backgroundImage})` }}
+					/>
+					<div
+						aria-hidden
+						className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/20"
+					/>
+					<div className="relative z-10 flex size-10 shrink-0 items-center justify-center rounded-xl border border-border/50 bg-background/70 text-foreground shadow-sm backdrop-blur-sm transition-colors group-hover:bg-background/90">
+						<Icon className="size-4" strokeWidth={1.75} />
+					</div>
+					<div className="relative z-10">
+						<div className="text-base font-semibold text-foreground">
+							{item.title}
+						</div>
+						<p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+							{item.description}
+						</p>
+					</div>
+				</>
+			) : (
+				<>
+					<div className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-border/50 bg-accent/30 text-foreground transition-colors group-hover:bg-accent/60">
+						<Icon className="size-4" strokeWidth={1.75} />
+					</div>
+					<div className="min-w-0 flex-1 max-h-24">
+						<div className="text-sm font-medium text-foreground">
+							{item.title}
+						</div>
+						<p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+							{item.description}
+						</p>
+					</div>
+				</>
+			)}
 		</Link>
 	);
 }
@@ -327,7 +362,11 @@ function MobileNavigation() {
 								</div>
 								<hr className="my-2 border-border" />
 								{topNavLinks.map((link) => (
-									<MobileNavLink key={link.href} href={link.href}>
+									<MobileNavLink
+										key={link.href}
+										href={link.href}
+										icon={link.icon}
+									>
 										{link.label}
 									</MobileNavLink>
 								))}
@@ -338,14 +377,18 @@ function MobileNavigation() {
 									{companyLinks
 										.filter((link) => !topNavLinks.some((t) => t.href === link.href))
 										.map((link) => (
-											<MobileNavLink key={link.href} href={link.href}>
+											<MobileNavLink
+												key={link.href}
+												href={link.href}
+												icon={link.icon}
+											>
 												{link.label}
 											</MobileNavLink>
 										))}
 								</div>
 								<hr className="my-2 border-border" />
 								<MobileNavLink
-									href={SAGYBOAR_PORTAL_URL}
+									href={Sagyboar_PORTAL_URL}
 									target="_blank"
 								>
 									<Button className="mt-2 w-full rounded-full">Sign In</Button>
@@ -418,12 +461,12 @@ export function Header() {
 						<div className="flex min-w-0 items-center gap-3 lg:gap-6">
 							<Link
 								href="/"
-								aria-label={`${SAGYBOAR_BRAND_NAME} home`}
+								aria-label={`${Sagyboar_BRAND_NAME} home`}
 								className="flex shrink-0 items-center gap-2.5"
 							>
 								<Logo className="h-8 w-auto sm:h-9" />
 								<span className="font-display text-base font-semibold tracking-tight text-foreground sm:text-lg">
-									{SAGYBOAR_BRAND_NAME}
+									{Sagyboar_BRAND_NAME}
 								</span>
 							</Link>
 
@@ -452,22 +495,19 @@ export function Header() {
 						</div>
 
 						<div className="flex items-center gap-2 sm:gap-3">
-							<Button className="hidden rounded-full lg:inline-flex" asChild>
+							<Button className="hidden rounded-full lg:inline-flex ps-4 pe-0 py-0" asChild>
 								<Link
-									href={SAGYBOAR_PORTAL_URL}
-									target="_blank"
-									aria-label="Sign In"
-									onClick={() =>
-										trackNavClick(SAGYBOAR_PORTAL_URL)
-									}
+									href={'/contact'}
+									aria-label="Contact Us"
 								>
 									<span className="group inline-flex items-center text-sm font-medium">
-										Dashboard
-										<ChevronRight className="ml-1 size-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+										Contact Us
+										<span className="ml-3 p-2.5 bg-white text-black dark:bg-black/90 dark:text-white rounded-full transition-transform -rotate-45 duration-300 group-hover:rotate-0">
+										<ArrowRight className="size-5" />
+										</span>
 									</span>
 								</Link>
 							</Button>
-
 							<ThemeToggle />
 
 							<div className="lg:hidden">

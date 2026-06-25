@@ -2,8 +2,8 @@
 # Caddy (already on the host) should reverse_proxy to localhost:8002.
 services:
   website:
-    image: ghcr.io/sagyboar/sagyboar-website/website:latest
-    container_name: sagyboar-website
+    image: ghcr.io/Sagyboar/Sagyboar-website/website:latest
+    container_name: Sagyboar-website
     restart: unless-stopped
     ports:
       - "127.0.0.1:8002:8002"

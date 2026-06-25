@@ -2,16 +2,20 @@ import type { LucideIcon } from "lucide-react";
 import {
 	Activity,
 	Bot,
+	Briefcase,
 	Building2,
 	Database,
-	Handshake,
+	FileText,
 	KeyRound,
 	LayoutDashboard,
+	Mail,
+	Newspaper,
 	Paintbrush,
 	Rocket,
 	ScrollText,
-	Server,
 	Shield,
+	Sparkles,
+	Tag,
 } from "lucide-react";
 
 export type NavLinkItem = {
@@ -21,11 +25,13 @@ export type NavLinkItem = {
 	icon: LucideIcon;
 	target?: string;
 	footerLabel?: string;
+	backgroundImage?: string;
 };
 
 export type FooterLink = {
 	href: string;
 	label: string;
+	icon: LucideIcon;
 };
 
 export const platformFeatureLinks: NavLinkItem[] = [
@@ -110,36 +116,45 @@ export const featureLinks: NavLinkItem[] = [
 
 export const solutionLinks: NavLinkItem[] = [
 	{
+		title: "Hobby",
+		footerLabel: "Hobby",
+		href: "/solutions/hobby",
+		description:
+			"For solo developers, MVPs, and personal projects. Managed hosting, AI monitoring, and community support from $49/month.",
+		icon: Sparkles,
+		backgroundImage: "/Hobby.png",
+	},
+	{
+		title: "Startup",
+		footerLabel: "Startup",
+		href: "/solutions/startup",
+		description:
+			"For growing startups that need reliable DevOps without hiring full-time. AI-assisted engineering and on-demand DevOps from $249/month.",
+		icon: Rocket,
+		backgroundImage: "/startup.png",
+	},
+	{
 		title: "Enterprise",
-		href: "/enterprise",
-		description: "Enterprise-grade deployment platform",
+		footerLabel: "Enterprise",
+		href: "/solutions/enterprise",
+		description:
+			"Dedicated infrastructure, a fully managed platform team, SLA-backed uptime, and custom onboarding from $1,499/month.",
 		icon: Building2,
-	},
-	{
-		title: "Partners",
-		href: "/partners",
-		description: "Partner program and integrations",
-		icon: Handshake,
-	},
-	{
-		title: "Self-Hosted",
-		footerLabel: "Self-Hosted PaaS",
-		href: "/self-hosted-paas",
-		description: "Self-hosted PaaS built for developers",
-		icon: Server,
+		backgroundImage: "/Enterprise.png",
 	},
 ];
 
 export const topNavLinks: FooterLink[] = [
-	{ href: "/pricing", label: "Pricing" },
-	{ href: "/blog", label: "Blog" },
+	{ href: "/pricing", label: "Pricing", icon: Tag },
 ];
 
 export const companyLinks: FooterLink[] = [
-	{ href: "/blog", label: "Blog" },
-	{ href: "/jobs", label: "Careers" },
-	{ href: "/terms-of-service", label: "Terms of Service" },
-	{ href: "/privacy", label: "Privacy Policy" },
+	{ href: "/blog", label: "Blog", icon: Newspaper },
+	{ href: "/jobs", label: "Careers", icon: Briefcase },
+	{ href: "/contact", label: "Contact Us", icon: Mail },
+	{ href: "/pricing", label: "Pricing", icon: Tag },
+	{ href: "/terms-of-service", label: "Terms of Service", icon: FileText },
+	{ href: "/privacy", label: "Privacy Policy", icon: Shield },
 ];
 
 export type FooterSectionGroup = {
@@ -158,14 +173,9 @@ function toFooterLink(item: NavLinkItem): FooterLink {
 	return {
 		href: item.href,
 		label: item.footerLabel ?? item.title,
+		icon: item.icon,
 	};
 }
-
-export const productLinks: FooterLink[] = [
-	{ href: "/", label: "Home" },
-	{ href: "/pricing", label: "Pricing" },
-	{ href: "/contact", label: "Contact" },
-];
 
 export const footerSections: FooterSection[] = [
 	{
@@ -180,11 +190,6 @@ export const footerSections: FooterSection[] = [
 		title: "Solutions",
 		ariaLabel: "Solutions",
 		links: solutionLinks.map(toFooterLink),
-	},
-	{
-		title: "Product",
-		ariaLabel: "Product",
-		links: productLinks,
 	},
 	{
 		title: "Company",

@@ -1,4 +1,4 @@
-import { SAGYBOAR_PORTAL_URL } from "@/constants/branding";
+import { Sagyboar_PORTAL_URL } from "@/constants/branding";
 import { Container } from "@/components/Container";
 import { HeroParticleWave } from "@/components/hero/hero-particle-wave";
 import Link from "next/link";
@@ -30,7 +30,7 @@ export function CallToAction() {
 					<div className="p-1.5 bg-blue-400 rounded-full w-fit mx-auto">
                     <Button className="rounded-full" asChild>
                         <Link
-                            href={SAGYBOAR_PORTAL_URL}
+                            href={Sagyboar_PORTAL_URL}
                             aria-label="Deploy your first app with Sagyboar"
                             target="_blank"
                             className="flex flex-row items-center gap-2"
