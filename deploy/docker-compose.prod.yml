@@ -1,17 +1,22 @@
-# Reference compose file for the GCP server.
-# Caddy (already on the host) should reverse_proxy to localhost:8002.
 services:
-  website:
-    image: ghcr.io/sagyboar/sagyboar-website/website
-    container_name: Sagyboar-website
+  marketing-site:
+    image: ghcr.io/sagyboar/sagyboar-website/website:latest
+    container_name: sagyboar-website
     restart: unless-stopped
     ports:
       - "127.0.0.1:8002:8002"
+    env_file:
+      - .env
     environment:
-      PORT: "8002"
-      HOSTNAME: "0.0.0.0"
-      RESUME_UPLOAD_DIR: "/app/uploads/resumes"
+      - PORT=8002
+      - NODE_ENV=production
+      - HOSTNAME=0.0.0.0
+      - RESUME_UPLOAD_DIR=/app/uploads/resumes
     volumes:
-      # Persist uploaded resumes across redeploys. Host dir must be owned by
-      # uid 1001 (the container's nextjs user): chown -R 1001:1001 <host dir>.
       - /opt/sagyboar/uploads/resumes:/app/uploads/resumes
+    networks:
+      - sagyboar-cloud_default
+
+networks:
+  sagyboar-cloud_default:
+    external: true

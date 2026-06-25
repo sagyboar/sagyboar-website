@@ -42,26 +42,38 @@ jobs:
     runs-on: ubuntu-latest
     environment: Production
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Verify required secrets
+        env:
+          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
+          VM_HOST: ${{ secrets.VM_HOST }}
+          VM_USER: ${{ secrets.VM_USER }}
+          VM_SSH_KEY: ${{ secrets.VM_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          required="GHCR_TOKEN VM_HOST VM_USER VM_SSH_KEY"
+          missing=""
+          for var in ${required}; do
+            if [ -z "${!var:-}" ]; then
+              missing="${missing} ${var}"
+            fi
+          done
+          if [ -n "${missing}" ]; then
+            echo "::error::Missing required secrets/variables:${missing}"
+            echo "Set them in the 'Production' GitHub Environment before deploying."
+            exit 1
+          fi
+          echo "All required secrets are present."
 
       - name: Deploy to GCP server
         uses: appleboy/ssh-action@v1.2.0
         env:
           GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
           WEBSITE_IMAGE: ${{ env.WEBSITE_IMAGE }}:latest
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          SMTP_HOST: ${{ secrets.SMTP_HOST }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_PASS: ${{ secrets.SMTP_PASS }}
-          SMTP_FROM: ${{ secrets.SMTP_FROM }}
-          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
         with:
-          host: ${{ secrets.GCP_SSH_HOST }}
-          username: ${{ secrets.GCP_SSH_USER }}
-          key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
-          envs: GHCR_TOKEN,WEBSITE_IMAGE,MONGODB_URI,SMTP_HOST,SMTP_PORT,SMTP_USER,SMTP_PASS,SMTP_FROM,ADMIN_EMAIL
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          envs: GHCR_TOKEN,WEBSITE_IMAGE
           script: |
             set -euo pipefail
 
@@ -74,28 +86,19 @@ jobs:
             mkdir -p "${RESUME_HOST_DIR}"
             chown -R 1001:1001 "${RESUME_HOST_DIR}" 2>/dev/null || sudo chown -R 1001:1001 "${RESUME_HOST_DIR}"
 
-            # Pull, replace, and start the website container on localhost:8002.
-            # Runtime secrets are read from the environment forwarded over SSH
-            # (sourced from the "Production" GitHub Environment secrets).
+            # Runtime secrets are read from /opt/sagyboar-website/.env, which is
+            # managed manually on the server (via env_file in the compose file).
+            cd /opt/sagyboar-website
+            if [ ! -f .env ]; then
+              echo "::error::/opt/sagyboar-website/.env is missing. Create it on the server before deploying."
+              exit 1
+            fi
+
+            # Pull the new image, replace the running container, and start via compose.
             docker pull "${WEBSITE_IMAGE}"
-            docker stop Sagyboar-website 2>/dev/null || true
-            docker rm Sagyboar-website 2>/dev/null || true
-            docker run -d \
-              --name Sagyboar-website \
-              --restart unless-stopped \
-              -p "127.0.0.1:8002:8002" \
-              -v "${RESUME_HOST_DIR}:/app/uploads/resumes" \
-              -e "PORT=8002" \
-              -e "HOSTNAME=0.0.0.0" \
-              -e "RESUME_UPLOAD_DIR=/app/uploads/resumes" \
-              -e "MONGODB_URI=${MONGODB_URI}" \
-              -e "SMTP_HOST=${SMTP_HOST}" \
-              -e "SMTP_PORT=${SMTP_PORT}" \
-              -e "SMTP_USER=${SMTP_USER}" \
-              -e "SMTP_PASS=${SMTP_PASS}" \
-              -e "SMTP_FROM=${SMTP_FROM}" \
-              -e "ADMIN_EMAIL=${ADMIN_EMAIL}" \
-              "${WEBSITE_IMAGE}"
+            docker stop sagyboar-website 2>/dev/null || true
+            docker rm sagyboar-website 2>/dev/null || true
+            docker compose up -d
 
             docker image prune -af --filter "until=24h" || true
             docker logout ghcr.io || true
