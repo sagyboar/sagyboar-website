@@ -2,7 +2,7 @@
 # Caddy (already on the host) should reverse_proxy to localhost:8002.
 services:
   website:
-    image: ghcr.io/Sagyboar/Sagyboar-website/website:latest
+    image: ghcr.io/sagyboar/sagyboar-website/website
     container_name: Sagyboar-website
     restart: unless-stopped
     ports:

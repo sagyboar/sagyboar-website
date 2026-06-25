@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  WEBSITE_IMAGE: ghcr.io/Sagyboar/Sagyboar-website/website
+  WEBSITE_IMAGE: ghcr.io/sagyboar/sagyboar-website/website
 
 permissions:
   contents: read
