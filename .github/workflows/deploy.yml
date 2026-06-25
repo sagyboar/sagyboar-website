@@ -40,7 +40,6 @@ jobs:
   deploy:
     needs: [build-website]
     runs-on: ubuntu-latest
-    environment: Production
     steps:
       - name: Verify required secrets
         env:
