@@ -2,13 +2,10 @@ import { JobsAbout } from "@/components/jobs/JobsAbout";
 import { JobsHero } from "@/components/jobs/JobsHero";
 import { JobsOpenPositions } from "@/components/jobs/JobsOpenPositions";
 import { JobsWhyWork } from "@/components/jobs/JobsWhyWork";
-import type { Metadata } from "next";
+import { pageSeo } from "@/constants/seo-data";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-	title: "Sagyboar Jobs & Open Positions",
-	description:
-		"Join Sagyboar and help teams deploy faster with our AI-native DevOps platform. View open roles including Sales Executive (Commission-Based).",
-};
+export const metadata = buildMetadata(pageSeo.jobs);
 
 export default function JobsPage() {
 	return (

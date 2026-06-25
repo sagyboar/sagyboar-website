@@ -21,6 +21,10 @@ export type JobPosting = {
 	closingNote: string;
 };
 
+export function getJobBySlug(slug: string): JobPosting | undefined {
+	return jobPostings.find((job) => job.id === slug);
+}
+
 export const jobPostings: JobPosting[] = [
 	{
 		id: "sales-executive",

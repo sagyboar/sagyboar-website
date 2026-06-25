@@ -16,6 +16,7 @@ export type SolutionPageData = {
 	hero: {
 		title: string;
 		headline: string;
+		headlineHighlight?: string;
 		description: string;
 		price: string;
 		cta: string;
@@ -27,12 +28,14 @@ export type SolutionPageData = {
 	};
 	stack: {
 		title: string;
+		titleHighlight?: string;
 		subtitle: string;
 		sections: readonly SolutionStackCard[];
 	};
 	spotlight: {
 		eyebrow: string;
 		title: string;
+		titleHighlight?: string;
 		description: string;
 		cta: string;
 		ctaHref: string;
@@ -42,6 +45,7 @@ export type SolutionPageData = {
 	};
 	faq: {
 		title: string;
+		titleHighlight?: string;
 		subtitle: string;
 		items: readonly SolutionFaq[];
 	};

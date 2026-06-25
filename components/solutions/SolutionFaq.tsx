@@ -7,6 +7,7 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
+import { HeadingHighlight } from "./HeadingHighlight";
 import type { SolutionPageData } from "./solution-types";
 
 type SolutionFaqProps = {
@@ -17,8 +18,11 @@ export function SolutionFaq({ data }: SolutionFaqProps) {
 	return (
 		<section className="border-b border-border py-16 sm:py-24">
 			<Container>
-				<h2 className="text-center font-display text-2xl font-semibold text-foreground sm:text-3xl">
-					{data.title}
+				<h2 className="text-center font-display text-3xl tracking-tight text-foreground sm:text-4xl">
+					<HeadingHighlight
+						text={data.title}
+						highlight={data.titleHighlight}
+					/>
 				</h2>
 				<p className="mx-auto mt-4 max-w-2xl text-center text-sm text-muted-foreground sm:text-base">
 					{data.subtitle}

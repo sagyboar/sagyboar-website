@@ -17,15 +17,18 @@ Key facts:
 ## Product pages
 
 - [Home](https://Sagyboar.com/): Product overview
-- [Application Deployment Platform](https://Sagyboar.com/features/application-deployment-platform): Deploy apps from any source
-- [Database Management](https://Sagyboar.com/features/database-management-tool): Manage and back up databases
-- [Deploy AI](https://Sagyboar.com/deploy-ai): Deploy AI-built apps in a governed sandbox with MCP, SSO, and multitenancy
-- [Self-Hosted PaaS](https://Sagyboar.com/self-hosted-paas): Run Sagyboar on your own infrastructure
-- [Enterprise](https://Sagyboar.com/enterprise): Enterprise-grade features and support
-- [RBAC](https://Sagyboar.com/features/role-based-access-control): Role-based access control
-- [SSO](https://Sagyboar.com/features/single-sign-on): Single sign-on integrations
-- [Audit Logs](https://Sagyboar.com/features/audit-logs): Compliance and change tracking
-- [White Labelling](https://Sagyboar.com/features/white-labeling): Rebrand Sagyboar for agency or reseller use
+- [Application Deployment](https://Sagyboar.com/features/application-deployment): Deploy any stack from any source in minutes
+- [CI/CD & Git Integration](https://Sagyboar.com/features/ci-cd-git-integration): Automated pipelines from commit to production
+- [AI Monitoring & Observability](https://Sagyboar.com/features/ai-monitoring-observability): Active intelligence, not passive dashboards
+- [AI Error Diagnosis](https://Sagyboar.com/features/ai-error-diagnosis): From detection to assigned ticket in seconds
+- [Autonomous Self-Healing](https://Sagyboar.com/features/autonomous-self-healing): Automated remediation with human oversight
+- [Database Management](https://Sagyboar.com/features/database-management): Provision, back up, and restore databases
+- [Multi-Server & Infrastructure](https://Sagyboar.com/features/multi-server-infrastructure): Centralized control over distributed infrastructure
+- [Notifications & Alerting](https://Sagyboar.com/features/notifications-alerting): AI-enriched alerts where your team works
+- [Managed Team Services](https://Sagyboar.com/features/managed-team-services): A dedicated team to keep your product running
+- [Weekly Code Review](https://Sagyboar.com/features/weekly-code-review): AI-powered code health checks on your repositories
+- [Security & Access Control](https://Sagyboar.com/features/platform-security-access-control): Enterprise-grade RBAC, SSO, and audit logs
+- [Enterprise](https://Sagyboar.com/solutions/enterprise): Enterprise-grade features and support
 
 ## Pricing
 
@@ -37,11 +40,6 @@ Key facts:
 - [Sagyboar vs Portainer](https://Sagyboar.com/Sagyboar-vs-portainer)
 - [Sagyboar vs CapRover](https://Sagyboar.com/Sagyboar-vs-caprover)
 - [Sagyboar vs Dokku](https://Sagyboar.com/Sagyboar-vs-dokku)
-
-## Resources
-
-- [Blog](https://Sagyboar.com/blog): Deployment guides and product updates
-- [Partners / Agency Programme](https://Sagyboar.com/partners)
 
 ## External pages
 

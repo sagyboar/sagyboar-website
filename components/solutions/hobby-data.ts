@@ -5,6 +5,7 @@ export const hobbySolutionPage: SolutionPageData = {
 	hero: {
 		title: "Hobby",
 		headline: "Deploy your side projects without the DevOps headache",
+		headlineHighlight: "DevOps headache",
 		description:
 			"For solo developers, MVPs, and personal projects. Get managed hosting, AI monitoring, automated issue tickets, and community support — all from $49/month.",
 		price: "$49/month",
@@ -17,6 +18,7 @@ export const hobbySolutionPage: SolutionPageData = {
 	},
 	stack: {
 		title: "Everything in Hobby",
+		titleHighlight: "Hobby",
 		subtitle:
 			"Scroll through five core capabilities included in the Hobby plan.",
 		sections: [
@@ -60,6 +62,7 @@ export const hobbySolutionPage: SolutionPageData = {
 	spotlight: {
 		eyebrow: "Built for builders",
 		title: "Ship your side project in minutes, not weekends",
+		titleHighlight: "not weekends",
 		description:
 			"Connect your repo, pick a stack, and deploy to managed infrastructure with SSL and monitoring already wired up. Hobby gives solo builders production-grade hosting without learning Kubernetes.",
 		cta: "Start with Hobby",
@@ -70,6 +73,7 @@ export const hobbySolutionPage: SolutionPageData = {
 	},
 	faq: {
 		title: "Hobby plan FAQ",
+		titleHighlight: "FAQ",
 		subtitle:
 			"Common questions about deploying side projects on Sagyboar Hobby.",
 		items: [

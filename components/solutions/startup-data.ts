@@ -5,6 +5,7 @@ export const startupSolutionPage: SolutionPageData = {
 	hero: {
 		title: "Startup",
 		headline: "Scale your product without hiring a full DevOps team",
+		headlineHighlight: "DevOps team",
 		description:
 			"For growing startups that need reliable deployments, advanced monitoring, and real engineering help. Run up to five apps with AI-assisted support and on-demand DevOps from $249/month.",
 		price: "$249/month",
@@ -17,6 +18,7 @@ export const startupSolutionPage: SolutionPageData = {
 	},
 	stack: {
 		title: "Everything in Startup",
+		titleHighlight: "Startup",
 		subtitle:
 			"Five capabilities that help growing teams ship faster with less overhead.",
 		sections: [
@@ -60,6 +62,7 @@ export const startupSolutionPage: SolutionPageData = {
 	spotlight: {
 		eyebrow: "Grow without the hire",
 		title: "Your DevOps team — without the payroll",
+		titleHighlight: "the payroll",
 		description:
 			"Startup replaces the early infrastructure hire with managed hosting, advanced monitoring, and hands-on engineering support. Focus your runway on product, not server firefights.",
 		cta: "Start with Startup",
@@ -70,6 +73,7 @@ export const startupSolutionPage: SolutionPageData = {
 	},
 	faq: {
 		title: "Startup plan FAQ",
+		titleHighlight: "FAQ",
 		subtitle:
 			"Common questions about scaling production apps on Sagyboar Startup.",
 		items: [

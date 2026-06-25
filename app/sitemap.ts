@@ -1,4 +1,5 @@
-import { getDummyPosts } from "@/constants/blog-posts";
+import { featurePages as featurePagesData } from "@/components/features/features-data";
+import { jobPostings } from "@/components/jobs/jobs-data";
 import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://Sagyboar.com";
@@ -8,31 +9,17 @@ const corePages: { path: string; priority: number }[] = [
 	{ path: "/solutions/hobby", priority: 0.85 },
 	{ path: "/solutions/startup", priority: 0.85 },
 	{ path: "/solutions/enterprise", priority: 0.9 },
-	{ path: "/enterprise", priority: 0.9 },
-	{ path: "/deploy-ai", priority: 0.8 },
-	{ path: "/self-hosted-paas", priority: 0.8 },
 	{ path: "/contact", priority: 0.7 },
-	{ path: "/partners", priority: 0.6 },
-	{ path: "/changelog", priority: 0.6 },
 	{ path: "/jobs", priority: 0.7 },
-	{ path: "/blog", priority: 0.7 },
 ];
 
-const featurePages = [
-	"/features/application-deployment-platform",
-	"/features/application-management-software",
-	"/features/database-management-tool",
-	"/features/role-based-access-control",
-	"/features/single-sign-on",
-	"/features/audit-logs",
-	"/features/white-labeling",
-	"/features/container-server-monitoring",
-];
+const featurePaths = featurePagesData.map(
+	(feature) => `/features/${feature.slug}`,
+);
 
-const legalPages = ["/terms-of-service", "/terms", "/privacy"];
+const legalPages = ["/terms-of-service", "/privacy"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-	const posts = getDummyPosts();
 	const now = new Date();
 
 	return [
@@ -48,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			changeFrequency: "monthly" as const,
 			priority,
 		})),
-		...featurePages.map((path) => ({
+		...featurePaths.map((path) => ({
 			url: `${BASE_URL}${path}`,
 			lastModified: now,
 			changeFrequency: "monthly" as const,
@@ -60,11 +47,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			changeFrequency: "yearly" as const,
 			priority: 0.3,
 		})),
-		...posts.map((post) => ({
-			url: `${BASE_URL}/blog/${post.slug}`,
-			lastModified: new Date(post.published_at),
+		...jobPostings.map((job) => ({
+			url: `${BASE_URL}/jobs/${job.id}`,
+			lastModified: now,
 			changeFrequency: "monthly" as const,
-			priority: 0.8,
+			priority: 0.6,
 		})),
 	];
 }

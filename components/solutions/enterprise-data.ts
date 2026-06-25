@@ -4,6 +4,7 @@ export const enterpriseSolutionPage: SolutionPageData = {
 	hero: {
 		title: "Enterprise",
 		headline: "Dedicated infrastructure and a platform team on your stack",
+		headlineHighlight: "your stack",
 		description:
 			"For businesses that need SLA-backed uptime, dedicated cloud infrastructure, and a fully managed DevOps team. AWS, GCP, Azure, or your own account — from $1,499/month.",
 		price: "$1,499/month",
@@ -15,6 +16,7 @@ export const enterpriseSolutionPage: SolutionPageData = {
 	},
 	stack: {
 		title: "Everything in Enterprise",
+		titleHighlight: "Enterprise",
 		subtitle:
 			"Five enterprise-grade capabilities for teams that cannot afford downtime.",
 		sections: [
@@ -58,6 +60,7 @@ export const enterpriseSolutionPage: SolutionPageData = {
 	spotlight: {
 		eyebrow: "Built for scale",
 		title: "Enterprise-grade ops without building an ops department",
+		titleHighlight: "ops department",
 		description:
 			"Hand off infrastructure, monitoring, and incident response to a team that lives in production. Enterprise gives you SLA-backed reliability and dedicated engineers who know your stack.",
 		cta: "Talk to sales",
@@ -67,6 +70,7 @@ export const enterpriseSolutionPage: SolutionPageData = {
 	},
 	faq: {
 		title: "Enterprise plan FAQ",
+		titleHighlight: "FAQ",
 		subtitle:
 			"Common questions about dedicated infrastructure and managed teams on Sagyboar Enterprise.",
 		items: [

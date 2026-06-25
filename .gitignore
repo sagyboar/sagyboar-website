@@ -44,6 +44,9 @@ yarn-error.log*
 
 # Generated files
 
+# Uploaded resumes (job applications)
+/uploads
+
 # TypeScript
 *.tsbuildinfo
 /build

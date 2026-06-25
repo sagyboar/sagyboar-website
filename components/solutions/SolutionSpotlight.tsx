@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/ui/button";
+import { HeadingHighlight } from "./HeadingHighlight";
 import type { SolutionPageData } from "./solution-types";
 
 type SolutionSpotlightProps = {
@@ -18,8 +19,11 @@ export function SolutionSpotlight({ data }: SolutionSpotlightProps) {
 						<p className="text-sm font-medium uppercase tracking-wider text-primary">
 							{data.eyebrow}
 						</p>
-						<h2 className="mt-3 font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
-							{data.title}
+						<h2 className="mt-3 font-display text-3xl tracking-tight text-foreground sm:text-4xl">
+							<HeadingHighlight
+								text={data.title}
+								highlight={data.titleHighlight}
+							/>
 						</h2>
 						<p className="mt-6 text-sm leading-relaxed text-muted-foreground sm:text-base">
 							{data.description}

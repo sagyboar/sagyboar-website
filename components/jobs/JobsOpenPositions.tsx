@@ -17,8 +17,11 @@ export function JobsOpenPositions() {
 										Open positions
 									</p>
 								</div>
-								<h2 className="mt-2 font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-									Find your role
+								<h2 className="mt-2 font-display text-3xl tracking-tight text-foreground sm:text-4xl">
+									Find your{" "}
+									<span className="border-b-2 border-blue-400 text-blue-400">
+										role
+									</span>
 								</h2>
 								<p className="mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
 									{jobPostings.length} open role

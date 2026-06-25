@@ -3,10 +3,10 @@
 import dynamic from "next/dynamic";
 import { Mail, Phone } from "lucide-react";
 import { Container } from "@/components/Container";
+import { ContactForm } from "@/components/forms/ContactForm";
 import { Button } from "@/components/ui/button";
 import {
 	Sagyboar_CONTACT_EMAIL,
-	Sagyboar_CONTACT_FORM_URL,
 	Sagyboar_CONTACT_PHONE,
 } from "@/constants/branding";
 
@@ -32,7 +32,7 @@ export function ContactTypeform() {
 				/>
 			</div>
 
-			<section className="relative z-10 pt-28 pb-16 sm:pt-32 sm:pb-24">
+			<section className="relative z-10 px-4 pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-24">
 				<Container>
 					<div className="mx-auto max-w-5xl">
 						<div className="text-center">
@@ -61,14 +61,8 @@ export function ContactTypeform() {
 							</div>
 						</div>
 
-						<div className="mt-10 overflow-hidden rounded-3xl border border-border bg-card/90 shadow-lg backdrop-blur-md">
-							<iframe
-								title="Sagyboar contact form"
-								src={Sagyboar_CONTACT_FORM_URL}
-								className="block  w-full border-0 aspect-video max-w-6xl"
-								allow="camera; microphone; autoplay; encrypted-media; fullscreen"
-								loading="lazy"
-							/>
+						<div className="mx-auto mt-8 max-w-3xl rounded-3xl border border-border bg-card/90 p-5 shadow-lg backdrop-blur-md sm:mt-10 sm:p-8">
+							<ContactForm />
 						</div>
 					</div>
 				</Container>

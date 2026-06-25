@@ -8,8 +8,11 @@ export function JobsAbout() {
 			<Container>
 				<div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
 					<div>
-						<h2 className="font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-							About Sagyboar
+						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
+							About{" "}
+							<span className="border-b-2 border-blue-400 text-blue-400">
+								Sagyboar
+							</span>
 						</h2>
 						<div className="mt-6 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
 							{Sagyboar_ABOUT.split("\n\n").map((paragraph) => (

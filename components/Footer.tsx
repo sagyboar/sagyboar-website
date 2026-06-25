@@ -84,13 +84,15 @@ export function Footer() {
 						reserved.
 					</p>
 				</div>
-				<div className="flex items-end justify-center">
-					<Logo className="h-full w-full max-w-80" />
-					<div className="flex flex-col items-center justify-center pb-12">
-						<span className="font-serif text-6xl font-bold text-foreground">
+				<div className="flex flex-col items-center justify-center gap-6 border-t border-border py-8 sm:flex-row sm:items-end sm:justify-center">
+					<Logo className="h-auto w-full max-w-48 sm:max-w-64" />
+					<div className="flex flex-col items-center justify-center pb-4 text-center sm:pb-8">
+						<span className="font-serif text-4xl font-bold text-foreground sm:text-5xl lg:text-6xl">
 							Sagyboar
 						</span>
-						<span>Deploy your applications with ease</span>
+						<span className="mt-1 text-sm text-muted-foreground sm:text-base">
+							Deploy your applications with ease
+						</span>
 					</div>
 				</div>
 			</Container>

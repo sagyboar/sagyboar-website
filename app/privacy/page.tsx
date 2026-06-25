@@ -1,11 +1,8 @@
 import { Container } from "@/components/Container";
-import type { Metadata } from "next";
+import { pageSeo } from "@/constants/seo-data";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-	title: "Privacy Policy",
-	description:
-		"Learn about how Sagyboar collects, uses, and safeguards your personal information when you use our website and services.",
-};
+export const metadata = buildMetadata(pageSeo.privacy);
 
 export default function PrivacyPage() {
 	return (

@@ -10,6 +10,7 @@ import { Container } from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { DARK_VEIL_PRESET } from "@/components/ui/dark-veil";
 import { cn } from "@/lib/utils";
+import { HeadingHighlight } from "./HeadingHighlight";
 import type { SolutionIconName, SolutionPageData } from "./solution-types";
 
 const SOLUTION_ICONS = {
@@ -90,8 +91,11 @@ export function SolutionHero({ data }: SolutionHeroProps) {
 							</span>
 						</div>
 
-						<h1 className="mt-6 font-display text-3xl font-semibold tracking-tight text-foreground dark:text-white sm:text-4xl lg:text-5xl">
-							{data.headline}
+						<h1 className="mt-6 font-serif text-3xl font-semibold tracking-tight text-foreground dark:text-white sm:text-4xl lg:text-5xl">
+							<HeadingHighlight
+								text={data.headline}
+								highlight={data.headlineHighlight}
+							/>
 						</h1>
 						<p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground dark:text-white/75 sm:text-lg">
 							{data.description}

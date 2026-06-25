@@ -11,8 +11,11 @@ export function JobsWhyWork() {
 		<section className="border-b border-border bg-muted/20 py-16 dark:bg-muted/10 sm:py-24">
 			<Container>
 				<div className="mx-auto max-w-3xl text-center">
-					<h2 className="font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-						Why work at Sagyboar
+					<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
+						Why work at{" "}
+						<span className="border-b-2 border-blue-400 text-blue-400">
+							Sagyboar
+						</span>
 					</h2>
 					<p className="mt-4 text-sm text-muted-foreground sm:text-base">
 						Scroll to explore what makes building your career here different.

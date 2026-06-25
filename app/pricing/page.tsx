@@ -1,11 +1,8 @@
 import { Pricing } from "@/components/pricing";
-import type { Metadata } from "next";
+import { pageSeo } from "@/constants/seo-data";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-	title: "Sagyboar Pricing — One Platform, Zero DevOps Headaches",
-	description:
-		"Compare Sagyboar Hobby, Startup, and Enterprise plans. AI-powered deployment, monitoring, and a real team — from $49/month.",
-};
+export const metadata = buildMetadata(pageSeo.pricing);
 
 export default function PricingPage() {
 	return (

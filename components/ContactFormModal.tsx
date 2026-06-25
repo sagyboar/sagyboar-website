@@ -7,7 +7,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from "@/components/ui/dialog";
-import { ContactForm } from "./ContactForm";
+import { ContactForm } from "./forms/ContactForm";
 
 interface ContactFormModalProps {
 	open: boolean;
@@ -18,7 +18,6 @@ interface ContactFormModalProps {
 export function ContactFormModal({
 	open,
 	onOpenChange,
-	defaultInquiryType = "sales",
 }: ContactFormModalProps) {
 	const handleSuccess = () => {
 		// Close modal after a short delay to show success message
@@ -39,11 +38,9 @@ export function ContactFormModal({
 				</DialogHeader>
 				<div className="mt-4">
 					<ContactForm
-						defaultInquiryType={defaultInquiryType}
 						onSuccess={handleSuccess}
 						onCancel={() => onOpenChange(false)}
 						showCancelButton={true}
-						hideInquiryType={true}
 					/>
 				</div>
 			</DialogContent>

@@ -1,11 +1,8 @@
-import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { pageSeo } from "@/constants/seo-data";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-	title: "Contact Us",
-	description:
-		"Get in touch with the Sagyboar team for pricing, enterprise onboarding, partnerships, and support.",
-};
+export const metadata = buildMetadata(pageSeo.contact);
 
 export default function ContactLayout({ children }: { children: ReactNode }) {
 	return <>{children}</>;

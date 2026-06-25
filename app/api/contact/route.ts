@@ -1,184 +1,110 @@
-import { getHubSpotUTK, submitToHubSpot } from "@/lib/hubspot";
-import { notifySlack } from "@/lib/slack";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import { ADMIN_EMAIL, sendMail } from "@/lib/mailer";
+import { connectToDatabase } from "@/lib/mongodb";
+import { Contact } from "@/lib/models/Contact";
 
-const FREE_EMAIL_DOMAINS: Set<string> = new Set(require("free-email-domains"));
+export const runtime = "nodejs";
 
-interface ContactFormData {
-	inquiryType: "support" | "sales";
-	teamSize?: string;
-	serverCount?: string;
-	firstName: string;
-	lastName: string;
-	email: string;
-	company: string;
-	message: string;
-}
+type ContactPayload = {
+	name?: string;
+	email?: string;
+	company?: string;
+	subject?: string;
+	message?: string;
+};
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: NextRequest) {
+	let body: ContactPayload;
 	try {
-		// Initialize Resend with API key check
-		const apiKey = process.env.RESEND_API_KEY;
-		if (!apiKey) {
-			console.error("RESEND_API_KEY is not configured");
-			return NextResponse.json(
-				{ error: "Email service not configured" },
-				{ status: 500 },
-			);
-		}
+		body = await request.json();
+	} catch {
+		return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+	}
 
-		const resend = new Resend(apiKey);
-		const body: ContactFormData = await request.json();
+	const name = body.name?.trim();
+	const email = body.email?.trim().toLowerCase();
+	const company = body.company?.trim() ?? "";
+	const subject = body.subject?.trim() ?? "";
+	const message = body.message?.trim();
 
-		// Validate required fields
-		if (
-			!body.inquiryType ||
-			!body.firstName ||
-			!body.lastName ||
-			!body.email ||
-			!body.company ||
-			!body.message
-		) {
-			return NextResponse.json(
-				{ error: "All fields are required" },
-				{ status: 400 },
-			);
-		}
-
-		// Validate email format
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		if (!emailRegex.test(body.email)) {
-			return NextResponse.json(
-				{ error: "Invalid email format" },
-				{ status: 400 },
-			);
-		}
-
-		// Reject free email providers for sales inquiries
-		if (body.inquiryType === "sales") {
-			const domain = body.email.split("@")[1]?.toLowerCase();
-			if (domain && FREE_EMAIL_DOMAINS.has(domain)) {
-				return NextResponse.json(
-					{ error: "Please use your work email address to contact sales" },
-					{ status: 400 },
-				);
-			}
-		}
-
-		// Submit to HubSpot if it's a sales inquiry
-		if (body.inquiryType === "sales") {
-			try {
-				const hutk = getHubSpotUTK(request.headers.get("cookie") || undefined);
-				const hubspotSuccess = await submitToHubSpot(body, hutk);
-
-				if (hubspotSuccess) {
-					console.log("Successfully submitted sales inquiry to HubSpot");
-				} else {
-					console.warn(
-						"Failed to submit sales inquiry to HubSpot, but continuing with email",
-					);
-				}
-			} catch (error) {
-				console.error("Error submitting to HubSpot:", error);
-				// Continue with email even if HubSpot fails
-			}
-		}
-
-		// // Send notification to Slack (sales or support channel)
-		// try {
-		// 	const slackSuccess = await notifySlack(body);
-		// 	if (slackSuccess) {
-		// 		console.log(
-		// 			`Successfully sent ${body.inquiryType} inquiry notification to Slack`,
-		// 		);
-		// 	} else {
-		// 		console.warn(
-		// 			`Failed to send ${body.inquiryType} inquiry notification to Slack, but continuing with email`,
-		// 		);
-		// 	}
-		// } catch (error) {
-		// 	console.error("Error sending to Slack:", error);
-		// 	// Continue with email even if Slack fails
-		// }
-
-		// Format email content
-		const emailSubject = `[${body.inquiryType.toUpperCase()}] New contact form submission from ${body.firstName} ${body.lastName}`;
-		const salesFields =
-			body.inquiryType === "sales"
-				? `Employees: ${body.teamSize || "N/A"}\nServers: ${body.serverCount || "N/A"}\n`
-				: "";
-		const emailBody = `
-New contact form submission:
-
-Type: ${body.inquiryType}
-First Name: ${body.firstName}
-Last Name: ${body.lastName}
-Email: ${body.email}
-Company: ${body.company}
-${salesFields}
-Message:
-${body.message}
-
----
-Sent from Sagyboar website contact form
-		`.trim();
-
-		// Send email to Sagyboar team
-		const recipients =
-			body.inquiryType === "sales"
-				? ["sales@Sagyboar.com", "contact@Sagyboar.com"]
-				: ["support@Sagyboar.com"];
-
-		await resend.emails.send({
-			from: "Sagyboar Team <hello@notifications.Sagyboar.com>",
-			to: recipients,
-			subject: emailSubject,
-			text: emailBody,
-			replyTo: body.email,
-		});
-
-		// Send confirmation email to the user
-		const confirmationSubject =
-			"Thank you for contacting Sagyboar - We received your message";
-		const confirmationBody = `
-Hello ${body.firstName} ${body.lastName},
-
-Thank you for reaching out to us! We have successfully received your message and our team will get back to you as soon as possible.
-
-Here's a summary of what you sent us:
-
-Subject: ${body.inquiryType.charAt(0).toUpperCase() + body.inquiryType.slice(1)} inquiry
-Company: ${body.company}
-Message: ${body.message}
-
-We typically respond within 24-48 hours during business days. If your inquiry is urgent, please don't hesitate to reach out to us directly.
-
-Best regards,
-The Sagyboar Team
-
----
-This is an automated confirmation email. Please do not reply to this email.
-If you need immediate assistance, contact us at contact@Sagyboar.com
-		`.trim();
-
-		await resend.emails.send({
-			from: "Sagyboar Team <hello@notifications.Sagyboar.com>",
-			to: [body.email],
-			subject: confirmationSubject,
-			text: confirmationBody,
-		});
-
+	if (!name || !email || !message) {
 		return NextResponse.json(
-			{ message: "Contact form submitted successfully" },
-			{ status: 200 },
-		);
-	} catch (error) {
-		console.error("Error processing contact form:", error);
-		return NextResponse.json(
-			{ error: "Internal server error" },
-			{ status: 500 },
+			{ error: "Name, email, and message are required." },
+			{ status: 400 },
 		);
 	}
+
+	if (!EMAIL_REGEX.test(email)) {
+		return NextResponse.json(
+			{ error: "Please enter a valid email address." },
+			{ status: 400 },
+		);
+	}
+
+	// Persist to MongoDB (best-effort: don't fail the request if DB is down)
+	try {
+		await connectToDatabase();
+		await Contact.create({ name, email, company, subject, message });
+	} catch (error) {
+		console.error("Contact: failed to save to MongoDB", error);
+	}
+
+	const adminSubject = `New contact form submission${
+		subject ? `: ${subject}` : ""
+	} — ${name}`;
+	const adminText = [
+		"New contact form submission:",
+		"",
+		`Name: ${name}`,
+		`Email: ${email}`,
+		`Company: ${company || "N/A"}`,
+		`Subject: ${subject || "N/A"}`,
+		"",
+		"Message:",
+		message,
+		"",
+		"— Sent from the Sagyboar website contact form",
+	].join("\n");
+
+	const userSubject = "We received your message — Sagyboar";
+	const userText = [
+		`Hi ${name},`,
+		"",
+		"Thanks for reaching out to Sagyboar! We've received your message and our team will get back to you within 24–48 business hours.",
+		"",
+		"Here's a copy of what you sent:",
+		subject ? `Subject: ${subject}` : "",
+		`Message: ${message}`,
+		"",
+		"Best regards,",
+		"The Sagyboar Team",
+		"",
+		"— This is an automated confirmation. Please do not reply.",
+	]
+		.filter(Boolean)
+		.join("\n");
+
+	try {
+		await sendMail({
+			to: ADMIN_EMAIL,
+			subject: adminSubject,
+			text: adminText,
+			replyTo: email,
+		});
+		await sendMail({ to: email, subject: userSubject, text: userText });
+	} catch (error) {
+		console.error("Contact: failed to send email", error);
+		return NextResponse.json(
+			{ error: "We couldn't send your message right now. Please try again." },
+			{ status: 502 },
+		);
+	}
+
+	return NextResponse.json(
+		{ message: "Your message has been sent successfully." },
+		{ status: 200 },
+	);
 }

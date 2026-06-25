@@ -49,7 +49,7 @@ export function SolutionCta({ data }: SolutionCtaProps) {
 					</div>
 
 					<div className="relative z-10 px-6 py-14 text-center sm:px-10 sm:py-16">
-						<h2 className="font-display text-2xl font-semibold text-white sm:text-3xl">
+						<h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
 							{data.title}
 						</h2>
 						<p className="mx-auto mt-4 max-w-2xl text-white/80">

@@ -1,11 +1,8 @@
 import { Container } from "@/components/Container";
-import type { Metadata } from "next";
+import { pageSeo } from "@/constants/seo-data";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-	title: "Terms of Service",
-	description:
-		"Terms of Service for Sagyboar's cloud and on-premise deployment platform.",
-};
+export const metadata = buildMetadata(pageSeo.termsOfService);
 
 export default function TermsOfServicePage() {
 	return (

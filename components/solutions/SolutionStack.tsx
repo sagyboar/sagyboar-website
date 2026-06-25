@@ -4,6 +4,7 @@ import Image from "next/image";
 import ScrollStack, { ScrollStackItem } from "@/components/ui/scroll-stack";
 import { Container } from "@/components/Container";
 import { cn } from "@/lib/utils";
+import { HeadingHighlight } from "./HeadingHighlight";
 import type { SolutionPageData } from "./solution-types";
 
 type SolutionStackProps = {
@@ -15,8 +16,11 @@ export function SolutionStack({ data }: SolutionStackProps) {
 		<section className="border-b border-border bg-muted/20 py-16 dark:bg-muted/10 sm:py-24">
 			<Container>
 				<div className="mx-auto max-w-3xl text-center">
-					<h2 className="font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-						{data.title}
+					<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
+						<HeadingHighlight
+							text={data.title}
+							highlight={data.titleHighlight}
+						/>
 					</h2>
 					<p className="mt-4 text-sm text-muted-foreground sm:text-base">
 						{data.subtitle}

@@ -1,22 +1,15 @@
 import type { LucideIcon } from "lucide-react";
 import {
-	Activity,
-	Bot,
 	Briefcase,
 	Building2,
-	Database,
 	FileText,
-	KeyRound,
-	LayoutDashboard,
 	Mail,
-	Newspaper,
-	Paintbrush,
 	Rocket,
-	ScrollText,
 	Shield,
 	Sparkles,
 	Tag,
 } from "lucide-react";
+import { featurePages, type FeaturePageData } from "@/components/features/features-data";
 
 export type NavLinkItem = {
 	title: string;
@@ -34,76 +27,31 @@ export type FooterLink = {
 	icon: LucideIcon;
 };
 
-export const platformFeatureLinks: NavLinkItem[] = [
-	{
-		title: "Application Deployment",
-		footerLabel: "Application Deployment Platform",
-		href: "/features/application-deployment-platform",
-		description: "Deploy and manage applications with ease",
-		icon: Rocket,
-	},
-	{
-		title: "Databases",
-		href: "/features/database-management-tool",
-		description: "Manage your databases effortlessly",
-		icon: Database,
-	},
-	{
-		title: "Application Management",
-		href: "/features/application-management-software",
-		description: "Monitor and control your applications",
-		icon: LayoutDashboard,
-	},
-	{
-		title: "Monitoring",
-		href: "/features/container-server-monitoring",
-		description: "Keep your systems running smoothly",
-		icon: Activity,
-	},
-	{
-		title: "AI Deployment",
-		footerLabel: "Deploy AI",
-		href: "/deploy-ai",
-		description: "Empower your team to deploy AI tools",
-		icon: Bot,
-	},
-];
+function featureToNavLink(feature: FeaturePageData): NavLinkItem {
+	return {
+		title: feature.navTitle,
+		href: `/features/${feature.slug}`,
+		description: feature.navDescription,
+		icon: feature.icon,
+	};
+}
 
-export const enterpriseFeatureLinks: NavLinkItem[] = [
-	{
-		title: "RBAC",
-		href: "/features/role-based-access-control",
-		description: "Fine-grained role-based access control",
-		icon: Shield,
-	},
-	{
-		title: "SSO",
-		href: "/features/single-sign-on",
-		description: "Single sign-on for your organization",
-		icon: KeyRound,
-	},
-	{
-		title: "Audit Logs",
-		href: "/features/audit-logs",
-		description: "Full visibility into every action",
-		icon: ScrollText,
-	},
-	{
-		title: "White Labeling",
-		href: "/features/white-labeling",
-		description: "Deploy under your own brand",
-		icon: Paintbrush,
-	},
-];
+export const platformFeatureLinks: NavLinkItem[] = featurePages
+	.filter((feature) => feature.group === "Platform")
+	.map(featureToNavLink);
 
-/** Grouped feature links — matches footer Platform + Enterprise Features sections */
+export const enterpriseFeatureLinks: NavLinkItem[] = featurePages
+	.filter((feature) => feature.group === "AI & Operations")
+	.map(featureToNavLink);
+
+/** Grouped feature links — matches footer feature sections */
 export const featureMenuGroups = [
 	{
 		label: "Platform",
 		items: platformFeatureLinks,
 	},
 	{
-		label: "Enterprise",
+		label: "AI & Operations",
 		items: enterpriseFeatureLinks,
 	},
 ] as const;
@@ -149,7 +97,6 @@ export const topNavLinks: FooterLink[] = [
 ];
 
 export const companyLinks: FooterLink[] = [
-	{ href: "/blog", label: "Blog", icon: Newspaper },
 	{ href: "/jobs", label: "Careers", icon: Briefcase },
 	{ href: "/contact", label: "Contact Us", icon: Mail },
 	{ href: "/pricing", label: "Pricing", icon: Tag },
