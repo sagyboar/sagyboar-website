@@ -68,6 +68,13 @@ export const pageSeo = {
 		path: "/contact",
 		ogLabel: "Contact",
 	},
+	about: {
+		title: "About Us",
+		description:
+			"Meet Sagyboar — our mission, our journey, and the principles behind our AI-native DevOps platform.",
+		path: "/about",
+		ogLabel: "About Us",
+	},
 	jobs: {
 		title: "Careers & Open Positions",
 		description:
