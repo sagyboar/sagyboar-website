@@ -42,3 +42,4 @@
 - [Contact](https://Sagyboar.space/contact)
 - [Privacy Policy](https://Sagyboar.space/privacy)
 - [Terms of Service](https://Sagyboar.space/terms-of-service)
+- [Service Level Agreement](https://Sagyboar.space/sla)

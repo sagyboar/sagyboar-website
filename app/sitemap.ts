@@ -16,7 +16,7 @@ const featurePaths = featurePagesData.map(
 	(feature) => `/features/${feature.slug}`,
 );
 
-const legalPages = ["/terms-of-service", "/privacy"];
+const legalPages = ["/terms-of-service", "/sla", "/privacy"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const now = new Date();

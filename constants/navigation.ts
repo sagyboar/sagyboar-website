@@ -3,6 +3,8 @@ import {
 	Briefcase,
 	Building2,
 	FileText,
+	Gauge,
+	Info,
 	Mail,
 	Rocket,
 	Shield,
@@ -97,10 +99,12 @@ export const topNavLinks: FooterLink[] = [
 ];
 
 export const companyLinks: FooterLink[] = [
+	{ href: "/about", label: "About Us", icon: Info },
 	{ href: "/jobs", label: "Careers", icon: Briefcase },
 	{ href: "/contact", label: "Contact Us", icon: Mail },
 	{ href: "/pricing", label: "Pricing", icon: Tag },
 	{ href: "/terms-of-service", label: "Terms of Service", icon: FileText },
+	{ href: "/sla", label: "Service Level Agreement", icon: Gauge },
 	{ href: "/privacy", label: "Privacy Policy", icon: Shield },
 ];
 

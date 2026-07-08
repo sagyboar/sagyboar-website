@@ -68,6 +68,13 @@ export const pageSeo = {
 		path: "/contact",
 		ogLabel: "Contact",
 	},
+	about: {
+		title: "About Us",
+		description:
+			"Meet Sagyboar — our mission, our journey, and the principles behind our AI-native DevOps platform.",
+		path: "/about",
+		ogLabel: "About Us",
+	},
 	jobs: {
 		title: "Careers & Open Positions",
 		description:
@@ -108,6 +115,13 @@ export const pageSeo = {
 			"Terms of Service for Sagyboar's cloud and on-premise deployment platform.",
 		path: "/terms-of-service",
 		ogLabel: "Terms of Service",
+	},
+	sla: {
+		title: "Service Level Agreement",
+		description:
+			"Uptime, response times, backup policy, and service credits for Sagyboar Cloud Services by plan.",
+		path: "/sla",
+		ogLabel: "SLA",
 	},
 } as const satisfies Record<string, PageSeoEntry>;
 

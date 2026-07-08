@@ -334,7 +334,11 @@ export default function TermsOfServicePage() {
 				<p>
 					This Section 7 applies only to Cloud Services. On-Premise Software
 					customers are solely responsible for availability and performance of
-					their self-hosted installations.
+					their self-hosted installations. See our{" "}
+					<a href="/sla" className="text-primary underline hover:no-underline">
+						Service Level Agreement
+					</a>{" "}
+					for plan-specific uptime, response, and support commitments.
 				</p>
 				<h3 className="text-xl font-medium">7.1 Uptime Commitment</h3>
 				<p>
