@@ -116,6 +116,13 @@ export const pageSeo = {
 		path: "/terms-of-service",
 		ogLabel: "Terms of Service",
 	},
+	sla: {
+		title: "Service Level Agreement",
+		description:
+			"Uptime, response times, backup policy, and service credits for Sagyboar Cloud Services by plan.",
+		path: "/sla",
+		ogLabel: "SLA",
+	},
 } as const satisfies Record<string, PageSeoEntry>;
 
 export const organizationJsonLd = {
