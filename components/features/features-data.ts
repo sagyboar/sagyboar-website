@@ -15,12 +15,67 @@ import {
 
 export type FeatureBadge = "CORE" | "AI" | "MANAGED" | "NEW";
 
+export type FeatureGraphicName =
+	| "sources"
+	| "build"
+	| "aiScan"
+	| "sizing"
+	| "artifact"
+	| "oneClickHost"
+	| "webhook"
+	| "prPreview"
+	| "branches"
+	| "rolling"
+	| "logs"
+	| "metrics"
+	| "anomaly"
+	| "forecast"
+	| "cascade"
+	| "dashboard"
+	| "stacktrace"
+	| "rootcause"
+	| "remediation"
+	| "ticket"
+	| "assign"
+	| "history"
+	| "restart"
+	| "swarm"
+	| "autoscale"
+	| "approval"
+	| "explain"
+	| "rollback"
+	| "dbEngines"
+	| "backupSchedule"
+	| "volume"
+	| "s3dest"
+	| "servers"
+	| "terminal"
+	| "proxy"
+	| "channels"
+	| "alertSummary"
+	| "severity"
+	| "developer"
+	| "devopsEng"
+	| "qa"
+	| "managedInfra"
+	| "codeReview"
+	| "security"
+	| "codeSmell"
+	| "report"
+	| "rbac"
+	| "sso"
+	| "audit"
+	| "templates"
+	| "cron"
+	| "mcp";
+
 export type FeatureItem = {
 	name: string;
 	description: string;
 	badge: FeatureBadge;
 	image?: string;
 	imageAlt?: string;
+	graphic?: FeatureGraphicName;
 };
 
 export type FeatureGroup = "Platform" | "AI & Operations";
@@ -53,36 +108,42 @@ export const featurePages: FeaturePageData[] = [
 		items: [
 			{
 				name: "Multi-source deployment",
+				graphic: "sources",
 				description:
 					"Deploy from GitHub, GitLab, Bitbucket, Gitea, Docker registries, or direct ZIP upload. No lock-in to any single provider.",
 				badge: "CORE",
 			},
 			{
 				name: "Flexible build strategies",
+				graphic: "build",
 				description:
 					"Choose from Nixpacks, Dockerfile, Railpack, Cloud Native Buildpacks, or pre-built Docker images — auto-detected or manually selected.",
 				badge: "CORE",
 			},
 			{
 				name: "AI deployment assistant",
+				graphic: "aiScan",
 				description:
 					"Scans your repository, detects the tech stack, and auto-generates a production-ready Dockerfile, Docker Compose config, and environment variable scaffolding.",
 				badge: "AI",
 			},
 			{
 				name: "Infrastructure sizing recommendations",
+				graphic: "sizing",
 				description:
 					"AI recommends optimal CPU and RAM allocation based on detected stack type and estimated load — no more guesswork on server sizing.",
 				badge: "AI",
 			},
 			{
 				name: "Artifact review & edit",
+				graphic: "artifact",
 				description:
 					"All AI-generated Dockerfiles and Compose files are presented as editable drafts before deployment. Full developer control is preserved.",
 				badge: "CORE",
 			},
 			{
 				name: "One-click managed hosting",
+				graphic: "oneClickHost",
 				description:
 					"Deploy on Sagyboar's own infrastructure in minutes. No VPS setup, no SSH keys, no server provisioning required.",
 				badge: "MANAGED",
@@ -103,24 +164,28 @@ export const featurePages: FeaturePageData[] = [
 		items: [
 			{
 				name: "Webhook-triggered deployments",
+				graphic: "webhook",
 				description:
 					"Push to any branch and trigger automatic deployments instantly via Git webhooks across GitHub, GitLab, Bitbucket, and Gitea.",
 				badge: "CORE",
 			},
 			{
 				name: "PR preview environments",
+				graphic: "prPreview",
 				description:
 					"Ephemeral preview environments are spun up automatically for every pull request, giving reviewers a live URL to test changes before merge.",
 				badge: "CORE",
 			},
 			{
 				name: "Branch-based environment targeting",
+				graphic: "branches",
 				description:
 					"Map Git branches to specific environments (e.g. main to production, develop to staging) with independent deployment configurations per branch.",
 				badge: "CORE",
 			},
 			{
 				name: "Zero-downtime rolling updates",
+				graphic: "rolling",
 				description:
 					"Health-check-based rolling updates keep services live during deploys. Automatic rollback triggers if the new version fails health checks.",
 				badge: "CORE",
@@ -141,36 +206,42 @@ export const featurePages: FeaturePageData[] = [
 		items: [
 			{
 				name: "Real-time log streaming",
+				graphic: "logs",
 				description:
 					"Application, container, and Traefik access logs stream live to the dashboard via WebSockets. No polling, no delay.",
 				badge: "CORE",
 			},
 			{
 				name: "Container metrics monitoring",
+				graphic: "metrics",
 				description:
 					"CPU, memory, and network usage tracked per container with visual dashboards for at-a-glance health status.",
 				badge: "CORE",
 			},
 			{
 				name: "AI anomaly detection",
+				graphic: "anomaly",
 				description:
 					"Continuously analyses log patterns and metric trends. Detects error rate spikes, latency degradation, and new failure patterns before they escalate.",
 				badge: "AI",
 			},
 			{
 				name: "Resource forecasting",
+				graphic: "forecast",
 				description:
 					"Tracks CPU, memory, and disk consumption trends and generates forward-looking saturation forecasts so you can scale before hitting a wall.",
 				badge: "AI",
 			},
 			{
 				name: "Cascading failure correlation",
+				graphic: "cascade",
 				description:
 					"Cross-correlates events across all services to identify when one failing dependency is causing downstream failures throughout the stack.",
 				badge: "AI",
 			},
 			{
 				name: "AI incident dashboard",
+				graphic: "dashboard",
 				description:
 					"Unified view of all AI-enriched observability signals: deployment health, error trends, incident timeline, resource graphs, and AI-generated health summaries.",
 				badge: "AI",
@@ -191,36 +262,42 @@ export const featurePages: FeaturePageData[] = [
 		items: [
 			{
 				name: "Stack trace analysis",
+				graphic: "stacktrace",
 				description:
 					"Full stack traces from application logs are parsed and analysed automatically to pinpoint the exact failure point and affected code path.",
 				badge: "AI",
 			},
 			{
 				name: "Root cause identification",
+				graphic: "rootcause",
 				description:
 					"Identifies probable root causes — OOM errors, dependency failures, misconfigurations, or code bugs — with confidence scores per diagnosis.",
 				badge: "AI",
 			},
 			{
 				name: "Remediation recommendations",
+				graphic: "remediation",
 				description:
 					"Generates specific resolution steps with configuration snippets or code examples, estimated resolution time, and priority level for each issue.",
 				badge: "AI",
 			},
 			{
 				name: "Automatic issue ticketing",
+				graphic: "ticket",
 				description:
 					"When an error is detected, Sagyboar auto-creates a ticket in your connected repository (GitHub Issues, GitLab, Jira) with a full AI-generated description, priority, and estimated fix time.",
 				badge: "NEW",
 			},
 			{
 				name: "Priority-based agent assignment",
+				graphic: "assign",
 				description:
 					"High-priority tickets are instantly routed to the first available developer on your team. No manual triage, no delay in response to critical issues.",
 				badge: "NEW",
 			},
 			{
 				name: "Incident history & correlation",
+				graphic: "history",
 				description:
 					"Stores all past diagnoses and cross-references new issues against historical patterns to identify recurring problems and surface long-term fixes.",
 				badge: "AI",
@@ -241,36 +318,42 @@ export const featurePages: FeaturePageData[] = [
 		items: [
 			{
 				name: "Auto-restart crashed services",
+				graphic: "restart",
 				description:
 					"Detects container crashes and health check failures, then automatically restarts services and validates recovery without manual intervention.",
 				badge: "AI",
 			},
 			{
 				name: "Swarm service recovery",
+				graphic: "swarm",
 				description:
 					"Monitors Docker Swarm service health and automatically recovers failed nodes and services within the cluster.",
 				badge: "AI",
 			},
 			{
 				name: "Auto-scaling on threshold breach",
+				graphic: "autoscale",
 				description:
 					"Scales replicas up automatically when resource thresholds are exceeded and triggers dependency service restarts on downstream failure detection.",
 				badge: "AI",
 			},
 			{
 				name: "Human approval workflows",
+				graphic: "approval",
 				description:
 					"High-impact actions (e.g. database restarts, config overrides) require operator approval via Slack or email before execution. Configurable per action class.",
 				badge: "CORE",
 			},
 			{
 				name: "Plain-language action explanations",
+				graphic: "explain",
 				description:
 					"Every autonomous action is accompanied by a plain-language explanation of what happened, why the action was taken, and what was resolved.",
 				badge: "AI",
 			},
 			{
 				name: "One-click rollback",
+				graphic: "rollback",
 				description:
 					"Any autonomous action or deployment can be reversed with a single click, re-triggering the last successful deployment state instantly.",
 				badge: "CORE",
@@ -291,24 +374,28 @@ export const featurePages: FeaturePageData[] = [
 		items: [
 			{
 				name: "Multi-engine support",
+				graphic: "dbEngines",
 				description:
 					"Provision PostgreSQL, MySQL, MariaDB, MongoDB, Redis, and LibSQL as Docker containers — all managed from the same dashboard as your applications.",
 				badge: "CORE",
 			},
 			{
 				name: "Automated backup scheduling",
+				graphic: "backupSchedule",
 				description:
 					"Cron-based backup scheduling with destinations including AWS S3, MinIO, and DigitalOcean Spaces. In-dashboard restore from any backup point.",
 				badge: "CORE",
 			},
 			{
 				name: "Volume backups",
+				graphic: "volume",
 				description:
 					"Full Docker volume backup support ensures persistent data is protected alongside database snapshots.",
 				badge: "CORE",
 			},
 			{
 				name: "Flexible backup destinations",
+				graphic: "s3dest",
 				description:
 					"Any S3-compatible storage endpoint is supported as a backup destination, covering most enterprise and cloud storage needs.",
 				badge: "CORE",
@@ -329,24 +416,28 @@ export const featurePages: FeaturePageData[] = [
 		items: [
 			{
 				name: "Remote server management",
+				graphic: "servers",
 				description:
 					"Connect and manage any number of remote VPS servers via SSH key authentication. Deploy and orchestrate across your entire fleet from one control plane.",
 				badge: "CORE",
 			},
 			{
 				name: "Docker Swarm orchestration",
+				graphic: "swarm",
 				description:
 					"Native Docker Swarm integration for multi-node clustering, horizontal scaling, and high-availability deployments without Kubernetes complexity.",
 				badge: "CORE",
 			},
 			{
 				name: "Browser terminal access",
+				graphic: "terminal",
 				description:
 					"SSH directly into any container from the browser. No local SSH setup required — full terminal access in a single click.",
 				badge: "CORE",
 			},
 			{
 				name: "Traefik reverse proxy & SSL",
+				graphic: "proxy",
 				description:
 					"Automatic Traefik configuration for custom domains, HTTP-to-HTTPS redirects, wildcard domains, and Let's Encrypt SSL provisioning and renewal.",
 				badge: "CORE",
@@ -367,24 +458,28 @@ export const featurePages: FeaturePageData[] = [
 		items: [
 			{
 				name: "Multi-channel notifications",
+				graphic: "channels",
 				description:
 					"Deployment events, health alerts, and backup statuses delivered to Email, Slack, Discord, Telegram, or any custom webhook endpoint.",
 				badge: "CORE",
 			},
 			{
 				name: "AI-enriched alert summaries",
+				graphic: "alertSummary",
 				description:
 					"Alerts include AI-generated plain-language explanations of what went wrong, the likely cause, and recommended next steps — not just raw error messages.",
 				badge: "AI",
 			},
 			{
 				name: "Approval request routing",
+				graphic: "approval",
 				description:
 					"When autonomous remediation requires human sign-off, approval requests are pushed directly to Slack or email with one-tap approve/deny actions.",
 				badge: "AI",
 			},
 			{
 				name: "Incident severity classification",
+				graphic: "severity",
 				description:
 					"Incidents are automatically categorised by severity (Critical, High, Medium, Low) so teams can triage at a glance without reading full logs.",
 				badge: "AI",
@@ -405,24 +500,28 @@ export const featurePages: FeaturePageData[] = [
 		items: [
 			{
 				name: "Dedicated AI-assisted developer",
+				graphic: "developer",
 				description:
 					"A dedicated developer is assigned to your project, backed by an AI assistant to accelerate frontend and backend maintenance and feature work.",
 				badge: "MANAGED",
 			},
 			{
 				name: "Dedicated DevOps engineer",
+				graphic: "devopsEng",
 				description:
 					"A DevOps engineer keeps your deployments, pipelines, and infrastructure healthy — monitoring environments and responding to incidents on your behalf.",
 				badge: "MANAGED",
 			},
 			{
 				name: "On-demand QA testing",
+				graphic: "qa",
 				description:
 					"A QA tester is brought in as needed for release validation, regression testing, and quality assurance — so your team can ship with confidence.",
 				badge: "MANAGED",
 			},
 			{
 				name: "Fully managed infrastructure hosting",
+				graphic: "managedInfra",
 				description:
 					"All managed services run on Sagyboar's own infrastructure. No VPS to provision or maintain — we handle uptime, updates, and security patching.",
 				badge: "MANAGED",
@@ -443,36 +542,42 @@ export const featurePages: FeaturePageData[] = [
 		items: [
 			{
 				name: "Automated weekly code review",
+				graphic: "codeReview",
 				description:
 					"Every week, Sagyboar runs an AI-powered review across all connected repositories — analysing code quality, complexity, duplication, and adherence to best practices without any manual trigger.",
 				badge: "NEW",
 			},
 			{
 				name: "AI-generated issue tickets from review",
+				graphic: "ticket",
 				description:
 					"Every finding is automatically converted into a structured issue ticket in your connected repository (GitHub Issues, GitLab, Jira) with a clear description, affected file, suggested fix, and severity level.",
 				badge: "NEW",
 			},
 			{
 				name: "Security vulnerability scanning",
+				graphic: "security",
 				description:
 					"Scans each repository for known vulnerability patterns, exposed secrets, outdated dependencies, and insecure coding practices — flagging critical findings as high-priority tickets immediately.",
 				badge: "NEW",
 			},
 			{
 				name: "Code smell & technical debt detection",
+				graphic: "codeSmell",
 				description:
 					"Identifies code smells, overly complex functions, dead code, and accumulating technical debt, generating actionable tickets so your team can systematically improve the codebase over time.",
 				badge: "NEW",
 			},
 			{
 				name: "Review summary report",
+				graphic: "report",
 				description:
 					"A weekly digest is delivered via Slack or email — summarising new issues found, issues resolved since last review, overall code health score, and trend over the past 4 weeks.",
 				badge: "NEW",
 			},
 			{
 				name: "Priority-based ticket routing",
+				graphic: "assign",
 				description:
 					"Critical and high-severity findings are automatically assigned to the first available developer, ensuring security issues and blocking bugs are never left unattended in a queue.",
 				badge: "NEW",
@@ -493,36 +598,42 @@ export const featurePages: FeaturePageData[] = [
 		items: [
 			{
 				name: "Role-based access control",
+				graphic: "rbac",
 				description:
 					"Granular RBAC with owner, admin, and member roles across a full Organization > Project > Environment hierarchy.",
 				badge: "CORE",
 			},
 			{
 				name: "SSO & enterprise authentication",
+				graphic: "sso",
 				description:
 					"Single sign-on configuration for enterprise teams, alongside standard email/password authentication for smaller organizations.",
 				badge: "CORE",
 			},
 			{
 				name: "Audit logging",
+				graphic: "audit",
 				description:
 					"Immutable audit trail of all user and autonomous system actions — actor, timestamp, action type, target, rationale, and outcome — for compliance.",
 				badge: "CORE",
 			},
 			{
 				name: "One-click template deployment",
+				graphic: "templates",
 				description:
 					"Pre-configured application stacks (WordPress, Ghost, n8n, and more) deployable in a single click via AI-generated Docker Compose templates.",
 				badge: "CORE",
 			},
 			{
 				name: "Scheduling & automation",
+				graphic: "cron",
 				description:
 					"Built-in cron job management, database backup scheduling, and Docker resource cleanup automation for hands-off operations.",
 				badge: "CORE",
 			},
 			{
 				name: "MCP server integration",
+				graphic: "mcp",
 				description:
 					"Official Dokploy MCP server with 508 tools across 49 categories — any AI assistant or agent can control the platform programmatically via natural language.",
 				badge: "CORE",

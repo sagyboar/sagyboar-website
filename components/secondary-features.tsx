@@ -8,28 +8,28 @@ import Image from "next/image";
 
 const features = [
     {
-        title: "AI-Powered Developer",
+        title: "AI-Setup",
         description:
-            "Your dedicated developer handles routine code maintenance, dependency updates, and minor bug fixes, keeping your codebase clean and modern.",
-        image: "/Default.png",
+            "We connect your repository and configure an AI-native workflow from day one — intelligent monitoring, smart defaults, and automated diagnosis so your app is production-ready without the manual grind.",
+        image: "https://ik.imagekit.io/sagyboar/AI_Setup.png?updatedAt=1783488816090",
     },
     {
-        title: "Expert DevOps Engineer",
+        title: "Docker Setup",
         description:
-            "A dedicated engineer monitors system health 24/7, proactively manages server scaling, and ensures zero-downtime deployments.",
-        image: "/Default.png",
+            "We containerize your application with optimized, production-grade Docker images — consistent builds across every environment and reliable deployments with none of the configuration headaches.",
+        image: "https://ik.imagekit.io/sagyboar/Docker.png?updatedAt=1783488818358",
     },
     {
         title: "CI/CD Pipeline Management",
         description:
-            "Our team fine-tunes your continuous integration and deployment pipelines to accelerate your time-to-market safely.",
-        image: "/Default.png",
+            "We build and fine-tune your continuous integration and deployment pipelines so every push ships safely — automated tests, builds, and zero-downtime releases that accelerate your time-to-market.",
+        image: "https://ik.imagekit.io/sagyboar/CI_CD.png?updatedAt=1783488818385",
     },
     {
-        title: "24/7 Incident Resolution",
+        title: "Remote Server Setup",
         description:
-            "With our experts maintaining the engine, critical alerts are handled instantly without waking up your core engineering team.",
-        image: "/Default.png",
+            "We provision, secure, and scale your remote servers — networking, SSL, and 24/7 health handled by our team so your infrastructure just works, without waking up your core engineers.",
+        image: "https://ik.imagekit.io/sagyboar/Remote-server.png?updatedAt=1783488818038",
     },
 ];
 
@@ -74,10 +74,10 @@ export function SecondaryFeaturesSections() {
             <div className="relative z-10 mx-auto max-w-7xl max-lg:px-4">
                 <div className="max-w-2xl md:mx-auto md:text-center xl:max-w-none">
                     <h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl md:text-5xl">
-                    Fully <span className="text-blue-400 border-b-2 border-blue-400">Managed </span>Maintenance
+                    Fully <span className="text-blue-400 border-b-2 border-blue-400">Managed </span>Setup
                     </h2>
                     <p className="mt-6 text-lg tracking-tight text-muted-foreground">
-                    Stop splitting your focus between product features and infrastructure health.
+                    From first commit to production, our team handles the setup so you can stay focused on building your product.
                     </p>
                 </div>
                 <Tab.Group

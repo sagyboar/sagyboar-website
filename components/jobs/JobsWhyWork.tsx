@@ -1,8 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import { Container } from "@/components/Container";
 import { cn } from "@/lib/utils";
+import {
+	JobsWhyWorkGraphic,
+	type JobsGraphicName,
+} from "./JobsWhyWorkGraphic";
 import { whyWorkAtSagyboar } from "./jobs-data";
 
 export function JobsWhyWork() {
@@ -39,12 +42,9 @@ export function JobsWhyWork() {
 												imageOnRight ? "sm:order-2" : "sm:order-1",
 											)}
 										>
-											<Image
-												src={card.image}
-												alt={card.imageAlt}
-												fill
-												className="object-cover"
-												sizes="(max-width: 640px) 100vw, 50vw"
+											<JobsWhyWorkGraphic
+												name={card.graphic as JobsGraphicName}
+												label={card.imageAlt}
 											/>
 										</div>
 

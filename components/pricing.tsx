@@ -1,6 +1,5 @@
 "use client";
 
-import { ImageIcon } from "lucide-react";
 import { useState } from "react";
 import { Container } from "@/components/Container";
 import { PricingShaderWave } from "./pricing/PricingShaderWave";
@@ -9,11 +8,15 @@ import { MarketComparisonTable } from "./pricing/MarketComparisonTable";
 import { PricingCta } from "./pricing/PricingCta";
 import { PricingFaq } from "./pricing/PricingFaq";
 import { PricingGeneralTerms } from "./pricing/PricingGeneralTerms";
+import { PricingHeroGraphic } from "./pricing/PricingHeroGraphic";
 import { PricingHeroStats } from "./pricing/PricingHeroStats";
+import { PricingIdealCustomers } from "./pricing/PricingIdealCustomers";
+import { PricingModel } from "./pricing/PricingModel";
 import { PricingPlanFitGuide } from "./pricing/PricingPlanFitGuide";
 import { PricingPlansGrid } from "./pricing/PricingPlansGrid";
 import { PricingSectionHeading } from "./pricing/PricingSectionHeading";
 import { PricingWhyChoose } from "./pricing/PricingWhyChoose";
+import { businessModelTagline } from "./pricing/pricing-data";
 
 export function Pricing() {
 	const [openSalesModal, setOpenSalesModal] = useState(false);
@@ -39,8 +42,9 @@ export function Pricing() {
 								One platform. <span className="border-b-2 border-blue-400 text-blue-400">Zero DevOps headaches.</span>
 							</h1>
 							<p className="mt-6 max-w-xl text-lg text-muted-foreground sm:text-xl">
-								Deploy, monitor, and maintain your entire stack — with AI doing
-								the heavy lifting and a real team backing you up.
+								Automate with AI, scale with a shared DevOps team, and run on
+								your own cloud. You pay for the platform and the people — not
+								our infrastructure.
 							</p>
 
 							<PricingHeroStats />
@@ -48,20 +52,26 @@ export function Pricing() {
 
 						<div className="relative mx-auto w-full max-w-lg lg:max-w-none">
 							<div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border bg-card/60 shadow-sm backdrop-blur-sm">
-								<div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-muted/20">
-									<div className="flex size-14 items-center justify-center rounded-2xl border border-dashed border-border bg-background/80">
-										<ImageIcon
-											className="size-6 text-muted-foreground"
-											aria-hidden
-										/>
-									</div>
-									<p className="text-sm font-medium text-muted-foreground">
-										Hero image placeholder
-									</p>
-								</div>
+								<PricingHeroGraphic className="absolute inset-0 p-4 sm:p-6" />
 							</div>
 						</div>
 					</div>
+				</Container>
+			</section>
+
+			{/* Core business model — one line */}
+			<section aria-label="Business model" className="border-b border-border bg-muted/20">
+				<Container>
+					<p className="mx-auto max-w-4xl py-10 text-center font-serif text-xl leading-relaxed text-foreground sm:text-2xl">
+						&ldquo;{businessModelTagline}&rdquo;
+					</p>
+				</Container>
+			</section>
+
+			{/* BYOC + shared DevOps model */}
+			<section aria-label="How our model works" className="py-16 sm:py-24">
+				<Container>
+					<PricingModel />
 				</Container>
 			</section>
 
@@ -104,6 +114,13 @@ export function Pricing() {
 					<div className="mx-auto mt-10 max-w-7xl">
 						<MarketComparisonTable />
 					</div>
+				</Container>
+			</section>
+
+			{/* Ideal customer profile */}
+			<section className="py-16 sm:py-24">
+				<Container>
+					<PricingIdealCustomers />
 				</Container>
 			</section>
 

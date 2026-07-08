@@ -11,7 +11,9 @@ export const enterpriseSolutionPage: SolutionPageData = {
 		cta: "Talk to sales",
 		ctaHref: "/contact",
 		heroImage: "/Enterprise.png",
-		heroImageAlt: "Sagyboar Enterprise plan",
+		heroImageAlt:
+			"Sagyboar platform connecting your cloud, servers, team and monitoring",
+		heroGraphic: "enterprise",
 		icon: "building2",
 	},
 	stack: {
@@ -26,6 +28,7 @@ export const enterpriseSolutionPage: SolutionPageData = {
 					"Deploy across your entire product surface with unlimited managed applications, subject to fair usage. One platform for every service your business runs.",
 				image: "/Default.png",
 				imageAlt: "Enterprise project management",
+				graphic: "apps",
 			},
 			{
 				title: "Dedicated infrastructure",
@@ -33,6 +36,7 @@ export const enterpriseSolutionPage: SolutionPageData = {
 					"Run on dedicated AWS, GCP, or Azure infrastructure — or bring your own cloud account. Full control with Sagyboar managing the operational layer.",
 				image: "/Default.png",
 				imageAlt: "Dedicated server permissions",
+				graphic: "infrastructure",
 			},
 			{
 				title: "Complete AI DevOps suite",
@@ -40,6 +44,7 @@ export const enterpriseSolutionPage: SolutionPageData = {
 					"Advanced monitoring, log analysis, automated ticket routing, and escalation workflows tuned for high-stakes production environments.",
 				image: "/Default.png",
 				imageAlt: "Enterprise monitoring suite",
+				graphic: "aiops",
 			},
 			{
 				title: "Dedicated platform team",
@@ -47,6 +52,7 @@ export const enterpriseSolutionPage: SolutionPageData = {
 					"Get a dedicated AI-powered developer, DevOps engineer, and QA support on demand — an extension of your engineering org without the hiring cycle.",
 				image: "/Default.png",
 				imageAlt: "Custom roles and team access",
+				graphic: "team",
 			},
 			{
 				title: "SLA, onboarding & integrations",
@@ -54,6 +60,7 @@ export const enterpriseSolutionPage: SolutionPageData = {
 					"99.9% uptime commitment, 4-hour critical response targets, custom integrations, and white-glove onboarding to get your stack production-ready.",
 				image: "/Default.png",
 				imageAlt: "Git permissions and integrations",
+				graphic: "sla",
 			},
 		],
 	},
@@ -66,7 +73,8 @@ export const enterpriseSolutionPage: SolutionPageData = {
 		cta: "Talk to sales",
 		ctaHref: "/contact",
 		image: "/Enterprise.png",
-		imageAlt: "Sagyboar Enterprise overview",
+		imageAlt: "Managed ops command center resolving incidents automatically",
+		graphic: "ops",
 	},
 	faq: {
 		title: "Enterprise plan FAQ",

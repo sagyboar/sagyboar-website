@@ -13,7 +13,8 @@ export const startupSolutionPage: SolutionPageData = {
 		ctaHref: Sagyboar_PORTAL_URL,
 		ctaExternal: true,
 		heroImage: "/startup.png",
-		heroImageAlt: "Sagyboar Startup plan",
+		heroImageAlt: "Scale your product without hiring a full DevOps team",
+		heroGraphic: "scale",
 		icon: "rocket",
 	},
 	stack: {
@@ -28,6 +29,7 @@ export const startupSolutionPage: SolutionPageData = {
 					"Run multiple production services from one platform. Startup supports up to five managed applications with one-click deployments and shared observability.",
 				image: "/Default.png",
 				imageAlt: "Multiple projects on Sagyboar",
+				graphic: "fiveApps",
 			},
 			{
 				title: "One-click deployments",
@@ -35,6 +37,7 @@ export const startupSolutionPage: SolutionPageData = {
 					"Push to main and ship. Connect your repo and deploy with automated builds, rollbacks, and environment management built in.",
 				image: "/Default.png",
 				imageAlt: "One-click deployment logs",
+				graphic: "deploy",
 			},
 			{
 				title: "Advanced AI monitoring",
@@ -42,6 +45,7 @@ export const startupSolutionPage: SolutionPageData = {
 					"Go beyond uptime checks with log analysis, anomaly detection, and prioritized alerts so your team catches issues before customers do.",
 				image: "/Default.png",
 				imageAlt: "Advanced monitoring dashboard",
+				graphic: "monitoring",
 			},
 			{
 				title: "AI-assisted engineering",
@@ -49,6 +53,7 @@ export const startupSolutionPage: SolutionPageData = {
 					"Get up to 10 hours per month of AI-assisted engineering for operational tasks, bug fixes, deployments, and minor enhancements.",
 				image: "/Default.png",
 				imageAlt: "Managed infrastructure for startups",
+				graphic: "aiEngineer",
 			},
 			{
 				title: "On-demand DevOps & support",
@@ -56,6 +61,7 @@ export const startupSolutionPage: SolutionPageData = {
 					"Email and chat support with a 48-hour response target, plus on-demand DevOps assistance when you need an expert in the loop.",
 				image: "/Default.png",
 				imageAlt: "Team collaboration on Sagyboar",
+				graphic: "support",
 			},
 		],
 	},
@@ -69,7 +75,8 @@ export const startupSolutionPage: SolutionPageData = {
 		ctaHref: Sagyboar_PORTAL_URL,
 		ctaExternal: true,
 		image: "/startup.png",
-		imageAlt: "Sagyboar Startup plan overview",
+		imageAlt: "A full DevOps team without the payroll",
+		graphic: "noPayroll",
 	},
 	faq: {
 		title: "Startup plan FAQ",

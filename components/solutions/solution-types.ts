@@ -1,5 +1,28 @@
 export type SolutionIconName = "sparkles" | "rocket" | "building2";
 
+export type SolutionGraphicName =
+	| "apps"
+	| "infrastructure"
+	| "aiops"
+	| "team"
+	| "sla"
+	| "enterprise"
+	| "ops"
+	| "scale"
+	| "fiveApps"
+	| "deploy"
+	| "monitoring"
+	| "aiEngineer"
+	| "support"
+	| "noPayroll"
+	| "sideProject"
+	| "oneApp"
+	| "managedHosting"
+	| "uptime"
+	| "tickets"
+	| "database"
+	| "quickShip";
+
 export type SolutionFaq = {
 	question: string;
 	answer: string;
@@ -10,6 +33,7 @@ export type SolutionStackCard = {
 	description: string;
 	image: string;
 	imageAlt: string;
+	graphic?: SolutionGraphicName;
 };
 
 export type SolutionPageData = {
@@ -24,6 +48,7 @@ export type SolutionPageData = {
 		ctaExternal?: boolean;
 		heroImage: string;
 		heroImageAlt: string;
+		heroGraphic?: SolutionGraphicName;
 		icon: SolutionIconName;
 	};
 	stack: {
@@ -42,6 +67,7 @@ export type SolutionPageData = {
 		ctaExternal?: boolean;
 		image: string;
 		imageAlt: string;
+		graphic?: SolutionGraphicName;
 	};
 	faq: {
 		title: string;

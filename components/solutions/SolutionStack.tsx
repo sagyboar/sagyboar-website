@@ -5,6 +5,7 @@ import ScrollStack, { ScrollStackItem } from "@/components/ui/scroll-stack";
 import { Container } from "@/components/Container";
 import { cn } from "@/lib/utils";
 import { HeadingHighlight } from "./HeadingHighlight";
+import { SolutionStackGraphic } from "./SolutionStackGraphic";
 import type { SolutionPageData } from "./solution-types";
 
 type SolutionStackProps = {
@@ -55,13 +56,20 @@ export function SolutionStack({ data }: SolutionStackProps) {
 											imageOnRight ? "order-1 sm:order-2" : "order-1",
 										)}
 									>
-										<Image
-											src={card.image}
-											alt={card.imageAlt}
-											fill
-											className="object-cover rounded-md"
-											sizes="(max-width: 640px) 100vw, 50vw"
-										/>
+										{card.graphic ? (
+											<SolutionStackGraphic
+												name={card.graphic}
+												label={card.imageAlt}
+											/>
+										) : (
+											<Image
+												src={card.image}
+												alt={card.imageAlt}
+												fill
+												className="object-cover rounded-md"
+												sizes="(max-width: 640px) 100vw, 50vw"
+											/>
+										)}
 									</div>
 
 									<div

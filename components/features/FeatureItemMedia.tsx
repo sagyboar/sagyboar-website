@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FeatureItemGraphic } from "./FeatureItemGraphic";
 import type { FeatureBadge, FeatureItem } from "./features-data";
 
 const VISUAL_GRADIENTS = [
@@ -84,6 +85,14 @@ export function FeatureItemMedia({
 	item: FeatureItem;
 	index: number;
 }) {
+	if (item.graphic) {
+		return (
+			<div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border bg-muted/30 shadow-sm">
+				<FeatureItemGraphic name={item.graphic} label={item.imageAlt ?? item.name} />
+			</div>
+		);
+	}
+
 	if (item.image) {
 		return (
 			<div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border bg-muted/30 shadow-sm">

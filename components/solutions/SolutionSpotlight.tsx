@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { HeadingHighlight } from "./HeadingHighlight";
+import { SolutionStackGraphic } from "./SolutionStackGraphic";
 import type { SolutionPageData } from "./solution-types";
 
 type SolutionSpotlightProps = {
@@ -40,13 +41,20 @@ export function SolutionSpotlight({ data }: SolutionSpotlightProps) {
 					</div>
 
 					<div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border bg-muted/30 shadow-sm">
-						<Image
-							src={data.image}
-							alt={data.imageAlt}
-							fill
-							className="object-cover"
-							sizes="(max-width: 1024px) 100vw, 50vw"
-						/>
+						{data.graphic ? (
+							<SolutionStackGraphic
+								name={data.graphic}
+								label={data.imageAlt}
+							/>
+						) : (
+							<Image
+								src={data.image}
+								alt={data.imageAlt}
+								fill
+								className="object-cover"
+								sizes="(max-width: 1024px) 100vw, 50vw"
+							/>
+						)}
 					</div>
 				</div>
 			</Container>

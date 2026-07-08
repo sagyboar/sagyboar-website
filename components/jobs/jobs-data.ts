@@ -96,28 +96,28 @@ export const whyWorkAtSagyboar = [
 		title: "AI-powered DevOps platform",
 		description:
 			"Sell an innovative product that combines deployment, monitoring, and managed services in one place.",
-		image: "/Default.png",
+		graphic: "platform",
 		imageAlt: "Sagyboar monitoring dashboard",
 	},
 	{
 		title: "High-demand market",
 		description:
 			"Our platform targets startups and growing businesses that need DevOps without hiring a full team.",
-		image: "/Default.png",
-		imageAlt: "Startup teams using Sagyboar",
+		graphic: "market",
+		imageAlt: "Rising demand from startups and growing businesses",
 	},
 	{
 		title: "Remote & flexible",
 		description:
 			"Work from anywhere with flexible hours and an async-friendly culture built for independent performers.",
-		image: "/Default.png",
-		imageAlt: "Remote team collaboration",
+		graphic: "remote",
+		imageAlt: "Remote team collaboration across the globe",
 	},
 	{
 		title: "Unlimited earning potential",
 		description:
 			"Commission-based roles reward results — top performers unlock bonuses and long-term partnership opportunities.",
-		image: "/Default.png",
-		imageAlt: "Enterprise growth with Sagyboar",
+		graphic: "earnings",
+		imageAlt: "Unlimited commission earning potential",
 	},
 ] as const;

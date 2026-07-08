@@ -26,7 +26,7 @@ export function JobsAbout() {
 							src="/Sagyboar-logo.png"
 							alt="Sagyboar platform"
 							fill
-							className="object-cover"
+							className="object-contain"
 							sizes="(max-width: 1024px) 100vw, 50vw"
 							priority
 						/>

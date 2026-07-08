@@ -128,15 +128,15 @@ function PaidPlanCard({
 }
 
 export function PricingPlansGrid({ onTalkToSales }: PricingPlansGridProps) {
-	const hobbyPlan = pricingPlans.find((plan) => plan.id === "hobby");
-	const growthPlans = pricingPlans.filter((plan) => plan.id !== "hobby");
+	const starterPlan = pricingPlans.find((plan) => plan.id === "starter");
+	const otherPlans = pricingPlans.filter((plan) => plan.id !== "starter");
 
-	if (!hobbyPlan) return null;
+	if (!starterPlan) return null;
 
 	return (
 		<div className="mx-auto mt-12 max-w-7xl">
 			<div className="grid gap-6 lg:grid-cols-3 lg:items-start lg:gap-6">
-				{/* Free + Hobby — stacked, each with its own outline */}
+				{/* Free + Starter — stacked, each with its own outline */}
 				<div className="flex flex-col gap-4">
 					<section
 						id={freePlan.id}
@@ -183,13 +183,13 @@ export function PricingPlansGrid({ onTalkToSales }: PricingPlansGridProps) {
 					</section>
 
 					<PaidPlanCard
-						plan={hobbyPlan}
+						plan={starterPlan}
 						onTalkToSales={onTalkToSales}
 						compact
 					/>
 				</div>
 
-				{growthPlans.map((plan) => (
+				{otherPlans.map((plan) => (
 					<PaidPlanCard
 						key={plan.id}
 						plan={plan}

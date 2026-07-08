@@ -13,7 +13,8 @@ export const hobbySolutionPage: SolutionPageData = {
 		ctaHref: Sagyboar_PORTAL_URL,
 		ctaExternal: true,
 		heroImage: "/Hobby.png",
-		heroImageAlt: "Sagyboar Hobby plan",
+		heroImageAlt: "Deploy your side projects without the DevOps headache",
+		heroGraphic: "sideProject",
 		icon: "sparkles",
 	},
 	stack: {
@@ -28,6 +29,7 @@ export const hobbySolutionPage: SolutionPageData = {
 					"Deploy a production app without wiring servers yourself. Hobby includes one managed application on Sagyboar infrastructure with SSL and a custom domain.",
 				image: "/Default.png",
 				imageAlt: "Sagyboar projects dashboard",
+				graphic: "oneApp",
 			},
 			{
 				title: "Managed hosting included",
@@ -35,6 +37,7 @@ export const hobbySolutionPage: SolutionPageData = {
 					"Skip the infrastructure rabbit hole. Your app runs on our managed stack so you can focus on building — not patching servers or chasing uptime.",
 				image: "/Default.png",
 				imageAlt: "Managed servers on Sagyboar",
+				graphic: "managedHosting",
 			},
 			{
 				title: "AI monitoring & alerts",
@@ -42,6 +45,7 @@ export const hobbySolutionPage: SolutionPageData = {
 					"Basic AI monitoring watches your app around the clock and surfaces uptime issues before your users do.",
 				image: "/Default.png",
 				imageAlt: "AI monitoring dashboard",
+				graphic: "uptime",
 			},
 			{
 				title: "Automated issue tickets",
@@ -49,6 +53,7 @@ export const hobbySolutionPage: SolutionPageData = {
 					"When something breaks, Sagyboar can open structured issue tickets in your repo so fixes start faster.",
 				image: "/Default.png",
 				imageAlt: "Deployment and issue tracking",
+				graphic: "tickets",
 			},
 			{
 				title: "Database, storage & support",
@@ -56,6 +61,7 @@ export const hobbySolutionPage: SolutionPageData = {
 					"Includes one managed database, 10 GB storage, and community support — everything a solo builder needs to ship confidently.",
 				image: "/Default.png",
 				imageAlt: "Compose and database management",
+				graphic: "database",
 			},
 		],
 	},
@@ -69,7 +75,8 @@ export const hobbySolutionPage: SolutionPageData = {
 		ctaHref: Sagyboar_PORTAL_URL,
 		ctaExternal: true,
 		image: "/Hobby.png",
-		imageAlt: "Deploy a project on Sagyboar",
+		imageAlt: "Ship your side project in minutes, not weekends",
+		graphic: "quickShip",
 	},
 	faq: {
 		title: "Hobby plan FAQ",

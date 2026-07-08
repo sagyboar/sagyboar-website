@@ -6,7 +6,12 @@ const nextConfig = {
 		ignoreBuildErrors: true,
 	},
 	images: {
-		remotePatterns: [],
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "ik.imagekit.io",
+			},
+		],
 	},
 };
 

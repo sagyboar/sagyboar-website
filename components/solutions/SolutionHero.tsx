@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { DARK_VEIL_PRESET } from "@/components/ui/dark-veil";
 import { cn } from "@/lib/utils";
 import { HeadingHighlight } from "./HeadingHighlight";
+import { SolutionStackGraphic } from "./SolutionStackGraphic";
 import type { SolutionIconName, SolutionPageData } from "./solution-types";
 
 const SOLUTION_ICONS = {
@@ -120,14 +121,21 @@ export function SolutionHero({ data }: SolutionHeroProps) {
 								"dark:border-white/15 dark:bg-white/5",
 							)}
 						>
-							<Image
-								src={data.heroImage}
-								alt={data.heroImageAlt}
-								fill
-								className="object-cover"
-								sizes="(max-width: 1024px) 100vw, 50vw"
-								priority
-							/>
+							{data.heroGraphic ? (
+								<SolutionStackGraphic
+									name={data.heroGraphic}
+									label={data.heroImageAlt}
+								/>
+							) : (
+								<Image
+									src={data.heroImage}
+									alt={data.heroImageAlt}
+									fill
+									className="object-cover"
+									sizes="(max-width: 1024px) 100vw, 50vw"
+									priority
+								/>
+							)}
 						</div>
 					</div>
 				</div>
