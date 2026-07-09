@@ -1,8 +1,7 @@
 const TRUSTED_LOGOS = [
 	{ name: "Documentsheet", label: "documentsheet" },
 	{ name: "Craftfosslabs", label: "craftfosslabs" },
-	{ name: "Hoodninja", label: "hoodninja" },
-	{ name: "RADIUS OIS", label: "radius ois" },
+	{ name: "Hoodninja", label: "hoodninja" }, 
 	{ name: "Volnyn", label: "volnyn" },
 ] as const;
 
