@@ -635,7 +635,7 @@ export const featurePages: FeaturePageData[] = [
 				name: "MCP server integration",
 				graphic: "mcp",
 				description:
-					"Official Dokploy MCP server with 508 tools across 49 categories — any AI assistant or agent can control the platform programmatically via natural language.",
+					"Official Sagyboar MCP server with 508 tools across 49 categories — any AI assistant or agent can control the platform programmatically via natural language.",
 				badge: "CORE",
 			},
 		],
