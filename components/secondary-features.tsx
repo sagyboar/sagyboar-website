@@ -29,7 +29,7 @@ const features = [
         title: "Remote Server Setup",
         description:
             "We provision, secure, and scale your remote servers — networking, SSL, and 24/7 health handled by our team so your infrastructure just works, without waking up your core engineers.",
-        image: "https://ik.imagekit.io/sagyboar/Remote-server.png?updatedAt=1783488818038",
+        image: "https://ik.imagekit.io/sagyboar/Remote-servers.png",
     },
 ];
 
