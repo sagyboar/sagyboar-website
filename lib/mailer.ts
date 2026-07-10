@@ -14,6 +14,7 @@ type SendMailArgs = {
 	text?: string;
 	html?: string;
 	replyTo?: string;
+	bcc?: string | string[];
 	attachments?: Attachment[];
 };
 
@@ -49,6 +50,7 @@ export async function sendMail({
 	text,
 	html,
 	replyTo,
+	bcc,
 	attachments,
 }: SendMailArgs): Promise<void> {
 	const from =
@@ -58,6 +60,7 @@ export async function sendMail({
 	await getTransporter().sendMail({
 		from,
 		to,
+		bcc,
 		subject,
 		text,
 		html,

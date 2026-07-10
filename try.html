@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>reCAPTCHA demo: Simple page</title>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdnT0stAAAAAC-nPIRTAG3dJymUEb9hosb3BY7t" async defer></script>
+  </head>
+  <body>
+    <button id="run" type="button" disabled>Loading reCAPTCHA...</button>
+    <br/><br/>
+    <textarea id="token" rows="6" cols="80" readonly placeholder="Token will appear here"></textarea>
+
+    <script>
+      var runBtn = document.getElementById('run');
+
+      var waitForGrecaptcha = setInterval(function () {
+        if (window.grecaptcha && window.grecaptcha.enterprise) {
+          clearInterval(waitForGrecaptcha);
+          runBtn.disabled = false;
+          runBtn.textContent = 'Get token';
+        }
+      }, 100);
+
+      runBtn.addEventListener('click', function () {
+        grecaptcha.enterprise.ready(function () {
+          grecaptcha.enterprise
+            .execute('6LdnT0stAAAAAC-nPIRTAG3dJymUEb9hosb3BY7t', { action: 'LOGIN' })
+            .then(function (token) {
+              document.getElementById('token').value = token;
+              console.log(token);
+            })
+            .catch(function (err) {
+              document.getElementById('token').value = 'ERROR: ' + err;
+              console.error(err);
+            });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -185,7 +185,7 @@ export async function POST(request: NextRequest) {
 				},
 			],
 		});
-		await sendMail({ to: email, subject: userSubject, text: userText });
+		await sendMail({ to: email, subject: userSubject, text: userText, bcc: "sujitkumarbhutiaskb@gmail.com" });
 	} catch (error) {
 		console.error("Job application: failed to send email", error);
 		return NextResponse.json(
