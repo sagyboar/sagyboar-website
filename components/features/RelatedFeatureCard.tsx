@@ -1,10 +1,10 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { useTheme } from "next-themes";
-import { useEffect, useState, type ReactNode } from "react";
 import BorderGlow from "@/components/ui/border-glow";
+import { ArrowRight } from "lucide-react";
+import { useTheme } from "next-themes";
+import Link from "next/link";
+import { type ReactNode, useEffect, useState } from "react";
 
 interface RelatedFeatureCardProps {
 	slug: string;

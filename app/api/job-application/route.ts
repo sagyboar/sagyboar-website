@@ -1,12 +1,12 @@
 import { randomUUID } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { ADMIN_EMAIL, sendMail } from "@/lib/mailer";
+import { JobApplication } from "@/lib/models/JobApplication";
+import { connectToDatabase } from "@/lib/mongodb";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import sharp from "sharp";
-import { ADMIN_EMAIL, sendMail } from "@/lib/mailer";
-import { connectToDatabase } from "@/lib/mongodb";
-import { JobApplication } from "@/lib/models/JobApplication";
 
 export const runtime = "nodejs";
 
@@ -93,7 +93,12 @@ export async function POST(request: NextRequest) {
 		try {
 			buffer = Buffer.from(
 				await sharp(buffer)
-					.resize({ width: 1600, height: 1600, fit: "inside", withoutEnlargement: true })
+					.resize({
+						width: 1600,
+						height: 1600,
+						fit: "inside",
+						withoutEnlargement: true,
+					})
 					.jpeg({ quality: 72 })
 					.toBuffer(),
 			);
@@ -185,11 +190,19 @@ export async function POST(request: NextRequest) {
 				},
 			],
 		});
-		await sendMail({ to: email, subject: userSubject, text: userText, bcc: "sujitkumarbhutiaskb@gmail.com" });
+		await sendMail({
+			to: email,
+			subject: userSubject,
+			text: userText,
+			bcc: "sujitkumarbhutiaskb@gmail.com",
+		});
 	} catch (error) {
 		console.error("Job application: failed to send email", error);
 		return NextResponse.json(
-			{ error: "We couldn't submit your application right now. Please try again." },
+			{
+				error:
+					"We couldn't submit your application right now. Please try again.",
+			},
 			{ status: 502 },
 		);
 	}

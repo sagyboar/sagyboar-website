@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { Container } from "@/components/Container";
-import { PricingShaderWave } from "./pricing/PricingShaderWave";
+import { useState } from "react";
 import { ContactFormModal } from "./ContactFormModal";
 import { MarketComparisonTable } from "./pricing/MarketComparisonTable";
 import { PricingCta } from "./pricing/PricingCta";
@@ -15,6 +14,7 @@ import { PricingModel } from "./pricing/PricingModel";
 import { PricingPlanFitGuide } from "./pricing/PricingPlanFitGuide";
 import { PricingPlansGrid } from "./pricing/PricingPlansGrid";
 import { PricingSectionHeading } from "./pricing/PricingSectionHeading";
+import { PricingShaderWave } from "./pricing/PricingShaderWave";
 import { PricingWhyChoose } from "./pricing/PricingWhyChoose";
 import { businessModelTagline } from "./pricing/pricing-data";
 
@@ -39,7 +39,10 @@ export function Pricing() {
 								Pricing
 							</p>
 							<h1 className="mt-3 font-serif text-3xl tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-								One platform. <span className="border-b-2 border-blue-400 text-blue-400">Zero DevOps headaches.</span>
+								One platform.{" "}
+								<span className="border-b-2 border-blue-400 text-blue-400">
+									Zero DevOps headaches.
+								</span>
 							</h1>
 							<p className="mt-6 max-w-xl text-lg text-muted-foreground sm:text-xl">
 								Automate with AI, scale with a shared DevOps team, and run on
@@ -60,7 +63,10 @@ export function Pricing() {
 			</section>
 
 			{/* Core business model — one line */}
-			<section aria-label="Business model" className="border-b border-border bg-muted/20">
+			<section
+				aria-label="Business model"
+				className="border-b border-border bg-muted/20"
+			>
 				<Container>
 					<p className="mx-auto max-w-4xl py-10 text-center font-serif text-xl leading-relaxed text-foreground sm:text-2xl">
 						&ldquo;{businessModelTagline}&rdquo;
@@ -82,10 +88,7 @@ export function Pricing() {
 				className="py-16 sm:py-24"
 			>
 				<Container>
-					<PricingSectionHeading
-						before="Choose your"
-						highlight="plan"
-					/>
+					<PricingSectionHeading before="Choose your" highlight="plan" />
 
 					<PricingPlansGrid onTalkToSales={() => setOpenSalesModal(true)} />
 

@@ -1,3 +1,7 @@
+import {
+	type FeaturePageData,
+	featurePages,
+} from "@/components/features/features-data";
 import type { LucideIcon } from "lucide-react";
 import {
 	Briefcase,
@@ -11,7 +15,6 @@ import {
 	Sparkles,
 	Tag,
 } from "lucide-react";
-import { featurePages, type FeaturePageData } from "@/components/features/features-data";
 
 export type NavLinkItem = {
 	title: string;

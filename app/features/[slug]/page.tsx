@@ -1,8 +1,11 @@
+import { FeaturePage } from "@/components/features/FeaturePage";
+import {
+	featurePages,
+	getFeatureBySlug,
+} from "@/components/features/features-data";
+import { buildFeatureMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { FeaturePage } from "@/components/features/FeaturePage";
-import { featurePages, getFeatureBySlug } from "@/components/features/features-data";
-import { buildFeatureMetadata } from "@/lib/seo";
 
 type FeatureRouteProps = {
 	params: Promise<{ slug: string }>;

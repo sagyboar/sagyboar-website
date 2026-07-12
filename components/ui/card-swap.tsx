@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import gsap from "gsap";
 import React, {
 	Children,
@@ -13,7 +14,6 @@ import React, {
 	useMemo,
 	useRef,
 } from "react";
-import { cn } from "@/lib/utils";
 
 export interface CardSwapProps {
 	width?: number | string;
@@ -264,7 +264,15 @@ const CardSwap: React.FC<CardSwapProps> = ({
 			};
 		}
 		return () => clearInterval(intervalRef.current);
-	}, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing, refs]);
+	}, [
+		cardDistance,
+		verticalDistance,
+		delay,
+		pauseOnHover,
+		skewAmount,
+		easing,
+		refs,
+	]);
 
 	const rendered = childArr.map((child, i) =>
 		isValidElement<CardProps>(child)

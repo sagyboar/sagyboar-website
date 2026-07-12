@@ -1,8 +1,8 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Mesh, Program, Renderer, Triangle } from "ogl";
 import { useEffect, useRef } from "react";
-import { cn } from "@/lib/utils";
 
 export interface SoftAuroraProps {
 	className?: string;
@@ -199,7 +199,6 @@ export default function SoftAurora({
 			display: "block",
 		} as Partial<CSSStyleDeclaration>);
 
-		let program: Program;
 		const currentMouse = [0.5, 0.5];
 		let targetMouse = [0.5, 0.5];
 
@@ -215,21 +214,8 @@ export default function SoftAurora({
 			targetMouse = [0.5, 0.5];
 		};
 
-		const resize = () => {
-			const w = container.offsetWidth || 1;
-			const h = container.offsetHeight || 1;
-			renderer.setSize(w, h);
-			if (program) {
-				program.uniforms.uResolution.value = [
-					gl.canvas.width,
-					gl.canvas.height,
-					gl.canvas.width / gl.canvas.height,
-				];
-			}
-		};
-
 		const geometry = new Triangle(gl);
-		program = new Program(gl, {
+		const program = new Program(gl, {
 			vertex: vertexShader,
 			fragment: fragmentShader,
 			uniforms: {
@@ -258,6 +244,17 @@ export default function SoftAurora({
 				uEnableMouse: { value: enableMouseInteraction },
 			},
 		});
+
+		const resize = () => {
+			const w = container.offsetWidth || 1;
+			const h = container.offsetHeight || 1;
+			renderer.setSize(w, h);
+			program.uniforms.uResolution.value = [
+				gl.canvas.width,
+				gl.canvas.height,
+				gl.canvas.width / gl.canvas.height,
+			];
+		};
 
 		const mesh = new Mesh(gl, { geometry, program });
 		container.appendChild(gl.canvas);
@@ -321,6 +318,9 @@ export default function SoftAurora({
 	]);
 
 	return (
-		<div ref={containerRef} className={cn("relative h-full w-full", className)} />
+		<div
+			ref={containerRef}
+			className={cn("relative h-full w-full", className)}
+		/>
 	);
 }

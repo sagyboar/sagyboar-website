@@ -2,9 +2,10 @@
 
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
-import type { ReactNode } from "react";
-import React, { useCallback, useLayoutEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+import type { ReactNode } from "react";
+import type React from "react";
+import { useCallback, useLayoutEffect, useRef } from "react";
 
 export interface ScrollStackItemProps {
 	itemClassName?: string;
@@ -158,9 +159,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 			);
 			const targetScale = baseScale + i * itemScale;
 			const scale = 1 - scaleProgress * (1 - targetScale);
-			const rotation = rotationAmount
-				? i * rotationAmount * scaleProgress
-				: 0;
+			const rotation = rotationAmount ? i * rotationAmount * scaleProgress : 0;
 
 			let blur = 0;
 			if (blurAmount) {
@@ -310,7 +309,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 		const cards = Array.from(
 			useWindowScroll
 				? document.querySelectorAll(".scroll-stack-card")
-				: (scrollerRef.current?.querySelectorAll(".scroll-stack-card") ?? []),
+				: scrollerRef.current?.querySelectorAll(".scroll-stack-card") ?? [],
 		) as HTMLElement[];
 		cardsRef.current = cards;
 		const transformsCache = lastTransformsRef.current;

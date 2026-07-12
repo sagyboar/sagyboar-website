@@ -1,11 +1,11 @@
 "use client";
 
-import { FileText, UploadCloud, X } from "lucide-react";
-import { useRef, useState } from "react";
 import { trackGAEvent } from "@/components/analitycs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { FileText, UploadCloud, X } from "lucide-react";
+import { useRef, useState } from "react";
 
 function formatBytes(bytes: number): string {
 	if (bytes < 1024) return `${bytes} B`;
@@ -56,8 +56,7 @@ export function JobApplicationForm({
 		setResume(file);
 		setErrors((prev) => {
 			if (!prev.resume) return prev;
-			const next = { ...prev };
-			delete next.resume;
+			const { resume: _removed, ...next } = prev;
 			return next;
 		});
 	};
@@ -71,8 +70,7 @@ export function JobApplicationForm({
 		setForm((prev) => ({ ...prev, [field]: value }));
 		setErrors((prev) => {
 			if (!prev[field]) return prev;
-			const next = { ...prev };
-			delete next[field];
+			const { [field]: _removed, ...next } = prev;
 			return next;
 		});
 	};
@@ -155,7 +153,10 @@ export function JobApplicationForm({
 		<form onSubmit={handleSubmit} className="space-y-5">
 			<div className="grid gap-5 sm:grid-cols-2">
 				<div className="space-y-2">
-					<label htmlFor="fullName" className="block text-sm font-medium text-foreground">
+					<label
+						htmlFor="fullName"
+						className="block text-sm font-medium text-foreground"
+					>
 						Full name <span className="text-red-500">*</span>
 					</label>
 					<Input
@@ -167,7 +168,10 @@ export function JobApplicationForm({
 					/>
 				</div>
 				<div className="space-y-2">
-					<label htmlFor="appEmail" className="block text-sm font-medium text-foreground">
+					<label
+						htmlFor="appEmail"
+						className="block text-sm font-medium text-foreground"
+					>
 						Email <span className="text-red-500">*</span>
 					</label>
 					<Input
@@ -183,7 +187,10 @@ export function JobApplicationForm({
 
 			<div className="grid gap-5 sm:grid-cols-2">
 				<div className="space-y-2">
-					<label htmlFor="phone" className="block text-sm font-medium text-foreground">
+					<label
+						htmlFor="phone"
+						className="block text-sm font-medium text-foreground"
+					>
 						Contact number <span className="text-red-500">*</span>
 					</label>
 					<Input
@@ -195,7 +202,10 @@ export function JobApplicationForm({
 					/>
 				</div>
 				<div className="space-y-2">
-					<label htmlFor="location" className="block text-sm font-medium text-foreground">
+					<label
+						htmlFor="location"
+						className="block text-sm font-medium text-foreground"
+					>
 						Current location
 					</label>
 					<Input
@@ -209,7 +219,10 @@ export function JobApplicationForm({
 
 			<div className="grid gap-5 sm:grid-cols-2">
 				<div className="space-y-2">
-					<label htmlFor="linkedin" className="block text-sm font-medium text-foreground">
+					<label
+						htmlFor="linkedin"
+						className="block text-sm font-medium text-foreground"
+					>
 						LinkedIn profile
 					</label>
 					<Input
@@ -220,7 +233,10 @@ export function JobApplicationForm({
 					/>
 				</div>
 				<div className="space-y-2">
-					<label htmlFor="experience" className="block text-sm font-medium text-foreground">
+					<label
+						htmlFor="experience"
+						className="block text-sm font-medium text-foreground"
+					>
 						Relevant experience
 					</label>
 					<Input
@@ -233,7 +249,10 @@ export function JobApplicationForm({
 			</div>
 
 			<div className="space-y-2">
-				<label htmlFor="coverNote" className="block text-sm font-medium text-foreground">
+				<label
+					htmlFor="coverNote"
+					className="block text-sm font-medium text-foreground"
+				>
 					Cover note
 				</label>
 				<textarea
@@ -337,7 +356,11 @@ export function JobApplicationForm({
 				</p>
 			)}
 
-			<Button type="submit" disabled={submitting} className="w-full rounded-full sm:w-auto">
+			<Button
+				type="submit"
+				disabled={submitting}
+				className="w-full rounded-full sm:w-auto"
+			>
 				{submitting ? "Submitting..." : "Submit application"}
 			</Button>
 		</form>

@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
-import { byocSteps, sharedDevOpsSteps } from "./pricing-data";
 import { PricingSectionHeading } from "./PricingSectionHeading";
+import { byocSteps, sharedDevOpsSteps } from "./pricing-data";
 
 type ModelStep = {
 	step: string;
@@ -47,7 +47,10 @@ function StepCard({ item, index }: { item: ModelStep; index: number }) {
 export function PricingModel() {
 	return (
 		<div className="mx-auto max-w-7xl">
-			<PricingSectionHeading before="The BYOC model — why it's" highlight="genius" />
+			<PricingSectionHeading
+				before="The BYOC model — why it's"
+				highlight="genius"
+			/>
 			<p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
 				You bring the cloud. We bring the platform and the team. Zero
 				infrastructure cost sits on us.
@@ -59,10 +62,7 @@ export function PricingModel() {
 			</div>
 
 			<div className="mt-20">
-				<PricingSectionHeading
-					before="Shared DevOps team"
-					highlight="model"
-				/>
+				<PricingSectionHeading before="Shared DevOps team" highlight="model" />
 				<p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
 					One team, powered by AI, supporting many projects — so you scale
 					without hiring.

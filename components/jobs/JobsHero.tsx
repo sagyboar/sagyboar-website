@@ -1,11 +1,11 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes";
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const SoftAurora = dynamic(() => import("@/components/ui/soft-aurora"), {
 	ssr: false,
@@ -67,8 +67,6 @@ export function JobsHero() {
 				<div className="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(ellipse_at_center,transparent_5%,rgba(0,0,0,0.4)_60%,rgba(0,0,0,0.88)_100%)] dark:block" />
 				<div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-b from-black/65 via-transparent to-black/70 dark:block" />
 				<div className="pointer-events-none absolute inset-x-0 top-0 hidden h-36 bg-gradient-to-b from-black/80 to-transparent dark:block" />
-			
-			
 			</div>
 
 			<Container className="relative z-10 pt-28 pb-24 sm:pt-32 sm:pb-32 lg:pb-36">
@@ -77,7 +75,10 @@ export function JobsHero() {
 						Careers at Sagyboar
 					</p>
 					<h1 className="mt-4 font-serif text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Join us and help <br/> redefine how teams <span className="border-b border-blue-400 text-blue-400">deploy software</span>
+						Join us and help <br /> redefine how teams{" "}
+						<span className="border-b border-blue-400 text-blue-400">
+							deploy software
+						</span>
 					</h1>
 					<p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-black/90 dark:text-white/90 sm:text-lg">
 						We&apos;re building an AI-native DevOps platform that simplifies
@@ -85,9 +86,9 @@ export function JobsHero() {
 						teams. Explore open roles and grow with us.
 					</p>
 					<div className="p-1.5 mt-10 rounded-full bg-blue-400 w-fit mx-auto">
-					<Button asChild size="lg" className="rounded-full">
-						<Link href="#open-positions">See open positions</Link>
-					</Button>
+						<Button asChild size="lg" className="rounded-full">
+							<Link href="#open-positions">See open positions</Link>
+						</Button>
 					</div>
 				</div>
 			</Container>

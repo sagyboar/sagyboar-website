@@ -1,8 +1,8 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { useEffect, useRef } from "react";
-import { cn } from "@/lib/utils";
 
 const VERTEX_SHADER = `
   attribute vec2 a_position;
@@ -166,7 +166,10 @@ export function PricingShaderWave({ className }: PricingShaderWaveProps) {
 		<canvas
 			ref={canvasRef}
 			aria-hidden
-			className={cn("pointer-events-none absolute inset-0 h-full w-full", className)}
+			className={cn(
+				"pointer-events-none absolute inset-0 h-full w-full",
+				className,
+			)}
 		/>
 	);
 }

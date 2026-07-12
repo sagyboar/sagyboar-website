@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
-import ScrollStack, { ScrollStackItem } from "@/components/ui/scroll-stack";
 import { Container } from "@/components/Container";
+import ScrollStack, { ScrollStackItem } from "@/components/ui/scroll-stack";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { HeadingHighlight } from "./HeadingHighlight";
 import { SolutionStackGraphic } from "./SolutionStackGraphic";
 import type { SolutionPageData } from "./solution-types";

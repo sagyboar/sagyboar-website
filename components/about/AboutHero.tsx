@@ -1,9 +1,9 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { Container } from "@/components/Container";
+import { useTheme } from "next-themes";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 
 const SoftAurora = dynamic(() => import("@/components/ui/soft-aurora"), {
 	ssr: false,
@@ -71,7 +71,10 @@ export function AboutHero() {
 						About Sagyboar
 					</p>
 					<h1 className="mt-4 font-serif text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Helping teams <span className="border-b border-blue-400 text-blue-400">deploy without the DevOps overhead</span>
+						Helping teams{" "}
+						<span className="border-b border-blue-400 text-blue-400">
+							deploy without the DevOps overhead
+						</span>
 					</h1>
 					<p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-black/90 dark:text-white/90 sm:text-lg">
 						We&apos;re an AI-native DevOps platform built to make deployment,

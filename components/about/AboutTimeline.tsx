@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Container } from "@/components/Container";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 import { timelineMilestones } from "./about-data";
 
 export function AboutTimeline() {
@@ -73,7 +73,9 @@ export function AboutTimeline() {
 										<div
 											className={cn(
 												"hidden sm:block",
-												alignRight ? "sm:col-start-1 sm:row-start-1" : "sm:col-start-2",
+												alignRight
+													? "sm:col-start-1 sm:row-start-1"
+													: "sm:col-start-2",
 											)}
 										/>
 									</div>

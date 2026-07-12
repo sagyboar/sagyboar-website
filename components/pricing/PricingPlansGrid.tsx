@@ -1,11 +1,11 @@
 "use client";
 
-import clsx from "clsx";
-import { ArrowUpRight, Check } from "lucide-react";
-import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Sagyboar_PORTAL_URL } from "@/constants/branding";
+import clsx from "clsx";
+import { ArrowUpRight, Check } from "lucide-react";
+import Link from "next/link";
 import { freePlan, pricingPlans } from "./pricing-data";
 
 type PaidPlan = (typeof pricingPlans)[number];
@@ -84,17 +84,44 @@ function PaidPlanCard({
 						compact ? "text-xs" : "text-sm",
 					)}
 				>
-					{plan.includes.map((item) => (
-						<li key={item} className="flex gap-2">
-							<Check
+					{plan.includes.map((item) => {
+						const text = typeof item === "string" ? item : item.text;
+						const highlighted = typeof item !== "string" && item.highlighted;
+
+						return (
+							<li
+								key={text}
 								className={clsx(
-									"mt-0.5 shrink-0 text-primary",
-									compact ? "h-3.5 w-3.5" : "h-4 w-4",
+									"flex gap-2",
+									highlighted &&
+										"rounded-lg border border-primary/30 bg-primary/5 px-2 py-1.5 font-medium text-foreground",
 								)}
-							/>
-							{item}
-						</li>
-					))}
+							>
+								<Check
+									className={clsx(
+										"mt-0.5 shrink-0 text-primary",
+										compact ? "h-3.5 w-3.5" : "h-4 w-4",
+									)}
+								/>
+								<span className="flex flex-wrap items-center gap-1.5">
+									{text}
+									{highlighted ? (
+										<Badge
+											variant="secondary"
+											className={clsx(
+												"bg-primary/15 text-primary",
+												compact
+													? "px-1.5 py-0 text-[9px]"
+													: "px-1.5 py-0 text-[10px]",
+											)}
+										>
+											Important
+										</Badge>
+									) : null}
+								</span>
+							</li>
+						);
+					})}
 				</ul>
 			</div>
 

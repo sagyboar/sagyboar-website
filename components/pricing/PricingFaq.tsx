@@ -7,8 +7,8 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-import { pricingFaqs } from "./pricing-data";
 import { PricingSectionHeading } from "./PricingSectionHeading";
+import { pricingFaqs } from "./pricing-data";
 
 export function PricingFaq() {
 	return (

@@ -1,11 +1,11 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { Container } from "@/components/Container";
 import { Sagyboar_PORTAL_URL } from "@/constants/branding";
+import { useTheme } from "next-themes";
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 
 const Silk = dynamic(() => import("@/components/ui/silk"), { ssr: false });
@@ -25,10 +25,7 @@ export function CallToAction() {
 	const silkColor = isDark ? SILK_COLORS.dark : SILK_COLORS.light;
 
 	return (
-		<section
-			id="get-started-today"
-			className="bg-background py-16 sm:py-20"
-		>
+		<section id="get-started-today" className="bg-background py-16 sm:py-20">
 			<Container>
 				<div className="relative overflow-hidden rounded-3xl border border-border shadow-lg">
 					<div

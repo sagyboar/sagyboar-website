@@ -19,10 +19,7 @@ export function SolutionFaq({ data }: SolutionFaqProps) {
 		<section className="border-b border-border py-16 sm:py-24">
 			<Container>
 				<h2 className="text-center font-display text-3xl tracking-tight text-foreground sm:text-4xl">
-					<HeadingHighlight
-						text={data.title}
-						highlight={data.titleHighlight}
-					/>
+					<HeadingHighlight text={data.title} highlight={data.titleHighlight} />
 				</h2>
 				<p className="mx-auto mt-4 max-w-2xl text-center text-sm text-muted-foreground sm:text-base">
 					{data.subtitle}

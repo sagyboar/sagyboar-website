@@ -1,12 +1,12 @@
 "use client";
 
-import { ArrowRight, Briefcase, MapPin } from "lucide-react";
-import Link from "next/link";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import BorderGlow from "@/components/ui/border-glow";
 import { Badge } from "@/components/ui/badge";
+import BorderGlow from "@/components/ui/border-glow";
 import { Button } from "@/components/ui/button";
+import { ArrowRight, Briefcase, MapPin } from "lucide-react";
+import { useTheme } from "next-themes";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import type { JobPosting } from "./jobs-data";
 
 export function JobListingCard({ job }: { job: JobPosting }) {

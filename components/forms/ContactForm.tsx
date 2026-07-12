@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { trackGAEvent } from "@/components/analitycs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
 type ContactFormState = {
 	name: string;
@@ -116,7 +116,10 @@ export function ContactForm({
 		<form onSubmit={handleSubmit} className="space-y-5">
 			<div className="grid gap-5 sm:grid-cols-2">
 				<div className="space-y-2">
-					<label htmlFor="name" className="block text-sm font-medium text-foreground">
+					<label
+						htmlFor="name"
+						className="block text-sm font-medium text-foreground"
+					>
 						Name <span className="text-red-500">*</span>
 					</label>
 					<Input
@@ -128,7 +131,10 @@ export function ContactForm({
 					/>
 				</div>
 				<div className="space-y-2">
-					<label htmlFor="email" className="block text-sm font-medium text-foreground">
+					<label
+						htmlFor="email"
+						className="block text-sm font-medium text-foreground"
+					>
 						Email <span className="text-red-500">*</span>
 					</label>
 					<Input
@@ -144,7 +150,10 @@ export function ContactForm({
 
 			<div className="grid gap-5 sm:grid-cols-2">
 				<div className="space-y-2">
-					<label htmlFor="company" className="block text-sm font-medium text-foreground">
+					<label
+						htmlFor="company"
+						className="block text-sm font-medium text-foreground"
+					>
 						Company
 					</label>
 					<Input
@@ -155,7 +164,10 @@ export function ContactForm({
 					/>
 				</div>
 				<div className="space-y-2">
-					<label htmlFor="subject" className="block text-sm font-medium text-foreground">
+					<label
+						htmlFor="subject"
+						className="block text-sm font-medium text-foreground"
+					>
 						Subject
 					</label>
 					<Input
@@ -168,7 +180,10 @@ export function ContactForm({
 			</div>
 
 			<div className="space-y-2">
-				<label htmlFor="message" className="block text-sm font-medium text-foreground">
+				<label
+					htmlFor="message"
+					className="block text-sm font-medium text-foreground"
+				>
 					Message <span className="text-red-500">*</span>
 				</label>
 				<textarea
@@ -192,11 +207,20 @@ export function ContactForm({
 
 			<div className="flex justify-end gap-3">
 				{showCancelButton && onCancel && (
-					<Button type="button" variant="outline" onClick={onCancel} disabled={submitting}>
+					<Button
+						type="button"
+						variant="outline"
+						onClick={onCancel}
+						disabled={submitting}
+					>
 						Cancel
 					</Button>
 				)}
-				<Button type="submit" disabled={submitting} className="min-w-[140px] rounded-full">
+				<Button
+					type="submit"
+					disabled={submitting}
+					className="min-w-[140px] rounded-full"
+				>
 					{submitting ? "Sending..." : "Send message"}
 				</Button>
 			</div>

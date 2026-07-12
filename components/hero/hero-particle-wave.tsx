@@ -19,7 +19,9 @@ type HeroParticleWaveProps = {
 	surface?: "default" | "elevated";
 };
 
-export function HeroParticleWave({ surface = "default" }: HeroParticleWaveProps) {
+export function HeroParticleWave({
+	surface = "default",
+}: HeroParticleWaveProps) {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const { resolvedTheme } = useTheme();
 
@@ -72,7 +74,7 @@ export function HeroParticleWave({ surface = "default" }: HeroParticleWaveProps)
 				const depth = Math.random();
 				particles.push({
 					x: Math.random() * width,
-					yRatio: Math.pow(Math.random(), 0.85),
+					yRatio: Math.random() ** 0.85,
 					size: 0.4 + depth * depth * 4.5,
 					opacity: 0.08 + depth * 0.72,
 					depth,
@@ -114,8 +116,7 @@ export function HeroParticleWave({ surface = "default" }: HeroParticleWaveProps)
 					surface === "elevated" ? 120 + depth * 55 : 210 + depth * 45;
 				return `rgba(${tone},${tone},${tone},${alpha})`;
 			}
-			const tone =
-				surface === "elevated" ? 168 + depth * 12 : 245 + depth * 10;
+			const tone = surface === "elevated" ? 168 + depth * 12 : 245 + depth * 10;
 			return `rgba(${tone},${tone},${tone},${alpha})`;
 		};
 

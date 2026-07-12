@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
 import {
+	type PageSeoEntry,
 	SITE_KEYWORDS,
 	SITE_NAME,
 	SITE_URL,
-	type PageSeoEntry,
 } from "@/constants/seo-data";
+import type { Metadata } from "next";
 
 type BuildMetadataOptions = PageSeoEntry & {
 	ogImage?: string;

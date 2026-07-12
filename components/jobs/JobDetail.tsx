@@ -1,9 +1,9 @@
-import { ArrowLeft, Briefcase, MapPin } from "lucide-react";
-import Link from "next/link";
 import { Container } from "@/components/Container";
 import { JobApplicationForm } from "@/components/forms/JobApplicationForm";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ArrowLeft, Briefcase, MapPin } from "lucide-react";
+import Link from "next/link";
 import type { JobPosting } from "./jobs-data";
 
 function JobSection({ title, items }: { title: string; items: string[] }) {
@@ -71,10 +71,7 @@ export function JobDetail({ job }: { job: JobPosting }) {
 			<section className="py-14 sm:py-20">
 				<Container>
 					<div className="mx-auto flex max-w-7xl flex-col gap-10">
-						<JobSection
-							title="Responsibilities"
-							items={job.responsibilities}
-						/>
+						<JobSection title="Responsibilities" items={job.responsibilities} />
 						<JobSection title="Required skills" items={job.requiredSkills} />
 						<JobSection
 							title="Preferred experience"

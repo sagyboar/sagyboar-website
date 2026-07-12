@@ -1,16 +1,16 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import {
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
 	type CSSProperties,
 	type FC,
 	type PointerEvent,
 	type ReactNode,
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
 } from "react";
-import { cn } from "@/lib/utils";
 
 interface BorderGlowProps {
 	children?: ReactNode;
@@ -253,10 +253,7 @@ const BorderGlow: FC<BorderGlowProps> = ({
 			onPointerMove={handlePointerMove}
 			onPointerEnter={() => setIsHovered(true)}
 			onPointerLeave={() => setIsHovered(false)}
-			className={cn(
-				"relative isolate grid border border-border/60",
-				className,
-			)}
+			className={cn("relative isolate grid border border-border/60", className)}
 			style={{
 				background: backgroundColor,
 				borderRadius: `${borderRadius}px`,
@@ -343,7 +340,9 @@ const BorderGlow: FC<BorderGlowProps> = ({
 				/>
 			</span>
 
-			<div className="relative z-[1] flex flex-col overflow-auto">{children}</div>
+			<div className="relative z-[1] flex flex-col overflow-auto">
+				{children}
+			</div>
 		</div>
 	);
 };

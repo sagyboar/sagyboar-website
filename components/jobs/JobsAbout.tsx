@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Container } from "@/components/Container";
+import Image from "next/image";
 import { Sagyboar_ABOUT } from "./jobs-data";
 
 export function JobsAbout() {

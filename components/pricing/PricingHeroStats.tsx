@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import NumberTicker from "@/components/ui/number-ticker";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 import { pricingStats } from "./pricing-data";
 
 export function PricingHeroStats() {

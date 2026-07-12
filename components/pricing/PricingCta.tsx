@@ -1,10 +1,10 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { useTheme } from "next-themes";
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 
 const Silk = dynamic(() => import("@/components/ui/silk"), { ssr: false });
 

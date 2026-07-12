@@ -85,6 +85,7 @@ export const planLimitations = [
 		price: "$499/month",
 		items: [
 			"Up to 20 projects",
+			"5 agents",
 			"Priority support queue with faster response",
 			"Cloud infrastructure billed directly to your own provider account",
 		],
@@ -95,6 +96,8 @@ export const planLimitations = [
 		price: "$1,000/month",
 		items: [
 			"Up to 30 projects",
+			"8 agents",
+			"SSO and audit logs",
 			"Premium SLA with priority incident handling",
 			"Custom integrations and dedicated technical contact",
 			"Cloud infrastructure billed directly to your own provider account",
@@ -116,15 +119,14 @@ export const pricingPlans = [
 			"Up to 10 projects",
 			"AI deployment + monitoring",
 			"Auto incident detection",
-			"Auto GitHub/GitLab tickets",
+			"Auto ticket generate",
 			"Shared DevOps support",
 		],
 	},
 	{
 		id: "growth",
 		name: "Growth",
-		tagline:
-			"For scaling teams that need faster support and deeper insights.",
+		tagline: "For scaling teams that need faster support and deeper insights.",
 		price: 499,
 		recommended: true,
 		cta: "Get started",
@@ -132,6 +134,12 @@ export const pricingPlans = [
 		includes: [
 			"Up to 20 projects",
 			"Everything in Starter",
+			{
+				text: "Auto heal with pull ticket",
+				highlighted: true,
+			},
+			"Auto ticket generate & assign to agent",
+			"5 agents",
 			"Faster support response",
 			"Advanced analytics",
 			"AI optimization suggestions",
@@ -150,6 +158,14 @@ export const pricingPlans = [
 		includes: [
 			"Up to 30 projects",
 			"Everything in Growth",
+			{
+				text: "Auto heal with pull ticket",
+				highlighted: true,
+			},
+			"Auto ticket generate & assign to agent",
+			"8 agents",
+			"SSO",
+			"Audit logs",
 			"Premium SLA",
 			"Priority incident handling",
 			"Custom integrations",
@@ -236,7 +252,7 @@ export const planFitGuide = [
 		points: [
 			"Teams shipping their first production apps",
 			"Up to 10 projects with AI deployment & monitoring",
-			"Automatic incident detection and repo tickets",
+			"Auto ticket generate",
 			"Shared DevOps support without a full-time hire",
 		],
 	},
@@ -249,9 +265,9 @@ export const planFitGuide = [
 		icon: Rocket,
 		points: [
 			"Scaling teams running up to 20 projects",
+			"Auto heal with pull ticket",
+			"Auto ticket generate & assign to 5 agents",
 			"Faster support response and a priority queue",
-			"Advanced analytics and AI optimization suggestions",
-			"Everything in Starter, leveled up",
 		],
 	},
 	{
@@ -263,9 +279,9 @@ export const planFitGuide = [
 		icon: Building2,
 		points: [
 			"Established teams with up to 30 projects",
+			"Auto heal with pull ticket",
+			"SSO and audit logs",
 			"Premium SLA and priority incident handling",
-			"Custom integrations and a dedicated tech contact",
-			"Run everything on your own cloud account",
 		],
 	},
 ] as const;
@@ -299,7 +315,13 @@ export const marketComparison: ComparisonRow[] = [
 		hiringTeam: "Extra cost",
 	},
 	{
-		feature: "Auto repo issue tickets",
+		feature: "Auto heal with pull ticket",
+		Sagyboar: "Growth+",
+		others: "No",
+		hiringTeam: "Manual",
+	},
+	{
+		feature: "Auto ticket generate & assign to agent",
 		Sagyboar: "Yes",
 		others: "No",
 		hiringTeam: "No",

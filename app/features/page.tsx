@@ -1,20 +1,20 @@
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-import Link from "next/link";
 import { Container } from "@/components/Container";
-import { FeatureBadge } from "@/components/features/FeatureBadge";
 import {
 	FeatureCtaBackground,
 	FeatureHeroBackground,
 } from "@/components/features/FeatureBackgrounds";
+import { FeatureBadge } from "@/components/features/FeatureBadge";
 import {
-	featurePages,
 	type FeatureGroup,
+	featurePages,
 } from "@/components/features/features-data";
 import { HeadingHighlight } from "@/components/solutions/HeadingHighlight";
 import { Button } from "@/components/ui/button";
-import { pageSeo } from "@/constants/seo-data";
 import { Sagyboar_PORTAL_URL } from "@/constants/branding";
+import { pageSeo } from "@/constants/seo-data";
 import { buildMetadata } from "@/lib/seo";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 export const metadata = buildMetadata(pageSeo.features);
 

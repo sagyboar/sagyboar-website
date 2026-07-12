@@ -148,7 +148,14 @@ function PlatformGraphic() {
 
 			{/* metric bars */}
 			<g>
-				<rect x="84" y="222" width="70" height="6" rx="3" className="fill-primary/25" />
+				<rect
+					x="84"
+					y="222"
+					width="70"
+					height="6"
+					rx="3"
+					className="fill-primary/25"
+				/>
 				<rect x="84" y="222" width="30" height="6" rx="3" fill="#3b82f6">
 					<animate
 						attributeName="width"
@@ -157,7 +164,14 @@ function PlatformGraphic() {
 						repeatCount="indefinite"
 					/>
 				</rect>
-				<rect x="168" y="222" width="70" height="6" rx="3" className="fill-primary/25" />
+				<rect
+					x="168"
+					y="222"
+					width="70"
+					height="6"
+					rx="3"
+					className="fill-primary/25"
+				/>
 				<rect x="168" y="222" width="48" height="6" rx="3" fill="#8b5cf6">
 					<animate
 						attributeName="width"
@@ -167,7 +181,14 @@ function PlatformGraphic() {
 						repeatCount="indefinite"
 					/>
 				</rect>
-				<rect x="252" y="222" width="64" height="6" rx="3" className="fill-primary/25" />
+				<rect
+					x="252"
+					y="222"
+					width="64"
+					height="6"
+					rx="3"
+					className="fill-primary/25"
+				/>
 				<rect x="252" y="222" width="40" height="6" rx="3" fill="#10b981">
 					<animate
 						attributeName="width"
@@ -326,17 +347,69 @@ function RemoteGraphic() {
 			</g>
 
 			{/* globe */}
-			<circle cx="200" cy="150" r="72" fill="url(#rmt-globe)" className="stroke-primary/50" strokeWidth="1.5" />
+			<circle
+				cx="200"
+				cy="150"
+				r="72"
+				fill="url(#rmt-globe)"
+				className="stroke-primary/50"
+				strokeWidth="1.5"
+			/>
 			{/* latitudes */}
-			<ellipse cx="200" cy="150" rx="72" ry="24" className="stroke-primary/30" strokeWidth="1" />
-			<ellipse cx="200" cy="150" rx="72" ry="52" className="stroke-primary/25" strokeWidth="1" />
-			<line x1="128" y1="150" x2="272" y2="150" className="stroke-primary/30" strokeWidth="1" />
+			<ellipse
+				cx="200"
+				cy="150"
+				rx="72"
+				ry="24"
+				className="stroke-primary/30"
+				strokeWidth="1"
+			/>
+			<ellipse
+				cx="200"
+				cy="150"
+				rx="72"
+				ry="52"
+				className="stroke-primary/25"
+				strokeWidth="1"
+			/>
+			<line
+				x1="128"
+				y1="150"
+				x2="272"
+				y2="150"
+				className="stroke-primary/30"
+				strokeWidth="1"
+			/>
 			{/* meridians sweeping (fake rotation) */}
-			<ellipse cx="200" cy="150" ry="72" className="stroke-primary/40" strokeWidth="1" fill="none">
-				<animate attributeName="rx" values="72;6;72" dur="6s" repeatCount="indefinite" />
+			<ellipse
+				cx="200"
+				cy="150"
+				ry="72"
+				className="stroke-primary/40"
+				strokeWidth="1"
+				fill="none"
+			>
+				<animate
+					attributeName="rx"
+					values="72;6;72"
+					dur="6s"
+					repeatCount="indefinite"
+				/>
 			</ellipse>
-			<ellipse cx="200" cy="150" ry="72" className="stroke-primary/25" strokeWidth="1" fill="none">
-				<animate attributeName="rx" values="40;72;40" dur="6s" repeatCount="indefinite" />
+			<ellipse
+				cx="200"
+				cy="150"
+				ry="72"
+				className="stroke-primary/25"
+				strokeWidth="1"
+				fill="none"
+			>
+				<animate
+					attributeName="rx"
+					values="40;72;40"
+					dur="6s"
+					repeatCount="indefinite"
+				/>
 			</ellipse>
 
 			{/* location pins */}

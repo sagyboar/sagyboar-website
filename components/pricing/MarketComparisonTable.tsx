@@ -28,9 +28,7 @@ export function MarketComparisonTable() {
 							key={col.key}
 							className={cn(
 								"p-3 text-center text-sm font-semibold",
-								col.highlight
-									? SagyboarHeaderClass
-									: "text-foreground",
+								col.highlight ? SagyboarHeaderClass : "text-foreground",
 							)}
 						>
 							{col.label}

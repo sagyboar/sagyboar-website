@@ -1,8 +1,9 @@
 "use client";
 
-import { Mesh, Program, Renderer, Triangle } from "ogl";
-import React, { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { Mesh, Program, Renderer, Triangle } from "ogl";
+import type React from "react";
+import { useEffect, useRef } from "react";
 
 export type PrismProps = {
 	className?: string;
@@ -458,7 +459,7 @@ const Prism: React.FC<PrismProps> = ({
 					| IntersectionObserver
 					| undefined;
 				if (io) io.disconnect();
-				delete (container as PrismContainer).__prismIO;
+				(container as PrismContainer).__prismIO = undefined;
 			}
 			if (gl.canvas.parentElement === container) {
 				container.removeChild(gl.canvas);

@@ -76,7 +76,8 @@ export const jobPostings: JobPosting[] = [
 			"Opportunity to grow with a fast-growing technology company.",
 		],
 		applyEmail: "souravrathore15@gmail.com",
-		applySubject: "Application for Sales Executive (Commission-Based) – Sagyboar",
+		applySubject:
+			"Application for Sales Executive (Commission-Based) – Sagyboar",
 		applicationRequirements: [
 			"Updated Resume/CV",
 			"Full Name",

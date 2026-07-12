@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
 import { pageSeo } from "@/constants/seo-data";
 import { buildMetadata } from "@/lib/seo";
+import type { ReactNode } from "react";
 
 export const metadata = buildMetadata(pageSeo.contact);
 

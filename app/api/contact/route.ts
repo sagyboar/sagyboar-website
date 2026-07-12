@@ -1,8 +1,8 @@
+import { ADMIN_EMAIL, sendMail } from "@/lib/mailer";
+import { Contact } from "@/lib/models/Contact";
+import { connectToDatabase } from "@/lib/mongodb";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { ADMIN_EMAIL, sendMail } from "@/lib/mailer";
-import { connectToDatabase } from "@/lib/mongodb";
-import { Contact } from "@/lib/models/Contact";
 
 export const runtime = "nodejs";
 
@@ -21,7 +21,10 @@ export async function POST(request: NextRequest) {
 	try {
 		body = await request.json();
 	} catch {
-		return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+		return NextResponse.json(
+			{ error: "Invalid request body" },
+			{ status: 400 },
+		);
 	}
 
 	const name = body.name?.trim();

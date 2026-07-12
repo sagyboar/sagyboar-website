@@ -1,15 +1,18 @@
 const TRUSTED_LOGOS = [
 	{ name: "Documentsheet", label: "documentsheet" },
 	{ name: "Craftfosslabs", label: "craftfosslabs" },
-	{ name: "Hoodninja", label: "hoodninja" }, 
+	{ name: "Hoodninja", label: "hoodninja" },
 	{ name: "Volnyn", label: "volnyn" },
 ] as const;
 
 export function HeroTrustedBy() {
 	return (
-		<div className="relative z-10 mt-auto w-full pb-10 pt-16 sm:pb-14 sm:pt-20">
+		<section
+			className="relative z-10 w-full bg-background pb-12 pt-2 sm:pb-16 sm:pt-4"
+			aria-label="Trusted by"
+		>
 			<p className="text-center text-sm text-muted-foreground">
-			Trusted by engineers scaling modern stacks
+				Trusted by engineers scaling modern stacks
 			</p>
 			<ul className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 px-4 sm:gap-x-12">
 				{TRUSTED_LOGOS.map(({ name, label }) => (
@@ -23,6 +26,6 @@ export function HeroTrustedBy() {
 					</li>
 				))}
 			</ul>
-		</div>
+		</section>
 	);
 }

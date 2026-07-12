@@ -8,8 +8,18 @@ const cloudNodes = [
 
 const connectorsIn = [
 	{ id: "in1", d: "M100 78 C140 78 150 120 173 136", dur: "2.6s", begin: "0s" },
-	{ id: "in2", d: "M100 150 C138 150 150 150 173 150", dur: "2.2s", begin: "0.6s" },
-	{ id: "in3", d: "M100 222 C140 222 150 180 173 164", dur: "2.8s", begin: "1s" },
+	{
+		id: "in2",
+		d: "M100 150 C138 150 150 150 173 150",
+		dur: "2.2s",
+		begin: "0.6s",
+	},
+	{
+		id: "in3",
+		d: "M100 222 C140 222 150 180 173 164",
+		dur: "2.8s",
+		begin: "1s",
+	},
 ];
 
 const projectNodes = [
@@ -20,10 +30,30 @@ const projectNodes = [
 ];
 
 const connectorsOut = [
-	{ id: "out1", d: "M227 136 C270 120 300 88 330 70", dur: "2.4s", begin: "0.3s" },
-	{ id: "out2", d: "M227 144 C275 140 300 128 330 120", dur: "2s", begin: "0.9s" },
-	{ id: "out3", d: "M227 156 C275 160 300 172 330 180", dur: "2.6s", begin: "0.5s" },
-	{ id: "out4", d: "M227 164 C270 180 300 212 330 230", dur: "2.9s", begin: "1.2s" },
+	{
+		id: "out1",
+		d: "M227 136 C270 120 300 88 330 70",
+		dur: "2.4s",
+		begin: "0.3s",
+	},
+	{
+		id: "out2",
+		d: "M227 144 C275 140 300 128 330 120",
+		dur: "2s",
+		begin: "0.9s",
+	},
+	{
+		id: "out3",
+		d: "M227 156 C275 160 300 172 330 180",
+		dur: "2.6s",
+		begin: "0.5s",
+	},
+	{
+		id: "out4",
+		d: "M227 164 C270 180 300 212 330 230",
+		dur: "2.9s",
+		begin: "1.2s",
+	},
 ];
 
 type PricingHeroGraphicProps = {
@@ -229,7 +259,14 @@ export function PricingHeroGraphic({ className }: PricingHeroGraphicProps) {
 			{/* central platform core */}
 			<g>
 				{/* pulsing rings */}
-				<circle cx="200" cy="150" r="34" fill="none" stroke="#6366f1" strokeWidth="1.5">
+				<circle
+					cx="200"
+					cy="150"
+					r="34"
+					fill="none"
+					stroke="#6366f1"
+					strokeWidth="1.5"
+				>
 					<animate
 						attributeName="r"
 						values="34;58"
@@ -243,7 +280,14 @@ export function PricingHeroGraphic({ className }: PricingHeroGraphicProps) {
 						repeatCount="indefinite"
 					/>
 				</circle>
-				<circle cx="200" cy="150" r="34" fill="none" stroke="#8b5cf6" strokeWidth="1.5">
+				<circle
+					cx="200"
+					cy="150"
+					r="34"
+					fill="none"
+					stroke="#8b5cf6"
+					strokeWidth="1.5"
+				>
 					<animate
 						attributeName="r"
 						values="34;58"

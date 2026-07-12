@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import CardSwap, { Card } from "@/components/ui/card-swap";
+import { useEffect, useState } from "react";
 import { PricingSectionHeading } from "./PricingSectionHeading";
 import { whyChooseSagyboar } from "./pricing-data";
 
@@ -27,8 +27,8 @@ export function PricingWhyChoose() {
 					className="lg:text-left"
 				/>
 				<p className="mt-4 max-w-lg text-muted-foreground lg:mx-0 mx-auto">
-					Deploy faster, monitor smarter, and get a real team behind your stack —
-					all without hiring a full DevOps department.
+					Deploy faster, monitor smarter, and get a real team behind your stack
+					— all without hiring a full DevOps department.
 				</p>
 			</div>
 

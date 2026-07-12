@@ -105,7 +105,8 @@ export const pageSeo = {
 	},
 	privacy: {
 		title: "Privacy Policy",
-		description: "How Sagyboar collects, uses, and protects your personal data.",
+		description:
+			"How Sagyboar collects, uses, and protects your personal data.",
 		path: "/privacy",
 		ogLabel: "Privacy Policy",
 	},
@@ -132,10 +133,7 @@ export const organizationJsonLd = {
 	url: SITE_URL,
 	logo: `${SITE_URL}/Sagyboar-logo.png`,
 	description: SITE_DESCRIPTION,
-	sameAs: [
-		"https://github.com/Sagyboar/Sagyboar",
-		"https://x.com/getSagyboar",
-	],
+	sameAs: ["https://github.com/Sagyboar/Sagyboar", "https://x.com/getSagyboar"],
 };
 
 export const websiteJsonLd = {

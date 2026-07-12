@@ -1,14 +1,11 @@
 import { Circle } from "lucide-react";
-import { generalTerms, planLimitations } from "./pricing-data";
 import { PricingSectionHeading } from "./PricingSectionHeading";
+import { generalTerms, planLimitations } from "./pricing-data";
 
 export function PricingGeneralTerms() {
 	return (
 		<div className="mx-auto mt-12 max-w-7xl">
-			<PricingSectionHeading
-				before="General"
-				highlight="terms"
-			/>
+			<PricingSectionHeading before="General" highlight="terms" />
 
 			<div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 				{planLimitations.map((plan) => (
@@ -20,7 +17,9 @@ export function PricingGeneralTerms() {
 							<h3 className="font-display text-base font-semibold tracking-tight text-foreground">
 								{plan.name}
 							</h3>
-							<p className="mt-0.5 text-xs text-muted-foreground">{plan.price}</p>
+							<p className="mt-0.5 text-xs text-muted-foreground">
+								{plan.price}
+							</p>
 						</div>
 						<p className="mt-3 text-xs font-semibold uppercase tracking-wider text-foreground">
 							Limitations

@@ -1,7 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { Mail, Phone } from "lucide-react";
 import { Container } from "@/components/Container";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { Button } from "@/components/ui/button";
@@ -9,6 +7,8 @@ import {
 	Sagyboar_CONTACT_EMAIL,
 	Sagyboar_CONTACT_PHONE,
 } from "@/constants/branding";
+import { Mail, Phone } from "lucide-react";
+import dynamic from "next/dynamic";
 
 const Prism = dynamic(() => import("@/components/ui/prism"), {
 	ssr: false,
@@ -37,7 +37,10 @@ export function ContactTypeform() {
 					<div className="mx-auto max-w-5xl">
 						<div className="text-center">
 							<h1 className="font-serif text-3xl font-semibold tracking-tight text-black dark:text-white sm:text-4xl">
-								Contact <span className="text-blue-400 border-b border-blue-400">us</span>
+								Contact{" "}
+								<span className="text-blue-400 border-b border-blue-400">
+									us
+								</span>
 							</h1>
 							<p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-black/80 dark:text-white/90">
 								Have a question about pricing, enterprise onboarding, or
@@ -46,7 +49,11 @@ export function ContactTypeform() {
 							</p>
 
 							<div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-								<Button asChild variant="outline" className="gap-2 rounded-full">
+								<Button
+									asChild
+									variant="outline"
+									className="gap-2 rounded-full"
+								>
 									<a href={`tel:${Sagyboar_CONTACT_PHONE}`}>
 										<Phone className="h-4 w-4" aria-hidden />
 										{Sagyboar_CONTACT_PHONE}

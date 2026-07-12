@@ -22,7 +22,9 @@ export function PricingSectionHeading({
 			)}
 		>
 			{before}{" "}
-			<span className="border-b-2 border-blue-400 text-blue-400">{highlight}</span>
+			<span className="border-b-2 border-blue-400 text-blue-400">
+				{highlight}
+			</span>
 		</h2>
 	);
 }

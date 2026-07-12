@@ -2,10 +2,7 @@
 
 import { Container } from "@/components/Container";
 import { cn } from "@/lib/utils";
-import {
-	JobsWhyWorkGraphic,
-	type JobsGraphicName,
-} from "./JobsWhyWorkGraphic";
+import { type JobsGraphicName, JobsWhyWorkGraphic } from "./JobsWhyWorkGraphic";
 import { whyWorkAtSagyboar } from "./jobs-data";
 
 export function JobsWhyWork() {

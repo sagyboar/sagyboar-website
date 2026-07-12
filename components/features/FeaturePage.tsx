@@ -1,13 +1,16 @@
+import { Container } from "@/components/Container";
+import { HeadingHighlight } from "@/components/solutions/HeadingHighlight";
+import { Button } from "@/components/ui/button";
+import { Sagyboar_PORTAL_URL } from "@/constants/branding";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { Container } from "@/components/Container";
-import { Button } from "@/components/ui/button";
-import { HeadingHighlight } from "@/components/solutions/HeadingHighlight";
-import { Sagyboar_PORTAL_URL } from "@/constants/branding";
-import { FeatureCtaBackground, FeatureDetailBackground } from "./FeatureBackgrounds";
+import {
+	FeatureCtaBackground,
+	FeatureDetailBackground,
+} from "./FeatureBackgrounds";
 import { FeatureCapabilities } from "./FeatureCapabilities";
 import { RelatedFeatureCard } from "./RelatedFeatureCard";
-import { featurePages, type FeaturePageData } from "./features-data";
+import { type FeaturePageData, featurePages } from "./features-data";
 
 export function FeaturePage({ feature }: { feature: FeaturePageData }) {
 	const Icon = feature.icon;
@@ -57,17 +60,17 @@ export function FeaturePage({ feature }: { feature: FeaturePageData }) {
 				</Container>
 			</section>
 
-			<FeatureCapabilities
-				featureTitle={feature.title}
-				items={feature.items}
-			/>
+			<FeatureCapabilities featureTitle={feature.title} items={feature.items} />
 
 			{/* Related features */}
 			<section className="py-20 sm:py-28">
 				<Container>
 					<div className="mx-auto max-w-3xl text-center">
 						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
-							<HeadingHighlight text="Explore more features" highlight="features" />
+							<HeadingHighlight
+								text="Explore more features"
+								highlight="features"
+							/>
 						</h2>
 						<p className="mt-4 text-lg text-muted-foreground">
 							One platform for deployment, monitoring, diagnosis, and your team.
@@ -83,9 +86,7 @@ export function FeaturePage({ feature }: { feature: FeaturePageData }) {
 									slug={item.slug}
 									title={item.navTitle}
 									description={item.navDescription}
-									icon={
-										<RelatedIcon className="size-5" strokeWidth={1.75} />
-									}
+									icon={<RelatedIcon className="size-5" strokeWidth={1.75} />}
 								/>
 							);
 						})}

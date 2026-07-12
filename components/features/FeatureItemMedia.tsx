@@ -88,7 +88,10 @@ export function FeatureItemMedia({
 	if (item.graphic) {
 		return (
 			<div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border bg-muted/30 shadow-sm">
-				<FeatureItemGraphic name={item.graphic} label={item.imageAlt ?? item.name} />
+				<FeatureItemGraphic
+					name={item.graphic}
+					label={item.imageAlt ?? item.name}
+				/>
 			</div>
 		);
 	}

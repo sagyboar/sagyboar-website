@@ -1,14 +1,14 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { Sagyboar_BRAND_NAME, Sagyboar_PORTAL_URL } from "@/constants/branding";
 import {
+	type NavLinkItem,
 	companyLinks,
 	featureMenuGroups,
 	solutionLinks,
 	topNavLinks,
-	type NavLinkItem,
 } from "@/constants/navigation";
+import { cn } from "@/lib/utils";
 import { Popover, Transition } from "@headlessui/react";
 import { ArrowRight, ArrowRightCircle, ChevronDown } from "lucide-react";
 import Link from "next/link";
@@ -23,19 +23,17 @@ const SCROLL_THRESHOLD = 15;
 
 type MegaMenuKey = "features" | "solutions";
 
-const megaMenus: Record<
-	MegaMenuKey,
-	{ label: string; items: NavLinkItem[] }
-> = {
-	features: {
-		label: "Features",
-		items: featureMenuGroups.flatMap((group) => group.items),
-	},
-	solutions: {
-		label: "Solutions",
-		items: solutionLinks,
-	},
-};
+const megaMenus: Record<MegaMenuKey, { label: string; items: NavLinkItem[] }> =
+	{
+		features: {
+			label: "Features",
+			items: featureMenuGroups.flatMap((group) => group.items),
+		},
+		solutions: {
+			label: "Solutions",
+			items: solutionLinks,
+		},
+	};
 
 function MegaMenuListItem({ item }: { item: NavLinkItem }) {
 	const Icon = item.icon;
@@ -79,9 +77,7 @@ function MegaMenuLink({ item }: { item: NavLinkItem }) {
 			onClick={() => trackNavClick(item.href)}
 			className={cn(
 				"group relative flex min-h-64 min-w-[15rem] flex-col justify-between overflow-hidden rounded-2xl border border-border/60 p-4 transition-all hover:border-border hover:shadow-md",
-				hasBackground
-					? "bg-muted/30"
-					: "items-start gap-3 hover:bg-accent/60",
+				hasBackground ? "bg-muted/30" : "items-start gap-3 hover:bg-accent/60",
 			)}
 		>
 			{hasBackground ? (
@@ -375,7 +371,9 @@ function MobileNavigation() {
 										Company
 									</p>
 									{companyLinks
-										.filter((link) => !topNavLinks.some((t) => t.href === link.href))
+										.filter(
+											(link) => !topNavLinks.some((t) => t.href === link.href),
+										)
 										.map((link) => (
 											<MobileNavLink
 												key={link.href}
@@ -387,10 +385,7 @@ function MobileNavigation() {
 										))}
 								</div>
 								<hr className="my-2 border-border" />
-								<MobileNavLink
-									href={Sagyboar_PORTAL_URL}
-									target="_blank"
-								>
+								<MobileNavLink href={Sagyboar_PORTAL_URL} target="_blank">
 									<Button className="mt-2 w-full rounded-full">Sign In</Button>
 								</MobileNavLink>
 							</Popover.Panel>
@@ -471,16 +466,14 @@ export function Header() {
 							</Link>
 
 							<div className="hidden items-center gap-0.5 lg:flex">
-								{(["features", "solutions"] as MegaMenuKey[]).map(
-									(key) => (
-										<DesktopNavItem
-											key={key}
-											menuKey={key}
-											isOpen={openMenu === key}
-											onOpen={() => openMegaMenu(key)}
-										/>
-									),
-								)}
+								{(["features", "solutions"] as MegaMenuKey[]).map((key) => (
+									<DesktopNavItem
+										key={key}
+										menuKey={key}
+										isOpen={openMenu === key}
+										onOpen={() => openMegaMenu(key)}
+									/>
+								))}
 								{topNavLinks.map((link) => (
 									<Link
 										key={link.href}
@@ -495,15 +488,15 @@ export function Header() {
 						</div>
 
 						<div className="flex items-center gap-2 sm:gap-3">
-							<Button className="hidden rounded-full lg:inline-flex ps-4 pe-0 py-0" asChild>
-								<Link
-									href={'/contact'}
-									aria-label="Contact Us"
-								>
+							<Button
+								className="hidden rounded-full lg:inline-flex ps-4 pe-0 py-0"
+								asChild
+							>
+								<Link href={"/contact"} aria-label="Contact Us">
 									<span className="group inline-flex items-center text-sm font-medium">
 										Contact Us
 										<span className="ml-3 p-2.5 bg-white text-black dark:bg-black/90 dark:text-white rounded-full transition-transform -rotate-45 duration-300 group-hover:rotate-0">
-										<ArrowRight className="size-5" />
+											<ArrowRight className="size-5" />
 										</span>
 									</span>
 								</Link>

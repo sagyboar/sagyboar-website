@@ -1,15 +1,15 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { ArrowUpRight, Building2, Rocket, Sparkles } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { DARK_VEIL_PRESET } from "@/components/ui/dark-veil";
 import { cn } from "@/lib/utils";
+import { ArrowUpRight, Building2, Rocket, Sparkles } from "lucide-react";
+import { useTheme } from "next-themes";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { HeadingHighlight } from "./HeadingHighlight";
 import { SolutionStackGraphic } from "./SolutionStackGraphic";
 import type { SolutionIconName, SolutionPageData } from "./solution-types";

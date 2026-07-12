@@ -1,8 +1,8 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Mesh, Program, Renderer, Triangle, Vec2 } from "ogl";
 import { useEffect, useRef } from "react";
-import { cn } from "@/lib/utils";
 
 export type DarkVeilVariant = "dark" | "light";
 

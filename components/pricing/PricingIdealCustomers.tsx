@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { idealCustomers, idealCustomerThread } from "./pricing-data";
 import { PricingSectionHeading } from "./PricingSectionHeading";
+import { idealCustomerThread, idealCustomers } from "./pricing-data";
 
 export function PricingIdealCustomers() {
 	return (

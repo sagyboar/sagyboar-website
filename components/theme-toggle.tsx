@@ -1,9 +1,9 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useCallback, useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
 import {
 	Tooltip,
 	TooltipContent,
@@ -48,9 +48,7 @@ export function ThemeToggle({ className }: { className?: string }) {
 	const [mounted, setMounted] = useState(false);
 
 	const activeTheme = (
-		THEME_CYCLE.includes((theme ?? "system") as ThemeOption)
-			? theme
-			: "system"
+		THEME_CYCLE.includes((theme ?? "system") as ThemeOption) ? theme : "system"
 	) as ThemeOption;
 
 	const cycleTheme = useCallback(() => {

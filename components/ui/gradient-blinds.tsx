@@ -296,8 +296,7 @@ void main() {
 
 		const onPointerMove = (e: PointerEvent) => {
 			const rect = canvas.getBoundingClientRect();
-			const scale =
-				(renderer as unknown as { dpr?: number }).dpr || 1;
+			const scale = (renderer as unknown as { dpr?: number }).dpr || 1;
 			const x = (e.clientX - rect.left) * scale;
 			const y = (rect.height - (e.clientY - rect.top)) * scale;
 			mouseTargetRef.current = [x, y];
@@ -373,7 +372,9 @@ void main() {
 			className={`relative h-full w-full overflow-hidden ${className ?? ""}`}
 			style={
 				mixBlendMode
-					? { mixBlendMode: mixBlendMode as React.CSSProperties["mixBlendMode"] }
+					? {
+							mixBlendMode: mixBlendMode as React.CSSProperties["mixBlendMode"],
+						}
 					: undefined
 			}
 		/>

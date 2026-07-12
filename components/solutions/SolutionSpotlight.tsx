@@ -1,8 +1,8 @@
+import { Container } from "@/components/Container";
+import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Container } from "@/components/Container";
-import { Button } from "@/components/ui/button";
 import { HeadingHighlight } from "./HeadingHighlight";
 import { SolutionStackGraphic } from "./SolutionStackGraphic";
 import type { SolutionPageData } from "./solution-types";
@@ -42,10 +42,7 @@ export function SolutionSpotlight({ data }: SolutionSpotlightProps) {
 
 					<div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border bg-muted/30 shadow-sm">
 						{data.graphic ? (
-							<SolutionStackGraphic
-								name={data.graphic}
-								label={data.imageAlt}
-							/>
+							<SolutionStackGraphic name={data.graphic} label={data.imageAlt} />
 						) : (
 							<Image
 								src={data.image}

@@ -48,9 +48,8 @@ export default function SlaPage() {
 							This Service Level Agreement (&quot;SLA&quot;) describes the
 							availability, support, and operational commitments Sagyboar
 							Technologies, Inc. (&quot;Sagyboar&quot;, &quot;we&quot;,
-							&quot;us&quot;) provides for{" "}
-							<strong>Cloud Services</strong> on paid subscription plans. It
-							applies in addition to our{" "}
+							&quot;us&quot;) provides for <strong>Cloud Services</strong> on
+							paid subscription plans. It applies in addition to our{" "}
 							<Link href="/terms-of-service">Terms of Service</Link> and is
 							incorporated by reference therein.
 						</p>
@@ -132,8 +131,8 @@ export default function SlaPage() {
 						</h2>
 						<h3 className="text-xl font-medium">2.1 Response time</h3>
 						<p>
-							<strong>Response time</strong> is the period from when you report a
-							qualifying incident through our official support channels until
+							<strong>Response time</strong> is the period from when you report
+							a qualifying incident through our official support channels until
 							Sagyboar acknowledges the ticket and begins investigation. Targets
 							by severity:
 						</p>
@@ -156,8 +155,8 @@ export default function SlaPage() {
 						<p>
 							For <strong>critical</strong> incidents, we will use commercially
 							reasonable efforts to restore service or provide a workaround
-							within <strong>4 hours</strong> of acknowledgment. Resolution
-							time depends on incident complexity; we will keep you updated on
+							within <strong>4 hours</strong> of acknowledgment. Resolution time
+							depends on incident complexity; we will keep you updated on
 							progress until the issue is resolved or mitigated.
 						</p>
 					</section>
@@ -183,8 +182,8 @@ export default function SlaPage() {
 								{Sagyboar_SUPPORT_EMAIL}
 							</a>{" "}
 							or through your dashboard support channel. For critical outages,
-							mark your ticket as <strong>Critical</strong> and include
-							affected services, error messages, and steps to reproduce.
+							mark your ticket as <strong>Critical</strong> and include affected
+							services, error messages, and steps to reproduce.
 						</p>
 					</section>
 
@@ -228,8 +227,8 @@ export default function SlaPage() {
 								uptime, and security events
 							</li>
 							<li>
-								<strong>Regular updates</strong> — security patches and
-								platform updates applied on a scheduled basis
+								<strong>Regular updates</strong> — security patches and platform
+								updates applied on a scheduled basis
 							</li>
 							<li>
 								Access controls, audit logging, and incident response aligned
@@ -304,15 +303,17 @@ export default function SlaPage() {
 							<p className="mt-3">
 								If your production app goes down, you open a critical support
 								ticket. We acknowledge within 60 minutes and work to restore
-								service within 4 hours. If monthly uptime falls below 99.9%,
-								you can request a service credit on your next invoice.
+								service within 4 hours. If monthly uptime falls below 99.9%, you
+								can request a service credit on your next invoice.
 							</p>
 						</div>
 					</section>
 
 					<section className="flex flex-col gap-4">
 						<h2 className="text-2xl font-semibold">8. Exclusions</h2>
-						<p>The following are excluded from Downtime and SLA calculations:</p>
+						<p>
+							The following are excluded from Downtime and SLA calculations:
+						</p>
 						<ul className="list-inside list-disc space-y-2">
 							<li>Scheduled maintenance announced in advance</li>
 							<li>
