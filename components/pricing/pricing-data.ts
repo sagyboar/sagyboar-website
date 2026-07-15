@@ -40,8 +40,55 @@ export const pricingStats = [
 	},
 ] as const;
 
+export type PricingAudience = "user" | "team";
+
 export const businessModelTagline =
 	"Automate with AI, scale with a shared DevOps team, and run on your own cloud — zero infrastructure cost on us.";
+
+export const indieBusinessModelTagline =
+	"Deploy on our infra, bring your own database, and pay yearly in INR — built for students, freelancers, and solo builders.";
+
+export const audienceBusinessModelTagline: Record<PricingAudience, string> = {
+	team: businessModelTagline,
+	user: indieBusinessModelTagline,
+};
+
+export type PlanCurrency = "usd" | "inr";
+export type PlanBillingPeriod = "month" | "year";
+
+export type PlanInclude = string | { text: string; highlighted: true };
+
+export type PaidPricingPlan = {
+	id: string;
+	name: string;
+	tagline: string;
+	price: number;
+	currency: PlanCurrency;
+	billingPeriod: PlanBillingPeriod;
+	priceNote?: string;
+	recommended: boolean;
+	cta: string;
+	ctaHref: boolean;
+	includes: readonly PlanInclude[];
+};
+
+export type FreePricingPlan = {
+	id: string;
+	name: string;
+	label: string;
+	tagline: string;
+	cta: string;
+	includes: readonly string[];
+};
+
+export type AudiencePricing = {
+	freePlan?: FreePricingPlan;
+	plans: readonly PaidPricingPlan[];
+	/** Short blurb under the audience toggle */
+	subtitle?: string;
+	/** Exclusion / comparison callout under cards */
+	exclusionNote?: string;
+};
 
 export const freePlan = {
 	id: "free",
@@ -57,18 +104,16 @@ export const freePlan = {
 		"Sagyboar subdomain & SSL",
 		"Community support",
 	],
-} as const;
+} as const satisfies FreePricingPlan;
 
-export const planLimitations = [
-	{
-		id: "free",
-		name: "Free",
-		price: "$0/month",
-		items: [
-			"Frontend-only — no backend or database",
-			"Fair usage limits apply",
-		],
-	},
+export type PlanLimitation = {
+	id: string;
+	name: string;
+	price: string;
+	items: readonly string[];
+};
+
+export const teamPlanLimitations = [
 	{
 		id: "starter",
 		name: "Starter",
@@ -103,15 +148,70 @@ export const planLimitations = [
 			"Cloud infrastructure billed directly to your own provider account",
 		],
 	},
-] as const;
+] as const satisfies readonly PlanLimitation[];
 
-export const pricingPlans = [
+export const planLimitations = teamPlanLimitations;
+
+export const indiePlanLimitations = [
+	{
+		id: "solo",
+		name: "Solo",
+		price: "₹1,500/year",
+		items: [
+			"1 project only",
+			"512 MB RAM / 1 GB disk",
+			"100 build minutes & 10 GB bandwidth per month",
+			"No custom domain",
+			"Community support only (Discord)",
+			"Must bring your own database",
+		],
+	},
+	{
+		id: "builder",
+		name: "Builder",
+		price: "₹2,500/year",
+		items: [
+			"Up to 3 projects",
+			"1 GB RAM / 3 GB disk each",
+			"300 build minutes & 50 GB bandwidth per month",
+			"1 custom domain",
+			"Email support with 48hr response",
+			"Must bring your own database",
+		],
+	},
+	{
+		id: "indie-team",
+		name: "Team",
+		price: "₹4,500/year",
+		items: [
+			"Up to 5 projects",
+			"2 GB RAM / 5 GB disk each",
+			"750 build minutes & 100 GB bandwidth per month",
+			"Up to 3 custom domains / 2 seats",
+			"Limited auto-heal (restart/rollback only)",
+			"Must bring your own database",
+		],
+	},
+] as const satisfies readonly PlanLimitation[];
+
+export const audiencePlanLimitations: Record<
+	PricingAudience,
+	readonly PlanLimitation[]
+> = {
+	team: teamPlanLimitations,
+	user: indiePlanLimitations,
+};
+
+/** Team plans — B2B / BYOC (USD, monthly) */
+export const teamPricingPlans = [
 	{
 		id: "starter",
 		name: "Starter",
 		tagline:
 			"For teams shipping their first production apps without a DevOps hire.",
 		price: 249,
+		currency: "usd",
+		billingPeriod: "month",
 		recommended: false,
 		cta: "Get started",
 		ctaHref: true,
@@ -128,6 +228,8 @@ export const pricingPlans = [
 		name: "Growth",
 		tagline: "For scaling teams that need faster support and deeper insights.",
 		price: 499,
+		currency: "usd",
+		billingPeriod: "month",
 		recommended: true,
 		cta: "Get started",
 		ctaHref: true,
@@ -152,6 +254,8 @@ export const pricingPlans = [
 		tagline:
 			"For established teams that need premium SLAs and dedicated support.",
 		price: 1000,
+		currency: "usd",
+		billingPeriod: "month",
 		recommended: false,
 		cta: "Talk to sales",
 		ctaHref: false,
@@ -172,14 +276,125 @@ export const pricingPlans = [
 			"Dedicated tech contact",
 		],
 	},
-] as const;
+] as const satisfies readonly PaidPricingPlan[];
 
-export const generalTerms = [
-	"Platform subscriptions are billed monthly.",
+/** Indie / user plans — Sagyboar VPS (INR, yearly) */
+export const userPricingPlans = [
+	{
+		id: "solo",
+		name: "Solo",
+		tagline: "One project on our infra — ideal for students and side projects.",
+		price: 1500,
+		currency: "inr",
+		billingPeriod: "year",
+		priceNote: "/year, billed annually",
+		recommended: false,
+		cta: "Get Started",
+		ctaHref: true,
+		includes: [
+			"1 project",
+			"512 MB RAM / 1 GB disk",
+			"100 build minutes/month",
+			"10 GB bandwidth/month",
+			"1 team seat",
+			"No custom domain",
+			"Bring your own database (Supabase, Neon, Mongo Atlas, etc.)",
+			"AI monitoring: detection/alerts only",
+			"Support: Community (Discord)",
+		],
+	},
+	{
+		id: "builder",
+		name: "Builder",
+		tagline: "For freelancers and solo builders shipping a few real apps.",
+		price: 2500,
+		currency: "inr",
+		billingPeriod: "year",
+		priceNote: "/year, billed annually",
+		recommended: true,
+		cta: "Get Started",
+		ctaHref: true,
+		includes: [
+			"Up to 3 projects",
+			"1 GB RAM / 3 GB disk each",
+			"300 build minutes/month",
+			"50 GB bandwidth/month",
+			"1 team seat",
+			"1 custom domain",
+			"Bring your own database",
+			"AI monitoring: + auto-ticket to repo",
+			"Support: Email, 48hr response",
+		],
+	},
+	{
+		id: "indie-team",
+		name: "Team",
+		tagline: "For small indie teams that need a bit more headroom.",
+		price: 4500,
+		currency: "inr",
+		billingPeriod: "year",
+		priceNote: "/year, billed annually",
+		recommended: false,
+		cta: "Get Started",
+		ctaHref: true,
+		includes: [
+			"Up to 5 projects",
+			"2 GB RAM / 5 GB disk each",
+			"750 build minutes/month",
+			"100 GB bandwidth/month",
+			"2 team seats",
+			"Up to 3 custom domains",
+			"Bring your own database",
+			"AI monitoring: + limited auto-heal (restart/rollback)",
+			"Support: Priority email, 24hr response",
+		],
+	},
+] as const satisfies readonly PaidPricingPlan[];
+
+export const indieExclusionNote =
+	"Not included in Indie plans: shared DevOps agents, managed database, SLA guarantees, and full auto-heal with pull requests — these stay exclusive to our BYOC (B2B) plans.";
+
+export const audiencePricing: Record<PricingAudience, AudiencePricing> = {
+	team: {
+		plans: teamPricingPlans,
+		subtitle:
+			"For funded startups and teams — BYOC, shared DevOps, billed monthly in USD.",
+	},
+	user: {
+		plans: userPricingPlans,
+		subtitle:
+			"For students, freelancers, and solo builders — deploy on our infra, pay yearly.",
+		exclusionNote: indieExclusionNote,
+	},
+};
+
+export const pricingPlans = teamPricingPlans;
+
+export const teamGeneralTerms = [
+	"Platform subscriptions are billed monthly in USD.",
 	"You bring your own cloud (AWS, GCP, Azure, or DigitalOcean) — cloud usage is billed directly to your account by the provider, at cost.",
 	"Fair usage policy applies to all plans.",
 	"Custom development and integrations outside plan scope are quoted separately.",
 ] as const;
+
+export const indieGeneralTerms = [
+	"Indie plans are billed annually in INR (₹), paid up front for the year.",
+	"Apps run on Sagyboar-managed VPS infrastructure — not on your own cloud account.",
+	"You must bring your own database (Supabase, Neon, Mongo Atlas, etc.). Managed databases are not included.",
+	"Fair usage policy applies to build minutes, bandwidth, and compute on all Indie plans.",
+	"Shared DevOps agents, SLA guarantees, and full auto-heal with pull requests are exclusive to Team (BYOC) plans.",
+	"Upgrades take effect immediately; downgrades apply at the end of the current billing year.",
+] as const;
+
+export const audienceGeneralTerms: Record<
+	PricingAudience,
+	readonly string[]
+> = {
+	team: teamGeneralTerms,
+	user: indieGeneralTerms,
+};
+
+export const generalTerms = teamGeneralTerms;
 
 export const byocSteps = [
 	{
@@ -229,6 +444,54 @@ export const sharedDevOpsSteps = [
 	},
 ] as const;
 
+export const indieInfraSteps = [
+	{
+		step: "01",
+		title: "Deploy on our VPS",
+		description:
+			"Your apps run on Sagyboar-managed infrastructure — no AWS account, no cloud bill, no BYOC setup.",
+		icon: Layers,
+	},
+	{
+		step: "02",
+		title: "Pay yearly in INR",
+		description:
+			"Simple annual pricing in ₹ for students, freelancers, and solo builders — pick Solo, Builder, or Team.",
+		icon: CreditCard,
+	},
+	{
+		step: "03",
+		title: "Bring your own database",
+		description:
+			"Connect Supabase, Neon, Mongo Atlas, or any hosted DB. We host the app; you own the data layer.",
+		icon: GitBranch,
+	},
+] as const;
+
+export const indieSupportSteps = [
+	{
+		step: "01",
+		title: "AI watches your apps",
+		description:
+			"Detection and alerts on every Indie plan. Builder adds auto-tickets; Team adds limited auto-heal.",
+		icon: Bot,
+	},
+	{
+		step: "02",
+		title: "Support that matches the tier",
+		description:
+			"Community Discord on Solo, email within 48h on Builder, priority email within 24h on Team.",
+		icon: Users,
+	},
+	{
+		step: "03",
+		title: "Upgrade when you outgrow Indie",
+		description:
+			"Need shared DevOps, SLA, or full auto-heal with PRs? Move to Team BYOC plans when you're ready.",
+		icon: TrendingUp,
+	},
+] as const;
+
 export const idealCustomers: { title: string; icon: LucideIcon }[] = [
 	{ title: "SaaS Startups", icon: Rocket },
 	{ title: "Software Dev Companies", icon: Code2 },
@@ -238,10 +501,43 @@ export const idealCustomers: { title: string; icon: LucideIcon }[] = [
 	{ title: "Teams Without DevOps", icon: Wrench },
 ];
 
+export const indieIdealCustomers: { title: string; icon: LucideIcon }[] = [
+	{ title: "Students", icon: Sparkles },
+	{ title: "Freelancers", icon: Code2 },
+	{ title: "Solo Builders", icon: Rocket },
+	{ title: "Side Projects", icon: GitBranch },
+	{ title: "Indie Hackers", icon: Bot },
+	{ title: "Early MVPs", icon: TrendingUp },
+];
+
 export const idealCustomerThread =
 	"The common thread: they have a product and a dev team — but no dedicated DevOps, or can't afford one. Exactly the people Sagyboar replaces.";
 
-export const planFitGuide = [
+export const indieIdealCustomerThread =
+	"The common thread: they ship real apps without a company budget — students, freelancers, and solo builders who need hosted infra priced in INR, yearly.";
+
+export const audienceIdealCustomers: Record<
+	PricingAudience,
+	{
+		customers: { title: string; icon: LucideIcon }[];
+		thread: string;
+	}
+> = {
+	team: { customers: idealCustomers, thread: idealCustomerThread },
+	user: { customers: indieIdealCustomers, thread: indieIdealCustomerThread },
+};
+
+export type PlanFitGuideItem = {
+	id: string;
+	plan: string;
+	price: string;
+	audience: string;
+	backgroundImage: string;
+	icon: LucideIcon;
+	points: readonly string[];
+};
+
+export const teamPlanFitGuide = [
 	{
 		id: "starter",
 		plan: "Starter",
@@ -284,7 +580,62 @@ export const planFitGuide = [
 			"Premium SLA and priority incident handling",
 		],
 	},
-] as const;
+] as const satisfies readonly PlanFitGuideItem[];
+
+export const indiePlanFitGuide = [
+	{
+		id: "solo",
+		plan: "Solo",
+		price: "₹1,500/year",
+		audience: "Best for…",
+		backgroundImage: "/Hobby.png",
+		icon: Sparkles,
+		points: [
+			"Students and hobbyists with a single project",
+			"512 MB RAM on Sagyboar-managed VPS",
+			"Community support via Discord",
+			"Bring your own database — no company cloud bill",
+		],
+	},
+	{
+		id: "builder",
+		plan: "Builder",
+		price: "₹2,500/year",
+		audience: "Best for…",
+		backgroundImage: "/startup.png",
+		icon: Rocket,
+		points: [
+			"Freelancers and solo builders with up to 3 apps",
+			"Custom domain + auto-ticket to your repo",
+			"Email support within 48 hours",
+			"More build minutes and bandwidth for real shipping",
+		],
+	},
+	{
+		id: "indie-team",
+		plan: "Team",
+		price: "₹4,500/year",
+		audience: "Best for…",
+		backgroundImage: "/Enterprise.png",
+		icon: Users,
+		points: [
+			"Small indie teams with up to 5 projects",
+			"2 seats and up to 3 custom domains",
+			"Limited auto-heal (restart/rollback)",
+			"Priority email support within 24 hours",
+		],
+	},
+] as const satisfies readonly PlanFitGuideItem[];
+
+export const audiencePlanFitGuide: Record<
+	PricingAudience,
+	readonly PlanFitGuideItem[]
+> = {
+	team: teamPlanFitGuide,
+	user: indiePlanFitGuide,
+};
+
+export const planFitGuide = teamPlanFitGuide;
 
 export type ComparisonCell = string;
 

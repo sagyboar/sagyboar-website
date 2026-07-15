@@ -4,6 +4,7 @@ import { Container } from "@/components/Container";
 import { useState } from "react";
 import { ContactFormModal } from "./ContactFormModal";
 import { MarketComparisonTable } from "./pricing/MarketComparisonTable";
+import { PricingAudienceToggle } from "./pricing/PricingAudienceToggle";
 import { PricingCta } from "./pricing/PricingCta";
 import { PricingFaq } from "./pricing/PricingFaq";
 import { PricingGeneralTerms } from "./pricing/PricingGeneralTerms";
@@ -16,9 +17,13 @@ import { PricingPlansGrid } from "./pricing/PricingPlansGrid";
 import { PricingSectionHeading } from "./pricing/PricingSectionHeading";
 import { PricingShaderWave } from "./pricing/PricingShaderWave";
 import { PricingWhyChoose } from "./pricing/PricingWhyChoose";
-import { businessModelTagline } from "./pricing/pricing-data";
+import {
+	audienceBusinessModelTagline,
+	type PricingAudience,
+} from "./pricing/pricing-data";
 
 export function Pricing() {
+	const [audience, setAudience] = useState<PricingAudience>("team");
 	const [openSalesModal, setOpenSalesModal] = useState(false);
 	const [openHelpModal, setOpenHelpModal] = useState(false);
 
@@ -45,9 +50,9 @@ export function Pricing() {
 								</span>
 							</h1>
 							<p className="mt-6 max-w-xl text-lg text-muted-foreground sm:text-xl">
-								Automate with AI, scale with a shared DevOps team, and run on
-								your own cloud. You pay for the platform and the people — not
-								our infrastructure.
+								{audience === "user"
+									? "Hosted Indie plans for students and freelancers, plus Team BYOC plans for startups — pick the track that fits how you ship."
+									: "Automate with AI, scale with a shared DevOps team, and run on your own cloud. You pay for the platform and the people — not our infrastructure."}
 							</p>
 
 							<PricingHeroStats />
@@ -62,22 +67,28 @@ export function Pricing() {
 				</Container>
 			</section>
 
-			{/* Core business model — one line */}
+			{/* Audience toggle — drives the rest of the page */}
 			<section
-				aria-label="Business model"
+				aria-label="Choose pricing track"
 				className="border-b border-border bg-muted/20"
 			>
 				<Container>
-					<p className="mx-auto max-w-4xl py-10 text-center font-serif text-xl leading-relaxed text-foreground sm:text-2xl">
-						&ldquo;{businessModelTagline}&rdquo;
-					</p>
+					<div className="flex flex-col items-center gap-5 py-8 sm:py-10">
+						<PricingAudienceToggle
+							value={audience}
+							onChange={setAudience}
+						/>
+						<p className="max-w-3xl text-center font-serif text-xl leading-relaxed text-foreground sm:text-2xl">
+							&ldquo;{audienceBusinessModelTagline[audience]}&rdquo;
+						</p>
+					</div>
 				</Container>
 			</section>
 
-			{/* BYOC + shared DevOps model */}
+			{/* Model */}
 			<section aria-label="How our model works" className="py-16 sm:py-24">
 				<Container>
-					<PricingModel />
+					<PricingModel audience={audience} />
 				</Container>
 			</section>
 
@@ -90,9 +101,12 @@ export function Pricing() {
 				<Container>
 					<PricingSectionHeading before="Choose your" highlight="plan" />
 
-					<PricingPlansGrid onTalkToSales={() => setOpenSalesModal(true)} />
+					<PricingPlansGrid
+						audience={audience}
+						onTalkToSales={() => setOpenSalesModal(true)}
+					/>
 
-					<PricingGeneralTerms />
+					<PricingGeneralTerms audience={audience} />
 				</Container>
 			</section>
 
@@ -103,27 +117,29 @@ export function Pricing() {
 						before="Which plan is right for"
 						highlight="you?"
 					/>
-					<PricingPlanFitGuide />
+					<PricingPlanFitGuide audience={audience} />
 				</Container>
 			</section>
 
-			{/* Market comparison */}
-			<section className="py-16 sm:py-24">
-				<Container>
-					<PricingSectionHeading
-						before="How we compare to the"
-						highlight="market"
-					/>
-					<div className="mx-auto mt-10 max-w-7xl">
-						<MarketComparisonTable />
-					</div>
-				</Container>
-			</section>
+			{/* Market comparison — Team BYOC only */}
+			{audience === "team" ? (
+				<section className="py-16 sm:py-24">
+					<Container>
+						<PricingSectionHeading
+							before="How we compare to the"
+							highlight="market"
+						/>
+						<div className="mx-auto mt-10 max-w-7xl">
+							<MarketComparisonTable />
+						</div>
+					</Container>
+				</section>
+			) : null}
 
 			{/* Ideal customer profile */}
 			<section className="py-16 sm:py-24">
 				<Container>
-					<PricingIdealCustomers />
+					<PricingIdealCustomers audience={audience} />
 				</Container>
 			</section>
 

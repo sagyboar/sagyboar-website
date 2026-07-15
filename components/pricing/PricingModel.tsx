@@ -1,9 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import { PricingSectionHeading } from "./PricingSectionHeading";
-import { byocSteps, sharedDevOpsSteps } from "./pricing-data";
+import {
+	byocSteps,
+	indieInfraSteps,
+	indieSupportSteps,
+	sharedDevOpsSteps,
+	type PricingAudience,
+} from "./pricing-data";
 
 type ModelStep = {
 	step: string;
@@ -44,35 +50,89 @@ function StepCard({ item, index }: { item: ModelStep; index: number }) {
 	);
 }
 
-export function PricingModel() {
-	return (
-		<div className="mx-auto max-w-7xl">
-			<PricingSectionHeading
-				before="The BYOC model — why it's"
-				highlight="genius"
-			/>
-			<p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
-				You bring the cloud. We bring the platform and the team. Zero
-				infrastructure cost sits on us.
-			</p>
-			<div className="mt-10 grid gap-6 md:grid-cols-3">
-				{byocSteps.map((item, index) => (
-					<StepCard key={item.step} item={item} index={index} />
-				))}
-			</div>
+type PricingModelProps = {
+	audience: PricingAudience;
+};
 
-			<div className="mt-20">
-				<PricingSectionHeading before="Shared DevOps team" highlight="model" />
-				<p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
-					One team, powered by AI, supporting many projects — so you scale
-					without hiring.
-				</p>
-				<div className="mt-10 grid gap-6 md:grid-cols-3">
-					{sharedDevOpsSteps.map((item, index) => (
-						<StepCard key={item.step} item={item} index={index} />
-					))}
-				</div>
-			</div>
-		</div>
+export function PricingModel({ audience }: PricingModelProps) {
+	const isIndie = audience === "user";
+
+	return (
+		<AnimatePresence mode="wait">
+			<motion.div
+				key={audience}
+				initial={{ opacity: 0, y: 8 }}
+				animate={{ opacity: 1, y: 0 }}
+				exit={{ opacity: 0, y: -8 }}
+				transition={{ duration: 0.2 }}
+				className="mx-auto max-w-7xl"
+			>
+				{isIndie ? (
+					<>
+						<PricingSectionHeading
+							before="The Indie model — simple"
+							highlight="hosting"
+						/>
+						<p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
+							We host your app on our VPS. You bring the database. You pay
+							yearly in INR — no cloud account required.
+						</p>
+						<div className="mt-10 grid gap-6 md:grid-cols-3">
+							{indieInfraSteps.map((item, index) => (
+								<StepCard key={item.step} item={item} index={index} />
+							))}
+						</div>
+
+						<div className="mt-20">
+							<PricingSectionHeading
+								before="Monitoring &"
+								highlight="support"
+							/>
+							<p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
+								AI monitoring grows with your tier. Full shared DevOps stays on
+								Team BYOC plans.
+							</p>
+							<div className="mt-10 grid gap-6 md:grid-cols-3">
+								{indieSupportSteps.map((item, index) => (
+									<StepCard key={item.step} item={item} index={index} />
+								))}
+							</div>
+						</div>
+					</>
+				) : (
+					<>
+						<PricingSectionHeading
+							before="The BYOC model — why it's"
+							highlight="genius"
+						/>
+						<p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
+							You bring the cloud. We bring the platform and the team. Zero
+							infrastructure cost sits on us.
+						</p>
+						<div className="mt-10 grid gap-6 md:grid-cols-3">
+							{byocSteps.map((item, index) => (
+								<StepCard key={item.step} item={item} index={index} />
+							))}
+						</div>
+
+						<div className="mt-20">
+							<PricingSectionHeading
+								before="Shared DevOps team"
+								highlight="model"
+							/>
+							<p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
+								One team, powered by AI, supporting many projects — so you scale
+								without hiring.
+							</p>
+							<div className="mt-10 grid gap-6 md:grid-cols-3">
+								{sharedDevOpsSteps.map((item, index) => (
+									<StepCard key={item.step} item={item} index={index} />
+								))}
+							</div>
+						</div>
+					</>
+				)}
+			</motion.div>
+		</AnimatePresence>
 	);
 }
