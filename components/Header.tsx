@@ -15,6 +15,7 @@ import Link from "next/link";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { trackGAEvent } from "./analitycs";
+import { RequestDemoModal } from "./RequestDemoModal";
 import { Logo } from "./shared/Logo";
 import { ThemeToggle } from "./theme-toggle";
 import { Button } from "./ui/button";
@@ -288,7 +289,11 @@ function BodyScrollLock({ lock }: { lock: boolean }) {
 	return null;
 }
 
-function MobileNavigation() {
+function MobileNavigation({
+	onRequestDemo,
+}: {
+	onRequestDemo: () => void;
+}) {
 	return (
 		<Popover>
 			{({ open, close }) => (
@@ -385,9 +390,22 @@ function MobileNavigation() {
 										))}
 								</div>
 								<hr className="my-2 border-border" />
-								<MobileNavLink href={Sagyboar_PORTAL_URL} target="_blank">
-									<Button className="mt-2 w-full rounded-full">Sign In</Button>
-								</MobileNavLink>
+								<div className="mt-3 space-y-2 px-1">
+									<Button
+										type="button"
+										variant="outline"
+										className="w-full rounded-full"
+										onClick={() => {
+											close();
+											onRequestDemo();
+										}}
+									>
+										Request Demo
+									</Button>
+									<MobileNavLink href={Sagyboar_PORTAL_URL} target="_blank">
+										<Button className="w-full rounded-full">Sign In</Button>
+									</MobileNavLink>
+								</div>
 							</Popover.Panel>
 						</Transition.Child>
 					</Transition.Root>
@@ -400,6 +418,7 @@ function MobileNavigation() {
 export function Header() {
 	const [scrolled, setScrolled] = useState(false);
 	const [openMenu, setOpenMenu] = useState<MegaMenuKey | null>(null);
+	const [demoOpen, setDemoOpen] = useState(false);
 	const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
 	const handleScroll = useCallback(() => {
@@ -419,6 +438,15 @@ export function Header() {
 		if (closeTimer.current) clearTimeout(closeTimer.current);
 	};
 
+	const openRequestDemo = () => {
+		trackGAEvent({
+			action: "Request Demo Clicked",
+			category: "Navigation",
+			label: "navbar",
+		});
+		setDemoOpen(true);
+	};
+
 	useEffect(() => {
 		handleScroll();
 		window.addEventListener("scroll", handleScroll, { passive: true });
@@ -436,88 +464,100 @@ export function Header() {
 	}, []);
 
 	return (
-		<header className="pointer-events-none fixed inset-x-0 top-0 z-50 bg-transparent px-4 pt-2 sm:px-6">
-			<div
-				className={cn(
-					"pointer-events-auto relative mx-auto transition-all duration-300 ease-out",
-					scrolled ? "w-full max-w-5xl" : "w-full max-w-7xl",
-				)}
-				onMouseLeave={closeMegaMenu}
-			>
+		<>
+			<header className="pointer-events-none fixed inset-x-0 top-0 z-50 bg-transparent px-4 pt-2 sm:px-6">
 				<div
 					className={cn(
-						"relative rounded-3xl border px-4 py-3 transition-all duration-300 ease-out sm:px-5",
-						scrolled
-							? "border-border/60 bg-background shadow-md"
-							: "border-transparent bg-transparent shadow-none",
+						"pointer-events-auto relative mx-auto transition-all duration-300 ease-out",
+						scrolled ? "w-full max-w-5xl" : "w-full max-w-7xl",
 					)}
+					onMouseLeave={closeMegaMenu}
 				>
-					<nav className="flex items-center justify-between gap-4 lg:gap-6">
-						<div className="flex min-w-0 items-center gap-3 lg:gap-6">
-							<Link
-								href="/"
-								aria-label={`${Sagyboar_BRAND_NAME} home`}
-								className="flex shrink-0 items-center gap-2.5"
-							>
-								<Logo className="h-8 w-auto sm:h-9" />
-								<span className="font-display text-base font-semibold tracking-tight text-foreground sm:text-lg">
-									{Sagyboar_BRAND_NAME}
-								</span>
-							</Link>
-
-							<div className="hidden items-center gap-0.5 lg:flex">
-								{(["features", "solutions"] as MegaMenuKey[]).map((key) => (
-									<DesktopNavItem
-										key={key}
-										menuKey={key}
-										isOpen={openMenu === key}
-										onOpen={() => openMegaMenu(key)}
-									/>
-								))}
-								{topNavLinks.map((link) => (
-									<Link
-										key={link.href}
-										href={link.href}
-										onClick={() => trackNavClick(link.href)}
-										className="rounded-full px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-									>
-										{link.label}
-									</Link>
-								))}
-							</div>
-						</div>
-
-						<div className="flex items-center gap-2 sm:gap-3">
-							<Button
-								className="hidden rounded-full lg:inline-flex ps-4 pe-0 py-0"
-								asChild
-							>
-								<Link href={"/contact"} aria-label="Contact Us">
-									<span className="group inline-flex items-center text-sm font-medium">
-										Contact Us
-										<span className="ml-3 p-2.5 bg-white text-black dark:bg-black/90 dark:text-white rounded-full transition-transform -rotate-45 duration-300 group-hover:rotate-0">
-											<ArrowRight className="size-5" />
-										</span>
+					<div
+						className={cn(
+							"relative rounded-3xl border px-4 py-3 transition-all duration-300 ease-out sm:px-5",
+							scrolled
+								? "border-border/60 bg-background shadow-md"
+								: "border-transparent bg-transparent shadow-none",
+						)}
+					>
+						<nav className="flex items-center justify-between gap-4 lg:gap-6">
+							<div className="flex min-w-0 items-center gap-3 lg:gap-6">
+								<Link
+									href="/"
+									aria-label={`${Sagyboar_BRAND_NAME} home`}
+									className="flex shrink-0 items-center gap-2.5"
+								>
+									<Logo className="h-8 w-auto sm:h-9" />
+									<span className="font-display text-base font-semibold tracking-tight text-foreground sm:text-lg">
+										{Sagyboar_BRAND_NAME}
 									</span>
 								</Link>
-							</Button>
-							<ThemeToggle />
 
-							<div className="lg:hidden">
-								<MobileNavigation />
+								<div className="hidden items-center gap-0.5 lg:flex">
+									{(["features", "solutions"] as MegaMenuKey[]).map((key) => (
+										<DesktopNavItem
+											key={key}
+											menuKey={key}
+											isOpen={openMenu === key}
+											onOpen={() => openMegaMenu(key)}
+										/>
+									))}
+									{topNavLinks.map((link) => (
+										<Link
+											key={link.href}
+											href={link.href}
+											onClick={() => trackNavClick(link.href)}
+											className="rounded-full px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+										>
+											{link.label}
+										</Link>
+									))}
+								</div>
 							</div>
-						</div>
-					</nav>
 
-					{openMenu && (
-						<MegaMenuPanel
-							menuKey={openMenu}
-							onMouseEnter={keepMegaMenuOpen}
-							onMouseLeave={closeMegaMenu}
-						/>
-					)}
+							<div className="flex items-center gap-2 sm:gap-3">
+								<Button
+									type="button"
+									variant="outline"
+									className="hidden rounded-full lg:inline-flex"
+									onClick={openRequestDemo}
+								>
+									Request Demo
+								</Button>
+								<Button
+									className="hidden rounded-full lg:inline-flex ps-4 pe-0 py-0"
+									asChild
+								>
+									<Link href={"/contact"} aria-label="Contact Us">
+										<span className="group inline-flex items-center text-sm font-medium">
+											Contact Us
+											<span className="ml-3 p-2.5 bg-white text-black dark:bg-black/90 dark:text-white rounded-full transition-transform -rotate-45 duration-300 group-hover:rotate-0">
+												<ArrowRight className="size-5" />
+											</span>
+										</span>
+									</Link>
+								</Button>
+								<ThemeToggle />
+
+								<div className="lg:hidden">
+									<MobileNavigation onRequestDemo={openRequestDemo} />
+								</div>
+							</div>
+						</nav>
+
+						{openMenu && (
+							<MegaMenuPanel
+								menuKey={openMenu}
+								onMouseEnter={keepMegaMenuOpen}
+								onMouseLeave={closeMegaMenu}
+							/>
+						)}
+					</div>
 				</div>
-			</div>
-		</header>
+			</header>
+
+			<RequestDemoModal open={demoOpen} onOpenChange={setDemoOpen} />
+		</>
 	);
 }

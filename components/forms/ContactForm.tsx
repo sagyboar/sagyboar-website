@@ -27,12 +27,25 @@ export function ContactForm({
 	onSuccess,
 	onCancel,
 	showCancelButton = false,
+	defaultSubject = "",
+	inquiryType,
+	submitLabel = "Send message",
+	successTitle = "Message sent",
+	successDescription = "Thanks for reaching out! We've emailed you a confirmation and our team will get back to you shortly.",
 }: {
 	onSuccess?: () => void;
 	onCancel?: () => void;
 	showCancelButton?: boolean;
+	defaultSubject?: string;
+	inquiryType?: "demo" | "support" | "sales" | "other";
+	submitLabel?: string;
+	successTitle?: string;
+	successDescription?: string;
 }) {
-	const [form, setForm] = useState<ContactFormState>(EMPTY);
+	const [form, setForm] = useState<ContactFormState>({
+		...EMPTY,
+		subject: defaultSubject,
+	});
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [submitting, setSubmitting] = useState(false);
 	const [submitted, setSubmitted] = useState(false);
@@ -69,18 +82,28 @@ export function ContactForm({
 			const res = await fetch("/api/contact", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(form),
+				body: JSON.stringify({
+					name: form.name.trim(),
+					email: form.email.trim(),
+					company: form.company.trim(),
+					subject: form.subject.trim() || defaultSubject,
+					message: form.message.trim(),
+					...(inquiryType ? { inquiryType } : {}),
+				}),
 			});
 			if (!res.ok) {
 				const data = await res.json().catch(() => ({}));
 				throw new Error(data.error ?? "Something went wrong.");
 			}
 			trackGAEvent({
-				action: "Contact Form Submitted",
-				category: "Contact",
-				label: form.subject || "general",
+				action:
+					inquiryType === "demo"
+						? "Demo Request Submitted"
+						: "Contact Form Submitted",
+				category: inquiryType === "demo" ? "Demo" : "Contact",
+				label: form.subject || defaultSubject || "general",
 			});
-			setForm(EMPTY);
+			setForm({ ...EMPTY, subject: defaultSubject });
 			setSubmitted(true);
 			onSuccess?.();
 		} catch (err) {
@@ -96,12 +119,9 @@ export function ContactForm({
 		return (
 			<div className="rounded-2xl border border-border bg-card/60 p-8 text-center">
 				<h2 className="font-display text-2xl font-semibold tracking-tight text-foreground">
-					Message sent
+					{successTitle}
 				</h2>
-				<p className="mt-3 text-muted-foreground">
-					Thanks for reaching out! We&apos;ve emailed you a confirmation and our
-					team will get back to you shortly.
-				</p>
+				<p className="mt-3 text-muted-foreground">{successDescription}</p>
 				<div className="mt-6 flex justify-center gap-3">
 					<Button variant="outline" onClick={() => setSubmitted(false)}>
 						Send another
@@ -111,6 +131,8 @@ export function ContactForm({
 			</div>
 		);
 	}
+
+	const isDemo = inquiryType === "demo";
 
 	return (
 		<form onSubmit={handleSubmit} className="space-y-5">
@@ -127,6 +149,7 @@ export function ContactForm({
 						value={form.name}
 						onChange={(e) => update("name", e.target.value)}
 						placeholder="Your full name"
+						autoComplete="name"
 						errorMessage={errors.name}
 					/>
 				</div>
@@ -135,7 +158,8 @@ export function ContactForm({
 						htmlFor="email"
 						className="block text-sm font-medium text-foreground"
 					>
-						Email <span className="text-red-500">*</span>
+						{isDemo ? "Work email" : "Email"}{" "}
+						<span className="text-red-500">*</span>
 					</label>
 					<Input
 						id="email"
@@ -143,6 +167,7 @@ export function ContactForm({
 						value={form.email}
 						onChange={(e) => update("email", e.target.value)}
 						placeholder="you@company.com"
+						autoComplete="email"
 						errorMessage={errors.email}
 					/>
 				</div>
@@ -161,22 +186,40 @@ export function ContactForm({
 						value={form.company}
 						onChange={(e) => update("company", e.target.value)}
 						placeholder="Company name (optional)"
+						autoComplete="organization"
 					/>
 				</div>
-				<div className="space-y-2">
-					<label
-						htmlFor="subject"
-						className="block text-sm font-medium text-foreground"
-					>
-						Subject
-					</label>
-					<Input
-						id="subject"
-						value={form.subject}
-						onChange={(e) => update("subject", e.target.value)}
-						placeholder="What's this about? (optional)"
-					/>
-				</div>
+				{!isDemo ? (
+					<div className="space-y-2">
+						<label
+							htmlFor="subject"
+							className="block text-sm font-medium text-foreground"
+						>
+							Subject
+						</label>
+						<Input
+							id="subject"
+							value={form.subject}
+							onChange={(e) => update("subject", e.target.value)}
+							placeholder="What's this about? (optional)"
+						/>
+					</div>
+				) : (
+					<div className="space-y-2">
+						<label
+							htmlFor="demo-subject"
+							className="block text-sm font-medium text-foreground"
+						>
+							Subject
+						</label>
+						<Input
+							id="demo-subject"
+							value={form.subject || defaultSubject}
+							readOnly
+							className="opacity-80"
+						/>
+					</div>
+				)}
 			</div>
 
 			<div className="space-y-2">
@@ -184,14 +227,19 @@ export function ContactForm({
 					htmlFor="message"
 					className="block text-sm font-medium text-foreground"
 				>
-					Message <span className="text-red-500">*</span>
+					{isDemo ? "What would you like to see?" : "Message"}{" "}
+					<span className="text-red-500">*</span>
 				</label>
 				<textarea
 					id="message"
 					value={form.message}
 					onChange={(e) => update("message", e.target.value)}
-					rows={6}
-					placeholder="Tell us how we can help..."
+					rows={isDemo ? 5 : 6}
+					placeholder={
+						isDemo
+							? "Tell us about your stack, goals, or any questions for the demo..."
+							: "Tell us how we can help..."
+					}
 					className="flex w-full resize-none rounded-md bg-input px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
 				/>
 				{errors.message && (
@@ -221,7 +269,7 @@ export function ContactForm({
 					disabled={submitting}
 					className="min-w-[140px] rounded-full"
 				>
-					{submitting ? "Sending..." : "Send message"}
+					{submitting ? "Sending..." : submitLabel}
 				</Button>
 			</div>
 		</form>

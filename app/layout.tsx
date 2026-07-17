@@ -11,7 +11,9 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Sagyboar_LOGO_SRC } from "@/constants/branding";
 import {
 	LLMS_FULL_PATH,
+	LLMS_LEGACY_FULL_PATH,
 	LLMS_TXT_PATH,
+	SAGYBOAR_SPACE_MD_PATH,
 	SITE_DESCRIPTION,
 	SITE_KEYWORDS,
 	SITE_NAME,
@@ -131,6 +133,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					href={LLMS_FULL_PATH}
 					title="Full product knowledge base"
 				/>
+				<link
+					rel="alternate"
+					type="text/markdown"
+					href={SAGYBOAR_SPACE_MD_PATH}
+					title="sagyboar.space agent summary"
+				/>
+				<link
+					rel="alternate"
+					type="text/markdown"
+					href={LLMS_LEGACY_FULL_PATH}
+					title="Legacy product knowledge base"
+				/>
 				<JsonLd data={[organizationJsonLd, websiteJsonLd]} />
 				<script
 					type="text/javascript"
@@ -140,7 +154,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					src="//js-eu1.hs-scripts.com/147033433.js"
 				/>
 			</head>
-			<body className="min-h-full overflow-x-hidden">
+			<body className="min-h-full overflow-x-hidden" suppressHydrationWarning>
 				<ThemeProvider>
 					<GoogleAnalytics gaId="G-3YPQZXP48E" />
 					<div className="flex min-h-full flex-col bg-background">

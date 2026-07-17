@@ -4,8 +4,12 @@ export const SITE_URL = "https://Sagyboar.space";
 export const SITE_NAME = Sagyboar_BRAND_NAME;
 /** Curated link index for LLM crawlers (llms.txt spec). */
 export const LLMS_TXT_PATH = "/llms.txt";
-/** Full product knowledge base in Markdown for AI systems. */
-export const LLMS_FULL_PATH = "/Sagyboar.md";
+/** Full product knowledge base for AI systems. */
+export const LLMS_FULL_PATH = "/llms-full.txt";
+/** Domain-named agent summary markdown. */
+export const SAGYBOAR_SPACE_MD_PATH = "/sagyboar.space.md";
+/** Legacy full KB path (backward compatibility). */
+export const LLMS_LEGACY_FULL_PATH = "/Sagyboar.md";
 /** Fallback static OG image. Pages use the dynamic /api/og generator. */
 export const DEFAULT_OG_IMAGE = "/OG-Image.png";
 export const SITE_DESCRIPTION =
@@ -123,6 +127,13 @@ export const pageSeo = {
 			"Uptime, response times, backup policy, and service credits for Sagyboar Cloud Services by plan.",
 		path: "/sla",
 		ogLabel: "SLA",
+	},
+	watchIntro: {
+		title: "Product Intro Video — Deploy, Monitor & Auto-Heal",
+		description:
+			"Watch the Sagyboar product intro: a 22-second tour of deployment, AI monitoring, and autonomous self-healing.",
+		path: "/watch/intro",
+		ogLabel: "Product intro video",
 	},
 } as const satisfies Record<string, PageSeoEntry>;
 

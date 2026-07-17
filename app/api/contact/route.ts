@@ -12,6 +12,7 @@ type ContactPayload = {
 	company?: string;
 	subject?: string;
 	message?: string;
+	inquiryType?: string;
 };
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -32,6 +33,7 @@ export async function POST(request: NextRequest) {
 	const company = body.company?.trim() ?? "";
 	const subject = body.subject?.trim() ?? "";
 	const message = body.message?.trim();
+	const isDemo = body.inquiryType === "demo" || subject === "Request a demo";
 
 	if (!name || !email || !message) {
 		return NextResponse.json(
@@ -55,11 +57,11 @@ export async function POST(request: NextRequest) {
 		console.error("Contact: failed to save to MongoDB", error);
 	}
 
-	const adminSubject = `New contact form submission${
-		subject ? `: ${subject}` : ""
-	} — ${name}`;
+	const adminSubject = isDemo
+		? `New demo request — ${name}`
+		: `New contact form submission${subject ? `: ${subject}` : ""} — ${name}`;
 	const adminText = [
-		"New contact form submission:",
+		isDemo ? "New demo request:" : "New contact form submission:",
 		"",
 		`Name: ${name}`,
 		`Email: ${email}`,
@@ -69,14 +71,20 @@ export async function POST(request: NextRequest) {
 		"Message:",
 		message,
 		"",
-		"— Sent from the Sagyboar website contact form",
+		isDemo
+			? "— Sent from the Sagyboar website request-demo form"
+			: "— Sent from the Sagyboar website contact form",
 	].join("\n");
 
-	const userSubject = "We received your message — Sagyboar";
+	const userSubject = isDemo
+		? "We received your demo request — Sagyboar"
+		: "We received your message — Sagyboar";
 	const userText = [
 		`Hi ${name},`,
 		"",
-		"Thanks for reaching out to Sagyboar! We've received your message and our team will get back to you within 24–48 business hours.",
+		isDemo
+			? "Thanks for requesting a Sagyboar demo! We've received your request and our team will get back to you within 24–48 business hours to schedule a walkthrough."
+			: "Thanks for reaching out to Sagyboar! We've received your message and our team will get back to you within 24–48 business hours.",
 		"",
 		"Here's a copy of what you sent:",
 		subject ? `Subject: ${subject}` : "",

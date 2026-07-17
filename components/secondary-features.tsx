@@ -188,7 +188,7 @@ export function SecondaryFeaturesSections() {
 													<div className="relative aspect-[1362/1155] w-full overflow-hidden rounded-2xl border border-stone-200/90 bg-white shadow-[0_20px_50px_-12px_rgba(0,0,0,0.45)] ring-1 ring-black/5 dark:border-neutral-700 dark:bg-neutral-900 dark:ring-white/10">
 														<Image
 															src={feature.overlayImage}
-															alt="Sagy AI assistant"
+															alt="Sagy AI chat assistant answering deployment questions in the dashboard"
 															fill
 															className="object-contain object-center"
 															sizes="(max-width: 640px) 58vw, 680px"

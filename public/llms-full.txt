@@ -3,7 +3,7 @@
 This document is the detailed reference for AI systems and crawlers. For a short
 site index with links only, see https://sagyboar.space/llms.txt
 
-The primary full knowledge base is also available at https://sagyboar.space/llms-full.txt
+For a domain summary, see https://sagyboar.space/sagyboar.space.md
 
 ## About
 
@@ -17,20 +17,15 @@ without building or staffing a full DevOps department.
 - Dashboard: https://dashboard.sagyboar.space
 - Support: help@sagyboar.space
 - Sitemap: https://sagyboar.space/sitemap.xml
+- Robots: https://sagyboar.space/robots.txt
 
 ## Who it is for
 
-**Solo developers and hobbyists** — Ship side projects and MVPs with managed
-hosting, AI monitoring, and community support. No server provisioning or manual
-DevOps setup required.
+**Indie builders (students, freelancers, solo developers)** — Deploy on Sagyboar-managed VPS infrastructure with yearly INR pricing. Bring your own database. Ideal when you do not have a company cloud budget.
 
-**Startups** — Grow without hiring a full-time platform team. Get reliable
-deployments, advanced AI monitoring, AI-assisted engineering, and on-demand
-DevOps from a single subscription.
+**Teams and startups (BYOC)** — Run on your own cloud (AWS, GCP, Azure, DigitalOcean). Shared DevOps team, AI automation, monthly USD pricing. For funded startups and SMEs scaling without a full-time DevOps hire.
 
-**Enterprises** — Run on dedicated cloud infrastructure with SLA-backed uptime,
-granular access control, audit logging, SSO, and a fully managed platform team
-for custom onboarding and ongoing operations.
+**Enterprises** — Premium SLAs, SSO, audit logs, dedicated support, and custom integrations on BYOC Team plans.
 
 ## How it works
 
@@ -40,12 +35,16 @@ for custom onboarding and ongoing operations.
    detects the stack, and generates a production-ready Dockerfile, Docker
    Compose configuration, and environment variable scaffolding. Every artifact
    is an editable draft you approve before deploy.
-3. **Deploy to managed hosting** — Ship to fully managed servers in minutes
-   with automatic SSL, zero-downtime rolling updates, and PR preview
-   environments.
+3. **Deploy** — Ship to managed hosting (Indie) or your own cloud (Team BYOC)
+   with automatic SSL, zero-downtime rolling updates, and PR preview environments.
 4. **Operate with AI** — Real-time logs and metrics feed AI anomaly detection.
    Errors are diagnosed, tickets are filed automatically, and self-healing
    actions run with human approval for high-impact changes.
+
+## Product intro video
+
+- Watch page: https://sagyboar.space/watch/intro
+- Video file: https://sagyboar.space/videos/intro.mp4
 
 ## Features (detailed)
 
@@ -179,9 +178,26 @@ and custom onboarding for organizations with strict compliance and scale needs.
 
 Full plan comparison: https://sagyboar.space/pricing
 
+### Indie plans (yearly INR, Sagyboar-managed VPS)
+
+| Plan    | Price/year | Best for                          |
+| ------- | ---------- | --------------------------------- |
+| Solo    | ₹1,500     | 1 project, students, side projects |
+| Builder | ₹2,500     | Up to 3 projects, freelancers     |
+| Team    | ₹4,500     | Up to 5 projects, small indie teams |
+
+### Team BYOC plans (monthly USD, your own cloud)
+
+| Plan       | Price/month | Best for                                    |
+| ---------- | ----------- | ------------------------------------------- |
+| Starter    | $249        | First production apps, up to 10 projects    |
+| Growth     | $499        | Scaling teams, up to 20 projects            |
+| Enterprise | $1,000      | Premium SLA, SSO, dedicated support         |
+
 ## Site map (all public pages)
 
 - Home: https://sagyboar.space/
+- About: https://sagyboar.space/about
 - Features index: https://sagyboar.space/features
 - Pricing: https://sagyboar.space/pricing
 - Product intro video: https://sagyboar.space/watch/intro
@@ -192,6 +208,14 @@ Full plan comparison: https://sagyboar.space/pricing
 - Solutions — Enterprise: https://sagyboar.space/solutions/enterprise
 - Privacy Policy: https://sagyboar.space/privacy
 - Terms of Service: https://sagyboar.space/terms-of-service
+- SLA: https://sagyboar.space/sla
+
+## Agent crawler files
+
+- Index (this spec): https://sagyboar.space/llms.txt
+- Full knowledge base: https://sagyboar.space/llms-full.txt
+- Domain summary: https://sagyboar.space/sagyboar.space.md
+- Legacy full KB: https://sagyboar.space/Sagyboar.md
 
 ## Contact
 

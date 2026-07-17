@@ -24,7 +24,7 @@ export function JobsAbout() {
 					<div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border bg-muted/30 shadow-sm">
 						<Image
 							src="/Sagyboar-logo.png"
-							alt="Sagyboar platform"
+							alt="Sagyboar logo — careers at an AI-native DevOps platform"
 							fill
 							className="object-contain"
 							sizes="(max-width: 1024px) 100vw, 50vw"

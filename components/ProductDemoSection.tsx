@@ -1,7 +1,12 @@
 "use client";
 
+import {
+	INTRO_VIDEO_POSTER,
+	INTRO_VIDEO_SRC,
+} from "@/constants/video";
 import { AnimatePresence, motion } from "framer-motion";
 import { Lock, Pause, Play, Volume2, VolumeX } from "lucide-react";
+import Link from "next/link";
 import {
 	useCallback,
 	useEffect,
@@ -10,9 +15,6 @@ import {
 	useState,
 } from "react";
 import { Container } from "./Container";
-
-const VIDEO_SRC = "/videos/intro.mp4";
-const POSTER_SRC = "/videos/intro-poster.jpg";
 
 export function ProductDemoSection() {
 	const sectionRef = useRef<HTMLElement>(null);
@@ -108,7 +110,13 @@ export function ProductDemoSection() {
 					</h2>
 					<p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground sm:mt-3 sm:text-base">
 						A 22-second tour of deploy, monitor, and auto-heal — right in the
-						browser.
+						browser.{" "}
+						<Link
+							href="/watch/intro"
+							className="text-primary underline underline-offset-2"
+						>
+							Watch full intro
+						</Link>
 					</p>
 				</motion.div>
 
@@ -165,7 +173,7 @@ export function ProductDemoSection() {
 							<video
 								ref={videoRef}
 								className="absolute inset-0 size-full object-cover"
-								poster={POSTER_SRC}
+								poster={INTRO_VIDEO_POSTER}
 								preload="metadata"
 								muted={isMuted}
 								loop
@@ -178,7 +186,7 @@ export function ProductDemoSection() {
 								}}
 							>
 								{shouldLoad ? (
-									<source src={VIDEO_SRC} type="video/mp4" />
+									<source src={INTRO_VIDEO_SRC} type="video/mp4" />
 								) : null}
 								Your browser does not support embedded video playback.
 							</video>

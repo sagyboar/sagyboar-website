@@ -1,45 +1,54 @@
 # Sagyboar
 
-> Sagyboar is an AI-native DevOps platform for deployment, monitoring, diagnosis, and managed engineering. Teams deploy from any Git provider or registry, operate with AI-assisted monitoring and self-healing, and scale from a free tier to fully managed enterprise infrastructure — without hiring a full DevOps department.
+> Sagyboar is an AI-native DevOps platform for deployment, monitoring, diagnosis, and managed engineering. Teams deploy from any Git provider or registry, operate with AI-assisted monitoring and self-healing, and scale from Indie yearly plans to fully managed Team BYOC infrastructure — without hiring a full DevOps department.
 
-- Website: https://Sagyboar.space
-- Dashboard: https://dashboard.Sagyboar.space
-- Support: help@Sagyboar.space
+- Website: https://sagyboar.space
+- Dashboard: https://dashboard.sagyboar.space
+- Support: help@sagyboar.space
 
-## Documentation
+## Agent crawler files
 
-- [Full product knowledge base](https://Sagyboar.space/Sagyboar.md): Detailed features, solutions, pricing, and how the platform works
+- [Full product knowledge base](https://sagyboar.space/llms-full.txt): Detailed features, solutions, pricing, and how the platform works
+- [Domain summary](https://sagyboar.space/sagyboar.space.md): Quick reference for AI agents crawling sagyboar.space
+- [Legacy full KB](https://sagyboar.space/Sagyboar.md): Backward-compatible markdown export
 
 ## Product
 
-- [Home](https://Sagyboar.space/): Platform overview
-- [Features](https://Sagyboar.space/features): All platform capabilities
-- [Pricing](https://Sagyboar.space/pricing): Free, Hobby, Startup, and Enterprise plans
+- [Home](https://sagyboar.space/): Platform overview
+- [About](https://sagyboar.space/about): Mission and team
+- [Features](https://sagyboar.space/features): All platform capabilities
+- [Pricing](https://sagyboar.space/pricing): Indie (INR/year) and Team BYOC (USD/month) plans
+- [Product intro video](https://sagyboar.space/watch/intro): 22-second platform tour (watch page for video indexing)
 
 ## Features
 
-- [Application Deployment](https://Sagyboar.space/features/application-deployment)
-- [CI/CD & Git Integration](https://Sagyboar.space/features/ci-cd-git-integration)
-- [AI Monitoring & Observability](https://Sagyboar.space/features/ai-monitoring-observability)
-- [AI Error Diagnosis](https://Sagyboar.space/features/ai-error-diagnosis)
-- [Autonomous Self-Healing](https://Sagyboar.space/features/autonomous-self-healing)
-- [Database Management](https://Sagyboar.space/features/database-management)
-- [Multi-Server & Infrastructure](https://Sagyboar.space/features/multi-server-infrastructure)
-- [Notifications & Alerting](https://Sagyboar.space/features/notifications-alerting)
-- [Managed Team Services](https://Sagyboar.space/features/managed-team-services)
-- [Weekly Code Review](https://Sagyboar.space/features/weekly-code-review)
-- [Security & Access Control](https://Sagyboar.space/features/platform-security-access-control)
+- [Application Deployment](https://sagyboar.space/features/application-deployment)
+- [CI/CD & Git Integration](https://sagyboar.space/features/ci-cd-git-integration)
+- [AI Monitoring & Observability](https://sagyboar.space/features/ai-monitoring-observability)
+- [AI Error Diagnosis](https://sagyboar.space/features/ai-error-diagnosis)
+- [Autonomous Self-Healing](https://sagyboar.space/features/autonomous-self-healing)
+- [Database Management](https://sagyboar.space/features/database-management)
+- [Multi-Server & Infrastructure](https://sagyboar.space/features/multi-server-infrastructure)
+- [Notifications & Alerting](https://sagyboar.space/features/notifications-alerting)
+- [Managed Team Services](https://sagyboar.space/features/managed-team-services)
+- [Weekly Code Review](https://sagyboar.space/features/weekly-code-review)
+- [Security & Access Control](https://sagyboar.space/features/platform-security-access-control)
 
 ## Solutions
 
-- [Hobby](https://Sagyboar.space/solutions/hobby): Solo developers and MVPs
-- [Startup](https://Sagyboar.space/solutions/startup): Growing teams without a full DevOps hire
-- [Enterprise](https://Sagyboar.space/solutions/enterprise): Dedicated infrastructure and managed platform team
+- [Hobby](https://sagyboar.space/solutions/hobby): Solo developers and MVPs
+- [Startup](https://sagyboar.space/solutions/startup): Growing teams without a full DevOps hire
+- [Enterprise](https://sagyboar.space/solutions/enterprise): Dedicated infrastructure and managed platform team
 
 ## Company
 
-- [Careers](https://Sagyboar.space/jobs)
-- [Contact](https://Sagyboar.space/contact)
-- [Privacy Policy](https://Sagyboar.space/privacy)
-- [Terms of Service](https://Sagyboar.space/terms-of-service)
-- [Service Level Agreement](https://Sagyboar.space/sla)
+- [Careers](https://sagyboar.space/jobs)
+- [Contact](https://sagyboar.space/contact)
+- [Privacy Policy](https://sagyboar.space/privacy)
+- [Terms of Service](https://sagyboar.space/terms-of-service)
+- [Service Level Agreement](https://sagyboar.space/sla)
+
+## Crawl hints
+
+- Robots: https://sagyboar.space/robots.txt
+- Sitemap: https://sagyboar.space/sitemap.xml
