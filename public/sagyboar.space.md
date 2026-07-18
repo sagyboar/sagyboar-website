@@ -1,6 +1,6 @@
 # sagyboar.space — Agent Summary
 
-> **Sagyboar** is an AI-native DevOps platform for deployment, monitoring, diagnosis, and managed engineering. Two pricing tracks: **Indie** (yearly INR, Sagyboar VPS) and **Team BYOC** (monthly USD, your own cloud).
+> **Sagyboar** is an AI-native DevOps platform for deployment, monitoring, diagnosis, and managed engineering. Two pricing tracks: **Indie** (yearly USD, Sagyboar VPS) and **Team BYOC** (monthly USD, your own cloud).
 
 ## Primary URLs
 
@@ -35,17 +35,17 @@ Start here for structured discovery:
 
 ## Pricing at a glance
 
-**Indie** (students, freelancers, solo builders — Sagyboar VPS, billed yearly in INR):
+**Indie** (students, freelancers, solo builders — Sagyboar VPS, billed yearly in USD):
 
-- Solo: ₹1,500/yr — 1 project
-- Builder: ₹2,500/yr — up to 3 projects (most popular)
-- Team: ₹4,500/yr — up to 5 projects
+- Solo: $19/yr — 1 project
+- Builder: $29/yr — up to 3 projects (most popular)
+- Team: $49/yr — up to 5 projects
 
 **Team BYOC** (startups and SMEs — your cloud, billed monthly in USD):
 
 - Starter: $249/mo — up to 10 projects
 - Growth: $499/mo — up to 20 projects
-- Enterprise: $1,000/mo — premium SLA, SSO, dedicated support
+- Enterprise: $999/mo — premium SLA, SSO, dedicated support
 
 Details: https://sagyboar.space/pricing
 

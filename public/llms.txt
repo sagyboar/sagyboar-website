@@ -17,7 +17,7 @@
 - [Home](https://sagyboar.space/): Platform overview
 - [About](https://sagyboar.space/about): Mission and team
 - [Features](https://sagyboar.space/features): All platform capabilities
-- [Pricing](https://sagyboar.space/pricing): Indie (INR/year) and Team BYOC (USD/month) plans
+- [Pricing](https://sagyboar.space/pricing): Indie (USD/year) and Team BYOC (USD/month) plans
 - [Product intro video](https://sagyboar.space/watch/intro): 22-second platform tour (watch page for video indexing)
 
 ## Features

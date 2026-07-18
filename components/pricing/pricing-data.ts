@@ -46,7 +46,7 @@ export const businessModelTagline =
 	"Automate with AI, scale with a shared DevOps team, and run on your own cloud — zero infrastructure cost on us.";
 
 export const indieBusinessModelTagline =
-	"Deploy on our infra, bring your own database, and pay yearly in INR — built for students, freelancers, and solo builders.";
+	"Deploy on our infra, bring your own database, and pay yearly in USD — built for students, freelancers, and solo builders.";
 
 export const audienceBusinessModelTagline: Record<PricingAudience, string> = {
 	team: businessModelTagline,
@@ -138,7 +138,7 @@ export const teamPlanLimitations = [
 	{
 		id: "enterprise",
 		name: "Enterprise",
-		price: "$1,000/month",
+		price: "$999/month",
 		items: [
 			"Up to 30 projects",
 			"8 agents",
@@ -156,12 +156,12 @@ export const indiePlanLimitations = [
 	{
 		id: "solo",
 		name: "Solo",
-		price: "₹1,500/year",
+		price: "$19/year",
 		items: [
 			"1 project only",
 			"512 MB RAM / 1 GB disk",
 			"100 build minutes & 10 GB bandwidth per month",
-			"No custom domain",
+			"No subdomain",
 			"Community support only (Discord)",
 			"Must bring your own database",
 		],
@@ -169,12 +169,12 @@ export const indiePlanLimitations = [
 	{
 		id: "builder",
 		name: "Builder",
-		price: "₹2,500/year",
+		price: "$29/year",
 		items: [
 			"Up to 3 projects",
 			"1 GB RAM / 3 GB disk each",
 			"300 build minutes & 50 GB bandwidth per month",
-			"1 custom domain",
+			"1 subdomain",
 			"Email support with 48hr response",
 			"Must bring your own database",
 		],
@@ -182,12 +182,12 @@ export const indiePlanLimitations = [
 	{
 		id: "indie-team",
 		name: "Team",
-		price: "₹4,500/year",
+		price: "$49/year",
 		items: [
 			"Up to 5 projects",
 			"2 GB RAM / 5 GB disk each",
 			"750 build minutes & 100 GB bandwidth per month",
-			"Up to 3 custom domains / 2 seats",
+			"Up to 3 subdomains / 2 seats",
 			"Limited auto-heal (restart/rollback only)",
 			"Must bring your own database",
 		],
@@ -253,7 +253,7 @@ export const teamPricingPlans = [
 		name: "Enterprise",
 		tagline:
 			"For established teams that need premium SLAs and dedicated support.",
-		price: 1000,
+		price: 999,
 		currency: "usd",
 		billingPeriod: "month",
 		recommended: false,
@@ -278,14 +278,14 @@ export const teamPricingPlans = [
 	},
 ] as const satisfies readonly PaidPricingPlan[];
 
-/** Indie / user plans — Sagyboar VPS (INR, yearly) */
+/** Indie / user plans — Sagyboar VPS (USD, yearly) */
 export const userPricingPlans = [
 	{
 		id: "solo",
 		name: "Solo",
 		tagline: "One project on our infra — ideal for students and side projects.",
-		price: 1500,
-		currency: "inr",
+		price: 19,
+		currency: "usd",
 		billingPeriod: "year",
 		priceNote: "/year, billed annually",
 		recommended: false,
@@ -297,7 +297,7 @@ export const userPricingPlans = [
 			"100 build minutes/month",
 			"10 GB bandwidth/month",
 			"1 team seat",
-			"No custom domain",
+			"No subdomain",
 			"Bring your own database (Supabase, Neon, Mongo Atlas, etc.)",
 			"AI monitoring: detection/alerts only",
 			"Support: Community (Discord)",
@@ -307,8 +307,8 @@ export const userPricingPlans = [
 		id: "builder",
 		name: "Builder",
 		tagline: "For freelancers and solo builders shipping a few real apps.",
-		price: 2500,
-		currency: "inr",
+		price: 29,
+		currency: "usd",
 		billingPeriod: "year",
 		priceNote: "/year, billed annually",
 		recommended: true,
@@ -320,7 +320,7 @@ export const userPricingPlans = [
 			"300 build minutes/month",
 			"50 GB bandwidth/month",
 			"1 team seat",
-			"1 custom domain",
+			"1 subdomain",
 			"Bring your own database",
 			"AI monitoring: + auto-ticket to repo",
 			"Support: Email, 48hr response",
@@ -330,8 +330,8 @@ export const userPricingPlans = [
 		id: "indie-team",
 		name: "Team",
 		tagline: "For small indie teams that need a bit more headroom.",
-		price: 4500,
-		currency: "inr",
+		price: 49,
+		currency: "usd",
 		billingPeriod: "year",
 		priceNote: "/year, billed annually",
 		recommended: false,
@@ -343,7 +343,7 @@ export const userPricingPlans = [
 			"750 build minutes/month",
 			"100 GB bandwidth/month",
 			"2 team seats",
-			"Up to 3 custom domains",
+			"Up to 3 subdomains",
 			"Bring your own database",
 			"AI monitoring: + limited auto-heal (restart/rollback)",
 			"Support: Priority email, 24hr response",
@@ -378,7 +378,7 @@ export const teamGeneralTerms = [
 ] as const;
 
 export const indieGeneralTerms = [
-	"Indie plans are billed annually in INR (₹), paid up front for the year.",
+	"Indie plans are billed annually in USD ($), paid up front for the year.",
 	"Apps run on Sagyboar-managed VPS infrastructure — not on your own cloud account.",
 	"You must bring your own database (Supabase, Neon, Mongo Atlas, etc.). Managed databases are not included.",
 	"Fair usage policy applies to build minutes, bandwidth, and compute on all Indie plans.",
@@ -454,9 +454,9 @@ export const indieInfraSteps = [
 	},
 	{
 		step: "02",
-		title: "Pay yearly in INR",
+		title: "Pay yearly in USD",
 		description:
-			"Simple annual pricing in ₹ for students, freelancers, and solo builders — pick Solo, Builder, or Team.",
+			"Simple annual pricing in $ for students, freelancers, and solo builders — pick Solo, Builder, or Team.",
 		icon: CreditCard,
 	},
 	{
@@ -514,7 +514,7 @@ export const idealCustomerThread =
 	"The common thread: they have a product and a dev team — but no dedicated DevOps, or can't afford one. Exactly the people Sagyboar replaces.";
 
 export const indieIdealCustomerThread =
-	"The common thread: they ship real apps without a company budget — students, freelancers, and solo builders who need hosted infra priced in INR, yearly.";
+	"The common thread: they ship real apps without a company budget — students, freelancers, and solo builders who need hosted infra priced in USD, yearly.";
 
 export const audienceIdealCustomers: Record<
 	PricingAudience,
@@ -569,7 +569,7 @@ export const teamPlanFitGuide = [
 	{
 		id: "enterprise",
 		plan: "Enterprise",
-		price: "$1,000/month",
+		price: "$999/month",
 		audience: "Best for…",
 		backgroundImage: "/Enterprise.png",
 		icon: Building2,
@@ -586,7 +586,7 @@ export const indiePlanFitGuide = [
 	{
 		id: "solo",
 		plan: "Solo",
-		price: "₹1,500/year",
+		price: "$19/year",
 		audience: "Best for…",
 		backgroundImage: "/Hobby.png",
 		icon: Sparkles,
@@ -600,13 +600,13 @@ export const indiePlanFitGuide = [
 	{
 		id: "builder",
 		plan: "Builder",
-		price: "₹2,500/year",
+		price: "$29/year",
 		audience: "Best for…",
 		backgroundImage: "/startup.png",
 		icon: Rocket,
 		points: [
 			"Freelancers and solo builders with up to 3 apps",
-			"Custom domain + auto-ticket to your repo",
+			"Subdomain + auto-ticket to your repo",
 			"Email support within 48 hours",
 			"More build minutes and bandwidth for real shipping",
 		],
@@ -614,13 +614,13 @@ export const indiePlanFitGuide = [
 	{
 		id: "indie-team",
 		plan: "Team",
-		price: "₹4,500/year",
+		price: "$49/year",
 		audience: "Best for…",
 		backgroundImage: "/Enterprise.png",
 		icon: Users,
 		points: [
 			"Small indie teams with up to 5 projects",
-			"2 seats and up to 3 custom domains",
+			"2 seats and up to 3 subdomains",
 			"Limited auto-heal (restart/rollback)",
 			"Priority email support within 24 hours",
 		],

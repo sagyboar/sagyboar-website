@@ -21,7 +21,7 @@ without building or staffing a full DevOps department.
 
 ## Who it is for
 
-**Indie builders (students, freelancers, solo developers)** — Deploy on Sagyboar-managed VPS infrastructure with yearly INR pricing. Bring your own database. Ideal when you do not have a company cloud budget.
+**Indie builders (students, freelancers, solo developers)** — Deploy on Sagyboar-managed VPS infrastructure with yearly USD pricing. Bring your own database. Ideal when you do not have a company cloud budget.
 
 **Teams and startups (BYOC)** — Run on your own cloud (AWS, GCP, Azure, DigitalOcean). Shared DevOps team, AI automation, monthly USD pricing. For funded startups and SMEs scaling without a full-time DevOps hire.
 
@@ -178,13 +178,13 @@ and custom onboarding for organizations with strict compliance and scale needs.
 
 Full plan comparison: https://sagyboar.space/pricing
 
-### Indie plans (yearly INR, Sagyboar-managed VPS)
+### Indie plans (yearly USD, Sagyboar-managed VPS)
 
 | Plan    | Price/year | Best for                          |
 | ------- | ---------- | --------------------------------- |
-| Solo    | ₹1,500     | 1 project, students, side projects |
-| Builder | ₹2,500     | Up to 3 projects, freelancers     |
-| Team    | ₹4,500     | Up to 5 projects, small indie teams |
+| Solo    | $19        | 1 project, students, side projects |
+| Builder | $29        | Up to 3 projects, freelancers     |
+| Team    | $49        | Up to 5 projects, small indie teams |
 
 ### Team BYOC plans (monthly USD, your own cloud)
 
@@ -192,7 +192,7 @@ Full plan comparison: https://sagyboar.space/pricing
 | ---------- | ----------- | ------------------------------------------- |
 | Starter    | $249        | First production apps, up to 10 projects    |
 | Growth     | $499        | Scaling teams, up to 20 projects            |
-| Enterprise | $1,000      | Premium SLA, SSO, dedicated support         |
+| Enterprise | $999        | Premium SLA, SSO, dedicated support         |
 
 ## Site map (all public pages)
 
