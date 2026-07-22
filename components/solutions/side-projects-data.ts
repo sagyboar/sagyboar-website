@@ -1,9 +1,9 @@
 import { Sagyboar_PORTAL_URL } from "@/constants/branding";
 import type { SolutionPageData } from "./solution-types";
 
-export const hobbySolutionPage: SolutionPageData = {
+export const sideProjectsSolutionPage: SolutionPageData = {
 	hero: {
-		title: "Hobby",
+		title: "Side Projects",
 		headline: "Deploy your side projects without the DevOps headache",
 		headlineHighlight: "DevOps headache",
 		description:
@@ -18,15 +18,15 @@ export const hobbySolutionPage: SolutionPageData = {
 		icon: "sparkles",
 	},
 	stack: {
-		title: "Everything in Hobby",
-		titleHighlight: "Hobby",
+		title: "Everything for Side Projects",
+		titleHighlight: "Side Projects",
 		subtitle:
-			"Scroll through five core capabilities included in the Hobby plan.",
+			"Scroll through five core capabilities included for side-project builders.",
 		sections: [
 			{
 				title: "One application, fully managed",
 				description:
-					"Deploy a production app without wiring servers yourself. Hobby includes one managed application on Sagyboar infrastructure with SSL and a custom domain.",
+					"Deploy a production app without wiring servers yourself. Side Projects includes one managed application on Sagyboar infrastructure with SSL and a custom domain.",
 				image: "/Default.png",
 				imageAlt: "Sagyboar projects dashboard",
 				graphic: "oneApp",
@@ -70,8 +70,8 @@ export const hobbySolutionPage: SolutionPageData = {
 		title: "Ship your side project in minutes, not weekends",
 		titleHighlight: "not weekends",
 		description:
-			"Connect your repo, pick a stack, and deploy to managed infrastructure with SSL and monitoring already wired up. Hobby gives solo builders production-grade hosting without learning Kubernetes.",
-		cta: "Start with Hobby",
+			"Connect your repo, pick a stack, and deploy to managed infrastructure with SSL and monitoring already wired up. Side Projects gives solo builders production-grade hosting without learning Kubernetes.",
+		cta: "Get started",
 		ctaHref: Sagyboar_PORTAL_URL,
 		ctaExternal: true,
 		image: "/Hobby.png",
@@ -79,20 +79,20 @@ export const hobbySolutionPage: SolutionPageData = {
 		graphic: "quickShip",
 	},
 	faq: {
-		title: "Hobby plan FAQ",
+		title: "Side Projects FAQ",
 		titleHighlight: "FAQ",
 		subtitle:
-			"Common questions about deploying side projects on Sagyboar Hobby.",
+			"Common questions about deploying side projects on Sagyboar.",
 		items: [
 			{
-				question: "What is included in the Hobby plan?",
+				question: "What is included for Side Projects?",
 				answer:
-					"Hobby includes one managed application, basic AI monitoring, automated issue tickets, one managed database, 10 GB storage, custom domain with SSL, and community support — all for $49/month.",
+					"Side Projects includes one managed application, basic AI monitoring, automated issue tickets, one managed database, 10 GB storage, custom domain with SSL, and community support — all for $49/month.",
 			},
 			{
 				question: "Where is my app hosted?",
 				answer:
-					"Hobby uses managed hosting on Sagyboar infrastructure. We handle servers, SSL, and uptime monitoring so you can focus on building.",
+					"Side Projects uses managed hosting on Sagyboar infrastructure. We handle servers, SSL, and uptime monitoring so you can focus on building.",
 			},
 			{
 				question: "How does automated issue ticketing work?",
@@ -100,26 +100,26 @@ export const hobbySolutionPage: SolutionPageData = {
 					"When our AI monitoring detects an error or anomaly, it opens a structured ticket in your connected GitHub or GitLab repo with context, severity, and suggested next steps.",
 			},
 			{
-				question: "Can I upgrade to Startup later?",
+				question: "Can I upgrade to Scale-ups later?",
 				answer:
 					"Yes. You can upgrade at any time from the dashboard. Upgrades take effect immediately so you can scale as your project grows.",
 			},
 			{
-				question: "What does the fair usage policy mean for Hobby?",
+				question: "What does the fair usage policy mean for Side Projects?",
 				answer:
-					"Hobby is built for low-to-moderate traffic side projects and MVPs. Additional storage, bandwidth, or compute beyond included limits is billed separately.",
+					"Side Projects is built for low-to-moderate traffic side projects and MVPs. Additional storage, bandwidth, or compute beyond included limits is billed separately.",
 			},
 			{
 				question: "What kind of support do I get?",
 				answer:
-					"Hobby includes community support through our channels. For faster response times and dedicated engineering help, consider upgrading to Startup.",
+					"Side Projects includes community support through our channels. For faster response times and dedicated engineering help, consider upgrading to Scale-ups.",
 			},
 		],
 	},
 	cta: {
 		title: "Ready to deploy without the DevOps grind?",
 		description:
-			"Join solo developers shipping faster on Sagyboar. Get started with Hobby today or talk to us if you have questions.",
+			"Join solo developers shipping faster on Sagyboar. Get started with Side Projects today or talk to us if you have questions.",
 		primaryCta: "Get started",
 		primaryHref: Sagyboar_PORTAL_URL,
 		primaryExternal: true,

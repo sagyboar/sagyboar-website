@@ -156,20 +156,20 @@ server integration.
 
 ## Solutions
 
-### Hobby
-https://sagyboar.space/solutions/hobby
+### Side Projects
+https://sagyboar.space/solutions/side-projects
 
 For solo developers, MVPs, and personal projects. Includes managed hosting, AI
 monitoring, and community support.
 
-### Startup
-https://sagyboar.space/solutions/startup
+### Scale-ups
+https://sagyboar.space/solutions/scale-ups
 
-For growing startups that need reliable DevOps without hiring full-time. Includes
+For growing companies that need reliable DevOps without hiring full-time. Includes
 advanced AI monitoring, AI-assisted engineering, and on-demand DevOps.
 
-### Enterprise
-https://sagyboar.space/solutions/enterprise
+### Organizations
+https://sagyboar.space/solutions/organizations
 
 Dedicated cloud infrastructure, a fully managed platform team, SLA-backed uptime,
 and custom onboarding for organizations with strict compliance and scale needs.
@@ -184,7 +184,7 @@ Full plan comparison: https://sagyboar.space/pricing
 | ------- | ---------- | --------------------------------- |
 | Solo    | $19        | 1 project, students, side projects |
 | Builder | $29        | Up to 3 projects, freelancers     |
-| Team    | $49        | Up to 5 projects, small indie teams |
+| Studio  | $49        | Up to 5 projects, small indie teams |
 
 ### Team BYOC plans (monthly USD, your own cloud)
 
@@ -203,9 +203,9 @@ Full plan comparison: https://sagyboar.space/pricing
 - Product intro video: https://sagyboar.space/watch/intro
 - Contact: https://sagyboar.space/contact
 - Careers: https://sagyboar.space/jobs
-- Solutions — Hobby: https://sagyboar.space/solutions/hobby
-- Solutions — Startup: https://sagyboar.space/solutions/startup
-- Solutions — Enterprise: https://sagyboar.space/solutions/enterprise
+- Solutions — Side Projects: https://sagyboar.space/solutions/side-projects
+- Solutions — Scale-ups: https://sagyboar.space/solutions/scale-ups
+- Solutions — Organizations: https://sagyboar.space/solutions/organizations
 - Privacy Policy: https://sagyboar.space/privacy
 - Terms of Service: https://sagyboar.space/terms-of-service
 - SLA: https://sagyboar.space/sla

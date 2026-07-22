@@ -1,26 +1,29 @@
 import { Container } from "@/components/Container";
 import { Sagyboar_SUPPORT_EMAIL } from "@/constants/branding";
 import { pageSeo } from "@/constants/seo-data";
+import { teamPricingPlans } from "@/lib/pricing";
 import { buildMetadata } from "@/lib/seo";
 import Link from "next/link";
 
 export const metadata = buildMetadata(pageSeo.sla);
 
+const [starterPlan, growthPlan, enterprisePlan] = teamPricingPlans;
+
 const slaPackages = [
 	{
-		plan: "Hobby",
+		plan: starterPlan.name,
 		uptime: "99.5%",
 		responseTime: "6 hours",
 		support: "Business hours (Mon–Fri, 9 AM–6 PM EST)",
 	},
 	{
-		plan: "Startup",
+		plan: growthPlan.name,
 		uptime: "99.9%",
 		responseTime: "1 hour",
 		support: "24×7",
 	},
 	{
-		plan: "Enterprise",
+		plan: enterprisePlan.name,
 		uptime: "99.99%",
 		responseTime: "15 minutes",
 		support: "24×7 Priority",
@@ -165,15 +168,16 @@ export default function SlaPage() {
 						<h2 className="text-2xl font-semibold">3. Support hours</h2>
 						<ul className="list-inside list-disc space-y-2">
 							<li>
-								<strong>Hobby</strong> — Monday through Friday, 9 AM–6 PM EST
-								(business hours)
+								<strong>{starterPlan.name}</strong> — Monday through Friday, 9
+								AM–6 PM EST (business hours)
 							</li>
 							<li>
-								<strong>Startup</strong> — 24 hours a day, 7 days a week
+								<strong>{growthPlan.name}</strong> — 24 hours a day, 7 days a
+								week
 							</li>
 							<li>
-								<strong>Enterprise</strong> — 24×7 priority support with
-								dedicated escalation paths
+								<strong>{enterprisePlan.name}</strong> — 24×7 priority support
+								with dedicated escalation paths
 							</li>
 						</ul>
 						<p>
@@ -296,9 +300,9 @@ export default function SlaPage() {
 						</p>
 						<div className="rounded-2xl border border-border bg-muted/15 p-5">
 							<p className="text-foreground">
-								You are on the <strong>Startup</strong> plan. We commit to{" "}
-								<strong>99.9% uptime</strong> and a <strong>1-hour</strong>{" "}
-								response target for critical issues.
+								You are on the <strong>{growthPlan.name}</strong> plan. We
+								commit to <strong>99.9% uptime</strong> and a{" "}
+								<strong>1-hour</strong> response target for critical issues.
 							</p>
 							<p className="mt-3">
 								If your production app goes down, you open a critical support

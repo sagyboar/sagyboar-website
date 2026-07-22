@@ -15,6 +15,35 @@ import {
 	Users,
 	Wrench,
 } from "lucide-react";
+import {
+	formatPlanPriceLabel,
+	indiePricingPlans,
+	teamPricingPlans,
+	type PaidPricingPlan,
+	type PricingAudience,
+} from "@/lib/pricing";
+
+// Re-export canonical pricing so existing component imports keep working
+export {
+	audiencePricing,
+	freePlan,
+	indieExclusionNote,
+	indiePricingPlans,
+	pricingModels,
+	pricingModelByAudience,
+	pricingPlans,
+	teamPricingPlans,
+	userPricingPlans,
+	type AudiencePricing,
+	type FreePricingPlan,
+	type PaidPricingPlan,
+	type PlanBillingPeriod,
+	type PlanCurrency,
+	type PlanInclude,
+	type PricingAudience,
+	type PricingModel,
+	type PricingModelId,
+} from "@/lib/pricing";
 
 export const pricingStats = [
 	{
@@ -40,8 +69,6 @@ export const pricingStats = [
 	},
 ] as const;
 
-export type PricingAudience = "user" | "team";
-
 export const businessModelTagline =
 	"Automate with AI, scale with a shared DevOps team, and run on your own cloud — zero infrastructure cost on us.";
 
@@ -53,59 +80,6 @@ export const audienceBusinessModelTagline: Record<PricingAudience, string> = {
 	user: indieBusinessModelTagline,
 };
 
-export type PlanCurrency = "usd" | "inr";
-export type PlanBillingPeriod = "month" | "year";
-
-export type PlanInclude = string | { text: string; highlighted: true };
-
-export type PaidPricingPlan = {
-	id: string;
-	name: string;
-	tagline: string;
-	price: number;
-	currency: PlanCurrency;
-	billingPeriod: PlanBillingPeriod;
-	priceNote?: string;
-	recommended: boolean;
-	cta: string;
-	ctaHref: boolean;
-	includes: readonly PlanInclude[];
-};
-
-export type FreePricingPlan = {
-	id: string;
-	name: string;
-	label: string;
-	tagline: string;
-	cta: string;
-	includes: readonly string[];
-};
-
-export type AudiencePricing = {
-	freePlan?: FreePricingPlan;
-	plans: readonly PaidPricingPlan[];
-	/** Short blurb under the audience toggle */
-	subtitle?: string;
-	/** Exclusion / comparison callout under cards */
-	exclusionNote?: string;
-};
-
-export const freePlan = {
-	id: "free",
-	name: "Free",
-	label: "Free for users",
-	tagline:
-		"Connect GitHub and deploy simple frontend apps — like Vercel, no backend required.",
-	cta: "Deploy for free",
-	includes: [
-		"Connect GitHub or GitLab",
-		"Deploy static & frontend apps",
-		"Preview on every push",
-		"Sagyboar subdomain & SSL",
-		"Community support",
-	],
-} as const satisfies FreePricingPlan;
-
 export type PlanLimitation = {
 	id: string;
 	name: string;
@@ -113,85 +87,70 @@ export type PlanLimitation = {
 	items: readonly string[];
 };
 
+function paidPlanToLimitation(
+	plan: PaidPricingPlan,
+	items: readonly string[],
+): PlanLimitation {
+	return {
+		id: plan.id,
+		name: plan.name,
+		price: formatPlanPriceLabel(plan),
+		items,
+	};
+}
+
+const [starterPlan, growthPlan, enterprisePlan] = teamPricingPlans;
+const [soloPlan, builderPlan, studioPlan] = indiePricingPlans;
+
 export const teamPlanLimitations = [
-	{
-		id: "starter",
-		name: "Starter",
-		price: "$249/month",
-		items: [
-			"Up to 10 projects",
-			"Shared DevOps support during business hours",
-			"Cloud infrastructure billed directly to your own provider account",
-		],
-	},
-	{
-		id: "growth",
-		name: "Growth",
-		price: "$499/month",
-		items: [
-			"Up to 20 projects",
-			"5 agents",
-			"Priority support queue with faster response",
-			"Cloud infrastructure billed directly to your own provider account",
-		],
-	},
-	{
-		id: "enterprise",
-		name: "Enterprise",
-		price: "$999/month",
-		items: [
-			"Up to 30 projects",
-			"8 agents",
-			"SSO and audit logs",
-			"Premium SLA with priority incident handling",
-			"Custom integrations and dedicated technical contact",
-			"Cloud infrastructure billed directly to your own provider account",
-		],
-	},
+	paidPlanToLimitation(starterPlan, [
+		"Up to 10 projects",
+		"Shared DevOps support during business hours",
+		"Cloud infrastructure billed directly to your own provider account",
+	]),
+	paidPlanToLimitation(growthPlan, [
+		"Up to 20 projects",
+		"5 agents",
+		"Priority support queue with faster response",
+		"Cloud infrastructure billed directly to your own provider account",
+	]),
+	paidPlanToLimitation(enterprisePlan, [
+		"Up to 30 projects",
+		"8 agents",
+		"SSO and audit logs",
+		"Premium SLA with priority incident handling",
+		"Custom integrations and dedicated technical contact",
+		"Cloud infrastructure billed directly to your own provider account",
+	]),
 ] as const satisfies readonly PlanLimitation[];
 
 export const planLimitations = teamPlanLimitations;
 
 export const indiePlanLimitations = [
-	{
-		id: "solo",
-		name: "Solo",
-		price: "$19/year",
-		items: [
-			"1 project only",
-			"512 MB RAM / 1 GB disk",
-			"100 build minutes & 10 GB bandwidth per month",
-			"No subdomain",
-			"Community support only (Discord)",
-			"Must bring your own database",
-		],
-	},
-	{
-		id: "builder",
-		name: "Builder",
-		price: "$29/year",
-		items: [
-			"Up to 3 projects",
-			"1 GB RAM / 3 GB disk each",
-			"300 build minutes & 50 GB bandwidth per month",
-			"1 subdomain",
-			"Email support with 48hr response",
-			"Must bring your own database",
-		],
-	},
-	{
-		id: "indie-team",
-		name: "Team",
-		price: "$49/year",
-		items: [
-			"Up to 5 projects",
-			"2 GB RAM / 5 GB disk each",
-			"750 build minutes & 100 GB bandwidth per month",
-			"Up to 3 subdomains / 2 seats",
-			"Limited auto-heal (restart/rollback only)",
-			"Must bring your own database",
-		],
-	},
+	paidPlanToLimitation(soloPlan, [
+		"1 project only",
+		"512 MB RAM / 1 GB disk",
+		"100 build minutes & 10 GB bandwidth per month",
+		"No subdomain",
+		"Community support only (Discord)",
+		"Must bring your own database",
+	]),
+	paidPlanToLimitation(builderPlan, [
+		"Up to 3 projects",
+		"1 GB RAM / 3 GB disk each",
+		"300 build minutes & 50 GB bandwidth per month",
+		"1 subdomain",
+		"Email support with 48hr response",
+		"Must bring your own database",
+	]),
+	paidPlanToLimitation(studioPlan, [
+		"Up to 5 projects",
+		"2 GB RAM / 5 GB disk each",
+		"750 build minutes & 100 GB bandwidth per month",
+		"Up to 3 subdomains / 2 seats",
+		"Limited auto-heal (restart/rollback only)",
+		"Must bring your own database",
+	]),
 ] as const satisfies readonly PlanLimitation[];
 
 export const audiencePlanLimitations: Record<
@@ -201,174 +160,6 @@ export const audiencePlanLimitations: Record<
 	team: teamPlanLimitations,
 	user: indiePlanLimitations,
 };
-
-/** Team plans — B2B / BYOC (USD, monthly) */
-export const teamPricingPlans = [
-	{
-		id: "starter",
-		name: "Starter",
-		tagline:
-			"For teams shipping their first production apps without a DevOps hire.",
-		price: 249,
-		currency: "usd",
-		billingPeriod: "month",
-		recommended: false,
-		cta: "Get started",
-		ctaHref: true,
-		includes: [
-			"Up to 10 projects",
-			"AI deployment + monitoring",
-			"Auto incident detection",
-			"Auto ticket generate",
-			"Shared DevOps support",
-		],
-	},
-	{
-		id: "growth",
-		name: "Growth",
-		tagline: "For scaling teams that need faster support and deeper insights.",
-		price: 499,
-		currency: "usd",
-		billingPeriod: "month",
-		recommended: true,
-		cta: "Get started",
-		ctaHref: true,
-		includes: [
-			"Up to 20 projects",
-			"Everything in Starter",
-			{
-				text: "Auto heal with pull ticket",
-				highlighted: true,
-			},
-			"Auto ticket generate & assign to agent",
-			"5 agents",
-			"Faster support response",
-			"Advanced analytics",
-			"AI optimization suggestions",
-			"Priority queue",
-		],
-	},
-	{
-		id: "enterprise",
-		name: "Enterprise",
-		tagline:
-			"For established teams that need premium SLAs and dedicated support.",
-		price: 999,
-		currency: "usd",
-		billingPeriod: "month",
-		recommended: false,
-		cta: "Talk to sales",
-		ctaHref: false,
-		includes: [
-			"Up to 30 projects",
-			"Everything in Growth",
-			{
-				text: "Auto heal with pull ticket",
-				highlighted: true,
-			},
-			"Auto ticket generate & assign to agent",
-			"8 agents",
-			"SSO",
-			"Audit logs",
-			"Premium SLA",
-			"Priority incident handling",
-			"Custom integrations",
-			"Dedicated tech contact",
-		],
-	},
-] as const satisfies readonly PaidPricingPlan[];
-
-/** Indie / user plans — Sagyboar VPS (USD, yearly) */
-export const userPricingPlans = [
-	{
-		id: "solo",
-		name: "Solo",
-		tagline: "One project on our infra — ideal for students and side projects.",
-		price: 19,
-		currency: "usd",
-		billingPeriod: "year",
-		priceNote: "/year, billed annually",
-		recommended: false,
-		cta: "Get Started",
-		ctaHref: true,
-		includes: [
-			"1 project",
-			"512 MB RAM / 1 GB disk",
-			"100 build minutes/month",
-			"10 GB bandwidth/month",
-			"1 team seat",
-			"No subdomain",
-			"Bring your own database (Supabase, Neon, Mongo Atlas, etc.)",
-			"AI monitoring: detection/alerts only",
-			"Support: Community (Discord)",
-		],
-	},
-	{
-		id: "builder",
-		name: "Builder",
-		tagline: "For freelancers and solo builders shipping a few real apps.",
-		price: 29,
-		currency: "usd",
-		billingPeriod: "year",
-		priceNote: "/year, billed annually",
-		recommended: true,
-		cta: "Get Started",
-		ctaHref: true,
-		includes: [
-			"Up to 3 projects",
-			"1 GB RAM / 3 GB disk each",
-			"300 build minutes/month",
-			"50 GB bandwidth/month",
-			"1 team seat",
-			"1 subdomain",
-			"Bring your own database",
-			"AI monitoring: + auto-ticket to repo",
-			"Support: Email, 48hr response",
-		],
-	},
-	{
-		id: "indie-team",
-		name: "Team",
-		tagline: "For small indie teams that need a bit more headroom.",
-		price: 49,
-		currency: "usd",
-		billingPeriod: "year",
-		priceNote: "/year, billed annually",
-		recommended: false,
-		cta: "Get Started",
-		ctaHref: true,
-		includes: [
-			"Up to 5 projects",
-			"2 GB RAM / 5 GB disk each",
-			"750 build minutes/month",
-			"100 GB bandwidth/month",
-			"2 team seats",
-			"Up to 3 subdomains",
-			"Bring your own database",
-			"AI monitoring: + limited auto-heal (restart/rollback)",
-			"Support: Priority email, 24hr response",
-		],
-	},
-] as const satisfies readonly PaidPricingPlan[];
-
-export const indieExclusionNote =
-	"Not included in Indie plans: shared DevOps agents, managed database, SLA guarantees, and full auto-heal with pull requests — these stay exclusive to our BYOC (B2B) plans.";
-
-export const audiencePricing: Record<PricingAudience, AudiencePricing> = {
-	team: {
-		plans: teamPricingPlans,
-		subtitle:
-			"For funded startups and teams — BYOC, shared DevOps, billed monthly in USD.",
-	},
-	user: {
-		plans: userPricingPlans,
-		subtitle:
-			"For students, freelancers, and solo builders — deploy on our infra, pay yearly.",
-		exclusionNote: indieExclusionNote,
-	},
-};
-
-export const pricingPlans = teamPricingPlans;
 
 export const teamGeneralTerms = [
 	"Platform subscriptions are billed monthly in USD.",
@@ -455,8 +246,7 @@ export const indieInfraSteps = [
 	{
 		step: "02",
 		title: "Pay yearly in USD",
-		description:
-			"Simple annual pricing in $ for students, freelancers, and solo builders — pick Solo, Builder, or Team.",
+		description: `Simple annual pricing in $ for students, freelancers, and solo builders — pick ${soloPlan.name}, ${builderPlan.name}, or ${studioPlan.name}.`,
 		icon: CreditCard,
 	},
 	{
@@ -472,15 +262,13 @@ export const indieSupportSteps = [
 	{
 		step: "01",
 		title: "AI watches your apps",
-		description:
-			"Detection and alerts on every Indie plan. Builder adds auto-tickets; Team adds limited auto-heal.",
+		description: `Detection and alerts on every Indie plan. ${builderPlan.name} adds auto-tickets; ${studioPlan.name} adds limited auto-heal.`,
 		icon: Bot,
 	},
 	{
 		step: "02",
 		title: "Support that matches the tier",
-		description:
-			"Community Discord on Solo, email within 48h on Builder, priority email within 24h on Team.",
+		description: `Community Discord on ${soloPlan.name}, email within 48h on ${builderPlan.name}, priority email within 24h on ${studioPlan.name}.`,
 		icon: Users,
 	},
 	{
@@ -539,9 +327,9 @@ export type PlanFitGuideItem = {
 
 export const teamPlanFitGuide = [
 	{
-		id: "starter",
-		plan: "Starter",
-		price: "$249/month",
+		id: starterPlan.id,
+		plan: starterPlan.name,
+		price: formatPlanPriceLabel(starterPlan),
 		audience: "Best for…",
 		backgroundImage: "/Hobby.png",
 		icon: Sparkles,
@@ -553,9 +341,9 @@ export const teamPlanFitGuide = [
 		],
 	},
 	{
-		id: "growth",
-		plan: "Growth",
-		price: "$499/month",
+		id: growthPlan.id,
+		plan: growthPlan.name,
+		price: formatPlanPriceLabel(growthPlan),
 		audience: "Best for…",
 		backgroundImage: "/startup.png",
 		icon: Rocket,
@@ -567,9 +355,9 @@ export const teamPlanFitGuide = [
 		],
 	},
 	{
-		id: "enterprise",
-		plan: "Enterprise",
-		price: "$999/month",
+		id: enterprisePlan.id,
+		plan: enterprisePlan.name,
+		price: formatPlanPriceLabel(enterprisePlan),
 		audience: "Best for…",
 		backgroundImage: "/Enterprise.png",
 		icon: Building2,
@@ -584,9 +372,9 @@ export const teamPlanFitGuide = [
 
 export const indiePlanFitGuide = [
 	{
-		id: "solo",
-		plan: "Solo",
-		price: "$19/year",
+		id: soloPlan.id,
+		plan: soloPlan.name,
+		price: formatPlanPriceLabel(soloPlan),
 		audience: "Best for…",
 		backgroundImage: "/Hobby.png",
 		icon: Sparkles,
@@ -598,9 +386,9 @@ export const indiePlanFitGuide = [
 		],
 	},
 	{
-		id: "builder",
-		plan: "Builder",
-		price: "$29/year",
+		id: builderPlan.id,
+		plan: builderPlan.name,
+		price: formatPlanPriceLabel(builderPlan),
 		audience: "Best for…",
 		backgroundImage: "/startup.png",
 		icon: Rocket,
@@ -612,9 +400,9 @@ export const indiePlanFitGuide = [
 		],
 	},
 	{
-		id: "indie-team",
-		plan: "Team",
-		price: "$49/year",
+		id: studioPlan.id,
+		plan: studioPlan.name,
+		price: formatPlanPriceLabel(studioPlan),
 		audience: "Best for…",
 		backgroundImage: "/Enterprise.png",
 		icon: Users,
@@ -786,12 +574,10 @@ export const pricingFaqs = [
 	},
 	{
 		question: "What does the SLA guarantee mean?",
-		answer:
-			"On Enterprise, we provide a premium SLA with priority incident handling, including a committed response time on critical issues. If we miss these targets, you receive a credit on your next invoice. No excuses.",
+		answer: `On ${enterprisePlan.name}, we provide a premium SLA with priority incident handling, including a committed response time on critical issues. If we miss these targets, you receive a credit on your next invoice. No excuses.`,
 	},
 	{
 		question: "How many projects can I run on each plan?",
-		answer:
-			"Starter includes up to 10 projects, Growth up to 20, and Enterprise up to 30. If you need more, talk to sales and we'll tailor a plan to your volume.",
+		answer: `${starterPlan.name} includes up to 10 projects, ${growthPlan.name} up to 20, and ${enterprisePlan.name} up to 30. If you need more, talk to sales and we'll tailor a plan to your volume.`,
 	},
 ] as const;

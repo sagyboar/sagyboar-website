@@ -14,9 +14,9 @@ const corePages: { path: string; priority: number }[] = [
 	{ path: "/features", priority: 0.85 },
 	{ path: "/pricing", priority: 0.9 },
 	{ path: "/watch/intro", priority: 0.75 },
-	{ path: "/solutions/hobby", priority: 0.85 },
-	{ path: "/solutions/startup", priority: 0.85 },
-	{ path: "/solutions/enterprise", priority: 0.9 },
+	{ path: "/solutions/side-projects", priority: 0.85 },
+	{ path: "/solutions/scale-ups", priority: 0.85 },
+	{ path: "/solutions/organizations", priority: 0.9 },
 	{ path: "/contact", priority: 0.7 },
 	{ path: "/jobs", priority: 0.7 },
 ];

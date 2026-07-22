@@ -155,32 +155,41 @@ server integration.
 
 ## Solutions
 
-### Hobby
-https://sagyboar.space/solutions/hobby
+### Side Projects
+https://sagyboar.space/solutions/side-projects
 
 For solo developers, MVPs, and personal projects. Includes managed hosting, AI
 monitoring, and community support.
 
-### Startup
-https://sagyboar.space/solutions/startup
+### Scale-ups
+https://sagyboar.space/solutions/scale-ups
 
-For growing startups that need reliable DevOps without hiring full-time. Includes
+For growing companies that need reliable DevOps without hiring full-time. Includes
 advanced AI monitoring, AI-assisted engineering, and on-demand DevOps.
 
-### Enterprise
-https://sagyboar.space/solutions/enterprise
+### Organizations
+https://sagyboar.space/solutions/organizations
 
 Dedicated cloud infrastructure, a fully managed platform team, SLA-backed uptime,
 and custom onboarding for organizations with strict compliance and scale needs.
 
 ## Pricing
 
-| Plan       | Price        | Best for                                              |
-| ---------- | ------------ | ----------------------------------------------------- |
-| Free       | $0/month     | Experiments and first deploys                         |
-| Hobby      | $49/month    | Solo developers, MVPs, personal projects              |
-| Startup    | $249/month   | Growing startups scaling without a DevOps team        |
-| Enterprise | $1,499/month | Dedicated infrastructure and a managed platform team  |
+### Indie (yearly USD, Sagyboar-managed VPS)
+
+| Plan    | Price/year | Best for                                              |
+| ------- | ---------- | ----------------------------------------------------- |
+| Solo    | $19        | Students, side projects, 1 project                    |
+| Builder | $29        | Freelancers, up to 3 projects                         |
+| Studio  | $49        | Small indie teams, up to 5 projects                   |
+
+### Team BYOC (monthly USD, your own cloud)
+
+| Plan       | Price/month | Best for                                              |
+| ---------- | ----------- | ----------------------------------------------------- |
+| Starter    | $249        | First production apps, up to 10 projects              |
+| Growth     | $499        | Scaling teams, up to 20 projects                      |
+| Enterprise | $999        | Premium SLA, SSO, dedicated support                   |
 
 Full plan comparison and general terms: https://sagyboar.space/pricing
 
@@ -194,9 +203,9 @@ hours, and dedicated infrastructure.
 - Pricing: https://sagyboar.space/pricing
 - Contact: https://sagyboar.space/contact
 - Careers: https://sagyboar.space/jobs
-- Solutions — Hobby: https://sagyboar.space/solutions/hobby
-- Solutions — Startup: https://sagyboar.space/solutions/startup
-- Solutions — Enterprise: https://sagyboar.space/solutions/enterprise
+- Solutions — Side Projects: https://sagyboar.space/solutions/side-projects
+- Solutions — Scale-ups: https://sagyboar.space/solutions/scale-ups
+- Solutions — Organizations: https://sagyboar.space/solutions/organizations
 - Privacy Policy: https://sagyboar.space/privacy
 - Terms of Service: https://sagyboar.space/terms-of-service
 

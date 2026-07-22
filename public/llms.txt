@@ -36,9 +36,9 @@
 
 ## Solutions
 
-- [Hobby](https://sagyboar.space/solutions/hobby): Solo developers and MVPs
-- [Startup](https://sagyboar.space/solutions/startup): Growing teams without a full DevOps hire
-- [Enterprise](https://sagyboar.space/solutions/enterprise): Dedicated infrastructure and managed platform team
+- [Side Projects](https://sagyboar.space/solutions/side-projects): Solo developers and MVPs
+- [Scale-ups](https://sagyboar.space/solutions/scale-ups): Growing companies without a full DevOps hire
+- [Organizations](https://sagyboar.space/solutions/organizations): Dedicated infrastructure and managed platform team
 
 ## Company
 

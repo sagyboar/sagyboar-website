@@ -2,14 +2,14 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import type { PricingAudience } from "./pricing-data";
+import { pricingModels, type PricingAudience } from "./pricing-data";
 
 const AUDIENCE_OPTIONS: {
 	id: PricingAudience;
 	label: string;
 }[] = [
-	{ id: "user", label: "Indie" },
-	{ id: "team", label: "Team" },
+	{ id: pricingModels.indie.audience, label: pricingModels.indie.name },
+	{ id: pricingModels.team.audience, label: pricingModels.team.name },
 ];
 
 type PricingAudienceToggleProps = {

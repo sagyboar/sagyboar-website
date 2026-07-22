@@ -39,7 +39,7 @@ Start here for structured discovery:
 
 - Solo: $19/yr — 1 project
 - Builder: $29/yr — up to 3 projects (most popular)
-- Team: $49/yr — up to 5 projects
+- Studio: $49/yr — up to 5 projects
 
 **Team BYOC** (startups and SMEs — your cloud, billed monthly in USD):
 
@@ -60,9 +60,9 @@ Details: https://sagyboar.space/pricing
 
 ## Solutions
 
-- Hobby: https://sagyboar.space/solutions/hobby
-- Startup: https://sagyboar.space/solutions/startup
-- Enterprise: https://sagyboar.space/solutions/enterprise
+- Side Projects: https://sagyboar.space/solutions/side-projects
+- Scale-ups: https://sagyboar.space/solutions/scale-ups
+- Organizations: https://sagyboar.space/solutions/organizations
 
 ## Legal
 

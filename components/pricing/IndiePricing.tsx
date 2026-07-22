@@ -2,13 +2,13 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Sagyboar_PORTAL_URL } from "@/constants/branding";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Check } from "lucide-react";
 import Link from "next/link";
 import {
 	indieExclusionNote,
-	userPricingPlans,
+	indiePricingPlans,
+	pricingModels,
 	type PaidPricingPlan,
 } from "./pricing-data";
 import { PricingSectionHeading } from "./PricingSectionHeading";
@@ -150,7 +150,7 @@ export function PaidPlanCard({
 			<div className={cn("mt-auto", compact ? "pt-5" : "pt-8")}>
 				{plan.ctaHref ? (
 					<Link
-						href={Sagyboar_PORTAL_URL}
+						href={plan.ctaHref}
 						target="_blank"
 						className={buttonVariants({
 							variant: plan.recommended ? "default" : "outline",
@@ -191,7 +191,7 @@ export function IndiePricing({
 			{embedded ? (
 				<div className="mx-auto max-w-2xl text-center">
 					<h3 className="font-display text-2xl tracking-tight text-foreground sm:text-3xl">
-						Indie{" "}
+						{pricingModels.indie.name}{" "}
 						<span className="border-b-2 border-blue-400 text-blue-400">
 							Plans
 						</span>
@@ -203,7 +203,10 @@ export function IndiePricing({
 				</div>
 			) : (
 				<>
-					<PricingSectionHeading before="Indie" highlight="Plans" />
+					<PricingSectionHeading
+						before={pricingModels.indie.name}
+						highlight="Plans"
+					/>
 					<p className="mx-auto mt-4 max-w-2xl text-center text-sm text-muted-foreground sm:text-base">
 						For students, freelancers, and solo builders — deploy on our infra,
 						pay yearly.
@@ -212,7 +215,7 @@ export function IndiePricing({
 			)}
 
 			<div className="mx-auto mt-10 grid max-w-7xl gap-6 md:grid-cols-3 md:items-stretch md:gap-6">
-				{userPricingPlans.map((plan) => (
+				{indiePricingPlans.map((plan) => (
 					<PaidPlanCard
 						key={plan.id}
 						plan={plan}

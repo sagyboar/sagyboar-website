@@ -1,8 +1,8 @@
 import type { SolutionPageData } from "./solution-types";
 
-export const enterpriseSolutionPage: SolutionPageData = {
+export const organizationsSolutionPage: SolutionPageData = {
 	hero: {
-		title: "Enterprise",
+		title: "Organizations",
 		headline: "Dedicated infrastructure and a platform team on your stack",
 		headlineHighlight: "your stack",
 		description:
@@ -17,8 +17,8 @@ export const enterpriseSolutionPage: SolutionPageData = {
 		icon: "building2",
 	},
 	stack: {
-		title: "Everything in Enterprise",
-		titleHighlight: "Enterprise",
+		title: "Everything for Organizations",
+		titleHighlight: "Organizations",
 		subtitle:
 			"Five enterprise-grade capabilities for teams that cannot afford downtime.",
 		sections: [
@@ -27,7 +27,7 @@ export const enterpriseSolutionPage: SolutionPageData = {
 				description:
 					"Deploy across your entire product surface with unlimited managed applications, subject to fair usage. One platform for every service your business runs.",
 				image: "/Default.png",
-				imageAlt: "Enterprise project management",
+				imageAlt: "Organization project management",
 				graphic: "apps",
 			},
 			{
@@ -43,7 +43,7 @@ export const enterpriseSolutionPage: SolutionPageData = {
 				description:
 					"Advanced monitoring, log analysis, automated ticket routing, and escalation workflows tuned for high-stakes production environments.",
 				image: "/Default.png",
-				imageAlt: "Enterprise monitoring suite",
+				imageAlt: "Organization monitoring suite",
 				graphic: "aiops",
 			},
 			{
@@ -69,7 +69,7 @@ export const enterpriseSolutionPage: SolutionPageData = {
 		title: "Enterprise-grade ops without building an ops department",
 		titleHighlight: "ops department",
 		description:
-			"Hand off infrastructure, monitoring, and incident response to a team that lives in production. Enterprise gives you SLA-backed reliability and dedicated engineers who know your stack.",
+			"Hand off infrastructure, monitoring, and incident response to a team that lives in production. Organizations gives you SLA-backed reliability and dedicated engineers who know your stack.",
 		cta: "Talk to sales",
 		ctaHref: "/contact",
 		image: "/Enterprise.png",
@@ -77,20 +77,20 @@ export const enterpriseSolutionPage: SolutionPageData = {
 		graphic: "ops",
 	},
 	faq: {
-		title: "Enterprise plan FAQ",
+		title: "Organizations FAQ",
 		titleHighlight: "FAQ",
 		subtitle:
-			"Common questions about dedicated infrastructure and managed teams on Sagyboar Enterprise.",
+			"Common questions about dedicated infrastructure and managed teams for organizations on Sagyboar.",
 		items: [
 			{
-				question: "What is included in the Enterprise plan?",
+				question: "What is included for Organizations?",
 				answer:
-					"Enterprise includes unlimited applications (fair usage), dedicated infrastructure on AWS/GCP/Azure or client-owned cloud, the complete AI DevOps suite, unlimited managed databases (fair usage), 200 GB storage, a dedicated AI-powered developer, dedicated DevOps engineer, QA on demand, 4-hour SLA response, 99.9% uptime commitment, and custom integrations with onboarding.",
+					"Organizations includes unlimited applications (fair usage), dedicated infrastructure on AWS/GCP/Azure or client-owned cloud, the complete AI DevOps suite, unlimited managed databases (fair usage), 200 GB storage, a dedicated AI-powered developer, dedicated DevOps engineer, QA on demand, 4-hour SLA response, 99.9% uptime commitment, and custom integrations with onboarding.",
 			},
 			{
 				question: "Can we use our own cloud account?",
 				answer:
-					"Yes. Enterprise clients may use their own AWS, GCP, or Azure account. Infrastructure costs beyond included allocations are billed separately at actual cost.",
+					"Yes. Organization clients may use their own AWS, GCP, or Azure account. Infrastructure costs beyond included allocations are billed separately at actual cost.",
 			},
 			{
 				question: "What does the SLA guarantee mean?",
@@ -105,12 +105,12 @@ export const enterpriseSolutionPage: SolutionPageData = {
 			{
 				question: "Is custom development included?",
 				answer:
-					"Enterprise covers operational tasks, deployments, monitoring, and platform management. Custom development requests outside plan scope are quoted separately.",
+					"Organizations covers operational tasks, deployments, monitoring, and platform management. Custom development requests outside plan scope are quoted separately.",
 			},
 			{
 				question: "How does onboarding work?",
 				answer:
-					"Every Enterprise engagement includes custom onboarding: infrastructure review, integration setup, access controls, and a runbook tailored to your stack and compliance needs.",
+					"Every Organizations engagement includes custom onboarding: infrastructure review, integration setup, access controls, and a runbook tailored to your stack and compliance needs.",
 			},
 		],
 	},

@@ -22,7 +22,7 @@ export default function PrivacyPage() {
 							At Sagyboar, we are committed to protecting your privacy. This
 							Privacy Policy explains how we collect, use and safeguard your
 							personal information when you use our website and services,
-							including our hosted platform (dashboard.Sagyboar.space). By using
+							including our hosted platform (dashboard.sagyboar.space). By using
 							Sagyboar, you agree to the practices described in this policy. If
 							you do not agree with these practices, please do not use our
 							services.
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
 						<div className="flex flex-col gap-2">
 							<h3 className="text-xl font-medium">Application analytics</h3>
 							<p>
-								Our hosted platform (dashboard.Sagyboar.space) uses{" "}
+								Our hosted platform (dashboard.sagyboar.space) uses{" "}
 								<a
 									href="https://legal.hubspot.com/privacy-policy"
 									target="_blank"

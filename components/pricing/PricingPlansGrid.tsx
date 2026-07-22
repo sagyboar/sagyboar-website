@@ -1,7 +1,6 @@
 "use client";
 
 import { buttonVariants } from "@/components/ui/button";
-import { Sagyboar_PORTAL_URL } from "@/constants/branding";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Check, Users } from "lucide-react";
@@ -9,6 +8,7 @@ import Link from "next/link";
 import { IndiePricing, PaidPlanCard } from "./IndiePricing";
 import {
 	audiencePricing,
+	pricingModels,
 	type FreePricingPlan,
 	type PaidPricingPlan,
 	type PricingAudience,
@@ -51,7 +51,7 @@ function FreePlanCard({ plan }: { plan: FreePricingPlan }) {
 
 			<div className="mt-auto pt-5">
 				<Link
-					href={Sagyboar_PORTAL_URL}
+					href={plan.ctaHref}
 					target="_blank"
 					className={buttonVariants({
 						variant: "outline",
@@ -74,12 +74,17 @@ function EmptyAudienceState({ audience }: { audience: PricingAudience }) {
 				<Users className="size-5" />
 			</div>
 			<h3 className="mt-5 text-lg font-medium text-foreground">
-				{audience === "user" ? "Indie plans" : "Team plans"} coming soon
+				{audience === "user"
+					? `${pricingModels.indie.name} plans`
+					: `${pricingModels.team.name} plans`}{" "}
+				coming soon
 			</h3>
 			<p className="mt-2 text-sm text-muted-foreground">
 				We&apos;re finalizing{" "}
-				{audience === "user" ? "indie" : "team"} pricing. Switch to the other
-				tab, or check back shortly.
+				{audience === "user"
+					? pricingModels.indie.name.toLowerCase()
+					: pricingModels.team.name.toLowerCase()}{" "}
+				pricing. Switch to the other tab, or check back shortly.
 			</p>
 		</div>
 	);

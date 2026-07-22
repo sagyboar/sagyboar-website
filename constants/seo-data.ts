@@ -54,7 +54,7 @@ export const pageSeo = {
 	pricing: {
 		title: "Pricing — One Platform, Zero DevOps Headaches",
 		description:
-			"Compare Sagyboar Free, Hobby, Startup, and Enterprise plans. AI-powered deployment, monitoring, and a real team.",
+			"Compare Indie (Solo, Builder, Studio) and Team BYOC (Starter, Growth, Enterprise) plans. AI-powered deployment, monitoring, and a real team.",
 		path: "/pricing",
 		ogLabel: "Pricing",
 	},
@@ -86,26 +86,26 @@ export const pageSeo = {
 		path: "/jobs",
 		ogLabel: "Careers",
 	},
-	solutionsHobby: {
-		title: "Hobby — Deploy Side Projects Without DevOps",
+	solutionsSideProjects: {
+		title: "Side Projects — Deploy Without DevOps",
 		description:
 			"Managed hosting, AI monitoring, and community support for solo developers and MVPs from $49/month.",
-		path: "/solutions/hobby",
-		ogLabel: "Hobby",
+		path: "/solutions/side-projects",
+		ogLabel: "Side Projects",
 	},
-	solutionsStartup: {
-		title: "Startup — Scale Without a Full DevOps Team",
+	solutionsScaleUps: {
+		title: "Scale-ups — Scale Without a Full DevOps Hire",
 		description:
-			"Up to five apps, advanced AI monitoring, and AI-assisted engineering for growing startups from $249/month.",
-		path: "/solutions/startup",
-		ogLabel: "Startup",
+			"Up to five apps, advanced AI monitoring, and AI-assisted engineering for growing companies from $249/month.",
+		path: "/solutions/scale-ups",
+		ogLabel: "Scale-ups",
 	},
-	solutionsEnterprise: {
-		title: "Enterprise — Dedicated Infrastructure & Platform Team",
+	solutionsOrganizations: {
+		title: "Organizations — Dedicated Infrastructure & Platform Team",
 		description:
 			"SLA-backed uptime, dedicated cloud infrastructure, and a fully managed DevOps team from $1,499/month.",
-		path: "/solutions/enterprise",
-		ogLabel: "Enterprise",
+		path: "/solutions/organizations",
+		ogLabel: "Organizations",
 	},
 	privacy: {
 		title: "Privacy Policy",

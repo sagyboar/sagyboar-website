@@ -69,27 +69,27 @@ export const featureLinks: NavLinkItem[] = [
 
 export const solutionLinks: NavLinkItem[] = [
 	{
-		title: "Hobby",
-		footerLabel: "Hobby",
-		href: "/solutions/hobby",
+		title: "Side Projects",
+		footerLabel: "Side Projects",
+		href: "/solutions/side-projects",
 		description:
 			"For solo developers, MVPs, and personal projects. Managed hosting, AI monitoring, and community support from $49/month.",
 		icon: Sparkles,
 		backgroundImage: "/Hobby.png",
 	},
 	{
-		title: "Startup",
-		footerLabel: "Startup",
-		href: "/solutions/startup",
+		title: "Scale-ups",
+		footerLabel: "Scale-ups",
+		href: "/solutions/scale-ups",
 		description:
-			"For growing startups that need reliable DevOps without hiring full-time. AI-assisted engineering and on-demand DevOps from $249/month.",
+			"For growing companies that need reliable DevOps without hiring full-time. AI-assisted engineering and on-demand DevOps from $249/month.",
 		icon: Rocket,
 		backgroundImage: "/startup.png",
 	},
 	{
-		title: "Enterprise",
-		footerLabel: "Enterprise",
-		href: "/solutions/enterprise",
+		title: "Organizations",
+		footerLabel: "Organizations",
+		href: "/solutions/organizations",
 		description:
 			"Dedicated infrastructure, a fully managed platform team, SLA-backed uptime, and custom onboarding from $1,499/month.",
 		icon: Building2,
