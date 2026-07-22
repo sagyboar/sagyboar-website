@@ -7,7 +7,7 @@
 		"dev": "next dev --port 8002",
 		"lint": "biome check .",
 		"typecheck": "tsc --noEmit",
-		"build": "pnpm run typecheck && next build --webpack",
+		"build": "rm -rf .next/types && pnpm run typecheck && next build --webpack",
 		"start": "next start --port 8002",
 		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
 		"format-and-lint": "biome check .",
