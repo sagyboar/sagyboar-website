@@ -16,9 +16,11 @@ import {
 	Wrench,
 } from "lucide-react";
 import {
+	formatIndiePlanPriceLabel,
 	formatPlanPriceLabel,
 	indiePricingPlans,
 	teamPricingPlans,
+	type IndiePricingPlan,
 	type PaidPricingPlan,
 	type PricingAudience,
 } from "@/lib/pricing";
@@ -26,7 +28,9 @@ import {
 // Re-export canonical pricing so existing component imports keep working
 export {
 	audiencePricing,
+	formatIndiePlanPriceLabel,
 	freePlan,
+	getIndiePlanPrice,
 	indieExclusionNote,
 	indiePricingPlans,
 	pricingModels,
@@ -36,6 +40,9 @@ export {
 	userPricingPlans,
 	type AudiencePricing,
 	type FreePricingPlan,
+	type IndieBillingCycle,
+	type IndiePlanFeature,
+	type IndiePricingPlan,
 	type PaidPricingPlan,
 	type PlanBillingPeriod,
 	type PlanCurrency,
@@ -73,7 +80,7 @@ export const businessModelTagline =
 	"Automate with AI, scale with a shared DevOps team, and run on your own cloud — zero infrastructure cost on us.";
 
 export const indieBusinessModelTagline =
-	"Deploy on our infra, bring your own database, and pay yearly in USD — built for students, freelancers, and solo builders.";
+	"Deploy on our infra, bring your own database, and pay monthly or annually in USD — built for students, freelancers, and solo builders.";
 
 export const audienceBusinessModelTagline: Record<PricingAudience, string> = {
 	team: businessModelTagline,
@@ -99,8 +106,20 @@ function paidPlanToLimitation(
 	};
 }
 
+function indiePlanToLimitation(
+	plan: IndiePricingPlan,
+	items: readonly string[],
+): PlanLimitation {
+	return {
+		id: plan.id,
+		name: plan.name,
+		price: formatIndiePlanPriceLabel(plan),
+		items,
+	};
+}
+
 const [starterPlan, growthPlan, enterprisePlan] = teamPricingPlans;
-const [soloPlan, builderPlan, studioPlan] = indiePricingPlans;
+const [, soloPlan, builderPlan, studioPlan] = indiePricingPlans;
 
 export const teamPlanLimitations = [
 	paidPlanToLimitation(starterPlan, [
@@ -127,28 +146,28 @@ export const teamPlanLimitations = [
 export const planLimitations = teamPlanLimitations;
 
 export const indiePlanLimitations = [
-	paidPlanToLimitation(soloPlan, [
+	indiePlanToLimitation(soloPlan, [
 		"1 project only",
-		"512 MB RAM / 1 GB disk",
-		"100 build minutes & 10 GB bandwidth per month",
-		"No subdomain",
-		"Community support only (Discord)",
-		"Must bring your own database",
-	]),
-	paidPlanToLimitation(builderPlan, [
-		"Up to 3 projects",
-		"1 GB RAM / 3 GB disk each",
-		"300 build minutes & 50 GB bandwidth per month",
+		"512 MB RAM pooled / 3 GB disk",
+		"200 build minutes & 25 GB bandwidth per month",
 		"1 subdomain",
 		"Email support with 48hr response",
 		"Must bring your own database",
 	]),
-	paidPlanToLimitation(studioPlan, [
+	indiePlanToLimitation(builderPlan, [
 		"Up to 5 projects",
-		"2 GB RAM / 5 GB disk each",
-		"750 build minutes & 100 GB bandwidth per month",
-		"Up to 3 subdomains / 2 seats",
-		"Limited auto-heal (restart/rollback only)",
+		"2 GB RAM pooled / 15 GB disk",
+		"600 build minutes & 100 GB bandwidth per month",
+		"3 subdomains / 2 seats",
+		"Email support with 24hr response",
+		"Must bring your own database",
+	]),
+	indiePlanToLimitation(studioPlan, [
+		"Up to 10 projects",
+		"5 GB RAM pooled / 40 GB disk",
+		"2,000 build minutes & 300 GB bandwidth per month",
+		"Unlimited subdomains / 5 seats",
+		"Full auto-heal + weekly AI report",
 		"Must bring your own database",
 	]),
 ] as const satisfies readonly PlanLimitation[];
@@ -169,12 +188,13 @@ export const teamGeneralTerms = [
 ] as const;
 
 export const indieGeneralTerms = [
-	"Indie plans are billed annually in USD ($), paid up front for the year.",
+	"Indie plans are billed monthly or annually in USD ($). Annual billing includes 2 months free.",
 	"Apps run on Sagyboar-managed VPS infrastructure — not on your own cloud account.",
+	"RAM is pooled across all projects on the plan — not allocated per project.",
 	"You must bring your own database (Supabase, Neon, Mongo Atlas, etc.). Managed databases are not included.",
 	"Fair usage policy applies to build minutes, bandwidth, and compute on all Indie plans.",
 	"Shared DevOps agents, SLA guarantees, and full auto-heal with pull requests are exclusive to Team (BYOC) plans.",
-	"Upgrades take effect immediately; downgrades apply at the end of the current billing year.",
+	"Upgrades take effect immediately; downgrades apply at the end of the current billing period.",
 ] as const;
 
 export const audienceGeneralTerms: Record<
@@ -245,8 +265,8 @@ export const indieInfraSteps = [
 	},
 	{
 		step: "02",
-		title: "Pay yearly in USD",
-		description: `Simple annual pricing in $ for students, freelancers, and solo builders — pick ${soloPlan.name}, ${builderPlan.name}, or ${studioPlan.name}.`,
+		title: "Pay monthly or annually",
+		description: `Simple USD pricing for students, freelancers, and solo builders — pick ${soloPlan.name}, ${builderPlan.name}, or ${studioPlan.name}. Annual saves 2 months.`,
 		icon: CreditCard,
 	},
 	{
@@ -262,13 +282,13 @@ export const indieSupportSteps = [
 	{
 		step: "01",
 		title: "AI watches your apps",
-		description: `Detection and alerts on every Indie plan. ${builderPlan.name} adds auto-tickets; ${studioPlan.name} adds limited auto-heal.`,
+		description: `Alerts on Free, alerts + auto-ticket on ${soloPlan.name}, auto-heal on ${builderPlan.name}, and full auto-heal + weekly AI report on ${studioPlan.name}.`,
 		icon: Bot,
 	},
 	{
 		step: "02",
 		title: "Support that matches the tier",
-		description: `Community Discord on ${soloPlan.name}, email within 48h on ${builderPlan.name}, priority email within 24h on ${studioPlan.name}.`,
+		description: `Community Discord on Free, email within 48h on ${soloPlan.name}, 24h on ${builderPlan.name}, priority within 12h on ${studioPlan.name}.`,
 		icon: Users,
 	},
 	{
@@ -302,7 +322,7 @@ export const idealCustomerThread =
 	"The common thread: they have a product and a dev team — but no dedicated DevOps, or can't afford one. Exactly the people Sagyboar replaces.";
 
 export const indieIdealCustomerThread =
-	"The common thread: they ship real apps without a company budget — students, freelancers, and solo builders who need hosted infra priced in USD, yearly.";
+	"The common thread: they ship real apps without a company budget — students, freelancers, and solo builders who need hosted infra priced in USD, monthly or annually.";
 
 export const audienceIdealCustomers: Record<
 	PricingAudience,
@@ -374,43 +394,43 @@ export const indiePlanFitGuide = [
 	{
 		id: soloPlan.id,
 		plan: soloPlan.name,
-		price: formatPlanPriceLabel(soloPlan),
+		price: formatIndiePlanPriceLabel(soloPlan),
 		audience: "Best for…",
 		backgroundImage: "/Hobby.png",
 		icon: Sparkles,
 		points: [
 			"Students and hobbyists with a single project",
-			"512 MB RAM on Sagyboar-managed VPS",
-			"Community support via Discord",
+			"512 MB RAM pooled on Sagyboar-managed VPS",
+			"Always-on with email support within 48 hours",
 			"Bring your own database — no company cloud bill",
 		],
 	},
 	{
 		id: builderPlan.id,
 		plan: builderPlan.name,
-		price: formatPlanPriceLabel(builderPlan),
+		price: formatIndiePlanPriceLabel(builderPlan),
 		audience: "Best for…",
 		backgroundImage: "/startup.png",
 		icon: Rocket,
 		points: [
-			"Freelancers and solo builders with up to 3 apps",
-			"Subdomain + auto-ticket to your repo",
-			"Email support within 48 hours",
+			"Freelancers and solo builders with up to 5 apps",
+			"2 GB RAM pooled + auto-heal (restart + rollback)",
+			"Email support within 24 hours",
 			"More build minutes and bandwidth for real shipping",
 		],
 	},
 	{
 		id: studioPlan.id,
 		plan: studioPlan.name,
-		price: formatPlanPriceLabel(studioPlan),
+		price: formatIndiePlanPriceLabel(studioPlan),
 		audience: "Best for…",
 		backgroundImage: "/Enterprise.png",
 		icon: Users,
 		points: [
-			"Small indie teams with up to 5 projects",
-			"2 seats and up to 3 subdomains",
-			"Limited auto-heal (restart/rollback)",
-			"Priority email support within 24 hours",
+			"Small indie teams with up to 10 projects",
+			"5 GB RAM pooled, 5 seats, unlimited subdomains",
+			"Full auto-heal + weekly AI report",
+			"Priority email support within 12 hours",
 		],
 	},
 ] as const satisfies readonly PlanFitGuideItem[];

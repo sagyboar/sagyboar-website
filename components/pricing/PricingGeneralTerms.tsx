@@ -26,7 +26,7 @@ export function PricingGeneralTerms({ audience }: PricingGeneralTermsProps) {
 			<PricingSectionHeading before="General" highlight="terms" />
 			<p className="mx-auto mt-3 max-w-2xl text-center text-sm text-muted-foreground">
 				{audience === "user"
-					? "Limits and policies for Indie plans (hosted on our infra, billed yearly in USD)."
+					? "Limits and policies for Indie plans (hosted on our infra, billed monthly or annually in USD)."
 					: "Limits and policies for Team BYOC plans (your cloud, billed monthly in USD)."}
 			</p>
 

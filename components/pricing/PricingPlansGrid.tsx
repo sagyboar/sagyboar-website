@@ -186,10 +186,10 @@ export function PricingPlansGrid({
 					exit={{ opacity: 0, y: -8 }}
 					transition={{ duration: 0.2 }}
 				>
-					{isEmpty ? (
-						<EmptyAudienceState audience={audience} />
-					) : audience === "user" ? (
+					{audience === "user" ? (
 						<IndiePricing onTalkToSales={onTalkToSales} embedded />
+					) : isEmpty ? (
+						<EmptyAudienceState audience={audience} />
 					) : (
 						<TeamPlansGrid
 							freePlan={pricing.freePlan}

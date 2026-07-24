@@ -37,6 +37,39 @@ export type FreePricingPlan = {
 	includes: readonly string[];
 };
 
+/** Indie billing toggle — monthly default, annual = 2 months free */
+export type IndieBillingCycle = "month" | "year";
+
+export type IndiePlanFeature = {
+	text: string;
+	/**
+	 * RAM pooled / always-on|sleeps — key differentiators, emphasized in the UI.
+	 */
+	keyDifferentiator?: boolean;
+	/**
+	 * AI monitoring tiers that should render bold/white on the card.
+	 */
+	accent?: boolean;
+};
+
+export type IndiePricingPlan = {
+	id: string;
+	name: string;
+	tagline: string;
+	/** Monthly price in USD; 0 for Free */
+	monthlyPrice: number;
+	/** Annual price in USD (10× monthly = 2 months free); 0 for Free */
+	annualPrice: number;
+	badge?: "Coming soon" | "Most popular";
+	/** Dim the card and use waitlist CTA */
+	comingSoon?: boolean;
+	recommended?: boolean;
+	cta: string;
+	/** Portal / waitlist URL when self-serve; null opens sales contact */
+	ctaHref: string | null;
+	includes: readonly IndiePlanFeature[];
+};
+
 export type PricingModelId = "indie" | "team";
 
 export type PricingModel = {
@@ -57,8 +90,8 @@ export const pricingModels = {
 		name: "Indie",
 		audience: "user",
 		description:
-			"Deploy on Sagyboar's managed infra — billed yearly in USD.",
-		billingPeriod: "year",
+			"Deploy on Sagyboar's managed infra — billed monthly or annually in USD.",
+		billingPeriod: "month",
 		currency: "usd",
 	},
 	team: {
@@ -94,78 +127,111 @@ export const freePlan = {
 	],
 } as const satisfies FreePricingPlan;
 
-/** Indie tiers — Solo → Builder → Studio (cheap → premium) */
+/** Indie tiers — Free → Solo → Builder → Studio (cheap → premium) */
 export const indiePricingPlans = [
+	{
+		id: "free",
+		name: "Free",
+		tagline: "Try it out. One project, no card required.",
+		monthlyPrice: 0,
+		annualPrice: 0,
+		badge: "Coming soon",
+		comingSoon: true,
+		recommended: false,
+		cta: "Join waitlist",
+		ctaHref: "/contact",
+		includes: [
+			{ text: "1 project" },
+			{ text: "256 MB RAM pooled", keyDifferentiator: true },
+			{ text: "1 GB disk" },
+			{ text: "Sleeps after 10 min idle", keyDifferentiator: true },
+			{ text: "50 build minutes/month" },
+			{ text: "5 GB bandwidth/month" },
+			{ text: "1 team seat" },
+			{ text: "sagyboar.app subdomain only" },
+			{ text: "Bring your own database" },
+			{ text: "AI monitoring: alerts only" },
+			{ text: "Support: Community (Discord)" },
+		],
+	},
 	{
 		id: "solo",
 		name: "Solo",
-		tagline: "One project on our infra — ideal for students and side projects.",
-		price: 19,
-		currency: "usd",
-		billingPeriod: "year",
-		priceNote: "/year, billed annually",
+		tagline:
+			"One project on our infra — ideal for students and side projects.",
+		monthlyPrice: 9,
+		annualPrice: 90,
 		recommended: false,
 		cta: "Get Started",
 		ctaHref: Sagyboar_PORTAL_URL,
 		includes: [
-			"1 project",
-			"512 MB RAM / 1 GB disk",
-			"100 build minutes/month",
-			"10 GB bandwidth/month",
-			"1 team seat",
-			"No subdomain",
-			"Bring your own database (Supabase, Neon, Mongo Atlas, etc.)",
-			"AI monitoring: detection/alerts only",
-			"Support: Community (Discord)",
+			{ text: "1 project" },
+			{ text: "512 MB RAM pooled", keyDifferentiator: true },
+			{ text: "3 GB disk" },
+			{ text: "Always-on", keyDifferentiator: true },
+			{ text: "200 build minutes/month" },
+			{ text: "25 GB bandwidth/month" },
+			{ text: "1 team seat" },
+			{ text: "1 subdomain" },
+			{ text: "Bring your own database" },
+			{ text: "AI monitoring: alerts + auto-ticket to repo" },
+			{ text: "Support: Email, 48hr response" },
 		],
 	},
 	{
 		id: "builder",
 		name: "Builder",
-		tagline: "For freelancers and solo builders shipping a few real apps.",
-		price: 29,
-		currency: "usd",
-		billingPeriod: "year",
-		priceNote: "/year, billed annually",
+		tagline: "For freelancers and solo builders shipping real apps.",
+		monthlyPrice: 29,
+		annualPrice: 290,
+		badge: "Most popular",
 		recommended: true,
 		cta: "Get Started",
 		ctaHref: Sagyboar_PORTAL_URL,
 		includes: [
-			"Up to 3 projects",
-			"1 GB RAM / 3 GB disk each",
-			"300 build minutes/month",
-			"50 GB bandwidth/month",
-			"1 team seat",
-			"1 subdomain",
-			"Bring your own database",
-			"AI monitoring: + auto-ticket to repo",
-			"Support: Email, 48hr response",
+			{ text: "Up to 5 projects" },
+			{ text: "2 GB RAM pooled", keyDifferentiator: true },
+			{ text: "15 GB disk" },
+			{ text: "Always-on", keyDifferentiator: true },
+			{ text: "600 build minutes/month" },
+			{ text: "100 GB bandwidth/month" },
+			{ text: "2 team seats" },
+			{ text: "3 subdomains" },
+			{ text: "Bring your own database" },
+			{
+				text: "AI monitoring: auto-heal (restart + rollback)",
+				accent: true,
+			},
+			{ text: "Support: Email, 24hr response" },
 		],
 	},
 	{
 		id: "studio",
 		name: "Studio",
-		tagline: "For small indie teams that need a bit more headroom.",
-		price: 49,
-		currency: "usd",
-		billingPeriod: "year",
-		priceNote: "/year, billed annually",
+		tagline: "For small indie teams that need real headroom.",
+		monthlyPrice: 79,
+		annualPrice: 790,
 		recommended: false,
 		cta: "Get Started",
 		ctaHref: Sagyboar_PORTAL_URL,
 		includes: [
-			"Up to 5 projects",
-			"2 GB RAM / 5 GB disk each",
-			"750 build minutes/month",
-			"100 GB bandwidth/month",
-			"2 team seats",
-			"Up to 3 subdomains",
-			"Bring your own database",
-			"AI monitoring: + limited auto-heal (restart/rollback)",
-			"Support: Priority email, 24hr response",
+			{ text: "Up to 10 projects" },
+			{ text: "5 GB RAM pooled", keyDifferentiator: true },
+			{ text: "40 GB disk" },
+			{ text: "Always-on, priority scheduling", keyDifferentiator: true },
+			{ text: "2,000 build minutes/month" },
+			{ text: "300 GB bandwidth/month" },
+			{ text: "5 team seats" },
+			{ text: "Unlimited subdomains" },
+			{ text: "Bring your own database" },
+			{
+				text: "AI monitoring: full auto-heal + weekly AI report",
+				accent: true,
+			},
+			{ text: "Support: Priority email, 12hr response" },
 		],
 	},
-] as const satisfies readonly PaidPricingPlan[];
+] as const satisfies readonly IndiePricingPlan[];
 
 /** Team BYOC tiers — Starter → Growth → Enterprise (cheap → premium) */
 export const teamPricingPlans = [
@@ -263,9 +329,10 @@ export const audiencePricing: Record<PricingAudience, AudiencePricing> = {
 			"For funded startups and teams — BYOC, shared DevOps, billed monthly in USD.",
 	},
 	user: {
-		plans: indiePricingPlans,
+		/** Indie cards read `indiePricingPlans` directly (monthly/annual). */
+		plans: [],
 		subtitle:
-			"For students, freelancers, and solo builders — deploy on our infra, pay yearly.",
+			"For students, freelancers, and solo builders — deploy on our infra, billed monthly or annually.",
 		exclusionNote: indieExclusionNote,
 	},
 };
@@ -279,6 +346,24 @@ export function formatPlanPriceLabel(plan: PaidPricingPlan): string {
 			: `$${plan.price.toLocaleString("en-US")}`;
 	const period = plan.billingPeriod === "year" ? "year" : "month";
 	return `${amount}/${period}`;
+}
+
+export function formatIndiePlanPriceLabel(
+	plan: IndiePricingPlan,
+	cycle: IndieBillingCycle = "month",
+): string {
+	if (plan.monthlyPrice === 0) return "$0";
+	if (cycle === "year") {
+		return `$${plan.annualPrice.toLocaleString("en-US")}/year`;
+	}
+	return `$${plan.monthlyPrice.toLocaleString("en-US")}/month`;
+}
+
+export function getIndiePlanPrice(
+	plan: IndiePricingPlan,
+	cycle: IndieBillingCycle,
+): number {
+	return cycle === "year" ? plan.annualPrice : plan.monthlyPrice;
 }
 
 /** Canonical tier display names by model (cheap → premium) */

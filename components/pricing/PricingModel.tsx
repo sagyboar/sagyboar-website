@@ -75,7 +75,7 @@ export function PricingModel({ audience }: PricingModelProps) {
 						/>
 						<p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
 							We host your app on our VPS. You bring the database. You pay
-							yearly in USD — no cloud account required.
+							monthly or annually in USD — no cloud account required.
 						</p>
 						<div className="mt-10 grid gap-6 md:grid-cols-3">
 							{indieInfraSteps.map((item, index) => (
