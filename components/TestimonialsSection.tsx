@@ -65,13 +65,13 @@ export function TestimonialsSection() {
 							key={t.name}
 							className={clsx(
 								"group flex flex-col justify-between rounded-2xl border p-6 shadow-sm backdrop-blur-sm transition-all duration-200 sm:p-8",
-								"hover:-translate-y-1 hover:scale-[1.02] hover:border-white/20",
+								"hover:-translate-y-1 hover:shadow-md",
 								t.featured
-									? "border-blue-400/30 bg-gradient-to-b from-blue-400/10 via-[#0a0a0a] to-[#0a0a0a]"
-									: "border-white/10 bg-[#0a0a0a]/80",
+									? "border-blue-400/30 bg-gradient-to-b from-blue-400/10 via-card/80 to-card hover:border-blue-400/40 dark:from-blue-400/10 dark:via-card/50 dark:to-card/30"
+									: "border-border bg-card/50 hover:border-primary/30 dark:bg-card/30",
 							)}
 						>
-							<blockquote className="text-base leading-relaxed text-neutral-200 sm:text-lg">
+							<blockquote className="text-base leading-relaxed text-foreground/90 sm:text-lg">
 								&ldquo;{t.quote}&rdquo;
 							</blockquote>
 
@@ -81,8 +81,8 @@ export function TestimonialsSection() {
 									className={clsx(
 										"flex size-10 shrink-0 items-center justify-center rounded-full border text-sm font-semibold",
 										t.featured
-											? "border-blue-400/40 bg-blue-400/15 text-blue-300"
-											: "border-white/10 bg-white/5 text-neutral-300",
+											? "border-blue-400/40 bg-blue-400/15 text-blue-600 dark:text-blue-300"
+											: "border-border bg-muted text-muted-foreground",
 									)}
 								>
 									{getInitials(t.name)}

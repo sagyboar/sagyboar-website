@@ -47,7 +47,7 @@ export function StatsSection() {
 	return (
 		<div className="flex flex-col gap-10 px-4 py-20 lg:py-40">
 			<div className="mx-auto max-w-2xl md:text-center">
-				<h2 className="text-center font-display text-3xl tracking-tight sm:text-4xl">
+				<h2 className="text-center font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 					Engineered for{" "}
 					<span className="text-blue-400 border-b-2 border-blue-400">
 						Performance
@@ -63,18 +63,18 @@ export function StatsSection() {
 				{getGrid(currentStats).map((feature, index) => (
 					<div
 						key={feature.title}
-						className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-neutral-900 to-neutral-950 p-6"
+						className="relative overflow-hidden rounded-3xl border border-border bg-card/50 p-6 shadow-sm dark:bg-gradient-to-b dark:from-neutral-900 dark:to-neutral-950 dark:shadow-none"
 					>
 						<Grid
 							pattern={GRID_PATTERNS[index % GRID_PATTERNS.length]}
 							size={20}
 						/>
 
-						<p className="relative z-20 flex flex-row items-center gap-4 text-base font-bold text-white">
+						<p className="relative z-20 flex flex-row items-center gap-4 text-base font-bold text-foreground">
 							{feature.icon}
 							{feature.title}
 						</p>
-						<p className="relative z-20 mt-4 text-base font-normal text-neutral-400">
+						<p className="relative z-20 mt-4 text-base font-normal text-muted-foreground">
 							{feature.description}
 						</p>
 						{feature.component}
@@ -96,9 +96,9 @@ function getGrid({
 			title: "Sub-Minute Deploys",
 			description:
 				"Stop waiting on sluggish pipelines. Our AI deployment assistant analyzes your stack and pushes your containers to production in seconds.",
-			icon: <Clock className="h-6 w-6 stroke-white" />,
+			icon: <Clock className="h-6 w-6 text-foreground" />,
 			component: (
-				<p className="mt-4 whitespace-pre-wrap text-2xl !font-semibold tracking-tighter text-white">
+				<p className="mt-4 whitespace-pre-wrap text-2xl !font-semibold tracking-tighter text-foreground">
 					&lt;
 					<NumberTicker value={deployTimeSeconds} />s
 				</p>
@@ -108,9 +108,9 @@ function getGrid({
 			title: "Uptime Reliability",
 			description:
 				"Deploy with confidence. Our managed infrastructure and automated Docker Swarm clustering ensure your mission-critical apps stay online.",
-			icon: <ShieldCheck className="h-6 w-6 stroke-white" />,
+			icon: <ShieldCheck className="h-6 w-6 text-foreground" />,
 			component: (
-				<p className="mt-4 whitespace-pre-wrap text-2xl !font-semibold tracking-tighter text-white">
+				<p className="mt-4 whitespace-pre-wrap text-2xl !font-semibold tracking-tighter text-foreground">
 					<NumberTicker value={uptimeGuarantee} decimalPlaces={1} />%
 				</p>
 			),
@@ -119,9 +119,9 @@ function getGrid({
 			title: "Supported Stacks",
 			description:
 				"From Node and Python to complex multi-tier architectures. Our AI auto-detects and generates boilerplate for dozens of frameworks natively.",
-			icon: <Blocks className="h-6 w-6 stroke-white" />,
+			icon: <Blocks className="h-6 w-6 text-foreground" />,
 			component: (
-				<p className="mt-4 whitespace-pre-wrap text-2xl !font-semibold tracking-tighter text-white">
+				<p className="mt-4 whitespace-pre-wrap text-2xl !font-semibold tracking-tighter text-foreground">
 					<NumberTicker value={supportedFrameworks} />+
 				</p>
 			),
@@ -130,9 +130,9 @@ function getGrid({
 			title: "Active Monitoring",
 			description:
 				"Round-the-clock system observability. Our AI engine continuously analyzes logs and metrics, generating automated tickets the moment an anomaly is detected.",
-			icon: <Activity className="h-6 w-6 stroke-white" />,
+			icon: <Activity className="h-6 w-6 text-foreground" />,
 			component: (
-				<p className="mt-4 whitespace-pre-wrap text-2xl !font-semibold tracking-tighter text-white">
+				<p className="mt-4 whitespace-pre-wrap text-2xl !font-semibold tracking-tighter text-foreground">
 					<NumberTicker value={monitoringHours} />
 					/7
 				</p>
@@ -150,15 +150,15 @@ export const Grid = ({
 }) => {
 	const p = pattern ?? GRID_PATTERNS[0];
 	return (
-		<div className="pointer-events-none absolute left-1/2 top-0 -ml-20 -mt-2 h-full w-full [mask-image:linear-gradient(white,transparent)]">
-			<div className="absolute inset-0 bg-gradient-to-r from-zinc-900/30 to-zinc-900/30 opacity-100 [mask-image:radial-gradient(farthest-side_at_top,white,transparent)]">
+		<div className="pointer-events-none absolute left-1/2 top-0 -ml-20 -mt-2 h-full w-full [mask-image:linear-gradient(black,transparent)] dark:[mask-image:linear-gradient(white,transparent)]">
+			<div className="absolute inset-0 bg-gradient-to-r from-muted/60 to-muted/60 opacity-100 [mask-image:radial-gradient(farthest-side_at_top,black,transparent)] dark:from-zinc-900/30 dark:to-zinc-900/30 dark:[mask-image:radial-gradient(farthest-side_at_top,white,transparent)]">
 				<GridPattern
 					width={size ?? 20}
 					height={size ?? 20}
 					x="-12"
 					y="4"
 					squares={p}
-					className="absolute inset-0 h-full w-full fill-white/10 stroke-white/10 mix-blend-overlay"
+					className="absolute inset-0 h-full w-full fill-foreground/[0.06] stroke-foreground/10 dark:fill-white/10 dark:stroke-white/10 dark:mix-blend-overlay"
 				/>
 			</div>
 		</div>
