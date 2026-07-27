@@ -55,7 +55,7 @@ export function TestimonialsSection() {
 						</span>
 					</h2>
 					<p className="mt-4 text-center text-lg tracking-tight text-muted-foreground">
-						Real feedback from teams shipping with Sagyboar.
+						What teams say after shipping with Sagyboar.
 					</p>
 				</div>
 
