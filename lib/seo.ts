@@ -8,12 +8,32 @@ import type { Metadata } from "next";
 
 type BuildMetadataOptions = PageSeoEntry & {
 	ogImage?: string;
-	keywords?: string[];
+};
+
+type FaqItem = {
+	question: string;
+	answer: string;
 };
 
 /** Build the dynamic OG image URL for a given on-image label */
 export function ogImageUrl(label: string): string {
 	return `/api/og?title=${encodeURIComponent(label)}`;
+}
+
+/** Build FAQPage JSON-LD from question/answer pairs */
+export function buildFaqJsonLd(faqs: readonly FaqItem[]) {
+	return {
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: faqs.map((faq) => ({
+			"@type": "Question",
+			name: faq.question,
+			acceptedAnswer: {
+				"@type": "Answer",
+				text: faq.answer,
+			},
+		})),
+	};
 }
 
 /** Build consistent Next.js Metadata from a page SEO entry */
@@ -28,10 +48,9 @@ export function buildMetadata({
 	keywords,
 }: BuildMetadataOptions): Metadata {
 	const canonicalPath = path.startsWith("/") ? path : `/${path}`;
-	const pageUrl = `${SITE_URL}${canonicalPath}`;
-	const ogTitle = absoluteTitle ? title : title;
+	const pageUrl = `${SITE_URL}${canonicalPath === "/" ? "" : canonicalPath}`;
 	const resolvedOgImage = ogImage ?? ogImageUrl(ogLabel ?? title);
-	const mergedKeywords = keywords
+	const mergedKeywords = keywords?.length
 		? [...new Set([...keywords, ...SITE_KEYWORDS])]
 		: SITE_KEYWORDS;
 
@@ -39,7 +58,7 @@ export function buildMetadata({
 		title: absoluteTitle ? { absolute: title } : title,
 		description,
 		keywords: mergedKeywords,
-		alternates: { canonical: canonicalPath },
+		alternates: { canonical: pageUrl },
 		manifest: "/site.webmanifest",
 		robots: noIndex
 			? { index: false, follow: false }
@@ -55,7 +74,7 @@ export function buildMetadata({
 					},
 				},
 		openGraph: {
-			title: ogTitle,
+			title,
 			description,
 			url: pageUrl,
 			siteName: SITE_NAME,
@@ -72,7 +91,7 @@ export function buildMetadata({
 		},
 		twitter: {
 			card: "summary_large_image",
-			title: ogTitle,
+			title,
 			description,
 			images: [resolvedOgImage],
 		},

@@ -1,6 +1,7 @@
+import { homeFaqs } from "@/constants/home-faqs";
 import { Sagyboar_BRAND_NAME } from "@/constants/branding";
 
-export const SITE_URL = "https://Sagyboar.space";
+export const SITE_URL = "https://sagyboar.space";
 export const SITE_NAME = Sagyboar_BRAND_NAME;
 /** Curated link index for LLM crawlers (llms.txt spec). */
 export const LLMS_TXT_PATH = "/llms.txt";
@@ -12,13 +13,23 @@ export const SAGYBOAR_SPACE_MD_PATH = "/sagyboar.space.md";
 export const LLMS_LEGACY_FULL_PATH = "/Sagyboar.md";
 /** Fallback static OG image. Pages use the dynamic /api/og generator. */
 export const DEFAULT_OG_IMAGE = "/OG-Image.png";
+
+/** ~155 chars — primary + secondary high-intent keywords */
 export const SITE_DESCRIPTION =
-	"An AI-native DevOps platform for deployment, monitoring, diagnosis, and managed engineering — deploy in minutes with zero lock-in.";
+	"AI-native DevOps platform for auto-healing deployments. Fully managed application hosting with zero cloud lock-in — the Heroku alternative you control.";
 
 /** Base keywords applied site-wide (root metadata) */
 export const SITE_KEYWORDS = [
 	"Sagyboar",
+	"AI native DevOps platform",
 	"AI DevOps platform",
+	"auto healing deployment platform",
+	"auto-healing deployment",
+	"fully managed application deployment platform",
+	"Heroku alternative with zero cloud lock in",
+	"Heroku alternative",
+	"zero cloud lock-in",
+	"managed cloud platform",
 	"application deployment",
 	"PaaS",
 	"managed hosting",
@@ -29,6 +40,18 @@ export const SITE_KEYWORDS = [
 	"self-healing infrastructure",
 	"database management",
 	"DevOps automation",
+	"BYOC deployment",
+];
+
+/** High-intent keywords boosted on the homepage */
+export const HOME_KEYWORDS = [
+	"AI native DevOps platform",
+	"auto healing deployment platform",
+	"fully managed application deployment platform",
+	"Heroku alternative with zero cloud lock in",
+	"AI-powered DevOps control plane",
+	"self-healing infrastructure",
+	"zero vendor lock-in PaaS",
 ];
 
 export type PageSeoEntry = {
@@ -39,85 +62,112 @@ export type PageSeoEntry = {
 	noIndex?: boolean;
 	/** Short, human label rendered on the generated OG image (defaults to title) */
 	ogLabel?: string;
+	/** Page-specific keywords merged with SITE_KEYWORDS */
+	keywords?: readonly string[];
 };
 
 /** Single source of truth for static page SEO */
 export const pageSeo = {
 	home: {
-		title: "Sagyboar — One Stop Solution for Your Deployment",
+		// 52 chars — primary keyword + brand
+		title: "Sagyboar | AI-Native DevOps & Auto-Healing Deployment",
+		// 158 chars
 		description:
-			"Deploy applications, manage databases, and monitor your infrastructure from a single AI-native platform.",
+			"Deploy, monitor, and scale apps with zero cloud lock-in. Sagyboar is an AI-native DevOps platform that auto-heals deployments and fully manages your apps.",
 		path: "/",
 		absoluteTitle: true,
-		ogLabel: "Deploy with ease",
+		ogLabel: "AI-Native DevOps Platform",
+		keywords: HOME_KEYWORDS,
 	},
 	pricing: {
-		title: "Pricing — One Platform, Zero DevOps Headaches",
+		title: "Pricing — AI DevOps Platform Plans",
 		description:
-			"Compare Indie (Solo, Builder, Studio) and Team BYOC (Starter, Growth, Enterprise) plans. AI-powered deployment, monitoring, and a real team.",
+			"Compare Indie and Team BYOC plans for Sagyboar — the AI-native DevOps and auto-healing deployment platform with zero cloud lock-in. Start free.",
 		path: "/pricing",
 		ogLabel: "Pricing",
+		keywords: [
+			"AI DevOps platform pricing",
+			"managed DevOps plans",
+			"Heroku alternative pricing",
+		],
 	},
 	features: {
-		title: "Platform Features",
+		title: "Features — Auto-Healing DevOps Platform",
 		description:
-			"One control plane for deployment, monitoring, AI diagnosis, self-healing, and your entire engineering team.",
+			"Explore Sagyboar features: AI-native deployment, auto-healing, anomaly detection, monitoring, and fully managed application infrastructure.",
 		path: "/features",
 		ogLabel: "Features",
+		keywords: [
+			"auto healing deployment features",
+			"AI DevOps features",
+			"self-healing infrastructure",
+		],
 	},
 	contact: {
 		title: "Contact Us",
 		description:
-			"Get in touch with the Sagyboar team for pricing, enterprise onboarding, and support.",
+			"Talk to the Sagyboar team about the AI-native DevOps platform, enterprise onboarding, pricing, and fully managed deployments.",
 		path: "/contact",
 		ogLabel: "Contact",
 	},
 	about: {
-		title: "About Us",
+		title: "About Us — AI-Native DevOps Platform",
 		description:
-			"Meet Sagyboar — our mission, our journey, and the principles behind our AI-native DevOps platform.",
+			"Meet Sagyboar — the mission, journey, and principles behind our AI-native DevOps and auto-healing deployment platform.",
 		path: "/about",
 		ogLabel: "About Us",
 	},
 	jobs: {
 		title: "Careers & Open Positions",
 		description:
-			"Join Sagyboar and help teams deploy faster with our AI-native DevOps platform.",
+			"Join Sagyboar and help teams ship faster with our AI-native DevOps platform and auto-healing deployment control plane.",
 		path: "/jobs",
 		ogLabel: "Careers",
 	},
 	solutionsSideProjects: {
 		title: "Side Projects — Deploy Without DevOps",
 		description:
-			"Managed hosting, AI monitoring, and community support for solo developers and MVPs from $49/month.",
+			"Fully managed application deployment for solo developers and MVPs. AI monitoring, auto-healing, and zero lock-in from $49/month.",
 		path: "/solutions/side-projects",
 		ogLabel: "Side Projects",
+		keywords: [
+			"managed deployment for side projects",
+			"Heroku alternative for indie hackers",
+		],
 	},
 	solutionsScaleUps: {
 		title: "Scale-ups — Scale Without a Full DevOps Hire",
 		description:
-			"Up to five apps, advanced AI monitoring, and AI-assisted engineering for growing companies from $249/month.",
+			"AI-native DevOps for growing companies: auto-healing deployments, advanced monitoring, and managed engineering from $249/month.",
 		path: "/solutions/scale-ups",
 		ogLabel: "Scale-ups",
+		keywords: [
+			"DevOps platform for scale-ups",
+			"auto healing deployment for startups",
+		],
 	},
 	solutionsOrganizations: {
-		title: "Organizations — Dedicated Infrastructure & Platform Team",
+		title: "Organizations — Fully Managed DevOps Platform",
 		description:
-			"SLA-backed uptime, dedicated cloud infrastructure, and a fully managed DevOps team from $1,499/month.",
+			"SLA-backed uptime, dedicated infrastructure, and a fully managed application deployment platform for enterprises from $1,499/month.",
 		path: "/solutions/organizations",
 		ogLabel: "Organizations",
+		keywords: [
+			"fully managed application deployment platform",
+			"enterprise DevOps platform",
+		],
 	},
 	privacy: {
 		title: "Privacy Policy",
 		description:
-			"How Sagyboar collects, uses, and protects your personal data.",
+			"How Sagyboar collects, uses, and protects your personal data on our AI-native DevOps platform.",
 		path: "/privacy",
 		ogLabel: "Privacy Policy",
 	},
 	termsOfService: {
 		title: "Terms of Service",
 		description:
-			"Terms of Service for Sagyboar's cloud and on-premise deployment platform.",
+			"Terms of Service for Sagyboar's AI-native DevOps and fully managed application deployment platform.",
 		path: "/terms-of-service",
 		ogLabel: "Terms of Service",
 	},
@@ -129,9 +179,9 @@ export const pageSeo = {
 		ogLabel: "SLA",
 	},
 	watchIntro: {
-		title: "Product Intro Video — Deploy, Monitor & Auto-Heal",
+		title: "Product Intro — Deploy, Monitor & Auto-Heal",
 		description:
-			"Watch the Sagyboar product intro: a 22-second tour of deployment, AI monitoring, and autonomous self-healing.",
+			"Watch the Sagyboar intro: a 22-second tour of AI-native DevOps, auto-healing deployments, and zero cloud lock-in.",
 		path: "/watch/intro",
 		ogLabel: "Product intro video",
 	},
@@ -158,4 +208,43 @@ export const websiteJsonLd = {
 		target: `${SITE_URL}/features?q={search_term_string}`,
 		"query-input": "required name=search_term_string",
 	},
+};
+
+/** SoftwareApplication schema for rich results / entity understanding */
+export const softwareApplicationJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "SoftwareApplication",
+	name: SITE_NAME,
+	applicationCategory: "DeveloperApplication",
+	operatingSystem: "Web",
+	url: SITE_URL,
+	description: SITE_DESCRIPTION,
+	offers: {
+		"@type": "Offer",
+		price: "0",
+		priceCurrency: "USD",
+		description: "Free tier available — fully managed application deployment",
+	},
+	featureList: [
+		"AI-native DevOps control plane",
+		"Auto-healing deployments",
+		"Anomaly detection and auto ticketing",
+		"Fully managed application hosting",
+		"Zero cloud lock-in / BYOC",
+		"Heroku alternative",
+	],
+};
+
+/** Homepage FAQPage schema — kept in sync with constants/home-faqs.ts */
+export const homeFaqJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	mainEntity: homeFaqs.map((faq) => ({
+		"@type": "Question",
+		name: faq.question,
+		acceptedAnswer: {
+			"@type": "Answer",
+			text: faq.answer,
+		},
+	})),
 };

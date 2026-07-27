@@ -1,3 +1,5 @@
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildFaqJsonLd } from "@/lib/seo";
 import { SolutionCta } from "./SolutionCta";
 import { SolutionFaq } from "./SolutionFaq";
 import { SolutionHero } from "./SolutionHero";
@@ -10,8 +12,11 @@ type SolutionPageProps = {
 };
 
 export function SolutionPage({ data }: SolutionPageProps) {
+	const faqJsonLd = buildFaqJsonLd(data.faq.items);
+
 	return (
 		<div className="min-h-screen bg-background">
+			<JsonLd data={faqJsonLd} />
 			<SolutionHero data={data.hero} />
 			<SolutionStack data={data.stack} />
 			<SolutionSpotlight data={data.spotlight} />

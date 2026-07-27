@@ -33,9 +33,9 @@ export function Hero() {
 					</h1>
 
 					<p className="hero-fade-up hero-fade-up-delayed-2 mt-6 mb-10 text-base leading-relaxed text-muted-foreground sm:text-lg sm:leading-8">
-						An AI-powered control plane that auto-generates configurations,
-						detects anomalies, handles ticketing. Deploy to our managed servers
-						in minutes with zero infrastructure hassle and zero cloud lock-in.
+						An AI-native DevOps platform that auto-generates configs, detects
+						anomalies, and auto-heals deployments. Fully managed application
+						hosting in minutes — with zero cloud lock-in.
 					</p>
 
 					<div className="hero-fade-up hero-fade-up-delayed-3 bg-blue-500 p-1.5 rounded-full">

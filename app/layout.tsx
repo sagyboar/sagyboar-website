@@ -19,11 +19,12 @@ import {
 	SITE_NAME,
 	SITE_URL,
 	organizationJsonLd,
+	softwareApplicationJsonLd,
 	websiteJsonLd,
 } from "@/constants/seo-data";
 import { ogImageUrl } from "@/lib/seo";
 
-const DEFAULT_OG_IMAGE = ogImageUrl("Deploy with ease");
+const DEFAULT_OG_IMAGE = ogImageUrl("AI-Native DevOps Platform");
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -55,7 +56,7 @@ export const viewport: Viewport = {
 	],
 };
 
-const ROOT_TITLE = `${SITE_NAME} — Deploy Your Applications With Ease`;
+const ROOT_TITLE = `${SITE_NAME} | AI-Native DevOps & Auto-Healing Deployment`;
 
 export const metadata: Metadata = {
 	metadataBase: new URL(SITE_URL),
@@ -68,7 +69,7 @@ export const metadata: Metadata = {
 	applicationName: SITE_NAME,
 	manifest: "/site.webmanifest",
 	alternates: {
-		canonical: "/",
+		canonical: SITE_URL,
 	},
 	icons: {
 		icon: [
@@ -80,17 +81,24 @@ export const metadata: Metadata = {
 		apple: "/apple-touch-icon.png",
 	},
 	openGraph: {
-		title: ROOT_TITLE,
+		title: `${SITE_NAME} — AI-Native DevOps Platform`,
 		description: SITE_DESCRIPTION,
 		url: SITE_URL,
 		siteName: SITE_NAME,
-		images: DEFAULT_OG_IMAGE,
+		images: [
+			{
+				url: DEFAULT_OG_IMAGE,
+				width: 1200,
+				height: 630,
+				alt: `${SITE_NAME} — AI-Native DevOps Platform`,
+			},
+		],
 		type: "website",
 		locale: "en_US",
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: ROOT_TITLE,
+		title: `${SITE_NAME} — AI-Native DevOps Platform`,
 		description: SITE_DESCRIPTION,
 		images: [DEFAULT_OG_IMAGE],
 	},
@@ -145,7 +153,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					href={LLMS_LEGACY_FULL_PATH}
 					title="Legacy product knowledge base"
 				/>
-				<JsonLd data={[organizationJsonLd, websiteJsonLd]} />
+				<JsonLd
+					data={[organizationJsonLd, websiteJsonLd, softwareApplicationJsonLd]}
+				/>
 				<script
 					type="text/javascript"
 					id="hs-script-loader"
