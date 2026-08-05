@@ -1,4 +1,5 @@
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageShell } from "@/components/ui/sagy";
 import { buildFaqJsonLd } from "@/lib/seo";
 import { SolutionCta } from "./SolutionCta";
 import { SolutionFaq } from "./SolutionFaq";
@@ -15,13 +16,13 @@ export function SolutionPage({ data }: SolutionPageProps) {
 	const faqJsonLd = buildFaqJsonLd(data.faq.items);
 
 	return (
-		<div className="min-h-screen bg-background">
+		<PageShell>
 			<JsonLd data={faqJsonLd} />
 			<SolutionHero data={data.hero} />
 			<SolutionStack data={data.stack} />
 			<SolutionSpotlight data={data.spotlight} />
 			<SolutionFaq data={data.faq} />
-			<SolutionCta data={data.cta} />
-		</div>
+			<SolutionCta data={data.cta} className="pb-24" />
+		</PageShell>
 	);
 }

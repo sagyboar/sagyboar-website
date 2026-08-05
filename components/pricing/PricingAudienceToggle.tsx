@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { pricingModels, type PricingAudience } from "./pricing-data";
+import { type PricingAudience, pricingModels } from "./pricing-data";
 
 const AUDIENCE_OPTIONS: {
 	id: PricingAudience;
@@ -28,7 +28,7 @@ export function PricingAudienceToggle({
 			role="tablist"
 			aria-label="Pricing audience"
 			className={cn(
-				"mx-auto flex w-fit items-center gap-1 rounded-full border border-border bg-muted/40 p-1",
+				"mx-auto flex w-fit items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.04] p-1",
 				className,
 			)}
 		>
@@ -44,9 +44,7 @@ export function PricingAudienceToggle({
 						onClick={() => onChange(option.id)}
 						className={cn(
 							"relative rounded-full px-5 py-2 text-sm font-medium transition-colors",
-							selected
-								? "text-background"
-								: "text-muted-foreground hover:text-foreground",
+							selected ? "text-background" : "text-sagy-body hover:text-white",
 						)}
 					>
 						{selected ? (

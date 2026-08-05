@@ -81,8 +81,7 @@ export const sideProjectsSolutionPage: SolutionPageData = {
 	faq: {
 		title: "Side Projects FAQ",
 		titleHighlight: "FAQ",
-		subtitle:
-			"Common questions about deploying side projects on Sagyboar.",
+		subtitle: "Common questions about deploying side projects on Sagyboar.",
 		items: [
 			{
 				question: "What is included for Side Projects?",
@@ -118,6 +117,7 @@ export const sideProjectsSolutionPage: SolutionPageData = {
 	},
 	cta: {
 		title: "Ready to deploy without the DevOps grind?",
+		titleHighlight: "DevOps grind?",
 		description:
 			"Join solo developers shipping faster on Sagyboar. Get started with Side Projects today or talk to us if you have questions.",
 		primaryCta: "Get started",

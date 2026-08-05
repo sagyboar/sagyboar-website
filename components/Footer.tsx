@@ -25,7 +25,10 @@ function FooterLinkItem({ href, label, icon: Icon }: FooterLink) {
 
 export function Footer() {
 	return (
-		<footer className="border-t border-border bg-background" role="contentinfo">
+		<footer
+			className="relative z-10 border-t border-border bg-background"
+			role="contentinfo"
+		>
 			<Container>
 				<div className="py-12 md:py-16">
 					<div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">

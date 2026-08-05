@@ -1,133 +1,176 @@
-import { Container } from "@/components/Container";
-import { HeadingHighlight } from "@/components/solutions/HeadingHighlight";
-import { Button } from "@/components/ui/button";
-import { Sagyboar_PORTAL_URL } from "@/constants/branding";
-import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
+import { ScrollReveal, ScrollRevealItem } from "@/components/design-system";
 import {
-	FeatureCtaBackground,
-	FeatureDetailBackground,
-} from "./FeatureBackgrounds";
+	Badge,
+	BrowserFrame,
+	FinalCTA,
+	GlowButton,
+	PageShell,
+	SectionHeading,
+} from "@/components/ui/sagy";
+import { Sagyboar_PORTAL_URL } from "@/constants/branding";
+import { spacing } from "@/lib/tokens";
+import { cn } from "@/lib/utils";
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { FeatureBentoCard } from "./FeatureBentoCard";
 import { FeatureCapabilities } from "./FeatureCapabilities";
-import { RelatedFeatureCard } from "./RelatedFeatureCard";
-import { type FeaturePageData, featurePages } from "./features-data";
+import { FeatureItemGraphic } from "./FeatureItemGraphic";
+import {
+	type FeatureBadge as FeatureBadgeType,
+	type FeaturePageData,
+	featurePages,
+} from "./features-data";
+
+const BADGE_ORDER: FeatureBadgeType[] = ["CORE", "AI", "MANAGED", "NEW"];
 
 export function FeaturePage({ feature }: { feature: FeaturePageData }) {
 	const Icon = feature.icon;
 	const related = featurePages
 		.filter((item) => item.slug !== feature.slug)
 		.slice(0, 3);
+	const heroGraphic = feature.items.find((item) => item.graphic)?.graphic;
+	const badgesPresent = BADGE_ORDER.filter((badge) =>
+		feature.items.some((item) => item.badge === badge),
+	);
 
 	return (
-		<div className="min-h-screen bg-background">
-			{/* Hero */}
-			<section className="relative overflow-hidden bg-background py-20 sm:py-28 lg:py-32">
-				<FeatureDetailBackground />
-				<Container className="relative z-10">
-					<div className="mx-auto max-w-3xl text-center">
-						<div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-3 py-1 text-sm text-muted-foreground backdrop-blur-sm">
-							<Icon className="size-4 text-primary" aria-hidden />
-							<span>{feature.title}</span>
+		<PageShell>
+			{/* Hero — headline + live graphic showcase */}
+			<ScrollReveal
+				as="section"
+				className={cn(
+					"relative border-b border-white/[0.08]",
+					spacing.sectionYLarge,
+				)}
+				aria-label="Feature hero"
+				stagger
+			>
+				<div className="mx-auto max-w-6xl px-4 sm:px-6">
+					<div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+						<div>
+							<ScrollRevealItem>
+								<nav
+									aria-label="Breadcrumb"
+									className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-sagy-muted"
+								>
+									<Link
+										href="/features"
+										className="transition-colors hover:text-white"
+									>
+										Features
+									</Link>
+									<ChevronRight className="size-3" aria-hidden="true" />
+									<span>{feature.group}</span>
+								</nav>
+
+								<div className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1.5">
+									<Icon
+										className="size-4 text-sagy-accent"
+										strokeWidth={1.75}
+										aria-hidden="true"
+									/>
+									<span className="font-mono text-[11px] uppercase tracking-wider text-sagy-body">
+										{feature.title}
+									</span>
+								</div>
+							</ScrollRevealItem>
+
+							<ScrollRevealItem>
+								<SectionHeading
+									title={feature.headline}
+									titleHighlight={feature.headlineHighlight}
+									subline={feature.summary}
+									as="h1"
+									size="hero"
+									className="mt-6"
+								/>
+							</ScrollRevealItem>
+
+							<ScrollRevealItem>
+								<div className="mt-8 flex flex-wrap items-center gap-3">
+									<span className="font-mono text-[11px] uppercase tracking-wider text-sagy-muted">
+										{feature.items.length} capabilities
+									</span>
+									<span
+										className="h-3 w-px bg-white/[0.12]"
+										aria-hidden="true"
+									/>
+									{badgesPresent.map((badge) => (
+										<Badge key={badge} variant={badge} />
+									))}
+								</div>
+
+								<div className="mt-10 flex flex-wrap items-center gap-3">
+									<GlowButton href={Sagyboar_PORTAL_URL} external>
+										Get started
+									</GlowButton>
+									<GlowButton href="/contact" variant="ghost">
+										Talk to sales
+									</GlowButton>
+								</div>
+							</ScrollRevealItem>
 						</div>
 
-						<h1 className="mt-6 font-serif text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-							<HeadingHighlight
-								text={feature.headline}
-								highlight={feature.headlineHighlight}
-							/>
-						</h1>
-						<p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-							{feature.summary}
-						</p>
-
-						<div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-							<Button asChild size="lg" className="gap-2 rounded-full">
-								<Link href={Sagyboar_PORTAL_URL} target="_blank">
-									Get started
-									<ArrowUpRight className="h-4 w-4" />
-								</Link>
-							</Button>
-							<Button
-								asChild
-								size="lg"
-								variant="outline"
-								className="rounded-full"
+						<ScrollRevealItem>
+							<BrowserFrame
+								title={feature.title}
+								contentClassName="aspect-[4/3]"
 							>
-								<Link href="/contact">Talk to sales</Link>
-							</Button>
-						</div>
+								{heroGraphic ? (
+									<FeatureItemGraphic
+										name={heroGraphic}
+										label={`${feature.title} overview`}
+										className="p-4 sm:p-6"
+									/>
+								) : null}
+							</BrowserFrame>
+						</ScrollRevealItem>
 					</div>
-				</Container>
-			</section>
+				</div>
+			</ScrollReveal>
 
 			<FeatureCapabilities featureTitle={feature.title} items={feature.items} />
 
 			{/* Related features */}
-			<section className="py-20 sm:py-28">
-				<Container>
-					<div className="mx-auto max-w-3xl text-center">
-						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
-							<HeadingHighlight
-								text="Explore more features"
-								highlight="features"
-							/>
-						</h2>
-						<p className="mt-4 text-lg text-muted-foreground">
-							One platform for deployment, monitoring, diagnosis, and your team.
-						</p>
-					</div>
+			<ScrollReveal
+				as="section"
+				className={cn("border-b border-white/[0.08]", spacing.sectionY)}
+				aria-label="Explore more features"
+				stagger
+			>
+				<div className="mx-auto max-w-6xl px-4 sm:px-6">
+					<ScrollRevealItem>
+						<SectionHeading
+							title="Explore more features"
+							titleHighlight="features"
+							subline="One platform for deployment, monitoring, diagnosis, and your team."
+							align="center"
+							className="mx-auto"
+						/>
+					</ScrollRevealItem>
 
-					<div className="mx-auto mt-14 grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
-						{related.map((item) => {
-							const RelatedIcon = item.icon;
-							return (
-								<RelatedFeatureCard
-									key={item.slug}
-									slug={item.slug}
-									title={item.navTitle}
-									description={item.navDescription}
-									icon={<RelatedIcon className="size-5" strokeWidth={1.75} />}
-								/>
-							);
-						})}
+					<div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+						{related.map((item) => (
+							<ScrollRevealItem key={item.slug}>
+								<FeatureBentoCard slug={item.slug} size="default" />
+							</ScrollRevealItem>
+						))}
 					</div>
-				</Container>
-			</section>
+				</div>
+			</ScrollReveal>
 
-			{/* CTA */}
-			<section className="relative overflow-hidden py-20 mb-20 sm:py-28 max-w-5xl mx-auto rounded-2xl border">
-				<FeatureCtaBackground />
-				<Container className="relative z-10">
-					<div className="mx-auto max-w-3xl text-center">
-						<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
-							<HeadingHighlight
-								text="Ready to ship with Sagyboar?"
-								highlight="Sagyboar?"
-							/>
-						</h2>
-						<p className="mt-4 text-lg text-muted-foreground">
-							Deploy your first app in minutes, or talk to us about a managed
-							setup for your team.
-						</p>
-						<div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-							<Button asChild size="lg" className="gap-2 rounded-full">
-								<Link href={Sagyboar_PORTAL_URL} target="_blank">
-									Get started
-									<ArrowUpRight className="h-4 w-4" />
-								</Link>
-							</Button>
-							<Button
-								asChild
-								size="lg"
-								variant="outline"
-								className="rounded-full"
-							>
-								<Link href="/pricing">View pricing</Link>
-							</Button>
-						</div>
-					</div>
-				</Container>
-			</section>
-		</div>
+			<FinalCTA
+				title="Ready to ship with Sagyboar?"
+				titleHighlight="Sagyboar?"
+				subline="Deploy your first app in minutes, or talk to us about a managed setup for your team."
+				primaryCta={{
+					label: "Get started",
+					href: Sagyboar_PORTAL_URL,
+					external: true,
+				}}
+				secondaryCta={{ label: "View pricing", href: "/pricing" }}
+				className="pb-24"
+			/>
+		</PageShell>
 	);
 }

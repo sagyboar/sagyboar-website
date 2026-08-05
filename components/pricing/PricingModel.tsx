@@ -4,11 +4,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import { PricingSectionHeading } from "./PricingSectionHeading";
 import {
+	type PricingAudience,
 	byocSteps,
 	indieInfraSteps,
 	indieSupportSteps,
 	sharedDevOpsSteps,
-	type PricingAudience,
 } from "./pricing-data";
 
 type ModelStep = {
@@ -30,20 +30,18 @@ function StepCard({ item, index }: { item: ModelStep; index: number }) {
 				delay: index * 0.1,
 				ease: [0.22, 1, 0.36, 1],
 			}}
-			className="relative flex flex-col rounded-3xl border border-border bg-card/50 p-6 shadow-sm"
+			className="relative flex flex-col sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface p-6 shadow-sagy-card transition-colors hover:border-sagy-accent/25"
 		>
 			<div className="flex items-center justify-between">
-				<div className="flex size-11 items-center justify-center rounded-xl border border-border/50 bg-primary/10 text-primary">
-					<Icon className="size-5" strokeWidth={1.75} />
+				<div className="flex size-10 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04]">
+					<Icon className="size-4 text-sagy-body" strokeWidth={1.5} />
 				</div>
-				<span className="font-display text-3xl font-bold text-muted-foreground/25">
-					{item.step}
-				</span>
+				<span className="font-display text-3xl text-white/10">{item.step}</span>
 			</div>
-			<h3 className="mt-5 text-base font-semibold text-foreground">
+			<h3 className="mt-5 font-sans text-base font-medium text-white">
 				{item.title}
 			</h3>
-			<p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+			<p className="mt-2 font-sans text-sm leading-relaxed text-sagy-body">
 				{item.description}
 			</p>
 		</motion.article>
@@ -73,7 +71,7 @@ export function PricingModel({ audience }: PricingModelProps) {
 							before="The Indie model — simple"
 							highlight="hosting"
 						/>
-						<p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
+						<p className="mx-auto mt-4 max-w-2xl text-center text-sagy-body">
 							We host your app on our VPS. You bring the database. You pay
 							monthly or annually in USD — no cloud account required.
 						</p>
@@ -88,7 +86,7 @@ export function PricingModel({ audience }: PricingModelProps) {
 								before="Monitoring &"
 								highlight="support"
 							/>
-							<p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
+							<p className="mx-auto mt-4 max-w-2xl text-center text-sagy-body">
 								AI monitoring grows with your tier. Full shared DevOps stays on
 								Team BYOC plans.
 							</p>
@@ -105,7 +103,7 @@ export function PricingModel({ audience }: PricingModelProps) {
 							before="The BYOC model — why it's"
 							highlight="genius"
 						/>
-						<p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
+						<p className="mx-auto mt-4 max-w-2xl text-center text-sagy-body">
 							You bring the cloud. We bring the platform and the team. Zero
 							infrastructure cost sits on us.
 						</p>
@@ -120,7 +118,7 @@ export function PricingModel({ audience }: PricingModelProps) {
 								before="Shared DevOps team"
 								highlight="model"
 							/>
-							<p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
+							<p className="mx-auto mt-4 max-w-2xl text-center text-sagy-body">
 								One team, powered by AI, supporting many projects — so you scale
 								without hiring.
 							</p>

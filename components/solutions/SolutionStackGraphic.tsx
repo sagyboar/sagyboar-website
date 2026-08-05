@@ -42,7 +42,7 @@ export function SolutionStackGraphic({
 			fill="none"
 			role="img"
 			aria-label={label ?? labels[name]}
-			preserveAspectRatio="xMidYMid slice"
+			preserveAspectRatio="xMidYMid meet"
 			className={["absolute inset-0 h-full w-full", className]
 				.filter(Boolean)
 				.join(" ")}
@@ -72,25 +72,73 @@ export function SolutionStackGraphic({
 	);
 }
 
+/**
+ * Ambient layer behind every diagram — indigo core bloom plus two slow orbit
+ * rings, matching the platform hero graphic. No filled panel, so the diagram
+ * reads as lit content on the card surface. `from`/`to` are legacy per-graphic
+ * tints, no longer used.
+ */
 function BackgroundLayer({
 	id,
 	from,
 	to,
 }: {
 	id: string;
-	from: string;
-	to: string;
+	from?: string;
+	to?: string;
 }) {
 	return (
 		<>
 			<defs>
-				<linearGradient id={`${id}-bg`} x1="0" y1="0" x2="1" y2="1">
-					<stop offset="0%" stopColor={from} stopOpacity="0.14" />
-					<stop offset="100%" stopColor={to} stopOpacity="0.14" />
-				</linearGradient>
+				<radialGradient id={`${id}-glow`} cx="50%" cy="50%" r="50%">
+					<stop offset="0%" stopColor="#6D5EF8" stopOpacity="0.3" />
+					<stop offset="100%" stopColor="#6D5EF8" stopOpacity="0" />
+				</radialGradient>
 			</defs>
-			<rect width="400" height="300" className="fill-muted/40" />
-			<rect width="400" height="300" fill={`url(#${id}-bg)`} />
+			<ellipse cx="200" cy="150" rx="185" ry="145" fill={`url(#${id}-glow)`}>
+				<animate
+					attributeName="opacity"
+					values="0.7;1;0.7"
+					dur="6s"
+					repeatCount="indefinite"
+				/>
+			</ellipse>
+			<g opacity="0.5">
+				<circle
+					cx="200"
+					cy="150"
+					r="108"
+					className="stroke-border"
+					strokeWidth="1"
+					strokeDasharray="3 9"
+				>
+					<animateTransform
+						attributeName="transform"
+						type="rotate"
+						from="0 200 150"
+						to="360 200 150"
+						dur="60s"
+						repeatCount="indefinite"
+					/>
+				</circle>
+				<circle
+					cx="200"
+					cy="150"
+					r="132"
+					className="stroke-border"
+					strokeWidth="1"
+					strokeDasharray="2 12"
+				>
+					<animateTransform
+						attributeName="transform"
+						type="rotate"
+						from="360 200 150"
+						to="0 200 150"
+						dur="80s"
+						repeatCount="indefinite"
+					/>
+				</circle>
+			</g>
 		</>
 	);
 }
@@ -664,15 +712,15 @@ function SlaGraphic() {
 
 			{/* gauge track */}
 			<path
-				d={`M${cx - 46.67} ${cy + 46.67} A${r} ${r} 0 1 0 ${cx + 46.67} ${cy + 46.67}`}
+				d={`M${cx - 46.67} ${cy + 46.67} A${r} ${r} 0 1 1 ${cx + 46.67} ${cy + 46.67}`}
 				className="stroke-primary/15"
 				strokeWidth="12"
 				strokeLinecap="round"
 				fill="none"
 			/>
-			{/* gauge value ~99.9% */}
+			{/* gauge value ~99.9% — draws in once, then rests fully drawn */}
 			<path
-				d={`M${cx - 46.67} ${cy + 46.67} A${r} ${r} 0 1 0 ${cx + 46.67} ${cy + 46.67}`}
+				d={`M${cx - 46.67} ${cy + 46.67} A${r} ${r} 0 1 1 ${cx + 46.67} ${cy + 46.67}`}
 				stroke="url(#sla-arc)"
 				strokeWidth="12"
 				strokeLinecap="round"
@@ -682,17 +730,10 @@ function SlaGraphic() {
 			>
 				<animate
 					attributeName="stroke-dashoffset"
-					values="1;0.001"
-					dur="2.4s"
+					from="1"
+					to="0"
+					dur="1.4s"
 					fill="freeze"
-					repeatCount="1"
-				/>
-				<animate
-					attributeName="stroke-dashoffset"
-					values="0.02;0.001;0.02"
-					dur="3s"
-					begin="2.4s"
-					repeatCount="indefinite"
 				/>
 			</path>
 
@@ -2806,10 +2847,10 @@ function ManagedHostingGraphic() {
 				</text>
 			</g>
 
-			{/* managed badge */}
+			{/* managed badge — inset from right so card overflow/rounded corners don't clip it */}
 			<g>
 				<rect
-					x="272"
+					x="248"
 					y="130"
 					width="86"
 					height="22"
@@ -2818,7 +2859,7 @@ function ManagedHostingGraphic() {
 					strokeWidth="1"
 				/>
 				<path
-					d="M286 141 l3 3 l6 -7"
+					d="M262 141 l3 3 l6 -7"
 					className="stroke-emerald-500"
 					strokeWidth="2"
 					strokeLinecap="round"
@@ -2826,7 +2867,7 @@ function ManagedHostingGraphic() {
 					fill="none"
 				/>
 				<text
-					x="322"
+					x="298"
 					y="141.5"
 					textAnchor="middle"
 					dominantBaseline="central"
@@ -2986,9 +3027,9 @@ function UptimeGraphic() {
 				/>
 				<path
 					d="M300 184 a9 9 0 0 1 9 9 v3 l2 3 h-22 l2 -3 v-3 a9 9 0 0 1 9 -9 Z"
-					fill="#fbbf24"
+					className="fill-sagy-muted"
 				/>
-				<circle cx="300" cy="203" r="2.5" fill="#fbbf24" />
+				<circle cx="300" cy="203" r="2.5" className="fill-sagy-muted" />
 			</g>
 		</>
 	);
@@ -2998,7 +3039,7 @@ function UptimeGraphic() {
 function TicketsGraphic() {
 	return (
 		<>
-			<BackgroundLayer id="tick" from="#f59e0b" to="#6366f1" />
+			<BackgroundLayer id="tick" from="#6D5EF8" to="#6366f1" />
 			<defs>
 				<linearGradient id="tick-accent" x1="0" y1="0" x2="1" y2="1">
 					<stop offset="0%" stopColor="#6366f1" />
@@ -3010,7 +3051,7 @@ function TicketsGraphic() {
 			<g>
 				<path
 					d="M84 108 l24 42 h-48 Z"
-					className="fill-amber-500/20 stroke-amber-500"
+					className="fill-sagy-error/20 stroke-sagy-error"
 					strokeWidth="1.5"
 					strokeLinejoin="round"
 				/>
@@ -3020,9 +3061,9 @@ function TicketsGraphic() {
 					width="4"
 					height="16"
 					rx="2"
-					className="fill-amber-500"
+					className="fill-sagy-error"
 				/>
-				<circle cx="84" cy="142" r="2.5" className="fill-amber-500">
+				<circle cx="84" cy="142" r="2.5" className="fill-sagy-error">
 					<animate
 						attributeName="opacity"
 						values="0.3;1;0.3"

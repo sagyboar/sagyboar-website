@@ -24,7 +24,7 @@ export function Hero() {
 						</span>
 					</div>
 
-					<h1 className="hero-fade-up hero-fade-up-delayed mt-8 font-serif text-4xl font-normal leading-[1.12] tracking-tight text-foreground sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]">
+					<h1 className="hero-fade-up hero-fade-up-delayed mt-8 font-display text-4xl font-normal leading-[1.12] tracking-tight text-foreground sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]">
 						Deploy, monitor, and scale <br />
 						applications on{" "}
 						<span className="text-blue-400 border-b-2 border-blue-400">

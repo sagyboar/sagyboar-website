@@ -2,6 +2,7 @@ import {
 	type FeaturePageData,
 	featurePages,
 } from "@/components/features/features-data";
+import type { SiteNavMenuKey } from "@/constants/site-nav";
 import type { LucideIcon } from "lucide-react";
 import {
 	Briefcase,
@@ -24,6 +25,10 @@ export type NavLinkItem = {
 	target?: string;
 	footerLabel?: string;
 	backgroundImage?: string;
+	/** Short one-liner for the nav dropdown, where `description` is too long */
+	tagline?: string;
+	/** Entry price shown as a chip in the nav dropdown */
+	price?: string;
 };
 
 export type FooterLink = {
@@ -74,6 +79,8 @@ export const solutionLinks: NavLinkItem[] = [
 		href: "/solutions/side-projects",
 		description:
 			"For solo developers, MVPs, and personal projects. Managed hosting, AI monitoring, and community support from $49/month.",
+		tagline: "Solo devs, MVPs, and personal projects",
+		price: "$49/mo",
 		icon: Sparkles,
 		backgroundImage: "/Hobby.png",
 	},
@@ -83,6 +90,8 @@ export const solutionLinks: NavLinkItem[] = [
 		href: "/solutions/scale-ups",
 		description:
 			"For growing companies that need reliable DevOps without hiring full-time. AI-assisted engineering and on-demand DevOps from $249/month.",
+		tagline: "Growing teams without a DevOps hire",
+		price: "$249/mo",
 		icon: Rocket,
 		backgroundImage: "/startup.png",
 	},
@@ -92,6 +101,8 @@ export const solutionLinks: NavLinkItem[] = [
 		href: "/solutions/organizations",
 		description:
 			"Dedicated infrastructure, a fully managed platform team, SLA-backed uptime, and custom onboarding from $1,499/month.",
+		tagline: "Dedicated infra with SLA-backed uptime",
+		price: "$1,499/mo",
 		icon: Building2,
 		backgroundImage: "/Enterprise.png",
 	},
@@ -110,6 +121,85 @@ export const companyLinks: FooterLink[] = [
 	{ href: "/sla", label: "Service Level Agreement", icon: Gauge },
 	{ href: "/privacy", label: "Privacy Policy", icon: Shield },
 ];
+
+/** Item shape used by the nav dropdowns (desktop panels + mobile accordion) */
+export type NavMenuItem = {
+	title: string;
+	href: string;
+	description?: string;
+	icon: LucideIcon;
+	/** Rendered as a small chip beside the title, e.g. an entry price */
+	badge?: string;
+};
+
+export type NavMenuSection = {
+	label: string;
+	items: NavMenuItem[];
+};
+
+const LEGAL_HREFS = new Set(["/terms-of-service", "/sla", "/privacy"]);
+
+export const navMenuSections: Record<SiteNavMenuKey, NavMenuSection[]> = {
+	features: featureMenuGroups.map((group) => ({
+		label: group.label,
+		items: group.items.map((item) => ({
+			title: item.title,
+			href: item.href,
+			description: item.description,
+			icon: item.icon,
+		})),
+	})),
+	solutions: [
+		{
+			label: "By team size",
+			items: solutionLinks.map((item) => ({
+				title: item.title,
+				href: item.href,
+				description: item.tagline ?? item.description,
+				icon: item.icon,
+				badge: item.price,
+			})),
+		},
+	],
+	company: [
+		{
+			label: "Company",
+			items: companyLinks
+				.filter(
+					(link) => !LEGAL_HREFS.has(link.href) && link.href !== "/pricing",
+				)
+				.map((link) => ({
+					title: link.label,
+					href: link.href,
+					icon: link.icon,
+				})),
+		},
+		{
+			label: "Legal",
+			items: companyLinks
+				.filter((link) => LEGAL_HREFS.has(link.href))
+				.map((link) => ({
+					title: link.label,
+					href: link.href,
+					icon: link.icon,
+				})),
+		},
+	],
+};
+
+/** Bottom row of each dropdown panel */
+export const navMenuFooters: Record<
+	SiteNavMenuKey,
+	{ href: string; label: string; hint: string }
+> = {
+	features: {
+		href: "/features",
+		label: "Browse all features",
+		hint: "Overview",
+	},
+	solutions: { href: "/pricing", label: "Compare every plan", hint: "Pricing" },
+	company: { href: "/jobs", label: "We're hiring", hint: "Careers" },
+};
 
 export type FooterSectionGroup = {
 	label: string;

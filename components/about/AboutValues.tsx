@@ -1,45 +1,46 @@
-import { Container } from "@/components/Container";
+import { SectionHeading } from "@/components/ui/sagy";
+import { spacing } from "@/lib/tokens";
+import { cn } from "@/lib/utils";
 import { aboutValues } from "./about-data";
 
 export function AboutValues() {
 	return (
-		<section className="border-b border-border py-16 sm:py-24">
-			<Container>
-				<div className="mx-auto max-w-3xl text-center">
-					<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
-						How we{" "}
-						<span className="border-b-2 border-blue-400 text-blue-400">
-							operate
-						</span>
-					</h2>
-					<p className="mt-4 text-sm text-muted-foreground sm:text-base">
-						The principles that shape the platform and the team behind it.
-					</p>
-				</div>
+		<section
+			className={cn("border-b border-sagy-border", spacing.sectionY)}
+			aria-label="How we operate"
+		>
+			<div className="mx-auto max-w-6xl px-4 sm:px-6">
+				<SectionHeading
+					title="How we operate"
+					titleHighlight="operate"
+					subline="The principles that shape the platform and the team behind it."
+					align="center"
+					className="mx-auto"
+				/>
 
-				<div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 sm:mt-16">
+				<div className="mx-auto mt-14 grid max-w-5xl gap-4 sm:grid-cols-2">
 					{aboutValues.map((value) => {
 						const Icon = value.icon;
 
 						return (
 							<div
 								key={value.title}
-								className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8"
+								className="sagy-spotlight sagy-tilt rounded-xl border border-white/[0.08] bg-sagy-surface p-6 shadow-sagy-card transition-colors hover:border-sagy-accent/25"
 							>
-								<div className="flex size-10 items-center justify-center rounded-xl border border-border/50 bg-accent/30 text-foreground">
-									<Icon className="size-4.5" strokeWidth={1.75} />
+								<div className="flex size-10 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04]">
+									<Icon className="size-4 text-sagy-body" strokeWidth={1.5} />
 								</div>
-								<h3 className="mt-4 font-display text-lg font-semibold text-foreground sm:text-xl">
+								<h3 className="mt-4 font-sans text-base font-medium text-white">
 									{value.title}
 								</h3>
-								<p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+								<p className="mt-2 font-sans text-sm leading-relaxed text-sagy-body">
 									{value.description}
 								</p>
 							</div>
 						);
 					})}
 				</div>
-			</Container>
+			</div>
 		</section>
 	);
 }

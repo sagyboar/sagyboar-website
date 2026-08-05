@@ -1,9 +1,6 @@
 "use client";
 
-import {
-	INTRO_VIDEO_POSTER,
-	INTRO_VIDEO_SRC,
-} from "@/constants/video";
+import { INTRO_VIDEO_POSTER, INTRO_VIDEO_SRC } from "@/constants/video";
 import { AnimatePresence, motion } from "framer-motion";
 import { Lock, Pause, Play, Volume2, VolumeX } from "lucide-react";
 import Link from "next/link";

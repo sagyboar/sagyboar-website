@@ -1,11 +1,12 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import clsx from "clsx";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, Inter, Lexend } from "next/font/google";
+import { Anton, Instrument_Serif } from "next/font/google";
 import type { ReactNode } from "react";
 import "@/public/styles/tailwind.css";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Sagyboar_LOGO_SRC } from "@/constants/branding";
@@ -26,23 +27,18 @@ import { ogImageUrl } from "@/lib/seo";
 
 const DEFAULT_OG_IMAGE = ogImageUrl("AI-Native DevOps Platform");
 
-const inter = Inter({
+const display = Anton({
 	subsets: ["latin"],
+	weight: "400",
 	display: "swap",
-	variable: "--font-inter",
-});
-
-const lexend = Lexend({
-	subsets: ["latin"],
-	display: "swap",
-	variable: "--font-lexend",
+	variable: "--font-display",
 });
 
 const instrumentSerif = Instrument_Serif({
 	subsets: ["latin"],
 	weight: "400",
 	display: "swap",
-	variable: "--font-instrument-serif",
+	variable: "--font-serif",
 });
 
 export const viewport: Viewport = {
@@ -52,7 +48,7 @@ export const viewport: Viewport = {
 	colorScheme: "light dark",
 	themeColor: [
 		{ media: "(prefers-color-scheme: light)", color: "#ffffff" },
-		{ media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+		{ media: "(prefers-color-scheme: dark)", color: "#08080A" },
 	],
 };
 
@@ -125,9 +121,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 		<html
 			lang="en"
 			className={clsx(
-				"h-full scroll-smooth antialiased",
-				inter.variable,
-				lexend.variable,
+				"h-full scroll-smooth antialiased dark",
+				GeistSans.variable,
+				GeistMono.variable,
+				display.variable,
 				instrumentSerif.variable,
 			)}
 			suppressHydrationWarning
@@ -164,13 +161,17 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					src="//js-eu1.hs-scripts.com/147033433.js"
 				/>
 			</head>
-			<body className="min-h-full overflow-x-hidden" suppressHydrationWarning>
+			<body
+				className={clsx(
+					GeistSans.className,
+					"min-h-full overflow-x-hidden font-sans",
+				)}
+				suppressHydrationWarning
+			>
 				<ThemeProvider>
 					<GoogleAnalytics gaId="G-3YPQZXP48E" />
 					<div className="flex min-h-full flex-col bg-background">
-						<Header />
-						<main className="flex-1">{children}</main>
-						<Footer />
+						<SiteChrome>{children}</SiteChrome>
 					</div>
 				</ThemeProvider>
 			</body>

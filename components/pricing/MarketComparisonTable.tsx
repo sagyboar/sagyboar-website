@@ -10,24 +10,34 @@ const columns = [
 ];
 
 const SagyboarHeaderClass =
-	"bg-emerald-500/15 text-emerald-950 dark:bg-emerald-500/25 dark:text-emerald-50";
+	"bg-sagy-accent/15 text-white dark:bg-sagy-accent/25";
 
 const SagyboarCellClass =
-	"bg-emerald-500/10 text-emerald-900 dark:bg-emerald-500/20 dark:text-emerald-100";
+	"bg-sagy-accent/10 text-sagy-heading dark:bg-sagy-accent/15 dark:text-sagy-heading";
+
+function isPositiveValue(value: string) {
+	const normalized = value.trim().toLowerCase();
+	return (
+		normalized === "yes" ||
+		normalized === "✓" ||
+		normalized.startsWith("✓") ||
+		normalized.includes("included")
+	);
+}
 
 export function MarketComparisonTable() {
 	return (
-		<div className="overflow-x-auto rounded-2xl border border-border bg-card/50 shadow-sm">
+		<div className="overflow-x-auto sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface shadow-sagy-card">
 			<div className="min-w-[560px]">
-				<div className="grid grid-cols-4 border-b border-border bg-muted/20">
-					<div className="p-3 text-sm font-medium text-muted-foreground">
+				<div className="grid grid-cols-4 border-b border-white/[0.08] bg-white/[0.02]">
+					<div className="p-3 font-sans text-sm font-medium text-sagy-body">
 						Feature
 					</div>
 					{columns.map((col) => (
 						<div
 							key={col.key}
 							className={cn(
-								"p-3 text-center text-sm font-semibold",
+								"p-3 text-center font-sans text-sm font-semibold",
 								col.highlight ? SagyboarHeaderClass : "text-foreground",
 							)}
 						>
@@ -38,29 +48,35 @@ export function MarketComparisonTable() {
 				{marketComparison.map((row, rowIndex) => (
 					<div
 						key={row.feature}
-						className="grid grid-cols-4 border-b border-border/50 last:border-b-0"
+						className="grid grid-cols-4 border-b border-white/[0.06] last:border-b-0"
 					>
-						<div className="flex items-center p-3 text-sm font-medium text-foreground transition-colors hover:bg-muted/5">
+						<div className="flex items-center p-3 font-sans text-sm font-medium text-white transition-colors hover:bg-white/[0.02]">
 							{row.feature}
 						</div>
-						{columns.map((col) => (
-							<div
-								key={col.key}
-								className={cn(
-									"flex items-center justify-center p-3 text-center text-sm transition-colors",
-									col.highlight
-										? cn(
-												SagyboarCellClass,
-												"font-medium",
-												rowIndex === marketComparison.length - 1 &&
-													"rounded-b-2xl",
-											)
-										: "text-muted-foreground hover:bg-muted/5",
-								)}
-							>
-								{row[col.key]}
-							</div>
-						))}
+						{columns.map((col) => {
+							const value = row[col.key];
+							const positive = isPositiveValue(value);
+
+							return (
+								<div
+									key={col.key}
+									className={cn(
+										"flex items-center justify-center p-3 text-center font-sans text-sm transition-colors",
+										col.highlight
+											? cn(
+													SagyboarCellClass,
+													"font-medium",
+													rowIndex === marketComparison.length - 1 &&
+														"rounded-b-xl",
+												)
+											: "text-sagy-body hover:bg-white/[0.02]",
+										positive && "text-emerald-500 dark:text-emerald-400",
+									)}
+								>
+									{value}
+								</div>
+							);
+						})}
 					</div>
 				))}
 			</div>

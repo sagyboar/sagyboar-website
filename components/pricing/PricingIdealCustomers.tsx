@@ -2,10 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { PricingSectionHeading } from "./PricingSectionHeading";
-import {
-	audienceIdealCustomers,
-	type PricingAudience,
-} from "./pricing-data";
+import { type PricingAudience, audienceIdealCustomers } from "./pricing-data";
 
 type PricingIdealCustomersProps = {
 	audience: PricingAudience;
@@ -42,12 +39,12 @@ export function PricingIdealCustomers({
 										delay: index * 0.08,
 										ease: [0.22, 1, 0.36, 1],
 									}}
-									className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-card/50 p-6 text-center shadow-sm transition-colors hover:border-primary/40"
+									className="flex flex-col items-center gap-3 sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface p-6 text-center shadow-sagy-card transition-colors hover:border-sagy-accent/25"
 								>
-									<div className="flex size-11 items-center justify-center rounded-xl border border-border/50 bg-primary/10 text-primary">
-										<Icon className="size-5" strokeWidth={1.75} />
+									<div className="flex size-10 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04]">
+										<Icon className="size-4 text-sagy-body" strokeWidth={1.5} />
 									</div>
-									<span className="text-sm font-medium text-foreground">
+									<span className="font-sans text-sm font-medium text-white">
 										{customer.title}
 									</span>
 								</motion.div>
@@ -55,7 +52,7 @@ export function PricingIdealCustomers({
 						})}
 					</div>
 
-					<p className="mx-auto mt-8 max-w-3xl rounded-2xl border border-border bg-muted/20 px-6 py-5 text-center text-muted-foreground">
+					<p className="mx-auto mt-8 max-w-3xl sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-6 py-5 text-center font-sans text-sagy-body shadow-sagy-card">
 						{thread}
 					</p>
 				</motion.div>

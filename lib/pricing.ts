@@ -98,8 +98,7 @@ export const pricingModels = {
 		id: "team",
 		name: "Team",
 		audience: "team",
-		description:
-			"BYOC (bring your own cloud) — billed monthly in USD.",
+		description: "BYOC (bring your own cloud) — billed monthly in USD.",
 		billingPeriod: "month",
 		currency: "usd",
 	},
@@ -157,8 +156,7 @@ export const indiePricingPlans = [
 	{
 		id: "solo",
 		name: "Solo",
-		tagline:
-			"One project on our infra — ideal for students and side projects.",
+		tagline: "One project on our infra — ideal for students and side projects.",
 		monthlyPrice: 9,
 		annualPrice: 90,
 		recommended: false,

@@ -1,9 +1,8 @@
-import { Container } from "@/components/Container";
-import { Button } from "@/components/ui/button";
-import { ArrowUpRight } from "lucide-react";
+import { ScrollReveal, ScrollRevealItem } from "@/components/design-system";
+import { BrowserFrame, GlowButton, SectionHeading } from "@/components/ui/sagy";
+import { spacing } from "@/lib/tokens";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Link from "next/link";
-import { HeadingHighlight } from "./HeadingHighlight";
 import { SolutionStackGraphic } from "./SolutionStackGraphic";
 import type { SolutionPageData } from "./solution-types";
 
@@ -13,48 +12,53 @@ type SolutionSpotlightProps = {
 
 export function SolutionSpotlight({ data }: SolutionSpotlightProps) {
 	return (
-		<section className="border-y border-border bg-slate-100 py-16 sm:py-24 dark:bg-muted/25">
-			<Container>
-				<div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
-					<div>
-						<p className="text-sm font-medium uppercase tracking-wider text-primary">
-							{data.eyebrow}
-						</p>
-						<h2 className="mt-3 font-display text-3xl tracking-tight text-foreground sm:text-4xl">
-							<HeadingHighlight
-								text={data.title}
-								highlight={data.titleHighlight}
-							/>
-						</h2>
-						<p className="mt-6 text-sm leading-relaxed text-muted-foreground sm:text-base">
-							{data.description}
-						</p>
-						<Button asChild size="lg" className="mt-8 gap-2 rounded-full">
-							<Link
-								href={data.ctaHref}
-								{...(data.ctaExternal ? { target: "_blank" } : {})}
-							>
-								{data.cta}
-								<ArrowUpRight className="h-4 w-4" />
-							</Link>
-						</Button>
-					</div>
+		<ScrollReveal
+			as="section"
+			className={cn(
+				"border-b border-white/[0.08] bg-sagy-surface/40",
+				spacing.sectionY,
+			)}
+			aria-label={data.title}
+			stagger
+		>
+			<div className="mx-auto max-w-6xl px-4 sm:px-6">
+				<div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+					{/* Media leads on desktop — mirrors the hero's text-first layout */}
+					<ScrollRevealItem className="lg:order-1">
+						<BrowserFrame title={data.eyebrow} contentClassName="aspect-[4/3]">
+							{data.graphic ? (
+								<SolutionStackGraphic
+									name={data.graphic}
+									label={data.imageAlt}
+									className="p-4 sm:p-6"
+								/>
+							) : (
+								<Image
+									src={data.image}
+									alt={data.imageAlt}
+									fill
+									className="object-cover"
+									sizes="(max-width: 1024px) 100vw, 50vw"
+								/>
+							)}
+						</BrowserFrame>
+					</ScrollRevealItem>
 
-					<div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border bg-muted/30 shadow-sm">
-						{data.graphic ? (
-							<SolutionStackGraphic name={data.graphic} label={data.imageAlt} />
-						) : (
-							<Image
-								src={data.image}
-								alt={data.imageAlt}
-								fill
-								className="object-cover"
-								sizes="(max-width: 1024px) 100vw, 50vw"
-							/>
-						)}
-					</div>
+					<ScrollRevealItem className="lg:order-2">
+						<SectionHeading
+							eyebrow={data.eyebrow}
+							title={data.title}
+							titleHighlight={data.titleHighlight}
+							subline={data.description}
+						/>
+						<div className="mt-8">
+							<GlowButton href={data.ctaHref} external={data.ctaExternal}>
+								{data.cta}
+							</GlowButton>
+						</div>
+					</ScrollRevealItem>
 				</div>
-			</Container>
-		</section>
+			</div>
+		</ScrollReveal>
 	);
 }

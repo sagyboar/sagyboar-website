@@ -1,97 +1,110 @@
-"use client";
+import { ScrollReveal, ScrollRevealItem } from "@/components/design-system";
+import { GlowButton, SectionHeading, Terminal } from "@/components/ui/sagy";
+import { spacing } from "@/lib/tokens";
+import { cn } from "@/lib/utils";
+import { ChevronRight, Users } from "lucide-react";
+import { jobPostings } from "./jobs-data";
 
-import { Container } from "@/components/Container";
-import { Button } from "@/components/ui/button";
-import { useTheme } from "next-themes";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+const heroStats = [
+	{ label: "Open roles", value: String(jobPostings.length) },
+	{ label: "Location", value: "Remote" },
+	{ label: "Hours", value: "Flexible" },
+] as const;
 
-const SoftAurora = dynamic(() => import("@/components/ui/soft-aurora"), {
-	ssr: false,
-});
-
-const AURORA_THEMES = {
-	light: {
-		color1: "#dbeafe",
-		color2: "#a855f7",
-		brightness: 0.85,
+const terminalLines = [
+	{ text: "$ sagyboar careers --list", type: "default" as const },
+	{ text: "fetching open roles from sagyboar.space…", type: "info" as const },
+	...jobPostings.map((job) => ({
+		text: `${job.id} · ${job.location.toLowerCase()} · ${job.badge.toLowerCase()}`,
+		type: "success" as const,
+	})),
+	{
+		text: "apply → attach resume, we reply to every applicant",
+		type: "default" as const,
 	},
-	dark: {
-		color1: "#1d4ed8",
-		color2: "#e100ff",
-		brightness: 1.0,
-	},
-} as const;
+];
 
 export function JobsHero() {
-	const { resolvedTheme } = useTheme();
-	const [mounted, setMounted] = useState(false);
-
-	useEffect(() => setMounted(true), []);
-
-	const theme =
-		mounted && resolvedTheme === "dark"
-			? AURORA_THEMES.dark
-			: AURORA_THEMES.light;
-
 	return (
-		<section className="relative overflow-hidden border-b border-border bg-background">
-			<div aria-hidden className="absolute inset-0">
-				{mounted ? (
-					<SoftAurora
-						speed={0.6}
-						scale={1.5}
-						brightness={theme.brightness}
-						color1={theme.color1}
-						color2={theme.color2}
-						noiseFrequency={2.5}
-						noiseAmplitude={1.0}
-						bandHeight={0.5}
-						bandSpread={1.0}
-						octaveDecay={0.1}
-						layerOffset={0}
-						colorSpeed={1.0}
-						enableMouseInteraction
-						mouseInfluence={0.25}
-						className="h-full w-full"
-					/>
-				) : null}
+		<ScrollReveal
+			as="section"
+			className={cn(
+				"relative border-b border-white/[0.08]",
+				spacing.sectionYLarge,
+			)}
+			aria-label="Careers hero"
+			stagger
+		>
+			<div className="mx-auto max-w-6xl px-4 sm:px-6">
+				<div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+					<div>
+						<ScrollRevealItem>
+							<p className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-sagy-muted">
+								Company
+								<ChevronRight className="size-3" aria-hidden="true" />
+								<span className="text-sagy-body">Careers</span>
+							</p>
 
-				{/* Light mode — soft white vignette */}
-				<div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_10%,rgba(255,255,255,0.45)_55%,rgba(255,255,255,0.9)_100%)] dark:hidden" />
-				<div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/70 via-white/15 to-white/75 dark:hidden" />
-				<div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white/90 to-transparent dark:hidden" />
+							<div className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1.5">
+								<Users
+									className="size-4 text-sagy-accent"
+									strokeWidth={1.75}
+									aria-hidden="true"
+								/>
+								<span className="font-mono text-[11px] uppercase tracking-wider text-sagy-body">
+									Hiring worldwide
+								</span>
+							</div>
+						</ScrollRevealItem>
 
-				{/* Dark mode — black shadow vignette */}
-				<div className="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(ellipse_at_center,transparent_5%,rgba(0,0,0,0.4)_60%,rgba(0,0,0,0.88)_100%)] dark:block" />
-				<div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-b from-black/65 via-transparent to-black/70 dark:block" />
-				<div className="pointer-events-none absolute inset-x-0 top-0 hidden h-36 bg-gradient-to-b from-black/80 to-transparent dark:block" />
-			</div>
+						<ScrollRevealItem>
+							<SectionHeading
+								title="Help teams ship without a DevOps team"
+								titleHighlight="without a DevOps team"
+								subline="We're building an AI-native platform for deployment, monitoring, and managed services. Small team, remote by default, work that ships the week you build it."
+								as="h1"
+								size="hero"
+								className="mt-6"
+							/>
+						</ScrollRevealItem>
 
-			<Container className="relative z-10 pt-28 pb-24 sm:pt-32 sm:pb-32 lg:pb-36">
-				<div className="mx-auto max-w-4xl text-center">
-					<p className="text-sm font-medium uppercase tracking-wider text-primary">
-						Careers at Sagyboar
-					</p>
-					<h1 className="mt-4 font-serif text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Join us and help <br /> redefine how teams{" "}
-						<span className="border-b border-blue-400 text-blue-400">
-							deploy software
-						</span>
-					</h1>
-					<p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-black/90 dark:text-white/90 sm:text-lg">
-						We&apos;re building an AI-native DevOps platform that simplifies
-						deployment, monitoring, and managed services for modern engineering
-						teams. Explore open roles and grow with us.
-					</p>
-					<div className="p-1.5 mt-10 rounded-full bg-blue-400 w-fit mx-auto">
-						<Button asChild size="lg" className="rounded-full">
-							<Link href="#open-positions">See open positions</Link>
-						</Button>
+						<ScrollRevealItem>
+							<dl className="mt-10 grid max-w-md grid-cols-3 gap-3">
+								{heroStats.map((stat) => (
+									<div
+										key={stat.label}
+										className="sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-4 py-3 shadow-sagy-card"
+									>
+										<dt className="font-mono text-[10px] uppercase tracking-wider text-sagy-muted">
+											{stat.label}
+										</dt>
+										<dd className="mt-1 font-display text-xl uppercase tracking-tight text-white">
+											{stat.value}
+										</dd>
+									</div>
+								))}
+							</dl>
+
+							<div className="mt-8 flex flex-wrap items-center gap-3">
+								<GlowButton href="#open-positions">
+									See open positions
+								</GlowButton>
+								<GlowButton href="#about-sagyboar" variant="ghost">
+									What we build
+								</GlowButton>
+							</div>
+						</ScrollRevealItem>
 					</div>
+
+					<ScrollRevealItem>
+						<Terminal
+							title="SAGYBOAR CAREERS // OPEN ROLES"
+							lines={terminalLines}
+							minHeight="280px"
+						/>
+					</ScrollRevealItem>
 				</div>
-			</Container>
-		</section>
+			</div>
+		</ScrollReveal>
 	);
 }

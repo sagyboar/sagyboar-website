@@ -28,10 +28,12 @@ export function ContactFormModal({
 
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange}>
-			<DialogContent className="max-h-[90vh] max-w-3xl overflow-y-auto">
+			<DialogContent className="max-h-[90vh] max-w-3xl overflow-y-auto border-white/[0.08] bg-sagy-surface sm:rounded-xl">
 				<DialogHeader>
-					<DialogTitle>Contact Sales</DialogTitle>
-					<DialogDescription>
+					<DialogTitle className="font-display text-xl uppercase tracking-tight text-white">
+						Contact Sales
+					</DialogTitle>
+					<DialogDescription className="font-sans text-sm leading-relaxed text-sagy-body">
 						Get in touch with our team. We're here to help with any questions
 						about Sagyboar Enterprise Services.
 					</DialogDescription>

@@ -1,13 +1,14 @@
 "use client";
 
-import { Container } from "@/components/Container";
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-import { HeadingHighlight } from "./HeadingHighlight";
+import { SectionHeading } from "@/components/ui/sagy";
+import { spacing } from "@/lib/tokens";
+import { cn } from "@/lib/utils";
 import type { SolutionPageData } from "./solution-types";
 
 type SolutionFaqProps = {
@@ -16,35 +17,40 @@ type SolutionFaqProps = {
 
 export function SolutionFaq({ data }: SolutionFaqProps) {
 	return (
-		<section className="border-b border-border py-16 sm:py-24">
-			<Container>
-				<h2 className="text-center font-display text-3xl tracking-tight text-foreground sm:text-4xl">
-					<HeadingHighlight text={data.title} highlight={data.titleHighlight} />
-				</h2>
-				<p className="mx-auto mt-4 max-w-2xl text-center text-sm text-muted-foreground sm:text-base">
-					{data.subtitle}
-				</p>
+		<section
+			className={cn("border-b border-white/[0.08]", spacing.sectionY)}
+			aria-label="FAQ"
+		>
+			<div className="mx-auto max-w-3xl px-4 sm:px-6">
+				<SectionHeading
+					title={data.title}
+					titleHighlight={data.titleHighlight}
+					subline={data.subtitle}
+					align="center"
+					className="mx-auto"
+				/>
+
 				<Accordion
 					type="single"
 					collapsible
-					className="mx-auto mt-10 w-full max-w-3xl rounded-2xl border border-border bg-card/50 px-6 shadow-sm backdrop-blur-sm dark:bg-card/30"
+					className="mt-10 sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-5 shadow-sagy-card sm:px-6"
 				>
 					{data.items.map((faq, index) => (
 						<AccordionItem
-							value={`${index}`}
 							key={faq.question}
-							className="border-border"
+							value={`${index}`}
+							className="border-white/[0.08]"
 						>
-							<AccordionTrigger className="text-left text-foreground hover:text-foreground">
+							<AccordionTrigger className="text-left font-sans text-sm text-white hover:no-underline sm:text-base">
 								{faq.question}
 							</AccordionTrigger>
-							<AccordionContent className="text-muted-foreground">
+							<AccordionContent className="font-sans text-sm leading-relaxed text-sagy-body">
 								{faq.answer}
 							</AccordionContent>
 						</AccordionItem>
 					))}
 				</Accordion>
-			</Container>
+			</div>
 		</section>
 	);
 }

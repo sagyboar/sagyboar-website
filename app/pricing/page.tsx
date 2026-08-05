@@ -1,6 +1,6 @@
 import { Pricing } from "@/components/pricing";
-import { JsonLd } from "@/components/seo/JsonLd";
 import { pricingFaqs } from "@/components/pricing/pricing-data";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { pageSeo } from "@/constants/seo-data";
 import { buildFaqJsonLd, buildMetadata } from "@/lib/seo";
 

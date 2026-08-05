@@ -1,10 +1,8 @@
-"use client";
-
-import { Container } from "@/components/Container";
-import ScrollStack, { ScrollStackItem } from "@/components/ui/scroll-stack";
+import { ScrollReveal, ScrollRevealItem } from "@/components/design-system";
+import { SectionHeading } from "@/components/ui/sagy";
+import { spacing } from "@/lib/tokens";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { HeadingHighlight } from "./HeadingHighlight";
 import { SolutionStackGraphic } from "./SolutionStackGraphic";
 import type { SolutionPageData } from "./solution-types";
 
@@ -14,59 +12,50 @@ type SolutionStackProps = {
 
 export function SolutionStack({ data }: SolutionStackProps) {
 	return (
-		<section className="border-b border-border bg-muted/20 py-16 dark:bg-muted/10 sm:py-24">
-			<Container>
-				<div className="mx-auto max-w-3xl text-center">
-					<h2 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
-						<HeadingHighlight
-							text={data.title}
-							highlight={data.titleHighlight}
-						/>
-					</h2>
-					<p className="mt-4 text-sm text-muted-foreground sm:text-base">
-						{data.subtitle}
-					</p>
-				</div>
-			</Container>
+		<ScrollReveal
+			as="section"
+			className={cn("border-b border-white/[0.08]", spacing.sectionY)}
+			aria-label={data.title}
+			stagger
+		>
+			<div className="mx-auto max-w-6xl px-4 sm:px-6">
+				<ScrollRevealItem>
+					<SectionHeading
+						title={data.title}
+						titleHighlight={data.titleHighlight}
+						subline={data.subtitle}
+						align="center"
+						className="mx-auto"
+					/>
+				</ScrollRevealItem>
 
-			<div className="mx-auto mt-10 max-w-6xl px-4 sm:px-6">
-				<ScrollStack
-					useWindowScroll
-					itemDistance={80}
-					itemScale={0.04}
-					itemStackDistance={24}
-					stackPosition="22%"
-					scaleEndPosition="12%"
-					baseScale={0.88}
-					blurAmount={1.5}
-					rotationAmount={0}
-				>
+				<div className="mt-14 flex flex-col gap-6">
 					{data.sections.map((card, index) => {
-						const imageOnRight = index % 2 === 1;
+						const mediaRight = index % 2 === 1;
 
 						return (
-							<ScrollStackItem
-								key={card.title}
-								itemClassName="h-auto min-h-[42rem] overflow-hidden p-0 sm:min-h-[16rem]"
-							>
-								<div className="grid h-full min-h-[22rem] sm:min-h-[16rem] sm:grid-cols-2">
+							<ScrollRevealItem key={card.title}>
+								<article className="grid overflow-hidden sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface shadow-sagy-card transition-colors duration-300 hover:border-sagy-accent/25 sm:grid-cols-2">
 									<div
 										className={cn(
-											"relative min-h-[12rem] bg-muted/40 sm:min-h-full",
-											imageOnRight ? "order-1 sm:order-2" : "order-1",
+											"relative min-h-[14rem] border-b border-white/[0.08] bg-sagy-surface-elevated/70 sm:min-h-[19rem] sm:border-b-0",
+											mediaRight
+												? "sm:order-2 sm:border-l"
+												: "sm:order-1 sm:border-r",
 										)}
 									>
 										{card.graphic ? (
 											<SolutionStackGraphic
 												name={card.graphic}
 												label={card.imageAlt}
+												className="p-4 sm:p-6"
 											/>
 										) : (
 											<Image
 												src={card.image}
 												alt={card.imageAlt}
 												fill
-												className="object-cover rounded-md"
+												className="object-cover"
 												sizes="(max-width: 640px) 100vw, 50vw"
 											/>
 										)}
@@ -74,26 +63,35 @@ export function SolutionStack({ data }: SolutionStackProps) {
 
 									<div
 										className={cn(
-											"order-2 flex flex-col justify-center p-6 sm:p-8",
-											imageOnRight && "sm:order-1",
+											"flex flex-col justify-center p-6 sm:p-8",
+											mediaRight ? "sm:order-1" : "sm:order-2",
 										)}
 									>
-										<p className="text-xs font-medium uppercase tracking-wider text-primary">
-											0{index + 1}
-										</p>
-										<h3 className="mt-3 font-display text-xl font-semibold text-foreground sm:text-2xl">
+										<div className="flex items-center gap-3">
+											<span
+												className="font-display text-2xl leading-none text-white/[0.14]"
+												aria-hidden="true"
+											>
+												{String(index + 1).padStart(2, "0")}
+											</span>
+											<span
+												className="h-px w-8 bg-gradient-to-r from-sagy-accent/50 to-transparent"
+												aria-hidden="true"
+											/>
+										</div>
+										<h3 className="mt-4 font-display text-xl uppercase leading-tight tracking-tight text-white sm:text-2xl">
 											{card.title}
 										</h3>
-										<p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+										<p className="mt-3 font-sans text-sm leading-relaxed text-sagy-body sm:text-base">
 											{card.description}
 										</p>
 									</div>
-								</div>
-							</ScrollStackItem>
+								</article>
+							</ScrollRevealItem>
 						);
 					})}
-				</ScrollStack>
+				</div>
 			</div>
-		</section>
+		</ScrollReveal>
 	);
 }

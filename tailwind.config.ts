@@ -1,4 +1,5 @@
 import headlessuiPlugin from "@headlessui/tailwindcss";
+import { tailwindTheme } from "./lib/tailwind-theme.js";
 import type { Config } from "tailwindcss";
 const config = {
 	darkMode: ["class"],
@@ -34,6 +35,7 @@ const config = {
 		},
 		extend: {
 			colors: {
+				...tailwindTheme.colors,
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",
 				ring: "hsl(var(--ring))",
@@ -75,9 +77,29 @@ const config = {
 				"4xl": "2rem",
 			},
 			fontFamily: {
-				sans: "var(--font-inter)",
-				display: "var(--font-lexend)",
-				serif: "var(--font-instrument-serif), ui-serif, Georgia, serif",
+				sans: [
+					"var(--font-geist-sans)",
+					"ui-sans-serif",
+					"system-ui",
+					"sans-serif",
+				],
+				display: "var(--font-display)",
+				mono: [
+					"var(--font-geist-mono)",
+					"ui-monospace",
+					"monospace",
+				],
+				// Wordmark-only (SiteFooter + Footer). Do not use on page UI.
+				serif: "var(--font-serif), ui-serif, Georgia, serif",
+			},
+			boxShadow: {
+				...tailwindTheme.boxShadow,
+			},
+			backgroundImage: {
+				...tailwindTheme.backgroundImage,
+			},
+			backgroundSize: {
+				...tailwindTheme.backgroundSize,
 			},
 			keyframes: {
 				marquee: {
@@ -133,6 +155,20 @@ const config = {
 						transform: "translate(-50%, -50%) scale(0.9)",
 					},
 				},
+				"cursor-blink": {
+					"0%, 49%": { opacity: "1" },
+					"50%, 100%": { opacity: "0" },
+				},
+				"pulse-travel": {
+					"0%": { left: "0%", opacity: "0" },
+					"10%": { opacity: "1" },
+					"90%": { opacity: "1" },
+					"100%": { left: "100%", opacity: "0" },
+				},
+				"agent-pulse": {
+					"0%, 100%": { boxShadow: "0 0 0 0 rgba(109, 94, 248, 0.4)" },
+					"50%": { boxShadow: "0 0 12px 2px rgba(109, 94, 248, 0.25)" },
+				},
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
@@ -142,6 +178,9 @@ const config = {
 				"marquee-vertical": "marquee-vertical var(--duration) linear infinite",
 				gradient: "gradient 8s linear infinite",
 				ripple: "ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite",
+				"cursor-blink": "cursor-blink 1s step-end infinite",
+				"pulse-travel": "pulse-travel 4s ease-in-out infinite",
+				"agent-pulse": "agent-pulse 2.5s ease-in-out infinite",
 			},
 		},
 	},

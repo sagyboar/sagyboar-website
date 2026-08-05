@@ -7,16 +7,16 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Check } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { PricingSectionHeading } from "./PricingSectionHeading";
 import {
+	type IndieBillingCycle,
+	type IndiePricingPlan,
+	type PaidPricingPlan,
 	getIndiePlanPrice,
 	indieExclusionNote,
 	indiePricingPlans,
 	pricingModels,
-	type IndieBillingCycle,
-	type IndiePricingPlan,
-	type PaidPricingPlan,
 } from "./pricing-data";
-import { PricingSectionHeading } from "./PricingSectionHeading";
 
 function formatPlanPrice(plan: PaidPricingPlan) {
 	if (plan.currency === "inr") {
@@ -42,11 +42,9 @@ export function PaidPlanCard({
 		<section
 			id={plan.id}
 			className={cn(
-				"relative flex flex-col rounded-3xl border-2 bg-card",
+				"sagy-spotlight relative flex flex-col rounded-xl border bg-sagy-surface shadow-sagy-card transition-colors",
 				compact ? "px-5 py-6" : "px-6 py-8",
-				plan.recommended
-					? "border-primary/50 shadow-md"
-					: "border-dashed border-border",
+				plan.recommended ? "border-sagy-accent/30" : "border-white/[0.08]",
 			)}
 		>
 			{plan.recommended ? (
@@ -55,7 +53,7 @@ export function PaidPlanCard({
 
 			<h3
 				className={cn(
-					"font-medium text-foreground",
+					"font-display uppercase tracking-tight text-white",
 					compact ? "text-base" : "text-lg",
 				)}
 			>
@@ -63,7 +61,7 @@ export function PaidPlanCard({
 			</h3>
 			<p
 				className={cn(
-					"mt-1 text-muted-foreground",
+					"mt-1 font-sans text-sagy-body",
 					compact ? "text-xs leading-relaxed" : "text-sm",
 				)}
 			>
@@ -73,7 +71,7 @@ export function PaidPlanCard({
 			<div className={compact ? "mt-4" : "mt-6"}>
 				<span
 					className={cn(
-						"font-semibold text-primary",
+						"font-display text-sagy-accent",
 						compact ? "text-2xl" : "text-3xl",
 					)}
 				>
@@ -81,10 +79,7 @@ export function PaidPlanCard({
 				</span>
 				{plan.priceNote ? null : (
 					<span
-						className={cn(
-							"text-muted-foreground",
-							compact ? "text-sm" : "text-lg",
-						)}
+						className={cn("text-sagy-body", compact ? "text-sm" : "text-lg")}
 					>
 						{defaultPeriodLabel(plan)}
 					</span>
@@ -92,7 +87,7 @@ export function PaidPlanCard({
 				{plan.priceNote ? (
 					<p
 						className={cn(
-							"mt-1 text-muted-foreground",
+							"mt-1 font-sans text-sagy-body",
 							compact ? "text-xs" : "text-sm",
 						)}
 					>
@@ -102,12 +97,12 @@ export function PaidPlanCard({
 			</div>
 
 			<div className={compact ? "mt-4" : "mt-6"}>
-				<p className="text-xs font-semibold uppercase tracking-wider text-foreground">
+				<p className="text-xs font-semibold uppercase tracking-wider text-white">
 					Includes
 				</p>
 				<ul
 					className={cn(
-						"mt-3 flex flex-col gap-2 text-muted-foreground",
+						"mt-3 flex flex-col gap-2 font-sans text-sagy-body",
 						compact ? "text-xs" : "text-sm",
 					)}
 				>
@@ -198,7 +193,7 @@ function BillingCycleToggle({
 			<div
 				role="tablist"
 				aria-label="Billing cycle"
-				className="flex w-fit items-center gap-1 rounded-full border border-border bg-muted/40 p-1"
+				className="flex w-fit items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.04] p-1"
 			>
 				{options.map((option) => {
 					const selected = value === option.id;
@@ -214,7 +209,7 @@ function BillingCycleToggle({
 								"relative rounded-full px-5 py-2 text-sm font-medium transition-colors",
 								selected
 									? "text-background"
-									: "text-muted-foreground hover:text-foreground",
+									: "text-sagy-body hover:text-white",
 							)}
 						>
 							{selected ? (
@@ -239,10 +234,7 @@ function BillingCycleToggle({
 						exit={{ opacity: 0, x: -6 }}
 						transition={{ duration: 0.2 }}
 					>
-						<Badge
-							variant="secondary"
-							className="bg-primary/15 text-primary"
-						>
+						<Badge variant="secondary" className="bg-primary/15 text-primary">
 							2 months free
 						</Badge>
 					</motion.div>
@@ -270,10 +262,8 @@ function IndiePlanCard({
 		<section
 			id={plan.id}
 			className={cn(
-				"relative flex flex-col rounded-3xl border-2 bg-card px-5 py-6 sm:px-6 sm:py-8",
-				plan.recommended
-					? "border-primary/50 shadow-md"
-					: "border-dashed border-border",
+				"sagy-spotlight relative flex flex-col rounded-xl border bg-sagy-surface px-5 py-6 shadow-sagy-card transition-colors sm:px-6 sm:py-8",
+				plan.recommended ? "border-sagy-accent/30" : "border-white/[0.08]",
 				plan.comingSoon && "opacity-60",
 			)}
 		>
@@ -283,27 +273,29 @@ function IndiePlanCard({
 					className={cn(
 						"absolute -top-2.5 left-5 sm:left-6",
 						plan.comingSoon &&
-							"border-border bg-muted text-muted-foreground",
+							"border-white/[0.08] bg-white/[0.04] text-sagy-body",
 					)}
 				>
 					{plan.badge}
 				</Badge>
 			) : null}
 
-			<h3 className="text-lg font-medium text-foreground">{plan.name}</h3>
-			<p className="mt-1 text-sm text-muted-foreground">{plan.tagline}</p>
+			<h3 className="font-display text-lg uppercase tracking-tight text-foreground">
+				{plan.name}
+			</h3>
+			<p className="mt-1 font-sans text-sm text-sagy-body">{plan.tagline}</p>
 
 			<div className="mt-6">
 				<span
 					className={cn(
 						"text-3xl font-semibold",
-						plan.comingSoon ? "text-muted-foreground" : "text-primary",
+						plan.comingSoon ? "text-sagy-body" : "text-primary",
 					)}
 				>
 					${price.toLocaleString("en-US")}
 				</span>
 				{plan.monthlyPrice > 0 ? (
-					<span className="text-lg text-muted-foreground">{periodLabel}</span>
+					<span className="text-lg text-sagy-body">{periodLabel}</span>
 				) : null}
 			</div>
 
@@ -311,14 +303,14 @@ function IndiePlanCard({
 				<p className="text-xs font-semibold uppercase tracking-wider text-foreground">
 					Includes
 				</p>
-				<ul className="mt-3 flex flex-col gap-2 text-sm text-muted-foreground">
+				<ul className="mt-3 flex flex-col gap-2 font-sans text-sm text-sagy-body">
 					{plan.includes.map((item) => (
 						<li
 							key={item.text}
 							className={cn(
 								"flex gap-2",
 								item.keyDifferentiator &&
-									"rounded-lg border border-border/80 bg-muted/40 px-2 py-1.5 font-medium text-foreground",
+									"rounded-lg border border-white/[0.08] bg-white/[0.04] px-2 py-1.5 font-medium text-white",
 								item.accent &&
 									"rounded-lg bg-white/5 px-2 py-1.5 font-semibold text-white",
 							)}
@@ -329,15 +321,11 @@ function IndiePlanCard({
 									item.accent
 										? "text-white"
 										: item.keyDifferentiator
-											? "text-foreground"
-											: "text-primary",
+											? "text-white"
+											: "text-sagy-accent",
 								)}
 							/>
-							<span
-								className={cn(
-									item.accent && "font-semibold text-white",
-								)}
-							>
+							<span className={cn(item.accent && "font-semibold text-white")}>
 								{item.text}
 							</span>
 						</li>
@@ -384,8 +372,7 @@ export function IndiePricing({
 	onTalkToSales,
 	embedded = false,
 }: IndiePricingProps) {
-	const [billingCycle, setBillingCycle] =
-		useState<IndieBillingCycle>("month");
+	const [billingCycle, setBillingCycle] = useState<IndieBillingCycle>("month");
 
 	return (
 		<div className={embedded ? "mt-8" : "mt-12"}>
@@ -397,7 +384,7 @@ export function IndiePricing({
 							Plans
 						</span>
 					</h3>
-					<p className="mt-3 text-sm text-muted-foreground sm:text-base">
+					<p className="mt-3 font-sans text-sm text-sagy-body sm:text-base">
 						For students, freelancers, and solo builders — deploy on our infra,
 						billed monthly or annually.
 					</p>
@@ -408,7 +395,7 @@ export function IndiePricing({
 						before={pricingModels.indie.name}
 						highlight="Plans"
 					/>
-					<p className="mx-auto mt-4 max-w-2xl text-center text-sm text-muted-foreground sm:text-base">
+					<p className="mx-auto mt-4 max-w-2xl text-center font-sans text-sm text-sagy-body sm:text-base">
 						For students, freelancers, and solo builders — deploy on our infra,
 						billed monthly or annually.
 					</p>
@@ -416,10 +403,7 @@ export function IndiePricing({
 			)}
 
 			<div className="mt-8">
-				<BillingCycleToggle
-					value={billingCycle}
-					onChange={setBillingCycle}
-				/>
+				<BillingCycleToggle value={billingCycle} onChange={setBillingCycle} />
 			</div>
 
 			<div className="mx-auto mt-10 grid max-w-7xl gap-6 sm:grid-cols-2 xl:grid-cols-4 xl:items-stretch xl:gap-5">
@@ -439,8 +423,8 @@ export function IndiePricing({
 				</span>
 			</p>
 
-			<div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-border bg-muted/20 px-5 py-4 text-center sm:px-6">
-				<p className="text-sm leading-relaxed text-muted-foreground">
+			<div className="mx-auto mt-8 max-w-3xl sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-5 py-4 text-center shadow-sagy-card sm:px-6">
+				<p className="font-sans text-sm leading-relaxed text-sagy-body">
 					{indieExclusionNote}
 				</p>
 			</div>

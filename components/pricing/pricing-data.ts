@@ -1,3 +1,12 @@
+import {
+	type IndiePricingPlan,
+	type PaidPricingPlan,
+	type PricingAudience,
+	formatIndiePlanPriceLabel,
+	formatPlanPriceLabel,
+	indiePricingPlans,
+	teamPricingPlans,
+} from "@/lib/pricing";
 import type { LucideIcon } from "lucide-react";
 import {
 	Bot,
@@ -15,15 +24,6 @@ import {
 	Users,
 	Wrench,
 } from "lucide-react";
-import {
-	formatIndiePlanPriceLabel,
-	formatPlanPriceLabel,
-	indiePricingPlans,
-	teamPricingPlans,
-	type IndiePricingPlan,
-	type PaidPricingPlan,
-	type PricingAudience,
-} from "@/lib/pricing";
 
 // Re-export canonical pricing so existing component imports keep working
 export {
@@ -197,13 +197,11 @@ export const indieGeneralTerms = [
 	"Upgrades take effect immediately; downgrades apply at the end of the current billing period.",
 ] as const;
 
-export const audienceGeneralTerms: Record<
-	PricingAudience,
-	readonly string[]
-> = {
-	team: teamGeneralTerms,
-	user: indieGeneralTerms,
-};
+export const audienceGeneralTerms: Record<PricingAudience, readonly string[]> =
+	{
+		team: teamGeneralTerms,
+		user: indieGeneralTerms,
+	};
 
 export const generalTerms = teamGeneralTerms;
 
@@ -340,7 +338,6 @@ export type PlanFitGuideItem = {
 	plan: string;
 	price: string;
 	audience: string;
-	backgroundImage: string;
 	icon: LucideIcon;
 	points: readonly string[];
 };
@@ -351,7 +348,6 @@ export const teamPlanFitGuide = [
 		plan: starterPlan.name,
 		price: formatPlanPriceLabel(starterPlan),
 		audience: "Best for…",
-		backgroundImage: "/Hobby.png",
 		icon: Sparkles,
 		points: [
 			"Teams shipping their first production apps",
@@ -365,7 +361,6 @@ export const teamPlanFitGuide = [
 		plan: growthPlan.name,
 		price: formatPlanPriceLabel(growthPlan),
 		audience: "Best for…",
-		backgroundImage: "/startup.png",
 		icon: Rocket,
 		points: [
 			"Scaling teams running up to 20 projects",
@@ -379,7 +374,6 @@ export const teamPlanFitGuide = [
 		plan: enterprisePlan.name,
 		price: formatPlanPriceLabel(enterprisePlan),
 		audience: "Best for…",
-		backgroundImage: "/Enterprise.png",
 		icon: Building2,
 		points: [
 			"Established teams with up to 30 projects",
@@ -396,7 +390,6 @@ export const indiePlanFitGuide = [
 		plan: soloPlan.name,
 		price: formatIndiePlanPriceLabel(soloPlan),
 		audience: "Best for…",
-		backgroundImage: "/Hobby.png",
 		icon: Sparkles,
 		points: [
 			"Students and hobbyists with a single project",
@@ -410,7 +403,6 @@ export const indiePlanFitGuide = [
 		plan: builderPlan.name,
 		price: formatIndiePlanPriceLabel(builderPlan),
 		audience: "Best for…",
-		backgroundImage: "/startup.png",
 		icon: Rocket,
 		points: [
 			"Freelancers and solo builders with up to 5 apps",
@@ -424,7 +416,6 @@ export const indiePlanFitGuide = [
 		plan: studioPlan.name,
 		price: formatIndiePlanPriceLabel(studioPlan),
 		audience: "Best for…",
-		backgroundImage: "/Enterprise.png",
 		icon: Users,
 		points: [
 			"Small indie teams with up to 10 projects",

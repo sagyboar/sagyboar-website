@@ -1,48 +1,45 @@
-import { Container } from "@/components/Container";
+import { ScrollReveal, ScrollRevealItem } from "@/components/design-system";
 import { JobListings } from "@/components/jobs/JobListingCard";
 import { jobPostings } from "@/components/jobs/jobs-data";
-import { Briefcase } from "lucide-react";
+import { SectionHeading } from "@/components/ui/sagy";
+import { spacing } from "@/lib/tokens";
+import { cn } from "@/lib/utils";
 
 export function JobsOpenPositions() {
-	return (
-		<section id="open-positions" className="py-16 sm:py-24">
-			<Container>
-				<div className="mx-auto max-w-5xl">
-					<div className="rounded-3xl border border-border bg-card/50 p-8 shadow-sm backdrop-blur-sm sm:p-10">
-						<div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-							<div>
-								<div className="flex items-center gap-2 text-primary">
-									<Briefcase className="h-5 w-5" aria-hidden />
-									<p className="text-sm font-medium uppercase tracking-wider">
-										Open positions
-									</p>
-								</div>
-								<h2 className="mt-2 font-display text-3xl tracking-tight text-foreground sm:text-4xl">
-									Find your{" "}
-									<span className="border-b-2 border-blue-400 text-blue-400">
-										role
-									</span>
-								</h2>
-								<p className="mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
-									{jobPostings.length} open role
-									{jobPostings.length === 1 ? "" : "s"} right now. Expand a
-									listing for the full description, then apply by email.
-								</p>
-							</div>
-							<div className="rounded-2xl border border-border bg-background px-4 py-3 text-center sm:min-w-[7rem]">
-								<p className="text-2xl font-semibold text-foreground">
-									{jobPostings.length}
-								</p>
-								<p className="text-xs text-muted-foreground">Active roles</p>
-							</div>
-						</div>
+	const count = jobPostings.length;
 
-						<div className="mt-8 border-t border-border pt-8">
-							<JobListings jobs={jobPostings} />
+	return (
+		<ScrollReveal
+			as="section"
+			id="open-positions"
+			className={cn("border-b border-white/[0.08]", spacing.sectionY)}
+			aria-label="Open positions"
+			stagger
+		>
+			<div className="mx-auto max-w-6xl px-4 sm:px-6">
+				<ScrollRevealItem>
+					<div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+						<SectionHeading
+							eyebrow="Open positions"
+							title="Find your role"
+							titleHighlight="role"
+							subline={`${count} open role${count === 1 ? "" : "s"} right now. Open a listing for the full description, then apply with your resume.`}
+						/>
+						<div className="shrink-0 sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-5 py-4 text-center shadow-sagy-card">
+							<p className="font-display text-3xl uppercase tracking-tight text-white">
+								{count}
+							</p>
+							<p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-sagy-muted">
+								Active roles
+							</p>
 						</div>
 					</div>
+				</ScrollRevealItem>
+
+				<div className="mt-12">
+					<JobListings jobs={jobPostings} />
 				</div>
-			</Container>
-		</section>
+			</div>
+		</ScrollReveal>
 	);
 }

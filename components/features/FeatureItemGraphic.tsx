@@ -1,19 +1,25 @@
+import { cn } from "@/lib/utils";
 import type { FeatureGraphicName } from "./features-data";
 
 type FeatureItemGraphicProps = {
 	name: FeatureGraphicName;
 	label?: string;
+	className?: string;
 };
 
-export function FeatureItemGraphic({ name, label }: FeatureItemGraphicProps) {
+export function FeatureItemGraphic({
+	name,
+	label,
+	className,
+}: FeatureItemGraphicProps) {
 	return (
 		<svg
 			viewBox="0 0 400 300"
 			fill="none"
 			role="img"
 			aria-label={label ?? name}
-			preserveAspectRatio="xMidYMid slice"
-			className="absolute inset-0 h-full w-full"
+			preserveAspectRatio="xMidYMid meet"
+			className={cn("absolute inset-0 h-full w-full", className)}
 		>
 			{name === "sources" && <Sources />}
 			{name === "build" && <Build />}
@@ -73,17 +79,65 @@ export function FeatureItemGraphic({ name, label }: FeatureItemGraphicProps) {
 
 /* ---------- shared helpers ---------- */
 
-function Bg({ id, from, to }: { id: string; from: string; to: string }) {
+/**
+ * Ambient layer behind every diagram — a single indigo core bloom with two
+ * slow orbit rings, matching the platform hero graphic. Intentionally has no
+ * filled panel so the diagram reads as lit content on the card surface.
+ * `from`/`to` are legacy per-graphic tints, no longer used.
+ */
+function Bg({ id }: { id: string; from?: string; to?: string }) {
 	return (
 		<>
 			<defs>
-				<linearGradient id={`${id}-bg`} x1="0" y1="0" x2="1" y2="1">
-					<stop offset="0%" stopColor={from} stopOpacity="0.14" />
-					<stop offset="100%" stopColor={to} stopOpacity="0.14" />
-				</linearGradient>
+				<radialGradient id={`${id}-glow`} cx="50%" cy="50%" r="50%">
+					<stop offset="0%" stopColor="#6D5EF8" stopOpacity="0.3" />
+					<stop offset="100%" stopColor="#6D5EF8" stopOpacity="0" />
+				</radialGradient>
 			</defs>
-			<rect width="400" height="300" className="fill-muted/40" />
-			<rect width="400" height="300" fill={`url(#${id}-bg)`} />
+			<ellipse cx="200" cy="150" rx="185" ry="145" fill={`url(#${id}-glow)`}>
+				<animate
+					attributeName="opacity"
+					values="0.7;1;0.7"
+					dur="6s"
+					repeatCount="indefinite"
+				/>
+			</ellipse>
+			<g style={{ transformOrigin: "200px 150px" }} opacity="0.5">
+				<circle
+					cx="200"
+					cy="150"
+					r="108"
+					className="stroke-border"
+					strokeWidth="1"
+					strokeDasharray="3 9"
+				>
+					<animateTransform
+						attributeName="transform"
+						type="rotate"
+						from="0 200 150"
+						to="360 200 150"
+						dur="60s"
+						repeatCount="indefinite"
+					/>
+				</circle>
+				<circle
+					cx="200"
+					cy="150"
+					r="132"
+					className="stroke-border"
+					strokeWidth="1"
+					strokeDasharray="2 12"
+				>
+					<animateTransform
+						attributeName="transform"
+						type="rotate"
+						from="360 200 150"
+						to="0 200 150"
+						dur="80s"
+						repeatCount="indefinite"
+					/>
+				</circle>
+			</g>
 		</>
 	);
 }
@@ -423,14 +477,14 @@ function Sizing() {
 			{gauges.map((g) => (
 				<g key={g.label}>
 					<path
-						d={`M${g.cx - 46} 176 A56 56 0 1 0 ${g.cx + 46} 176`}
+						d={`M${g.cx - 46} 176 A56 56 0 1 1 ${g.cx + 46} 176`}
 						className="stroke-primary/15"
 						strokeWidth="12"
 						strokeLinecap="round"
 						fill="none"
 					/>
 					<path
-						d={`M${g.cx - 46} 176 A56 56 0 1 0 ${g.cx + 46} 176`}
+						d={`M${g.cx - 46} 176 A56 56 0 1 1 ${g.cx + 46} 176`}
 						stroke={g.c}
 						strokeWidth="12"
 						strokeLinecap="round"

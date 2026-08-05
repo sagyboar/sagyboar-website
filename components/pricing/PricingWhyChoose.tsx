@@ -1,68 +1,36 @@
-"use client";
-
-import CardSwap, { Card } from "@/components/ui/card-swap";
-import { useEffect, useState } from "react";
 import { PricingSectionHeading } from "./PricingSectionHeading";
 import { whyChooseSagyboar } from "./pricing-data";
 
 export function PricingWhyChoose() {
-	const [isMobile, setIsMobile] = useState(false);
-
-	useEffect(() => {
-		const mq = window.matchMedia("(max-width: 768px)");
-		const onChange = ({ matches }: { matches: boolean }) =>
-			setIsMobile(matches);
-		onChange(mq);
-		mq.addEventListener("change", onChange);
-		return () => mq.removeEventListener("change", onChange);
-	}, []);
-
 	return (
-		<div className="mx-auto mt-12 grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
-			<div className="text-center lg:text-left">
-				<PricingSectionHeading
-					before="Why choose"
-					highlight="Sagyboar?"
-					centered={false}
-					className="lg:text-left"
-				/>
-				<p className="mt-4 max-w-lg text-muted-foreground lg:mx-0 mx-auto">
-					Deploy faster, monitor smarter, and get a real team behind your stack
-					— all without hiring a full DevOps department.
-				</p>
-			</div>
+		<div className="mx-auto max-w-7xl">
+			<PricingSectionHeading before="Why choose" highlight="Sagyboar?" />
+			<p className="mx-auto mt-4 max-w-2xl text-center font-sans text-sagy-body">
+				Deploy faster, monitor smarter, and get a real team behind your stack —
+				all without hiring a full DevOps department.
+			</p>
 
-			<div className="relative mx-auto h-[24rem] md:mt-0 mt-12 w-full max-w-xl sm:h-[30rem] lg:mx-0 lg:ml-auto lg:h-[32rem]">
-				<CardSwap
-					width={isMobile ? 280 : 380}
-					height={isMobile ? 230 : 300}
-					cardDistance={isMobile ? 32 : 50}
-					verticalDistance={isMobile ? 40 : 60}
-					delay={4500}
-					pauseOnHover
-					skewAmount={5}
-					easing="elastic"
-				>
-					{whyChooseSagyboar.map((entry) => {
-						const Icon = entry.icon;
-						return (
-							<Card
-								key={entry.title}
-								className="flex cursor-pointer flex-col p-6"
-							>
-								<div className="flex size-11 items-center justify-center rounded-xl border border-border/50 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-									<Icon className="size-5" strokeWidth={1.75} />
-								</div>
-								<h3 className="mt-4 text-base font-semibold leading-snug text-foreground">
-									{entry.title}
-								</h3>
-								<p className="mt-3 line-clamp-5 text-sm leading-relaxed text-muted-foreground">
-									{entry.description}
-								</p>
-							</Card>
-						);
-					})}
-				</CardSwap>
+			<div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+				{whyChooseSagyboar.map((entry) => {
+					const Icon = entry.icon;
+
+					return (
+						<article
+							key={entry.title}
+							className="sagy-spotlight sagy-tilt flex flex-col rounded-xl border border-white/[0.08] bg-sagy-surface p-6 shadow-sagy-card transition-colors hover:border-sagy-accent/25"
+						>
+							<div className="flex size-10 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04]">
+								<Icon className="size-4 text-sagy-body" strokeWidth={1.5} />
+							</div>
+							<h3 className="mt-4 font-sans text-base font-medium leading-snug text-white">
+								{entry.title}
+							</h3>
+							<p className="mt-3 font-sans text-sm leading-relaxed text-sagy-body">
+								{entry.description}
+							</p>
+						</article>
+					);
+				})}
 			</div>
 		</div>
 	);

@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Check } from "lucide-react";
-import { audiencePlanFitGuide, type PricingAudience } from "./pricing-data";
+import { type PricingAudience, audiencePlanFitGuide } from "./pricing-data";
 
 type PricingPlanFitGuideProps = {
 	audience: PricingAudience;
@@ -34,38 +34,27 @@ export function PricingPlanFitGuide({ audience }: PricingPlanFitGuideProps) {
 								delay: index * 0.1,
 								ease: [0.22, 1, 0.36, 1],
 							}}
-							className="group relative min-h-[22rem] overflow-hidden rounded-3xl border border-border/60"
+							className="sagy-spotlight group relative flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-xl border border-sagy-accent/30 bg-gradient-to-b from-sagy-accent/10 via-sagy-surface to-sagy-surface p-6 shadow-sagy-card transition-colors hover:border-sagy-accent/45"
 						>
-							<div
-								aria-hidden
-								className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-								style={{ backgroundImage: `url(${guide.backgroundImage})` }}
-							/>
-							<div
-								aria-hidden
-								className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/25"
-							/>
-							<div className="relative z-10 flex h-full flex-col justify-between p-6">
-								<div className="flex size-10 items-center justify-center rounded-xl border border-border/50 bg-background/70 text-foreground shadow-sm backdrop-blur-sm">
-									<Icon className="size-4" strokeWidth={1.75} />
-								</div>
-								<div>
-									<h3 className="text-lg font-semibold text-foreground">
-										{guide.plan}{" "}
-										<span className="text-primary">{guide.price}</span>
-									</h3>
-									<p className="mt-3 text-sm font-medium text-foreground">
-										{guide.audience}
-									</p>
-									<ul className="mt-3 flex flex-col gap-2 text-sm text-muted-foreground">
-										{guide.points.map((point) => (
-											<li key={point} className="flex gap-2">
-												<Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-												{point}
-											</li>
-										))}
-									</ul>
-								</div>
+							<div className="flex size-10 items-center justify-center rounded-lg border border-sagy-accent/25 bg-sagy-accent/10 text-sagy-accent">
+								<Icon className="size-4" strokeWidth={1.5} />
+							</div>
+							<div>
+								<h3 className="font-display text-lg uppercase tracking-tight text-white">
+									{guide.plan}{" "}
+									<span className="text-sagy-accent">{guide.price}</span>
+								</h3>
+								<p className="mt-3 font-sans text-sm font-medium text-foreground">
+									{guide.audience}
+								</p>
+								<ul className="mt-3 flex flex-col gap-2 font-sans text-sm text-sagy-body">
+									{guide.points.map((point) => (
+										<li key={point} className="flex gap-2">
+											<Check className="mt-0.5 h-4 w-4 shrink-0 text-sagy-accent" />
+											{point}
+										</li>
+									))}
+								</ul>
 							</div>
 						</motion.article>
 					);

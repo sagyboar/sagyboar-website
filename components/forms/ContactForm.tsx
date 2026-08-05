@@ -1,9 +1,17 @@
 "use client";
 
 import { trackGAEvent } from "@/components/analitycs";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { GlowButton } from "@/components/ui/sagy";
+import { cn } from "@/lib/utils";
+import { CheckCircle2 } from "lucide-react";
 import { useState } from "react";
+import {
+	fieldErrorClass,
+	fieldInputClass,
+	fieldInputErrorClass,
+	fieldLabelClass,
+	requiredMarkClass,
+} from "./form-styles";
 
 type ContactFormState = {
 	name: string;
@@ -117,16 +125,25 @@ export function ContactForm({
 
 	if (submitted) {
 		return (
-			<div className="rounded-2xl border border-border bg-card/60 p-8 text-center">
-				<h2 className="font-display text-2xl font-semibold tracking-tight text-foreground">
+			<div className="rounded-xl border border-sagy-success/25 bg-sagy-success/[0.06] p-8 text-center">
+				<span className="mx-auto flex size-11 items-center justify-center rounded-full border border-sagy-success/30 bg-sagy-success/10">
+					<CheckCircle2
+						className="size-5 text-sagy-success"
+						strokeWidth={1.75}
+						aria-hidden="true"
+					/>
+				</span>
+				<h2 className="mt-4 font-display text-xl uppercase tracking-tight text-white">
 					{successTitle}
 				</h2>
-				<p className="mt-3 text-muted-foreground">{successDescription}</p>
+				<p className="mt-3 font-sans text-sm leading-relaxed text-sagy-body">
+					{successDescription}
+				</p>
 				<div className="mt-6 flex justify-center gap-3">
-					<Button variant="outline" onClick={() => setSubmitted(false)}>
+					<GlowButton variant="ghost" onClick={() => setSubmitted(false)}>
 						Send another
-					</Button>
-					{onCancel && <Button onClick={onCancel}>Close</Button>}
+					</GlowButton>
+					{onCancel && <GlowButton onClick={onCancel}>Close</GlowButton>}
 				</div>
 			</div>
 		);
@@ -138,97 +155,92 @@ export function ContactForm({
 		<form onSubmit={handleSubmit} className="space-y-5">
 			<div className="grid gap-5 sm:grid-cols-2">
 				<div className="space-y-2">
-					<label
-						htmlFor="name"
-						className="block text-sm font-medium text-foreground"
-					>
-						Name <span className="text-red-500">*</span>
+					<label htmlFor="name" className={fieldLabelClass}>
+						Name <span className={requiredMarkClass}>*</span>
 					</label>
-					<Input
+					<input
 						id="name"
 						value={form.name}
 						onChange={(e) => update("name", e.target.value)}
 						placeholder="Your full name"
 						autoComplete="name"
-						errorMessage={errors.name}
+						aria-invalid={Boolean(errors.name)}
+						className={cn(fieldInputClass, errors.name && fieldInputErrorClass)}
 					/>
+					{errors.name && (
+						<span className={fieldErrorClass}>{errors.name}</span>
+					)}
 				</div>
 				<div className="space-y-2">
-					<label
-						htmlFor="email"
-						className="block text-sm font-medium text-foreground"
-					>
+					<label htmlFor="email" className={fieldLabelClass}>
 						{isDemo ? "Work email" : "Email"}{" "}
-						<span className="text-red-500">*</span>
+						<span className={requiredMarkClass}>*</span>
 					</label>
-					<Input
+					<input
 						id="email"
 						type="email"
 						value={form.email}
 						onChange={(e) => update("email", e.target.value)}
 						placeholder="you@company.com"
 						autoComplete="email"
-						errorMessage={errors.email}
+						aria-invalid={Boolean(errors.email)}
+						className={cn(
+							fieldInputClass,
+							errors.email && fieldInputErrorClass,
+						)}
 					/>
+					{errors.email && (
+						<span className={fieldErrorClass}>{errors.email}</span>
+					)}
 				</div>
 			</div>
 
 			<div className="grid gap-5 sm:grid-cols-2">
 				<div className="space-y-2">
-					<label
-						htmlFor="company"
-						className="block text-sm font-medium text-foreground"
-					>
+					<label htmlFor="company" className={fieldLabelClass}>
 						Company
 					</label>
-					<Input
+					<input
 						id="company"
 						value={form.company}
 						onChange={(e) => update("company", e.target.value)}
 						placeholder="Company name (optional)"
 						autoComplete="organization"
+						className={fieldInputClass}
 					/>
 				</div>
 				{!isDemo ? (
 					<div className="space-y-2">
-						<label
-							htmlFor="subject"
-							className="block text-sm font-medium text-foreground"
-						>
+						<label htmlFor="subject" className={fieldLabelClass}>
 							Subject
 						</label>
-						<Input
+						<input
 							id="subject"
 							value={form.subject}
 							onChange={(e) => update("subject", e.target.value)}
 							placeholder="What's this about? (optional)"
+							className={fieldInputClass}
 						/>
 					</div>
 				) : (
 					<div className="space-y-2">
-						<label
-							htmlFor="demo-subject"
-							className="block text-sm font-medium text-foreground"
-						>
+						<label htmlFor="demo-subject" className={fieldLabelClass}>
 							Subject
 						</label>
-						<Input
+						<input
 							id="demo-subject"
 							value={form.subject || defaultSubject}
 							readOnly
-							className="opacity-80"
+							className={cn(fieldInputClass, "text-sagy-body")}
 						/>
 					</div>
 				)}
 			</div>
 
 			<div className="space-y-2">
-				<label
-					htmlFor="message"
-					className="block text-sm font-medium text-foreground"
-				>
+				<label htmlFor="message" className={fieldLabelClass}>
 					{isDemo ? "What would you like to see?" : "Message"}{" "}
-					<span className="text-red-500">*</span>
+					<span className={requiredMarkClass}>*</span>
 				</label>
 				<textarea
 					id="message"
@@ -240,37 +252,33 @@ export function ContactForm({
 							? "Tell us about your stack, goals, or any questions for the demo..."
 							: "Tell us how we can help..."
 					}
-					className="flex w-full resize-none rounded-md bg-input px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+					aria-invalid={Boolean(errors.message)}
+					className={cn(
+						fieldInputClass,
+						"resize-none",
+						errors.message && fieldInputErrorClass,
+					)}
 				/>
 				{errors.message && (
-					<span className="text-sm text-red-600">{errors.message}</span>
+					<span className={fieldErrorClass}>{errors.message}</span>
 				)}
 			</div>
 
 			{serverError && (
-				<p className="rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-2 text-sm text-red-600 dark:text-red-300">
+				<p className="rounded-xl border border-sagy-error/40 bg-sagy-error/10 px-4 py-3 font-sans text-sm text-sagy-error">
 					{serverError}
 				</p>
 			)}
 
-			<div className="flex justify-end gap-3">
+			<div className="flex flex-wrap justify-end gap-3">
 				{showCancelButton && onCancel && (
-					<Button
-						type="button"
-						variant="outline"
-						onClick={onCancel}
-						disabled={submitting}
-					>
+					<GlowButton variant="ghost" onClick={onCancel} disabled={submitting}>
 						Cancel
-					</Button>
+					</GlowButton>
 				)}
-				<Button
-					type="submit"
-					disabled={submitting}
-					className="min-w-[140px] rounded-full"
-				>
+				<GlowButton type="submit" disabled={submitting}>
 					{submitting ? "Sending..." : submitLabel}
-				</Button>
+				</GlowButton>
 			</div>
 		</form>
 	);

@@ -1,7 +1,7 @@
 import { Container } from "@/components/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { IntroWatchPlayer } from "@/components/watch/IntroWatchPlayer";
-import { pageSeo, SITE_NAME, SITE_URL } from "@/constants/seo-data";
+import { SITE_NAME, SITE_URL, pageSeo } from "@/constants/seo-data";
 import {
 	INTRO_VIDEO_DESCRIPTION,
 	INTRO_VIDEO_DURATION,
@@ -44,7 +44,7 @@ export default function WatchIntroPage() {
 					<p className="text-sm font-medium uppercase tracking-wider text-primary">
 						Product video
 					</p>
-					<h1 className="mt-3 font-serif text-3xl tracking-tight text-foreground sm:text-4xl">
+					<h1 className="mt-3 font-display text-3xl tracking-tight text-foreground sm:text-4xl">
 						{INTRO_VIDEO_TITLE}
 					</h1>
 					<p className="mt-4 text-lg text-muted-foreground">
@@ -56,7 +56,10 @@ export default function WatchIntroPage() {
 					</div>
 
 					<p className="mt-6 text-sm text-muted-foreground">
-						<Link href="/" className="text-primary underline underline-offset-2">
+						<Link
+							href="/"
+							className="text-primary underline underline-offset-2"
+						>
 							Back to homepage
 						</Link>
 						{" · "}

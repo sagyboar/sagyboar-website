@@ -26,10 +26,12 @@ export function RequestDemoModal({
 
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange}>
-			<DialogContent className="max-h-[90vh] max-w-3xl overflow-y-auto">
+			<DialogContent className="max-h-[90vh] max-w-3xl overflow-y-auto border-white/[0.08] bg-sagy-surface sm:rounded-xl">
 				<DialogHeader>
-					<DialogTitle>Request a demo</DialogTitle>
-					<DialogDescription>
+					<DialogTitle className="font-display text-xl uppercase tracking-tight text-white">
+						Request a demo
+					</DialogTitle>
+					<DialogDescription className="font-sans text-sm leading-relaxed text-sagy-body">
 						See how Sagyboar handles deploy, monitor, and auto-heal for your
 						stack. Share a few details and we&apos;ll schedule a walkthrough.
 					</DialogDescription>

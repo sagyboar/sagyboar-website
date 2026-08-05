@@ -1,11 +1,17 @@
 "use client";
 
 import { trackGAEvent } from "@/components/analitycs";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { GlowButton } from "@/components/ui/sagy";
 import { cn } from "@/lib/utils";
-import { FileText, UploadCloud, X } from "lucide-react";
+import { CheckCircle2, FileText, UploadCloud, X } from "lucide-react";
 import { useRef, useState } from "react";
+import {
+	fieldErrorClass,
+	fieldInputClass,
+	fieldInputErrorClass,
+	fieldLabelClass,
+	requiredMarkClass,
+} from "./form-styles";
 
 function formatBytes(bytes: number): string {
 	if (bytes < 1024) return `${bytes} B`;
@@ -132,18 +138,25 @@ export function JobApplicationForm({
 
 	if (submitted) {
 		return (
-			<div className="rounded-2xl border border-border bg-card/60 p-8 text-center">
-				<h3 className="font-display text-2xl font-semibold tracking-tight text-foreground">
+			<div className="rounded-xl border border-sagy-success/25 bg-sagy-success/[0.06] p-8 text-center">
+				<span className="mx-auto flex size-11 items-center justify-center rounded-full border border-sagy-success/30 bg-sagy-success/10">
+					<CheckCircle2
+						className="size-5 text-sagy-success"
+						strokeWidth={1.75}
+						aria-hidden="true"
+					/>
+				</span>
+				<h3 className="mt-4 font-display text-xl uppercase tracking-tight text-white">
 					Application submitted
 				</h3>
-				<p className="mt-3 text-muted-foreground">
-					Thanks for applying for the {jobTitle} role! We&apos;ve emailed you a
+				<p className="mt-3 font-sans text-sm leading-relaxed text-sagy-body">
+					Thanks for applying for the {jobTitle} role. We&apos;ve emailed you a
 					confirmation and our team will be in touch if there&apos;s a fit.
 				</p>
 				<div className="mt-6 flex justify-center">
-					<Button variant="outline" onClick={() => setSubmitted(false)}>
+					<GlowButton variant="ghost" onClick={() => setSubmitted(false)}>
 						Submit another application
-					</Button>
+					</GlowButton>
 				</div>
 			</div>
 		);
@@ -153,106 +166,109 @@ export function JobApplicationForm({
 		<form onSubmit={handleSubmit} className="space-y-5">
 			<div className="grid gap-5 sm:grid-cols-2">
 				<div className="space-y-2">
-					<label
-						htmlFor="fullName"
-						className="block text-sm font-medium text-foreground"
-					>
-						Full name <span className="text-red-500">*</span>
+					<label htmlFor="fullName" className={fieldLabelClass}>
+						Full name <span className={requiredMarkClass}>*</span>
 					</label>
-					<Input
+					<input
 						id="fullName"
 						value={form.fullName}
 						onChange={(e) => update("fullName", e.target.value)}
 						placeholder="Your full name"
-						errorMessage={errors.fullName}
+						aria-invalid={Boolean(errors.fullName)}
+						className={cn(
+							fieldInputClass,
+							errors.fullName && fieldInputErrorClass,
+						)}
 					/>
+					{errors.fullName && (
+						<span className={fieldErrorClass}>{errors.fullName}</span>
+					)}
 				</div>
 				<div className="space-y-2">
-					<label
-						htmlFor="appEmail"
-						className="block text-sm font-medium text-foreground"
-					>
-						Email <span className="text-red-500">*</span>
+					<label htmlFor="appEmail" className={fieldLabelClass}>
+						Email <span className={requiredMarkClass}>*</span>
 					</label>
-					<Input
+					<input
 						id="appEmail"
 						type="email"
 						value={form.email}
 						onChange={(e) => update("email", e.target.value)}
 						placeholder="you@email.com"
-						errorMessage={errors.email}
+						aria-invalid={Boolean(errors.email)}
+						className={cn(
+							fieldInputClass,
+							errors.email && fieldInputErrorClass,
+						)}
 					/>
+					{errors.email && (
+						<span className={fieldErrorClass}>{errors.email}</span>
+					)}
 				</div>
 			</div>
 
 			<div className="grid gap-5 sm:grid-cols-2">
 				<div className="space-y-2">
-					<label
-						htmlFor="phone"
-						className="block text-sm font-medium text-foreground"
-					>
-						Contact number <span className="text-red-500">*</span>
+					<label htmlFor="phone" className={fieldLabelClass}>
+						Contact number <span className={requiredMarkClass}>*</span>
 					</label>
-					<Input
+					<input
 						id="phone"
 						value={form.phone}
 						onChange={(e) => update("phone", e.target.value)}
 						placeholder="+1 555 000 0000"
-						errorMessage={errors.phone}
+						aria-invalid={Boolean(errors.phone)}
+						className={cn(
+							fieldInputClass,
+							errors.phone && fieldInputErrorClass,
+						)}
 					/>
+					{errors.phone && (
+						<span className={fieldErrorClass}>{errors.phone}</span>
+					)}
 				</div>
 				<div className="space-y-2">
-					<label
-						htmlFor="location"
-						className="block text-sm font-medium text-foreground"
-					>
+					<label htmlFor="location" className={fieldLabelClass}>
 						Current location
 					</label>
-					<Input
+					<input
 						id="location"
 						value={form.location}
 						onChange={(e) => update("location", e.target.value)}
 						placeholder="City, Country (optional)"
+						className={fieldInputClass}
 					/>
 				</div>
 			</div>
 
 			<div className="grid gap-5 sm:grid-cols-2">
 				<div className="space-y-2">
-					<label
-						htmlFor="linkedin"
-						className="block text-sm font-medium text-foreground"
-					>
+					<label htmlFor="linkedin" className={fieldLabelClass}>
 						LinkedIn profile
 					</label>
-					<Input
+					<input
 						id="linkedin"
 						value={form.linkedin}
 						onChange={(e) => update("linkedin", e.target.value)}
 						placeholder="https://linkedin.com/in/... (optional)"
+						className={fieldInputClass}
 					/>
 				</div>
 				<div className="space-y-2">
-					<label
-						htmlFor="experience"
-						className="block text-sm font-medium text-foreground"
-					>
+					<label htmlFor="experience" className={fieldLabelClass}>
 						Relevant experience
 					</label>
-					<Input
+					<input
 						id="experience"
 						value={form.experience}
 						onChange={(e) => update("experience", e.target.value)}
 						placeholder="e.g. 3 years in B2B sales (optional)"
+						className={fieldInputClass}
 					/>
 				</div>
 			</div>
 
 			<div className="space-y-2">
-				<label
-					htmlFor="coverNote"
-					className="block text-sm font-medium text-foreground"
-				>
+				<label htmlFor="coverNote" className={fieldLabelClass}>
 					Cover note
 				</label>
 				<textarea
@@ -261,13 +277,13 @@ export function JobApplicationForm({
 					onChange={(e) => update("coverNote", e.target.value)}
 					rows={4}
 					placeholder="Tell us why you're a great fit (optional)"
-					className="flex w-full resize-none rounded-md bg-input px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+					className={cn(fieldInputClass, "resize-none")}
 				/>
 			</div>
 
 			<div className="space-y-2">
-				<span className="block text-sm font-medium text-foreground">
-					Resume / CV <span className="text-red-500">*</span>
+				<span className={fieldLabelClass}>
+					Resume / CV <span className={requiredMarkClass}>*</span>
 				</span>
 				<input
 					ref={fileRef}
@@ -279,22 +295,22 @@ export function JobApplicationForm({
 				/>
 
 				{resume ? (
-					<div className="flex items-center gap-3 rounded-xl border border-border bg-card/50 p-3">
-						<div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-							<FileText className="size-5" />
+					<div className="flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.04] p-3">
+						<div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-sagy-accent/25 bg-sagy-accent/10 text-sagy-accent">
+							<FileText className="size-5" strokeWidth={1.75} />
 						</div>
 						<div className="min-w-0 flex-1">
-							<p className="truncate text-sm font-medium text-foreground">
+							<p className="truncate font-sans text-sm text-white">
 								{resume.name}
 							</p>
-							<p className="text-xs text-muted-foreground">
+							<p className="font-mono text-[11px] text-sagy-muted">
 								{formatBytes(resume.size)}
 							</p>
 						</div>
 						<button
 							type="button"
 							onClick={() => fileRef.current?.click()}
-							className="rounded-full px-3 py-1.5 text-xs font-medium text-primary transition-colors hover:bg-accent"
+							className="rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-sagy-accent transition-colors hover:bg-white/[0.06]"
 						>
 							Replace
 						</button>
@@ -302,7 +318,7 @@ export function JobApplicationForm({
 							type="button"
 							onClick={clearFile}
 							aria-label="Remove file"
-							className="flex size-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+							className="flex size-8 shrink-0 items-center justify-center rounded-full text-sagy-muted transition-colors hover:bg-white/[0.06] hover:text-white"
 						>
 							<X className="size-4" />
 						</button>
@@ -326,43 +342,43 @@ export function JobApplicationForm({
 							if (file) selectFile(file);
 						}}
 						className={cn(
-							"flex w-full flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed px-6 py-8 text-center transition-colors",
+							"flex w-full flex-col items-center justify-center gap-2 rounded-xl border border-dashed px-6 py-8 text-center transition-colors",
 							dragActive
-								? "border-primary bg-primary/5"
-								: "border-border bg-input/40 hover:border-primary/50 hover:bg-accent/40",
+								? "border-sagy-accent/60 bg-sagy-accent/[0.08]"
+								: "border-white/[0.12] bg-white/[0.02] hover:border-sagy-accent/40 hover:bg-white/[0.04]",
 						)}
 					>
-						<div className="flex size-11 items-center justify-center rounded-full bg-primary/10 text-primary">
-							<UploadCloud className="size-5" />
+						<div className="flex size-11 items-center justify-center rounded-full border border-sagy-accent/25 bg-sagy-accent/10 text-sagy-accent">
+							<UploadCloud className="size-5" strokeWidth={1.75} />
 						</div>
-						<span className="text-sm font-medium text-foreground">
-							<span className="text-primary">Click to upload</span> or drag and
-							drop
+						<span className="font-sans text-sm text-white">
+							<span className="text-sagy-accent">Click to upload</span> or drag
+							and drop
 						</span>
-						<span className="text-xs text-muted-foreground">
+						<span className="font-mono text-[10px] uppercase tracking-wider text-sagy-muted">
 							PDF, Word, or image — up to 5 MB
 						</span>
 					</button>
 				)}
 
 				{errors.resume && (
-					<span className="block text-sm text-red-600">{errors.resume}</span>
+					<span className={fieldErrorClass}>{errors.resume}</span>
 				)}
 			</div>
 
 			{serverError && (
-				<p className="rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-2 text-sm text-red-600 dark:text-red-300">
+				<p className="rounded-xl border border-sagy-error/40 bg-sagy-error/10 px-4 py-3 font-sans text-sm text-sagy-error">
 					{serverError}
 				</p>
 			)}
 
-			<Button
+			<GlowButton
 				type="submit"
 				disabled={submitting}
-				className="w-full rounded-full sm:w-auto"
+				className="w-full sm:w-auto"
 			>
 				{submitting ? "Submitting..." : "Submit application"}
-			</Button>
+			</GlowButton>
 		</form>
 	);
 }

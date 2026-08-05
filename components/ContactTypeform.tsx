@@ -1,79 +1,142 @@
-"use client";
-
-import { Container } from "@/components/Container";
+import { ScrollReveal, ScrollRevealItem } from "@/components/design-system";
 import { ContactForm } from "@/components/forms/ContactForm";
-import { Button } from "@/components/ui/button";
+import { PageShell, SectionHeading, StatusDot } from "@/components/ui/sagy";
 import {
 	Sagyboar_CONTACT_EMAIL,
 	Sagyboar_CONTACT_PHONE,
 } from "@/constants/branding";
-import { Mail, Phone } from "lucide-react";
-import dynamic from "next/dynamic";
+import { spacing } from "@/lib/tokens";
+import { cn } from "@/lib/utils";
+import { Clock, Globe2, Mail, Phone } from "lucide-react";
 
-const Prism = dynamic(() => import("@/components/ui/prism"), {
-	ssr: false,
-});
+const channels = [
+	{
+		icon: Mail,
+		label: "Email",
+		value: Sagyboar_CONTACT_EMAIL,
+		href: `mailto:${Sagyboar_CONTACT_EMAIL}`,
+		note: "Best for pricing, onboarding, and partnerships.",
+	},
+	{
+		icon: Phone,
+		label: "Phone",
+		value: Sagyboar_CONTACT_PHONE,
+		href: `tel:${Sagyboar_CONTACT_PHONE}`,
+		note: "Call us if it's urgent or you'd rather talk it through.",
+	},
+] as const;
+
+const facts = [
+	{
+		icon: Clock,
+		label: "Response time",
+		value: "Within one business day",
+	},
+	{
+		icon: Globe2,
+		label: "Coverage",
+		value: "Remote team, worldwide",
+	},
+] as const;
 
 export function ContactTypeform() {
 	return (
-		<div className="relative min-h-screen overflow-hidden bg-background">
-			<div aria-hidden className="absolute inset-0">
-				<Prism
-					animationType="rotate"
-					timeScale={0.5}
-					height={3.5}
-					baseWidth={5.5}
-					scale={3.6}
-					hueShift={0}
-					colorFrequency={1}
-					noise={0.5}
-					glow={1}
-					className="h-full w-full"
-				/>
-			</div>
+		<PageShell>
+			<ScrollReveal
+				as="section"
+				className={cn("border-b border-white/[0.08]", spacing.sectionYLarge)}
+				aria-label="Contact us"
+				stagger
+			>
+				<div className="mx-auto max-w-6xl px-4 sm:px-6">
+					<ScrollRevealItem>
+						<SectionHeading
+							eyebrow="Contact"
+							title="Talk to the team behind the platform"
+							titleHighlight="the platform"
+							subline="Questions about pricing, enterprise onboarding, or partnerships? Send a message and a human on the team will reply — usually within one business day."
+							align="center"
+							className="mx-auto"
+							as="h1"
+							size="hero"
+						/>
+					</ScrollRevealItem>
 
-			<section className="relative z-10 px-4 pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-24">
-				<Container>
-					<div className="mx-auto max-w-5xl">
-						<div className="text-center">
-							<h1 className="font-serif text-3xl font-semibold tracking-tight text-black dark:text-white sm:text-4xl">
-								Contact{" "}
-								<span className="text-blue-400 border-b border-blue-400">
-									us
-								</span>
-							</h1>
-							<p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-black/80 dark:text-white/90">
-								Have a question about pricing, enterprise onboarding, or
-								partnerships? Send us a message and we&apos;ll get back to you
-								soon.
-							</p>
+					<div className="mt-14 grid gap-8 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-12">
+						<div className="flex flex-col gap-4">
+							{channels.map((channel) => (
+								<ScrollRevealItem key={channel.label}>
+									<a
+										href={channel.href}
+										className="group block sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface p-5 shadow-sagy-card transition-colors duration-300 hover:border-sagy-accent/30"
+									>
+										<span className="flex size-10 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04]">
+											<channel.icon
+												className="size-5 text-sagy-accent"
+												strokeWidth={1.75}
+												aria-hidden="true"
+											/>
+										</span>
+										<p className="mt-4 font-mono text-[10px] uppercase tracking-wider text-sagy-muted">
+											{channel.label}
+										</p>
+										<p className="mt-1 break-all font-sans text-sm text-white group-hover:text-sagy-accent">
+											{channel.value}
+										</p>
+										<p className="mt-2 font-sans text-sm leading-relaxed text-sagy-body">
+											{channel.note}
+										</p>
+									</a>
+								</ScrollRevealItem>
+							))}
 
-							<div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-								<Button
-									asChild
-									variant="outline"
-									className="gap-2 rounded-full"
-								>
-									<a href={`tel:${Sagyboar_CONTACT_PHONE}`}>
-										<Phone className="h-4 w-4" aria-hidden />
-										{Sagyboar_CONTACT_PHONE}
-									</a>
-								</Button>
-								<Button asChild className="gap-2 rounded-full">
-									<a href={`mailto:${Sagyboar_CONTACT_EMAIL}`}>
-										<Mail className="h-4 w-4" aria-hidden />
-										{Sagyboar_CONTACT_EMAIL}
-									</a>
-								</Button>
+							<ScrollRevealItem>
+								<div className="sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface p-5 shadow-sagy-card">
+									<div className="flex items-center gap-2">
+										<StatusDot status="running" />
+										<p className="font-mono text-[10px] uppercase tracking-wider text-sagy-body">
+											Accepting new projects
+										</p>
+									</div>
+									<dl className="mt-5 flex flex-col gap-4">
+										{facts.map((fact) => (
+											<div key={fact.label} className="flex gap-3">
+												<fact.icon
+													className="mt-0.5 size-4 shrink-0 text-sagy-accent"
+													strokeWidth={1.75}
+													aria-hidden="true"
+												/>
+												<div>
+													<dt className="font-mono text-[10px] uppercase tracking-wider text-sagy-muted">
+														{fact.label}
+													</dt>
+													<dd className="mt-1 font-sans text-sm text-white">
+														{fact.value}
+													</dd>
+												</div>
+											</div>
+										))}
+									</dl>
+								</div>
+							</ScrollRevealItem>
+						</div>
+
+						<ScrollRevealItem>
+							<div className="sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface p-6 shadow-sagy-card sm:p-8">
+								<h2 className="font-display text-xl uppercase tracking-tight text-white">
+									Send us a message
+								</h2>
+								<p className="mt-2 font-sans text-sm leading-relaxed text-sagy-body">
+									Fields marked with an asterisk are required.
+								</p>
+								<div className="mt-8">
+									<ContactForm />
+								</div>
 							</div>
-						</div>
-
-						<div className="mx-auto mt-8 max-w-3xl rounded-3xl border border-border bg-card/90 p-5 shadow-lg backdrop-blur-md sm:mt-10 sm:p-8">
-							<ContactForm />
-						</div>
+						</ScrollRevealItem>
 					</div>
-				</Container>
-			</section>
-		</div>
+				</div>
+			</ScrollReveal>
+		</PageShell>
 	);
 }

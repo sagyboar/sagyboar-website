@@ -7,11 +7,11 @@ import { ArrowUpRight, Check, Users } from "lucide-react";
 import Link from "next/link";
 import { IndiePricing, PaidPlanCard } from "./IndiePricing";
 import {
-	audiencePricing,
-	pricingModels,
 	type FreePricingPlan,
 	type PaidPricingPlan,
 	type PricingAudience,
+	audiencePricing,
+	pricingModels,
 } from "./pricing-data";
 
 type PricingPlansGridProps = {
@@ -23,24 +23,24 @@ function FreePlanCard({ plan }: { plan: FreePricingPlan }) {
 	return (
 		<section
 			id={plan.id}
-			className="flex flex-col rounded-3xl border-2 border-dashed border-border bg-muted/15 px-5 py-6"
+			className="flex flex-col sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-5 py-6 shadow-sagy-card"
 		>
-			<p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+			<p className="text-[11px] font-semibold uppercase tracking-wider text-sagy-body">
 				{plan.label}
 			</p>
-			<h3 className="mt-2 text-base font-semibold text-foreground">
+			<h3 className="mt-2 font-display text-base uppercase tracking-tight text-foreground">
 				{plan.name}
 			</h3>
-			<p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+			<p className="mt-1.5 font-sans text-xs leading-relaxed text-sagy-body">
 				{plan.tagline}
 			</p>
 
 			<div className="mt-4">
 				<span className="text-2xl font-semibold text-foreground">$0</span>
-				<span className="text-sm text-muted-foreground">/month</span>
+				<span className="text-sm text-sagy-body">/month</span>
 			</div>
 
-			<ul className="mt-4 flex flex-col gap-2 text-xs text-muted-foreground">
+			<ul className="mt-4 flex flex-col gap-2 font-sans text-xs text-sagy-body">
 				{plan.includes.map((item) => (
 					<li key={item} className="flex gap-2">
 						<Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
@@ -69,17 +69,17 @@ function FreePlanCard({ plan }: { plan: FreePricingPlan }) {
 
 function EmptyAudienceState({ audience }: { audience: PricingAudience }) {
 	return (
-		<div className="mx-auto mt-12 flex max-w-md flex-col items-center rounded-3xl border-2 border-dashed border-border bg-muted/15 px-8 py-16 text-center">
-			<div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+		<div className="mx-auto mt-12 flex max-w-md flex-col items-center sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-8 py-16 text-center shadow-sagy-card">
+			<div className="flex size-12 items-center justify-center rounded-full border border-sagy-accent/25 bg-sagy-accent/10 text-sagy-accent">
 				<Users className="size-5" />
 			</div>
-			<h3 className="mt-5 text-lg font-medium text-foreground">
+			<h3 className="mt-5 font-sans text-lg font-medium text-white">
 				{audience === "user"
 					? `${pricingModels.indie.name} plans`
 					: `${pricingModels.team.name} plans`}{" "}
 				coming soon
 			</h3>
-			<p className="mt-2 text-sm text-muted-foreground">
+			<p className="mt-2 font-sans text-sm text-sagy-body">
 				We&apos;re finalizing{" "}
 				{audience === "user"
 					? pricingModels.indie.name.toLowerCase()
@@ -153,11 +153,7 @@ function TeamPlansGrid({
 		>
 			{freePlan ? <FreePlanCard plan={freePlan} /> : null}
 			{plans.map((plan) => (
-				<PaidPlanCard
-					key={plan.id}
-					plan={plan}
-					onTalkToSales={onTalkToSales}
-				/>
+				<PaidPlanCard key={plan.id} plan={plan} onTalkToSales={onTalkToSales} />
 			))}
 		</div>
 	);
@@ -173,7 +169,7 @@ export function PricingPlansGrid({
 	return (
 		<div>
 			{pricing.subtitle && audience === "team" ? (
-				<p className="mx-auto mt-4 max-w-2xl text-center text-sm text-muted-foreground">
+				<p className="mx-auto mt-4 max-w-2xl text-center font-sans text-sm text-sagy-body">
 					{pricing.subtitle}
 				</p>
 			) : null}

@@ -21,18 +21,18 @@ export function PricingFaq() {
 				<Accordion
 					type="single"
 					collapsible
-					className="mx-auto mt-10 w-full max-w-3xl rounded-2xl border border-border bg-card/50 px-6 shadow-sm backdrop-blur-sm dark:bg-card/30"
+					className="mx-auto mt-10 w-full max-w-3xl sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-6 shadow-sagy-card"
 				>
 					{pricingFaqs.map((faq, index) => (
 						<AccordionItem
 							value={`${index}`}
 							key={faq.question}
-							className="border-border"
+							className="border-white/[0.08]"
 						>
-							<AccordionTrigger className="text-left text-foreground hover:text-foreground">
+							<AccordionTrigger className="text-left font-sans text-white hover:text-white hover:no-underline">
 								{faq.question}
 							</AccordionTrigger>
-							<AccordionContent className="text-muted-foreground">
+							<AccordionContent className="font-sans text-sagy-body">
 								{faq.answer}
 							</AccordionContent>
 						</AccordionItem>

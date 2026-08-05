@@ -77,6 +77,7 @@ export type SolutionPageData = {
 	};
 	cta: {
 		title: string;
+		titleHighlight?: string;
 		description: string;
 		primaryCta: string;
 		primaryHref: string;
