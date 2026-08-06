@@ -37,9 +37,9 @@ export function NavMenuRow({
 		<Link
 			href={item.href}
 			onClick={onNavigate}
-			className="group flex items-start gap-3 rounded-xl border border-transparent p-3 transition-colors duration-200 hover:border-sagy-accent/25 hover:bg-white/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sagy-accent"
+			className="group flex items-start gap-3 rounded-xl border border-transparent p-3 transition-colors duration-200 hover:border-sagy-accent/25 hover:bg-sagy-heading/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sagy-accent"
 		>
-			<span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04] transition-colors duration-200 group-hover:border-sagy-accent/30 group-hover:bg-sagy-accent/10">
+			<span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-sagy-border bg-sagy-heading/[0.04] transition-colors duration-200 group-hover:border-sagy-accent/30 group-hover:bg-sagy-accent/10">
 				<Icon
 					className="size-4 text-sagy-accent"
 					strokeWidth={1.75}
@@ -48,7 +48,7 @@ export function NavMenuRow({
 			</span>
 			<span className="min-w-0 flex-1">
 				<span className="flex flex-wrap items-center gap-2">
-					<span className="font-sans text-sm text-white">{item.title}</span>
+					<span className="font-sans text-sm text-sagy-heading">{item.title}</span>
 					{item.badge && (
 						<span className="shrink-0 rounded-full border border-sagy-accent/25 bg-sagy-accent/10 px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-sagy-accent">
 							{item.badge}
@@ -89,7 +89,7 @@ export function NavMegaMenu({ menu, id, onNavigate }: NavMegaMenuProps) {
 				transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
 				className={cn(
 					// Opaque on purpose — a translucent panel ghosts the page copy behind it
-					"relative overflow-hidden rounded-2xl border border-white/[0.08] bg-sagy-surface p-4 shadow-sagy-soft",
+					"relative overflow-hidden rounded-2xl border border-sagy-border bg-sagy-surface p-4 shadow-sagy-soft",
 					"max-w-[calc(100vw-2rem)]",
 					panelWidths[menu],
 				)}
@@ -121,13 +121,13 @@ export function NavMegaMenu({ menu, id, onNavigate }: NavMegaMenuProps) {
 						))}
 					</div>
 
-					<div className="mt-3 border-t border-white/[0.08] pt-3">
+					<div className="mt-3 border-t border-sagy-border pt-3">
 						<Link
 							href={footer.href}
 							onClick={onNavigate}
-							className="group flex items-center justify-between gap-3 rounded-xl px-3 py-2 transition-colors duration-200 hover:bg-white/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sagy-accent"
+							className="group flex items-center justify-between gap-3 rounded-xl px-3 py-2 transition-colors duration-200 hover:bg-sagy-heading/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sagy-accent"
 						>
-							<span className="font-mono text-[11px] uppercase tracking-wider text-sagy-body group-hover:text-white">
+							<span className="font-mono text-[11px] uppercase tracking-wider text-sagy-body group-hover:text-sagy-heading">
 								{footer.label}
 							</span>
 							<span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-sagy-muted">

@@ -5,7 +5,7 @@ import type { JobPosting } from "./jobs-data";
 
 export function JobListingCard({ job }: { job: JobPosting }) {
 	return (
-		<article className="group relative overflow-hidden sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface p-6 shadow-sagy-card transition-colors duration-300 hover:border-sagy-accent/30 sm:p-8">
+		<article className="group relative overflow-hidden sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface p-6 shadow-sagy-card transition-colors duration-300 hover:border-sagy-accent/30 sm:p-8">
 			<div
 				className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sagy-accent/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
 				aria-hidden="true"
@@ -14,14 +14,14 @@ export function JobListingCard({ job }: { job: JobPosting }) {
 			<div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
 				<div className="min-w-0">
 					<div className="flex items-center gap-3">
-						<span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04]">
+						<span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-sagy-border bg-sagy-heading/[0.04]">
 							<Briefcase
 								className="size-4 text-sagy-accent"
 								strokeWidth={1.75}
 								aria-hidden="true"
 							/>
 						</span>
-						<h3 className="font-display text-lg uppercase leading-tight tracking-tight text-white sm:text-xl">
+						<h3 className="font-display text-lg uppercase leading-tight tracking-tight text-sagy-heading sm:text-xl">
 							{job.title}
 						</h3>
 					</div>
@@ -30,7 +30,7 @@ export function JobListingCard({ job }: { job: JobPosting }) {
 						<span className="inline-flex items-center rounded-full border border-sagy-accent/30 bg-sagy-accent/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-sagy-accent">
 							{job.badge}
 						</span>
-						<span className="inline-flex items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.04] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-sagy-body">
+						<span className="inline-flex items-center gap-1 rounded-full border border-sagy-border bg-sagy-heading/[0.04] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-sagy-body">
 							<MapPin className="size-3" aria-hidden="true" />
 							{job.location}
 						</span>

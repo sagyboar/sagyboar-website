@@ -81,17 +81,17 @@ export function PricingHeroGraphic({ className }: PricingHeroGraphicProps) {
 					<stop offset="100%" stopColor="#60a5fa" stopOpacity="0.9" />
 				</linearGradient>
 				<linearGradient id="flowOut" x1="0" y1="0" x2="1" y2="0">
-					<stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.9" />
-					<stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.15" />
+					<stop offset="0%" stopColor="#C4A484" stopOpacity="0.9" />
+					<stop offset="100%" stopColor="#C4A484" stopOpacity="0.15" />
 				</linearGradient>
 				<linearGradient id="coreGrad" x1="0" y1="0" x2="1" y2="1">
 					<stop offset="0%" stopColor="#3b82f6" />
-					<stop offset="55%" stopColor="#6366f1" />
-					<stop offset="100%" stopColor="#8b5cf6" />
+					<stop offset="55%" stopColor="#A67B5B" />
+					<stop offset="100%" stopColor="#C4A484" />
 				</linearGradient>
 				<radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
-					<stop offset="0%" stopColor="#6366f1" stopOpacity="0.45" />
-					<stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
+					<stop offset="0%" stopColor="#A67B5B" stopOpacity="0.45" />
+					<stop offset="100%" stopColor="#A67B5B" stopOpacity="0" />
 				</radialGradient>
 			</defs>
 
@@ -264,7 +264,7 @@ export function PricingHeroGraphic({ className }: PricingHeroGraphicProps) {
 					cy="150"
 					r="34"
 					fill="none"
-					stroke="#6366f1"
+					stroke="#A67B5B"
 					strokeWidth="1.5"
 				>
 					<animate
@@ -285,7 +285,7 @@ export function PricingHeroGraphic({ className }: PricingHeroGraphicProps) {
 					cy="150"
 					r="34"
 					fill="none"
-					stroke="#8b5cf6"
+					stroke="#C4A484"
 					strokeWidth="1.5"
 				>
 					<animate

@@ -30,15 +30,15 @@ function StepCard({ item, index }: { item: ModelStep; index: number }) {
 				delay: index * 0.1,
 				ease: [0.22, 1, 0.36, 1],
 			}}
-			className="relative flex flex-col sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface p-6 shadow-sagy-card transition-colors hover:border-sagy-accent/25"
+			className="relative flex flex-col sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface p-6 shadow-sagy-card transition-colors hover:border-sagy-accent/25"
 		>
 			<div className="flex items-center justify-between">
-				<div className="flex size-10 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04]">
+				<div className="flex size-10 items-center justify-center rounded-lg border border-sagy-border bg-sagy-heading/[0.04]">
 					<Icon className="size-4 text-sagy-body" strokeWidth={1.5} />
 				</div>
-				<span className="font-display text-3xl text-white/10">{item.step}</span>
+				<span className="font-display text-3xl text-sagy-heading/10">{item.step}</span>
 			</div>
-			<h3 className="mt-5 font-sans text-base font-medium text-white">
+			<h3 className="mt-5 font-sans text-base font-medium text-sagy-heading">
 				{item.title}
 			</h3>
 			<p className="mt-2 font-sans text-sm leading-relaxed text-sagy-body">

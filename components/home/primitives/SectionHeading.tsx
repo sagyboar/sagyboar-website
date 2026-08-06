@@ -9,7 +9,7 @@ type SectionHeadingProps = {
 	className?: string;
 };
 
-/** Mono eyebrow + condensed title with one indigo word + sans subline */
+/** Mono eyebrow + condensed title with one brand-accent word + sans subline */
 export function SectionHeading({
 	eyebrow,
 	title,
@@ -33,7 +33,7 @@ export function SectionHeading({
 					{eyebrow}
 				</p>
 			)}
-			<h2 className="font-display text-3xl uppercase leading-[0.95] tracking-tight text-white sm:text-4xl lg:text-5xl">
+			<h2 className="font-display text-3xl uppercase leading-[0.95] tracking-tight text-sagy-heading sm:text-4xl lg:text-5xl">
 				{titleHighlight && parts.length > 1 ? (
 					<>
 						{parts[0]}

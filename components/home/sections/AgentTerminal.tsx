@@ -107,7 +107,7 @@ export function AgentTerminal() {
 		>
 			<div
 				ref={containerRef}
-				className="max-h-[380px] overflow-y-auto p-4 font-mono text-xs leading-relaxed sm:p-5 sm:text-[13px]"
+				className="max-h-[380px] overflow-y-auto p-4 font-mono text-xs leading-relaxed [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:p-5 sm:text-[13px]"
 				role="log"
 				aria-live="polite"
 				aria-label="Live agent terminal output"

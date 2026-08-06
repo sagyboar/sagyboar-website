@@ -121,7 +121,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 		<html
 			lang="en"
 			className={clsx(
-				"h-full scroll-smooth antialiased dark",
+				"h-full scroll-smooth antialiased",
 				GeistSans.variable,
 				GeistMono.variable,
 				display.variable,

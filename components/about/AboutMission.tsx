@@ -24,7 +24,7 @@ export function AboutMission() {
 						</div>
 					</div>
 
-					<div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-white/[0.08] bg-sagy-surface shadow-sagy-card">
+					<div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-sagy-border bg-sagy-surface shadow-sagy-card">
 						<Image
 							src="/Sagyboar-logo.png"
 							alt="Sagyboar logo — AI-native DevOps platform for deployment and monitoring"

@@ -40,7 +40,7 @@ export function PricingPlanFitGuide({ audience }: PricingPlanFitGuideProps) {
 								<Icon className="size-4" strokeWidth={1.5} />
 							</div>
 							<div>
-								<h3 className="font-display text-lg uppercase tracking-tight text-white">
+								<h3 className="font-display text-lg uppercase tracking-tight text-sagy-heading">
 									{guide.plan}{" "}
 									<span className="text-sagy-accent">{guide.price}</span>
 								</h3>

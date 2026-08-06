@@ -28,7 +28,7 @@ export function AboutTimeline() {
 					{/* rail — flat base line with an accent glow that fades at both ends */}
 					<div
 						aria-hidden
-						className="absolute left-4 top-0 h-full w-px bg-white/[0.06] sm:left-1/2 sm:-translate-x-1/2"
+						className="absolute left-4 top-0 h-full w-px bg-sagy-heading/[0.06] sm:left-1/2 sm:-translate-x-1/2"
 					/>
 					<div
 						aria-hidden
@@ -62,7 +62,7 @@ export function AboutTimeline() {
 													"sagy-spotlight group relative overflow-hidden rounded-xl border bg-sagy-surface p-6 shadow-sagy-card transition-all duration-300 hover:-translate-y-1",
 													isLast
 														? "border-sagy-accent/30"
-														: "border-white/[0.08] hover:border-sagy-accent/30",
+														: "border-sagy-border hover:border-sagy-accent/30",
 													alignRight ? "sm:text-left" : "sm:text-right",
 												)}
 											>
@@ -73,7 +73,7 @@ export function AboutTimeline() {
 												<span
 													aria-hidden
 													className={cn(
-														"pointer-events-none absolute top-3 font-display text-5xl leading-none text-white/[0.04]",
+														"pointer-events-none absolute top-3 font-display text-5xl leading-none text-sagy-heading/[0.04]",
 														alignRight
 															? "right-4"
 															: "right-4 sm:right-auto sm:left-4",
@@ -105,7 +105,7 @@ export function AboutTimeline() {
 															{milestone.year}
 														</span>
 													</div>
-													<h3 className="mt-3 font-display text-lg uppercase tracking-tight text-white sm:text-xl">
+													<h3 className="mt-3 font-display text-lg uppercase tracking-tight text-sagy-heading sm:text-xl">
 														{milestone.title}
 													</h3>
 													<p className="mt-2 font-sans text-sm leading-relaxed text-sagy-body">
@@ -136,7 +136,7 @@ export function AboutTimeline() {
 											<Icon
 												className={cn(
 													"size-4",
-													isLast ? "text-white" : "text-sagy-accent",
+													isLast ? "text-sagy-heading" : "text-sagy-accent",
 												)}
 												strokeWidth={1.5}
 											/>

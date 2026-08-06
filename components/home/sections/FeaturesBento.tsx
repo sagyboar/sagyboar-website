@@ -32,13 +32,13 @@ function MiniMetricTicker() {
 	}, [reducedMotion]);
 
 	return (
-		<div className="mt-4 rounded-lg border border-white/[0.08] bg-sagy-bg/60 p-3 font-mono text-[10px]">
+		<div className="mt-4 rounded-lg border border-sagy-border bg-sagy-bg/60 p-3 font-mono text-[10px]">
 			<p className="mb-2 text-sagy-muted">LIVE METRICS // prod-api</p>
 			<div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
 				{metrics.map((m, i) => (
 					<div
 						key={m.label}
-						className="rounded border border-white/[0.06] bg-white/[0.02] p-2"
+						className="rounded border border-sagy-heading/6 bg-sagy-heading/[0.02] p-2"
 					>
 						<p className="text-sagy-muted">{m.label}</p>
 						<p
@@ -99,13 +99,13 @@ export function FeaturesBento() {
 									)}
 								>
 									<div>
-										<div className="mb-4 flex size-10 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04]">
+										<div className="mb-4 flex size-10 items-center justify-center rounded-lg border border-sagy-border bg-sagy-heading/[0.04]">
 											<Icon
 												className="size-4 text-sagy-body"
 												strokeWidth={1.5}
 											/>
 										</div>
-										<h3 className="font-sans text-base font-medium text-white">
+										<h3 className="font-sans text-base font-medium text-sagy-heading">
 											{tile.title}
 										</h3>
 										<p className="mt-2 font-sans text-sm leading-relaxed text-sagy-body">
@@ -124,7 +124,7 @@ export function FeaturesBento() {
 							className="flex h-full flex-col justify-between border-dashed"
 						>
 							<div>
-								<h3 className="font-sans text-base font-medium text-white">
+								<h3 className="font-sans text-base font-medium text-sagy-heading">
 									{customFeatureTile.title}
 								</h3>
 								<p className="mt-2 font-sans text-sm text-sagy-body">
@@ -133,7 +133,7 @@ export function FeaturesBento() {
 							</div>
 							<Link
 								href={customFeatureTile.href}
-								className="mt-4 inline-flex font-mono text-xs uppercase tracking-wider text-sagy-accent transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sagy-accent"
+								className="mt-4 inline-flex font-mono text-xs uppercase tracking-wider text-sagy-accent transition-colors hover:text-sagy-heading focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sagy-accent"
 							>
 								{customFeatureTile.cta} →
 							</Link>

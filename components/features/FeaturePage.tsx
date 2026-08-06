@@ -39,7 +39,7 @@ export function FeaturePage({ feature }: { feature: FeaturePageData }) {
 			<ScrollReveal
 				as="section"
 				className={cn(
-					"relative border-b border-white/[0.08]",
+					"relative border-b border-sagy-border",
 					spacing.sectionYLarge,
 				)}
 				aria-label="Feature hero"
@@ -55,7 +55,7 @@ export function FeaturePage({ feature }: { feature: FeaturePageData }) {
 								>
 									<Link
 										href="/features"
-										className="transition-colors hover:text-white"
+										className="transition-colors hover:text-sagy-heading"
 									>
 										Features
 									</Link>
@@ -63,7 +63,7 @@ export function FeaturePage({ feature }: { feature: FeaturePageData }) {
 									<span>{feature.group}</span>
 								</nav>
 
-								<div className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1.5">
+								<div className="mt-5 inline-flex items-center gap-2 rounded-full border border-sagy-border bg-sagy-heading/[0.04] px-3 py-1.5">
 									<Icon
 										className="size-4 text-sagy-accent"
 										strokeWidth={1.75}
@@ -92,7 +92,7 @@ export function FeaturePage({ feature }: { feature: FeaturePageData }) {
 										{feature.items.length} capabilities
 									</span>
 									<span
-										className="h-3 w-px bg-white/[0.12]"
+										className="h-3 w-px bg-sagy-heading/[0.12]"
 										aria-hidden="true"
 									/>
 									{badgesPresent.map((badge) => (
@@ -134,7 +134,7 @@ export function FeaturePage({ feature }: { feature: FeaturePageData }) {
 			{/* Related features */}
 			<ScrollReveal
 				as="section"
-				className={cn("border-b border-white/[0.08]", spacing.sectionY)}
+				className={cn("border-b border-sagy-border", spacing.sectionY)}
 				aria-label="Explore more features"
 				stagger
 			>

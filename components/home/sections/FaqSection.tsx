@@ -25,14 +25,14 @@ function FaqItem({
 	const reducedMotion = useReducedMotion();
 
 	return (
-		<div className="border-b border-white/[0.08] last:border-b-0">
+		<div className="border-b border-sagy-border last:border-b-0">
 			<button
 				type="button"
 				onClick={onToggle}
 				className="flex w-full items-center justify-between gap-4 py-5 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sagy-accent"
 				aria-expanded={isOpen}
 			>
-				<span className="font-sans text-sm font-medium text-white sm:text-base">
+				<span className="font-sans text-sm font-medium text-sagy-heading sm:text-base">
 					{question}
 				</span>
 				<span
@@ -86,7 +86,7 @@ export function FaqSection() {
 				</ScrollRevealItem>
 
 				<ScrollRevealItem>
-					<div className="sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-5 sm:px-6">
+					<div className="sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface px-5 sm:px-6">
 						{homeFaqItems.map((item, i) => (
 							<FaqItem
 								key={item.question}

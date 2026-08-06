@@ -23,7 +23,7 @@ function FreePlanCard({ plan }: { plan: FreePricingPlan }) {
 	return (
 		<section
 			id={plan.id}
-			className="flex flex-col sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-5 py-6 shadow-sagy-card"
+			className="flex flex-col sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface px-5 py-6 shadow-sagy-card"
 		>
 			<p className="text-[11px] font-semibold uppercase tracking-wider text-sagy-body">
 				{plan.label}
@@ -69,11 +69,11 @@ function FreePlanCard({ plan }: { plan: FreePricingPlan }) {
 
 function EmptyAudienceState({ audience }: { audience: PricingAudience }) {
 	return (
-		<div className="mx-auto mt-12 flex max-w-md flex-col items-center sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-8 py-16 text-center shadow-sagy-card">
+		<div className="mx-auto mt-12 flex max-w-md flex-col items-center sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface px-8 py-16 text-center shadow-sagy-card">
 			<div className="flex size-12 items-center justify-center rounded-full border border-sagy-accent/25 bg-sagy-accent/10 text-sagy-accent">
 				<Users className="size-5" />
 			</div>
-			<h3 className="mt-5 font-sans text-lg font-medium text-white">
+			<h3 className="mt-5 font-sans text-lg font-medium text-sagy-heading">
 				{audience === "user"
 					? `${pricingModels.indie.name} plans`
 					: `${pricingModels.team.name} plans`}{" "}

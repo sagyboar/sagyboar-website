@@ -35,11 +35,11 @@ function JobSection({
 		<ScrollRevealItem>
 			<div
 				id={id}
-				className="scroll-mt-28 sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface p-6 shadow-sagy-card sm:p-8"
+				className="scroll-mt-28 sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface p-6 shadow-sagy-card sm:p-8"
 			>
 				<div className="flex items-center gap-3">
 					<span
-						className="font-display text-2xl leading-none text-white/[0.14]"
+						className="font-display text-2xl leading-none text-sagy-heading/[0.14]"
 						aria-hidden="true"
 					>
 						{String(index + 1).padStart(2, "0")}
@@ -49,7 +49,7 @@ function JobSection({
 						aria-hidden="true"
 					/>
 				</div>
-				<h2 className="mt-4 font-display text-xl uppercase tracking-tight text-white sm:text-2xl">
+				<h2 className="mt-4 font-display text-xl uppercase tracking-tight text-sagy-heading sm:text-2xl">
 					{title}
 				</h2>
 				<ul className="mt-5 flex flex-col gap-3 font-sans text-sm leading-relaxed text-sagy-body sm:text-base">
@@ -89,7 +89,7 @@ export function JobDetail({ job }: { job: JobPosting }) {
 		<PageShell>
 			<ScrollReveal
 				as="section"
-				className={cn("border-b border-white/[0.08]", spacing.sectionYLarge)}
+				className={cn("border-b border-sagy-border", spacing.sectionYLarge)}
 				aria-label="Role overview"
 				stagger
 			>
@@ -105,7 +105,7 @@ export function JobDetail({ job }: { job: JobPosting }) {
 									<span className="text-sagy-body">Open position</span>
 								</p>
 
-								<div className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1.5">
+								<div className="mt-5 inline-flex items-center gap-2 rounded-full border border-sagy-border bg-sagy-heading/[0.04] px-3 py-1.5">
 									<Briefcase
 										className="size-4 text-sagy-accent"
 										strokeWidth={1.75}
@@ -129,7 +129,7 @@ export function JobDetail({ job }: { job: JobPosting }) {
 
 							<ScrollRevealItem>
 								<div className="mt-8 flex flex-wrap gap-2">
-									<span className="inline-flex items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.04] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-sagy-body">
+									<span className="inline-flex items-center gap-1 rounded-full border border-sagy-border bg-sagy-heading/[0.04] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-sagy-body">
 										<MapPin className="size-3" aria-hidden="true" />
 										{job.location}
 									</span>
@@ -161,7 +161,7 @@ export function JobDetail({ job }: { job: JobPosting }) {
 
 			<ScrollReveal
 				as="section"
-				className={cn("border-b border-white/[0.08]", spacing.sectionY)}
+				className={cn("border-b border-sagy-border", spacing.sectionY)}
 				aria-label="Role details"
 				stagger
 			>
@@ -169,13 +169,13 @@ export function JobDetail({ job }: { job: JobPosting }) {
 					<ScrollRevealItem>
 						<nav
 							aria-label="Jump to section"
-							className="flex flex-wrap gap-2 border-b border-white/[0.08] pb-8"
+							className="flex flex-wrap gap-2 border-b border-sagy-border pb-8"
 						>
 							{detailSections.map((section) => (
 								<a
 									key={section.id}
 									href={`#${section.id}`}
-									className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-sagy-body transition-colors hover:border-sagy-accent/30 hover:text-white"
+									className="rounded-full border border-sagy-border bg-sagy-heading/[0.04] px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-sagy-body transition-colors hover:border-sagy-accent/30 hover:text-sagy-heading"
 								>
 									{section.title}
 								</a>
@@ -217,7 +217,7 @@ export function JobDetail({ job }: { job: JobPosting }) {
 					</ScrollRevealItem>
 
 					<ScrollRevealItem>
-						<div className="mt-12 sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface p-6 shadow-sagy-card sm:p-8">
+						<div className="mt-12 sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface p-6 shadow-sagy-card sm:p-8">
 							<div className="rounded-xl border border-sagy-accent/20 bg-sagy-accent/[0.06] p-5">
 								<h3 className="font-mono text-[11px] uppercase tracking-wider text-sagy-accent">
 									What to include

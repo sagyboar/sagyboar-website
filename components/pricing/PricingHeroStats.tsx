@@ -18,7 +18,7 @@ export function PricingHeroStats() {
 						delay: index * 0.12,
 						ease: [0.22, 1, 0.36, 1],
 					}}
-					className="group relative overflow-hidden sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-4 py-5 shadow-sagy-card transition-colors hover:border-sagy-accent/25"
+					className="group relative overflow-hidden sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface px-4 py-5 shadow-sagy-card transition-colors hover:border-sagy-accent/25"
 				>
 					<div
 						aria-hidden
@@ -33,9 +33,9 @@ export function PricingHeroStats() {
 								value={stat.end}
 								decimalPlaces={stat.decimalPlaces}
 								delay={0.15 + index * 0.1}
-								className="text-white"
+								className="text-sagy-heading"
 							/>
-							<span className="text-white">{stat.suffix}</span>
+							<span className="text-sagy-heading">{stat.suffix}</span>
 						</span>
 					</p>
 					<p className="relative mt-2 font-sans text-xs leading-relaxed text-sagy-body sm:text-sm">

@@ -146,7 +146,7 @@ export function JobApplicationForm({
 						aria-hidden="true"
 					/>
 				</span>
-				<h3 className="mt-4 font-display text-xl uppercase tracking-tight text-white">
+				<h3 className="mt-4 font-display text-xl uppercase tracking-tight text-sagy-heading">
 					Application submitted
 				</h3>
 				<p className="mt-3 font-sans text-sm leading-relaxed text-sagy-body">
@@ -295,12 +295,12 @@ export function JobApplicationForm({
 				/>
 
 				{resume ? (
-					<div className="flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.04] p-3">
+					<div className="flex items-center gap-3 rounded-xl border border-sagy-border bg-sagy-heading/[0.04] p-3">
 						<div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-sagy-accent/25 bg-sagy-accent/10 text-sagy-accent">
 							<FileText className="size-5" strokeWidth={1.75} />
 						</div>
 						<div className="min-w-0 flex-1">
-							<p className="truncate font-sans text-sm text-white">
+							<p className="truncate font-sans text-sm text-sagy-heading">
 								{resume.name}
 							</p>
 							<p className="font-mono text-[11px] text-sagy-muted">
@@ -310,7 +310,7 @@ export function JobApplicationForm({
 						<button
 							type="button"
 							onClick={() => fileRef.current?.click()}
-							className="rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-sagy-accent transition-colors hover:bg-white/[0.06]"
+							className="rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-sagy-accent transition-colors hover:bg-sagy-heading/[0.06]"
 						>
 							Replace
 						</button>
@@ -318,7 +318,7 @@ export function JobApplicationForm({
 							type="button"
 							onClick={clearFile}
 							aria-label="Remove file"
-							className="flex size-8 shrink-0 items-center justify-center rounded-full text-sagy-muted transition-colors hover:bg-white/[0.06] hover:text-white"
+							className="flex size-8 shrink-0 items-center justify-center rounded-full text-sagy-muted transition-colors hover:bg-sagy-heading/[0.06] hover:text-sagy-heading"
 						>
 							<X className="size-4" />
 						</button>
@@ -345,13 +345,13 @@ export function JobApplicationForm({
 							"flex w-full flex-col items-center justify-center gap-2 rounded-xl border border-dashed px-6 py-8 text-center transition-colors",
 							dragActive
 								? "border-sagy-accent/60 bg-sagy-accent/[0.08]"
-								: "border-white/[0.12] bg-white/[0.02] hover:border-sagy-accent/40 hover:bg-white/[0.04]",
+								: "border-sagy-heading/12 bg-sagy-heading/[0.02] hover:border-sagy-accent/40 hover:bg-sagy-heading/[0.04]",
 						)}
 					>
 						<div className="flex size-11 items-center justify-center rounded-full border border-sagy-accent/25 bg-sagy-accent/10 text-sagy-accent">
 							<UploadCloud className="size-5" strokeWidth={1.75} />
 						</div>
-						<span className="font-sans text-sm text-white">
+						<span className="font-sans text-sm text-sagy-heading">
 							<span className="text-sagy-accent">Click to upload</span> or drag
 							and drop
 						</span>

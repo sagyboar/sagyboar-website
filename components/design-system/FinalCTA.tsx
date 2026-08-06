@@ -63,7 +63,7 @@ export function FinalCTA({
 									href={primaryCta.href}
 									onClick={primaryCta.onClick}
 									external={primaryCta.external}
-									className="!rounded-full !bg-white !text-sagy-bg !shadow-none hover:!brightness-95"
+									className="!rounded-full"
 								>
 									{primaryCta.label}
 								</GlowButton>

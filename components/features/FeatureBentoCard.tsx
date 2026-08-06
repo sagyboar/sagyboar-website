@@ -38,7 +38,7 @@ function AiMicroAnimation({ variant }: { variant: "default" | "hero" }) {
 	const isSuccess = current.startsWith("✓");
 
 	return (
-		<div className="mt-4 rounded-lg border border-white/[0.08] bg-sagy-bg/60 p-2.5 font-mono text-[10px]">
+		<div className="mt-4 rounded-lg border border-sagy-border bg-sagy-bg/60 p-2.5 font-mono text-[10px]">
 			<div className="flex items-center gap-2 text-sagy-muted">
 				<span className="size-1.5 shrink-0 rounded-full bg-sagy-accent motion-safe:animate-agent-pulse" />
 				<span>AGENT // live</span>
@@ -85,12 +85,12 @@ export function FeatureBentoCard({
 				className="flex h-full flex-col transition-colors group-hover:border-sagy-accent/25"
 			>
 				<div className="flex items-start justify-between gap-3">
-					<div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04]">
+					<div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-sagy-border bg-sagy-heading/[0.04]">
 						<Icon className="size-4 text-sagy-body" strokeWidth={1.5} />
 					</div>
 					<FeatureBadge badge={badge} />
 				</div>
-				<h3 className="mt-4 font-sans text-base font-medium text-white">
+				<h3 className="mt-4 font-sans text-base font-medium text-sagy-heading">
 					{feature.title}
 				</h3>
 				<p className="mt-2 flex-1 font-sans text-sm leading-relaxed text-sagy-body">
@@ -99,7 +99,7 @@ export function FeatureBentoCard({
 				{showAiDemo && (
 					<AiMicroAnimation variant={size === "hero" ? "hero" : "default"} />
 				)}
-				<span className="mt-4 inline-flex items-center gap-1 font-mono text-xs uppercase tracking-wider text-sagy-accent transition-colors group-hover:text-white">
+				<span className="mt-4 inline-flex items-center gap-1 font-mono text-xs uppercase tracking-wider text-sagy-accent transition-colors group-hover:text-sagy-heading">
 					Explore
 					<ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
 				</span>

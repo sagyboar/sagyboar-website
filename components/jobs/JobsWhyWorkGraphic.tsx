@@ -38,7 +38,7 @@ export function JobsWhyWorkGraphic({
 }
 
 /**
- * Ambient layer behind every diagram — indigo core bloom with two slow orbit
+ * Ambient layer behind every diagram — brand-brown core bloom with two slow orbit
  * rings, matching the platform and feature graphics. `from`/`to` are legacy
  * per-graphic tints, no longer used.
  */
@@ -47,8 +47,8 @@ function BackgroundLayer({ id }: { id: string; from?: string; to?: string }) {
 		<>
 			<defs>
 				<radialGradient id={`${id}-glow`} cx="50%" cy="50%" r="50%">
-					<stop offset="0%" stopColor="#6D5EF8" stopOpacity="0.3" />
-					<stop offset="100%" stopColor="#6D5EF8" stopOpacity="0" />
+					<stop offset="0%" stopColor="#A67B5B" stopOpacity="0.3" />
+					<stop offset="100%" stopColor="#A67B5B" stopOpacity="0" />
 				</radialGradient>
 			</defs>
 			<ellipse cx="200" cy="150" rx="185" ry="145" fill={`url(#${id}-glow)`}>
@@ -103,15 +103,15 @@ function BackgroundLayer({ id }: { id: string; from?: string; to?: string }) {
 function PlatformGraphic() {
 	return (
 		<>
-			<BackgroundLayer id="plat" from="#3b82f6" to="#8b5cf6" />
+			<BackgroundLayer id="plat" from="#3b82f6" to="#C4A484" />
 			<defs>
 				<linearGradient id="plat-line" x1="0" y1="0" x2="1" y2="0">
 					<stop offset="0%" stopColor="#3b82f6" />
-					<stop offset="100%" stopColor="#8b5cf6" />
+					<stop offset="100%" stopColor="#C4A484" />
 				</linearGradient>
 				<linearGradient id="plat-area" x1="0" y1="0" x2="0" y2="1">
-					<stop offset="0%" stopColor="#6366f1" stopOpacity="0.35" />
-					<stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
+					<stop offset="0%" stopColor="#A67B5B" stopOpacity="0.35" />
+					<stop offset="100%" stopColor="#A67B5B" stopOpacity="0" />
 				</linearGradient>
 			</defs>
 
@@ -211,7 +211,7 @@ function PlatformGraphic() {
 					rx="3"
 					className="fill-sagy-accent/25"
 				/>
-				<rect x="168" y="222" width="48" height="6" rx="3" fill="#8b5cf6">
+				<rect x="168" y="222" width="48" height="6" rx="3" fill="#C4A484">
 					<animate
 						attributeName="width"
 						values="30;60;30"
@@ -255,10 +255,10 @@ function MarketGraphic() {
 	const trend = "M123 154 L171 122 L219 90 L267 62";
 	return (
 		<>
-			<BackgroundLayer id="mkt" from="#6366f1" to="#a855f7" />
+			<BackgroundLayer id="mkt" from="#A67B5B" to="#a855f7" />
 			<defs>
 				<linearGradient id="mkt-bar" x1="0" y1="1" x2="0" y2="0">
-					<stop offset="0%" stopColor="#6366f1" />
+					<stop offset="0%" stopColor="#A67B5B" />
 					<stop offset="100%" stopColor="#a855f7" />
 				</linearGradient>
 			</defs>
@@ -345,11 +345,11 @@ function MarketGraphic() {
 function RemoteGraphic() {
 	return (
 		<>
-			<BackgroundLayer id="rmt" from="#0ea5e9" to="#6366f1" />
+			<BackgroundLayer id="rmt" from="#0ea5e9" to="#A67B5B" />
 			<defs>
 				<radialGradient id="rmt-globe" cx="38%" cy="35%" r="75%">
 					<stop offset="0%" stopColor="#60a5fa" stopOpacity="0.35" />
-					<stop offset="100%" stopColor="#6366f1" stopOpacity="0.12" />
+					<stop offset="100%" stopColor="#A67B5B" stopOpacity="0.12" />
 				</radialGradient>
 			</defs>
 
@@ -373,7 +373,7 @@ function RemoteGraphic() {
 						repeatCount="indefinite"
 					/>
 				</circle>
-				<circle cx="304" cy="150" r="4" fill="#8b5cf6">
+				<circle cx="304" cy="150" r="4" fill="#C4A484">
 					<animateTransform
 						attributeName="transform"
 						type="rotate"

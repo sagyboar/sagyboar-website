@@ -40,7 +40,7 @@ export function JobsAbout() {
 			as="section"
 			id="about-sagyboar"
 			className={cn(
-				"border-b border-white/[0.08] bg-sagy-surface/40",
+				"border-b border-sagy-border bg-sagy-surface/40",
 				spacing.sectionY,
 			)}
 			aria-label="About Sagyboar"
@@ -68,15 +68,15 @@ export function JobsAbout() {
 					<div className="grid gap-4 sm:grid-cols-2">
 						{pillars.map((pillar) => (
 							<ScrollRevealItem key={pillar.title}>
-								<div className="sagy-spotlight sagy-tilt group h-full rounded-xl border border-white/[0.08] bg-sagy-surface p-5 shadow-sagy-card transition-colors duration-300 hover:border-sagy-accent/30">
-									<span className="flex size-10 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04]">
+								<div className="sagy-spotlight sagy-tilt group h-full rounded-xl border border-sagy-border bg-sagy-surface p-5 shadow-sagy-card transition-colors duration-300 hover:border-sagy-accent/30">
+									<span className="flex size-10 items-center justify-center rounded-lg border border-sagy-border bg-sagy-heading/[0.04]">
 										<pillar.icon
 											className="size-5 text-sagy-accent"
 											strokeWidth={1.75}
 											aria-hidden="true"
 										/>
 									</span>
-									<h3 className="mt-4 font-display text-base uppercase tracking-tight text-white">
+									<h3 className="mt-4 font-display text-base uppercase tracking-tight text-sagy-heading">
 										{pillar.title}
 									</h3>
 									<p className="mt-2 font-sans text-sm leading-relaxed text-sagy-body">

@@ -7,8 +7,11 @@ export const paletteDark = {
 	bg: "#08080A",
 	surface: "#0F0F12",
 	surfaceElevated: "#141418",
-	accent: "#6D5EF8",
-	accentGlow: "rgba(109, 94, 248, 0.35)",
+	accent: "#A67B5B",
+	accentHover: "#3D261A",
+	accentSoft: "#E8DFD8",
+	accentForeground: "#FAF7F2",
+	accentGlow: "rgba(166, 123, 91, 0.35)",
 	body: "#A0A0A8",
 	muted: "#6B6B75",
 	border: "rgba(255, 255, 255, 0.08)",
@@ -16,15 +19,18 @@ export const paletteDark = {
 	error: "#EF4444",
 	idle: "#52525B",
 	heading: "#FFFFFF",
-	brandBrown: "#8B6914",
+	brandBrown: "#3D261A",
 } as const;
 
 export const paletteLight = {
 	bg: "#FAFAFA",
 	surface: "#FFFFFF",
 	surfaceElevated: "#F4F4F5",
-	accent: "#6D5EF8",
-	accentGlow: "rgba(109, 94, 248, 0.25)",
+	accent: "#A67B5B",
+	accentHover: "#3D261A",
+	accentSoft: "#E8DFD8",
+	accentForeground: "#FAF7F2",
+	accentGlow: "rgba(166, 123, 91, 0.3)",
 	body: "#52525B",
 	muted: "#71717A",
 	border: "rgba(0, 0, 0, 0.08)",
@@ -32,7 +38,7 @@ export const paletteLight = {
 	error: "#DC2626",
 	idle: "#A1A1AA",
 	heading: "#09090B",
-	brandBrown: "#8B6914",
+	brandBrown: "#3D261A",
 } as const;
 
 export const cssVars = {
@@ -99,7 +105,7 @@ export const radii = {
 export const shadows = {
 	soft: "0 8px 32px rgba(0, 0, 0, 0.4)",
 	softLight: "0 8px 32px rgba(0, 0, 0, 0.08)",
-	glow: "0 0 40px rgba(109, 94, 248, 0.25)",
+	glow: "0 0 40px rgba(166, 123, 91, 0.3)",
 	card: "0 4px 24px rgba(0, 0, 0, 0.3)",
 	cardLight: "0 4px 24px rgba(0, 0, 0, 0.06)",
 } as const;
@@ -142,9 +148,9 @@ export const tailwindThemeExtension = {
 		"sagy-radial-glow":
 			"radial-gradient(ellipse 55% 45% at 50% -5%, var(--sagy-glow-strength), transparent 65%)",
 		"sagy-mesh":
-			"radial-gradient(at 40% 20%, rgba(109, 94, 248, 0.08) 0px, transparent 50%), radial-gradient(at 80% 80%, rgba(109, 94, 248, 0.04) 0px, transparent 50%)",
+			"radial-gradient(at 40% 20%, rgba(166, 123, 91, 0.1) 0px, transparent 50%), radial-gradient(at 80% 80%, rgba(61, 38, 26, 0.05) 0px, transparent 50%)",
 		"sagy-cta-glow":
-			"radial-gradient(ellipse 80% 60% at 50% 50%, rgba(109, 94, 248, 0.35), rgba(109, 94, 248, 0.08) 50%, transparent 80%)",
+			"radial-gradient(ellipse 80% 60% at 50% 50%, rgba(166, 123, 91, 0.32), rgba(166, 123, 91, 0.1) 50%, transparent 80%)",
 	},
 	backgroundSize: {
 		"sagy-grid": "24px 24px",

@@ -69,7 +69,7 @@ export function DashboardShowcase() {
 
 				<ScrollRevealItem>
 					<div
-						className="mx-auto mb-8 flex w-fit rounded-full border border-white/[0.08] bg-sagy-surface p-1"
+						className="mx-auto mb-8 flex w-fit rounded-full border border-sagy-border bg-sagy-surface p-1"
 						role="tablist"
 						aria-label="Dashboard view toggle"
 					>
@@ -87,7 +87,7 @@ export function DashboardShowcase() {
 									className={cn(
 										"relative flex items-center gap-2 rounded-full px-4 py-2 font-mono text-[11px] uppercase tracking-wider transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sagy-accent",
 										active
-											? "text-white"
+											? "text-sagy-heading"
 											: "text-sagy-muted hover:text-sagy-body",
 									)}
 								>
@@ -155,7 +155,7 @@ function FrameStatusBar({
 	tab: (typeof dashboardShowcase.tabs)[number];
 }) {
 	return (
-		<div className="flex items-center justify-between gap-3 border-t border-white/[0.08] bg-sagy-bg/40 px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-sagy-muted">
+		<div className="flex items-center justify-between gap-3 border-t border-sagy-border bg-sagy-bg/40 px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-sagy-muted">
 			<span>
 				{tab === "Sagy AI" ? "auto-heal: enabled" : "region: ap-south-1"}
 			</span>
@@ -204,7 +204,7 @@ function Sparkline({ points }: { points: number[] }) {
 
 function StatTile({ stat }: { stat: DashboardStat }) {
 	return (
-		<div className="sagy-spotlight group relative overflow-hidden rounded-xl border border-white/[0.08] bg-sagy-bg/60 p-4 transition-colors duration-300 hover:border-sagy-accent/30">
+		<div className="sagy-spotlight group relative overflow-hidden rounded-xl border border-sagy-border bg-sagy-bg/60 p-4 transition-colors duration-300 hover:border-sagy-accent/30">
 			<div className="flex items-start justify-between gap-2">
 				<p className="font-mono text-[10px] uppercase tracking-wider text-sagy-muted">
 					{stat.label}
@@ -217,7 +217,7 @@ function StatTile({ stat }: { stat: DashboardStat }) {
 				)}
 			</div>
 			<div className="mt-2 flex items-center gap-2">
-				<p className="font-display text-2xl leading-none text-white">
+				<p className="font-display text-2xl leading-none text-sagy-heading">
 					{stat.value}
 				</p>
 				{stat.status && <StatusDot status={stat.status} />}
@@ -229,8 +229,8 @@ function StatTile({ stat }: { stat: DashboardStat }) {
 
 const envTone: Record<string, string> = {
 	production: "border-sagy-accent/25 bg-sagy-accent/10 text-sagy-accent",
-	staging: "border-white/[0.08] bg-white/[0.04] text-sagy-body",
-	preview: "border-white/[0.08] bg-white/[0.04] text-sagy-muted",
+	staging: "border-sagy-border bg-sagy-heading/[0.04] text-sagy-body",
+	preview: "border-sagy-border bg-sagy-heading/[0.04] text-sagy-muted",
 };
 
 function DeploymentItem({ deployment }: { deployment: DeploymentRow }) {
@@ -239,14 +239,14 @@ function DeploymentItem({ deployment }: { deployment: DeploymentRow }) {
 	return (
 		<div
 			className={cn(
-				"sagy-spotlight group relative overflow-hidden rounded-xl border border-white/[0.08] bg-sagy-bg/50 px-4 py-3 transition-colors duration-300 hover:border-white/[0.15]",
+				"sagy-spotlight group relative overflow-hidden rounded-xl border border-sagy-border bg-sagy-bg/50 px-4 py-3 transition-colors duration-300 hover:border-sagy-heading/15",
 				inFlight && "border-sagy-accent/30",
 			)}
 		>
 			<div className="flex items-center justify-between gap-4">
 				<div className="min-w-0">
 					<div className="flex flex-wrap items-center gap-2">
-						<p className="font-sans text-sm text-white">{deployment.name}</p>
+						<p className="font-sans text-sm text-sagy-heading">{deployment.name}</p>
 						<span
 							className={cn(
 								"rounded-full border px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider",
@@ -290,7 +290,7 @@ function DeploymentItem({ deployment }: { deployment: DeploymentRow }) {
 
 			{inFlight && deployment.progress !== undefined && (
 				<div
-					className="mt-3 h-1 w-full overflow-hidden rounded-full bg-white/[0.06]"
+					className="mt-3 h-1 w-full overflow-hidden rounded-full bg-sagy-heading/[0.06]"
 					aria-hidden="true"
 				>
 					<div
@@ -306,16 +306,16 @@ function DeploymentItem({ deployment }: { deployment: DeploymentRow }) {
 function DashboardView() {
 	return (
 		<div className="grid lg:grid-cols-[13rem_1fr]">
-			<aside className="hidden flex-col justify-between border-r border-white/[0.08] bg-sagy-bg/40 p-4 lg:flex">
+			<aside className="hidden flex-col justify-between border-r border-sagy-border bg-sagy-bg/40 p-4 lg:flex">
 				<div>
-					<div className="flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.04] px-2.5 py-2">
+					<div className="flex items-center gap-2 rounded-lg border border-sagy-border bg-sagy-heading/[0.04] px-2.5 py-2">
 						<span
 							className="flex size-5 items-center justify-center rounded bg-sagy-accent/15 font-mono text-[9px] text-sagy-accent"
 							aria-hidden="true"
 						>
 							{dashboardShowcase.project.initials}
 						</span>
-						<span className="font-sans text-xs text-white">
+						<span className="font-sans text-xs text-sagy-heading">
 							{dashboardShowcase.project.name}
 						</span>
 					</div>
@@ -327,7 +327,7 @@ function DashboardView() {
 									className={cn(
 										"flex items-center justify-between rounded-lg px-2.5 py-2 font-sans text-xs",
 										item.active
-											? "bg-sagy-accent/10 text-white"
+											? "bg-sagy-accent/10 text-sagy-heading"
 											: "text-sagy-muted",
 									)}
 								>
@@ -343,12 +343,12 @@ function DashboardView() {
 					</ul>
 				</div>
 
-				<div className="mt-6 rounded-lg border border-white/[0.08] bg-white/[0.02] p-3">
+				<div className="mt-6 rounded-lg border border-sagy-border bg-sagy-heading/[0.02] p-3">
 					<p className="font-mono text-[9px] uppercase tracking-wider text-sagy-muted">
 						Cluster load
 					</p>
 					<div
-						className="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/[0.06]"
+						className="mt-2 h-1 w-full overflow-hidden rounded-full bg-sagy-heading/[0.06]"
 						aria-hidden="true"
 					>
 						<div className="h-full w-[38%] rounded-full bg-sagy-success" />
@@ -435,7 +435,7 @@ function AiStep({ step, last }: { step: SagyAiStep; last: boolean }) {
 
 			<div className="min-w-0 flex-1">
 				<div className="flex flex-wrap items-center gap-2">
-					<p className="font-sans text-sm text-white">{step.label}</p>
+					<p className="font-sans text-sm text-sagy-heading">{step.label}</p>
 					<span className="font-mono text-[10px] uppercase tracking-wider text-sagy-muted">
 						+{step.elapsed}
 					</span>
@@ -451,8 +451,8 @@ function AiStep({ step, last }: { step: SagyAiStep; last: boolean }) {
 				</p>
 
 				{step.diff && (
-					<div className="mt-3 overflow-hidden rounded-lg border border-white/[0.08] bg-sagy-bg/60 font-mono text-[11px]">
-						<p className="border-b border-white/[0.08] px-3 py-1.5 text-sagy-muted">
+					<div className="mt-3 overflow-hidden rounded-lg border border-sagy-border bg-sagy-bg/60 font-mono text-[11px]">
+						<p className="border-b border-sagy-border px-3 py-1.5 text-sagy-muted">
 							src/db.ts
 						</p>
 						<p className="flex gap-2 bg-sagy-error/[0.06] px-3 py-1.5 text-sagy-error">
@@ -473,7 +473,7 @@ function AiStep({ step, last }: { step: SagyAiStep; last: boolean }) {
 function SagyAiView() {
 	return (
 		<div className="p-4 sm:p-6">
-			<div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.08] pb-4">
+			<div className="flex flex-wrap items-center justify-between gap-3 border-b border-sagy-border pb-4">
 				<div className="flex items-center gap-3">
 					<span className="flex size-8 items-center justify-center rounded-lg border border-sagy-accent/25 bg-sagy-accent/10">
 						<Sparkles
@@ -483,7 +483,7 @@ function SagyAiView() {
 						/>
 					</span>
 					<div>
-						<p className="font-sans text-sm text-white">Sagy AI</p>
+						<p className="font-sans text-sm text-sagy-heading">Sagy AI</p>
 						<p className="font-mono text-[10px] uppercase tracking-wider text-sagy-muted">
 							Incident response · legacy-auth
 						</p>
@@ -504,16 +504,16 @@ function SagyAiView() {
 				))}
 			</ol>
 
-			<dl className="mt-5 grid grid-cols-3 gap-3 border-t border-white/[0.08] pt-5">
+			<dl className="mt-5 grid grid-cols-3 gap-3 border-t border-sagy-border pt-5">
 				{sagyAiMetrics.map((metric) => (
 					<div
 						key={metric.label}
-						className="rounded-xl border border-white/[0.08] bg-sagy-bg/50 p-3"
+						className="rounded-xl border border-sagy-border bg-sagy-bg/50 p-3"
 					>
 						<dt className="font-mono text-[10px] uppercase tracking-wider text-sagy-muted">
 							{metric.label}
 						</dt>
-						<dd className="mt-1 font-display text-xl leading-none text-white">
+						<dd className="mt-1 font-display text-xl leading-none text-sagy-heading">
 							{metric.value}
 						</dd>
 					</div>

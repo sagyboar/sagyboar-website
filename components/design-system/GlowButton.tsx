@@ -17,7 +17,7 @@ type GlowButtonProps = {
 	disabled?: boolean;
 };
 
-/** Magnetic indigo primary CTA */
+/** Magnetic brand primary CTA — dark brown + cream label */
 export function GlowButton({
 	children,
 	href,
@@ -47,9 +47,9 @@ export function GlowButton({
 	const baseClass = cn(
 		"relative inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-mono text-xs uppercase tracking-wider transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sagy-accent",
 		variant === "primary" &&
-			"bg-sagy-accent text-white shadow-sagy-glow hover:brightness-110",
+			"bg-sagy-accent text-sagy-accent-foreground shadow-sagy-glow hover:bg-sagy-accent-hover hover:brightness-100",
 		variant === "ghost" &&
-			"border border-white/[0.08] bg-white/[0.04] text-white hover:border-white/[0.15] hover:bg-white/[0.06]",
+			"border border-sagy-border bg-sagy-heading/[0.04] text-sagy-heading hover:border-sagy-accent/40 hover:bg-sagy-accent/10 hover:text-sagy-accent",
 		disabled && "cursor-not-allowed opacity-60 hover:brightness-100",
 		className,
 	);

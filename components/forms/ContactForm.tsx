@@ -133,7 +133,7 @@ export function ContactForm({
 						aria-hidden="true"
 					/>
 				</span>
-				<h2 className="mt-4 font-display text-xl uppercase tracking-tight text-white">
+				<h2 className="mt-4 font-display text-xl uppercase tracking-tight text-sagy-heading">
 					{successTitle}
 				</h2>
 				<p className="mt-3 font-sans text-sm leading-relaxed text-sagy-body">

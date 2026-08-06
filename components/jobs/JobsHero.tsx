@@ -29,7 +29,7 @@ export function JobsHero() {
 		<ScrollReveal
 			as="section"
 			className={cn(
-				"relative border-b border-white/[0.08]",
+				"relative border-b border-sagy-border",
 				spacing.sectionYLarge,
 			)}
 			aria-label="Careers hero"
@@ -45,7 +45,7 @@ export function JobsHero() {
 								<span className="text-sagy-body">Careers</span>
 							</p>
 
-							<div className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1.5">
+							<div className="mt-5 inline-flex items-center gap-2 rounded-full border border-sagy-border bg-sagy-heading/[0.04] px-3 py-1.5">
 								<Users
 									className="size-4 text-sagy-accent"
 									strokeWidth={1.75}
@@ -73,12 +73,12 @@ export function JobsHero() {
 								{heroStats.map((stat) => (
 									<div
 										key={stat.label}
-										className="sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-4 py-3 shadow-sagy-card"
+										className="sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface px-4 py-3 shadow-sagy-card"
 									>
 										<dt className="font-mono text-[10px] uppercase tracking-wider text-sagy-muted">
 											{stat.label}
 										</dt>
-										<dd className="mt-1 font-display text-xl uppercase tracking-tight text-white">
+										<dd className="mt-1 font-display text-xl uppercase tracking-tight text-sagy-heading">
 											{stat.value}
 										</dd>
 									</div>

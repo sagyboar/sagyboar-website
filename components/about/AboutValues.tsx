@@ -25,12 +25,12 @@ export function AboutValues() {
 						return (
 							<div
 								key={value.title}
-								className="sagy-spotlight sagy-tilt rounded-xl border border-white/[0.08] bg-sagy-surface p-6 shadow-sagy-card transition-colors hover:border-sagy-accent/25"
+								className="sagy-spotlight sagy-tilt rounded-xl border border-sagy-border bg-sagy-surface p-6 shadow-sagy-card transition-colors hover:border-sagy-accent/25"
 							>
-								<div className="flex size-10 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04]">
+								<div className="flex size-10 items-center justify-center rounded-lg border border-sagy-border bg-sagy-heading/[0.04]">
 									<Icon className="size-4 text-sagy-body" strokeWidth={1.5} />
 								</div>
-								<h3 className="mt-4 font-sans text-base font-medium text-white">
+								<h3 className="mt-4 font-sans text-base font-medium text-sagy-heading">
 									{value.title}
 								</h3>
 								<p className="mt-2 font-sans text-sm leading-relaxed text-sagy-body">

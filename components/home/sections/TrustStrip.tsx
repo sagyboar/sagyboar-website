@@ -8,7 +8,7 @@ export function TrustStrip() {
 	return (
 		<ScrollReveal
 			as="section"
-			className="relative z-10 border-y border-white/[0.08] px-4 py-12 sm:px-6 sm:py-16"
+			className="relative z-10 border-y border-sagy-border px-4 py-12 sm:px-6 sm:py-16"
 			aria-label="Trusted by"
 			stagger
 		>
@@ -21,7 +21,7 @@ export function TrustStrip() {
 				<div className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
 					{trustStrip.logos.map((logo) => (
 						<ScrollRevealItem key={logo}>
-							<span className="font-display text-lg uppercase tracking-wide text-white/25 transition-colors hover:text-white/40 sm:text-xl">
+							<span className="font-display text-lg uppercase tracking-wide text-sagy-heading/25 transition-colors hover:text-sagy-heading/40 sm:text-xl">
 								{logo}
 							</span>
 						</ScrollRevealItem>

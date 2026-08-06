@@ -1,6 +1,5 @@
 "use client";
 
-import { CommandKChip } from "@/components/design-system/CommandKChip";
 import { GlowButton } from "@/components/design-system/GlowButton";
 import {
 	ScrollReveal,
@@ -35,7 +34,7 @@ export function HeroSection() {
 					</ScrollRevealItem>
 
 					<ScrollRevealItem>
-						<h1 className="font-display text-4xl uppercase leading-[0.92] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
+						<h1 className="font-display text-4xl uppercase leading-[0.92] tracking-tight text-sagy-heading sm:text-5xl lg:text-6xl xl:text-7xl">
 							{headlineParts[0]}
 							<span className="text-sagy-accent">
 								{heroContent.headlineHighlight}
@@ -59,7 +58,6 @@ export function HeroSection() {
 							<GlowButton href={Sagyboar_PORTAL_URL} external>
 								{heroContent.cta}
 							</GlowButton>
-							<CommandKChip />
 						</div>
 					</ScrollRevealItem>
 
@@ -68,7 +66,7 @@ export function HeroSection() {
 							{heroContent.badges.map((badge) => (
 								<span
 									key={badge}
-									className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-sagy-muted"
+									className="inline-flex items-center gap-2 rounded-full border border-sagy-border bg-sagy-heading/[0.03] px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-sagy-muted"
 								>
 									<span
 										className="size-1.5 rounded-full bg-sagy-accent"

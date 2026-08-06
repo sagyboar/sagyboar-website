@@ -11,7 +11,7 @@ type SectionHeadingProps = {
 	size?: "hero" | "section";
 };
 
-/** Mono eyebrow + condensed display title with one indigo word + sans subline */
+/** Mono eyebrow + condensed display title with one brand-accent word + sans subline */
 export function SectionHeading({
 	eyebrow,
 	title,
@@ -39,7 +39,7 @@ export function SectionHeading({
 			)}
 			<Tag
 				className={cn(
-					"font-display uppercase leading-[0.95] tracking-tight text-white",
+					"font-display uppercase leading-[0.95] tracking-tight text-sagy-heading",
 					size === "hero"
 						? "text-4xl sm:text-5xl lg:text-6xl"
 						: "text-3xl sm:text-4xl lg:text-5xl",

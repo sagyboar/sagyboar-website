@@ -80,7 +80,7 @@ export function FeatureItemGraphic({
 /* ---------- shared helpers ---------- */
 
 /**
- * Ambient layer behind every diagram — a single indigo core bloom with two
+ * Ambient layer behind every diagram — a single brand-brown core bloom with two
  * slow orbit rings, matching the platform hero graphic. Intentionally has no
  * filled panel so the diagram reads as lit content on the card surface.
  * `from`/`to` are legacy per-graphic tints, no longer used.
@@ -90,8 +90,8 @@ function Bg({ id }: { id: string; from?: string; to?: string }) {
 		<>
 			<defs>
 				<radialGradient id={`${id}-glow`} cx="50%" cy="50%" r="50%">
-					<stop offset="0%" stopColor="#6D5EF8" stopOpacity="0.3" />
-					<stop offset="100%" stopColor="#6D5EF8" stopOpacity="0" />
+					<stop offset="0%" stopColor="#A67B5B" stopOpacity="0.3" />
+					<stop offset="100%" stopColor="#A67B5B" stopOpacity="0" />
 				</radialGradient>
 			</defs>
 			<ellipse cx="200" cy="150" rx="185" ry="145" fill={`url(#${id}-glow)`}>
@@ -230,14 +230,14 @@ const flow = "3 4";
 /* Multi-source deployment */
 function Sources() {
 	const srcs = [
-		{ y: 70, c: "#8b5cf6", label: "GitHub" },
+		{ y: 70, c: "#C4A484", label: "GitHub" },
 		{ y: 116, c: "#f59e0b", label: "GitLab" },
 		{ y: 162, c: "#3b82f6", label: "Docker" },
 		{ y: 208, c: "#10b981", label: "ZIP" },
 	];
 	return (
 		<>
-			<Bg id="src" from="#3b82f6" to="#8b5cf6" />
+			<Bg id="src" from="#3b82f6" to="#C4A484" />
 			{srcs.map((s, i) => (
 				<g key={s.label}>
 					<Chip x={40} y={s.y} w={104} label={s.label} color={s.c} />
@@ -297,7 +297,7 @@ function Build() {
 	const rows = ["Nixpacks", "Dockerfile", "Buildpacks", "Docker image"];
 	return (
 		<>
-			<Bg id="bld" from="#6366f1" to="#3b82f6" />
+			<Bg id="bld" from="#A67B5B" to="#3b82f6" />
 			<Frame x={90} y={62} w={220} h={176} dots={false} />
 			<text
 				x="108"
@@ -327,7 +327,7 @@ function Build() {
 							className="fill-card stroke-border"
 							strokeWidth="1.5"
 						/>
-						<circle cx="122" cy={y} r="3" fill="#6366f1">
+						<circle cx="122" cy={y} r="3" fill="#A67B5B">
 							<animate
 								attributeName="opacity"
 								values={i === 0 ? "1;1;0;0" : "0;0;1;0"}
@@ -373,12 +373,12 @@ function Build() {
 function AiScan() {
 	return (
 		<>
-			<Bg id="scan" from="#8b5cf6" to="#6366f1" />
+			<Bg id="scan" from="#C4A484" to="#A67B5B" />
 			{/* repo */}
 			<Frame x={44} y={112} w={70} h={76} dots={false} />
-			<circle cx="66" cy="138" r="4" fill="#8b5cf6" />
-			<circle cx="66" cy="162" r="4" fill="#8b5cf6" />
-			<circle cx="92" cy="150" r="4" fill="#8b5cf6" />
+			<circle cx="66" cy="138" r="4" fill="#C4A484" />
+			<circle cx="66" cy="162" r="4" fill="#C4A484" />
+			<circle cx="92" cy="150" r="4" fill="#C4A484" />
 			<path
 				d="M66 142 v16 M66 150 q0 8 22 -2"
 				className="stroke-primary/50"
@@ -469,11 +469,11 @@ function AiScan() {
 function Sizing() {
 	const gauges = [
 		{ cx: 130, label: "CPU", val: 0.62, c: "#3b82f6" },
-		{ cx: 270, label: "RAM", val: 0.78, c: "#8b5cf6" },
+		{ cx: 270, label: "RAM", val: 0.78, c: "#C4A484" },
 	];
 	return (
 		<>
-			<Bg id="size" from="#3b82f6" to="#8b5cf6" />
+			<Bg id="size" from="#3b82f6" to="#C4A484" />
 			{gauges.map((g) => (
 				<g key={g.label}>
 					<path
@@ -557,7 +557,7 @@ function Sizing() {
 function Artifact() {
 	return (
 		<>
-			<Bg id="art" from="#6366f1" to="#8b5cf6" />
+			<Bg id="art" from="#A67B5B" to="#C4A484" />
 			<Frame x={70} y={58} w={260} h={184} />
 			<text
 				x="112"
@@ -569,10 +569,10 @@ function Artifact() {
 				Dockerfile
 			</text>
 			{[
-				{ w: 120, c: "#8b5cf6" },
+				{ w: 120, c: "#C4A484" },
 				{ w: 168, c: "#3b82f6" },
 				{ w: 96, c: "#10b981" },
-				{ w: 150, c: "#8b5cf6" },
+				{ w: 150, c: "#C4A484" },
 				{ w: 70, c: "#3b82f6" },
 			].map((l, i) => {
 				const y = 104 + i * 24;
@@ -792,7 +792,7 @@ function OneClickHost() {
 function Webhook() {
 	return (
 		<>
-			<Bg id="wh" from="#3b82f6" to="#6366f1" />
+			<Bg id="wh" from="#3b82f6" to="#A67B5B" />
 			{/* branch with commits */}
 			<line
 				x1="52"
@@ -892,7 +892,7 @@ function Webhook() {
 function PrPreview() {
 	return (
 		<>
-			<Bg id="pr" from="#8b5cf6" to="#3b82f6" />
+			<Bg id="pr" from="#C4A484" to="#3b82f6" />
 			{/* PR card */}
 			<Frame x={44} y={108} w={110} h={84} dots={false} />
 			<circle
@@ -951,7 +951,7 @@ function PrPreview() {
 				strokeWidth="1.5"
 				strokeDasharray={flow}
 			/>
-			<circle r="2.5" fill="#8b5cf6">
+			<circle r="2.5" fill="#C4A484">
 				<animateMotion
 					dur="1.8s"
 					repeatCount="indefinite"
@@ -1021,7 +1021,7 @@ function Branches() {
 	];
 	return (
 		<>
-			<Bg id="br" from="#6366f1" to="#10b981" />
+			<Bg id="br" from="#A67B5B" to="#10b981" />
 			<line
 				x1="70"
 				y1="150"
@@ -1219,13 +1219,13 @@ function Logs() {
 		{ c: "#10b981", w: 150 },
 		{ c: "#3b82f6", w: 190 },
 		{ c: "#fbbf24", w: 120 },
-		{ c: "#8b5cf6", w: 170 },
+		{ c: "#C4A484", w: 170 },
 		{ c: "#10b981", w: 140 },
 		{ c: "#f87171", w: 200 },
 	];
 	return (
 		<>
-			<Bg id="log" from="#6366f1" to="#8b5cf6" />
+			<Bg id="log" from="#A67B5B" to="#C4A484" />
 			<Frame x={56} y={54} w={288} h={192} />
 			<text
 				x="112"
@@ -1279,12 +1279,12 @@ function Logs() {
 function Metrics() {
 	const bars = [
 		{ label: "CPU", c: "#3b82f6", v: "30;58;30" },
-		{ label: "MEM", c: "#8b5cf6", v: "40;70;40" },
+		{ label: "MEM", c: "#C4A484", v: "40;70;40" },
 		{ label: "NET", c: "#10b981", v: "22;50;22" },
 	];
 	return (
 		<>
-			<Bg id="met" from="#3b82f6" to="#8b5cf6" />
+			<Bg id="met" from="#3b82f6" to="#C4A484" />
 			<Frame x={60} y={60} w={280} h={180} dots={false} />
 			<text
 				x="80"
@@ -1335,7 +1335,7 @@ function Metrics() {
 function Anomaly() {
 	return (
 		<>
-			<Bg id="ano" from="#6366f1" to="#8b5cf6" />
+			<Bg id="ano" from="#A67B5B" to="#C4A484" />
 			<Frame x={56} y={64} w={288} h={172} dots={false} />
 			<text
 				x="76"
@@ -1355,7 +1355,7 @@ function Anomaly() {
 			/>
 			<path
 				d="M72 176 L110 168 L146 174 L180 118 L196 182 L232 160 L272 166 L328 158"
-				stroke="#6366f1"
+				stroke="#A67B5B"
 				strokeWidth="2.5"
 				strokeLinecap="round"
 				strokeLinejoin="round"
@@ -1499,7 +1499,7 @@ function Cascade() {
 	];
 	return (
 		<>
-			<Bg id="cas" from="#f87171" to="#6366f1" />
+			<Bg id="cas" from="#f87171" to="#A67B5B" />
 			{edges.map(([a, b], i) => (
 				<line
 					key={i}
@@ -1540,11 +1540,11 @@ function Cascade() {
 						cx={n.x}
 						cy={n.y}
 						r="5"
-						fill={i === 0 ? "#f87171" : "#6366f1"}
+						fill={i === 0 ? "#f87171" : "#A67B5B"}
 					>
 						<animate
 							attributeName="fill"
-							values="#6366f1;#f87171;#6366f1"
+							values="#A67B5B;#f87171;#A67B5B"
 							dur="3s"
 							begin={`${n.d}s`}
 							repeatCount="indefinite"
@@ -1560,7 +1560,7 @@ function Cascade() {
 function Dashboard() {
 	return (
 		<>
-			<Bg id="dash" from="#6366f1" to="#3b82f6" />
+			<Bg id="dash" from="#A67B5B" to="#3b82f6" />
 			<Frame x={48} y={52} w={304} h={196} />
 			{/* chart widget */}
 			<rect
@@ -1657,7 +1657,7 @@ function Dashboard() {
 function Stacktrace() {
 	return (
 		<>
-			<Bg id="st" from="#f87171" to="#6366f1" />
+			<Bg id="st" from="#f87171" to="#A67B5B" />
 			<Frame x={60} y={54} w={280} h={192} />
 			<text
 				x="112"
@@ -1722,7 +1722,7 @@ function Stacktrace() {
 function Rootcause() {
 	return (
 		<>
-			<Bg id="rc" from="#8b5cf6" to="#6366f1" />
+			<Bg id="rc" from="#C4A484" to="#A67B5B" />
 			{/* nodes */}
 			{[
 				{ x: 90, y: 110 },
@@ -1806,7 +1806,7 @@ function Rootcause() {
 function Remediation() {
 	return (
 		<>
-			<Bg id="rem" from="#10b981" to="#6366f1" />
+			<Bg id="rem" from="#10b981" to="#A67B5B" />
 			<Frame x={64} y={54} w={272} h={192} dots={false} />
 			<path
 				d="M84 74 l4 4 l8 -9"
@@ -1874,7 +1874,7 @@ function Remediation() {
 				rx="6"
 				className="fill-muted/50"
 			/>
-			<rect x="92" y="184" width="60" height="5" rx="2.5" fill="#8b5cf6" />
+			<rect x="92" y="184" width="60" height="5" rx="2.5" fill="#C4A484" />
 			<rect
 				x="92"
 				y="194"
@@ -1911,7 +1911,7 @@ function Remediation() {
 function Ticket() {
 	return (
 		<>
-			<Bg id="tk" from="#f59e0b" to="#6366f1" />
+			<Bg id="tk" from="#f59e0b" to="#A67B5B" />
 			<path
 				d="M78 112 l22 40 h-44 Z"
 				className="fill-amber-500/20 stroke-amber-500"
@@ -1936,7 +1936,7 @@ function Ticket() {
 				strokeWidth="1.5"
 				strokeDasharray={flow}
 			/>
-			<circle r="2.5" fill="#8b5cf6">
+			<circle r="2.5" fill="#C4A484">
 				<animateMotion
 					dur="1.8s"
 					repeatCount="indefinite"
@@ -2047,7 +2047,7 @@ function Ticket() {
 function Assign() {
 	return (
 		<>
-			<Bg id="asg" from="#6366f1" to="#10b981" />
+			<Bg id="asg" from="#A67B5B" to="#10b981" />
 			{/* ticket */}
 			<Frame x={44} y={110} w={110} h={80} dots={false} />
 			<rect
@@ -2093,7 +2093,7 @@ function Assign() {
 				strokeWidth="1.5"
 				strokeDasharray={flow}
 			/>
-			<circle r="3" fill="#6366f1">
+			<circle r="3" fill="#A67B5B">
 				<animateMotion
 					dur="1.8s"
 					repeatCount="indefinite"
@@ -2114,8 +2114,8 @@ function Assign() {
 				className="fill-primary/12 stroke-primary/40"
 				strokeWidth="1.5"
 			/>
-			<circle cx="252" cy="142" r="9" fill="#6366f1" />
-			<path d="M236 168 a16 12 0 0 1 32 0 Z" fill="#6366f1" />
+			<circle cx="252" cy="142" r="9" fill="#A67B5B" />
+			<path d="M236 168 a16 12 0 0 1 32 0 Z" fill="#A67B5B" />
 			<circle cx="278" cy="128" r="7" className="fill-emerald-500" />
 			<path
 				d="M275 128 l2 2 l4 -4"
@@ -2143,7 +2143,7 @@ function History() {
 	const items = [70, 118, 166, 214, 262, 310];
 	return (
 		<>
-			<Bg id="hist" from="#8b5cf6" to="#6366f1" />
+			<Bg id="hist" from="#C4A484" to="#A67B5B" />
 			<line
 				x1="56"
 				y1="150"
@@ -2160,7 +2160,7 @@ function History() {
 							cx={cx}
 							cy="150"
 							r={recurring ? 9 : 6}
-							fill={recurring ? "#8b5cf6" : undefined}
+							fill={recurring ? "#C4A484" : undefined}
 							className={recurring ? undefined : "fill-card stroke-border"}
 							strokeWidth="1.5"
 						>
@@ -2204,7 +2204,7 @@ function History() {
 			{/* correlation link */}
 			<path
 				d="M118 150 C 150 110, 230 110, 262 150"
-				className="stroke-violet-500"
+				className="stroke-sagy-accent"
 				strokeWidth="1.5"
 				fill="none"
 				strokeDasharray="4 4"
@@ -2220,7 +2220,7 @@ function History() {
 				x="190"
 				y="100"
 				textAnchor="middle"
-				className="fill-violet-500"
+				className="fill-sagy-accent"
 				style={{ font: "600 8px system-ui, sans-serif" }}
 			>
 				correlated
@@ -2329,7 +2329,7 @@ function Swarm() {
 	];
 	return (
 		<>
-			<Bg id="sw" from="#0ea5e9" to="#6366f1" />
+			<Bg id="sw" from="#0ea5e9" to="#A67B5B" />
 			{nodes.map((n, i) =>
 				i === 0 ? null : (
 					<line
@@ -2403,7 +2403,7 @@ function Autoscale() {
 	const reps = [96, 150, 204, 258, 312];
 	return (
 		<>
-			<Bg id="as" from="#3b82f6" to="#8b5cf6" />
+			<Bg id="as" from="#3b82f6" to="#C4A484" />
 			<line
 				x1="60"
 				y1="120"
@@ -2462,7 +2462,7 @@ function Autoscale() {
 			))}
 			<path
 				d="M60 200 L120 184 L180 160 L240 138 L300 120"
-				stroke="#8b5cf6"
+				stroke="#C4A484"
 				strokeWidth="2.5"
 				strokeLinecap="round"
 				strokeLinejoin="round"
@@ -2494,7 +2494,7 @@ function Autoscale() {
 function Approval() {
 	return (
 		<>
-			<Bg id="ap" from="#fbbf24" to="#6366f1" />
+			<Bg id="ap" from="#fbbf24" to="#A67B5B" />
 			<Frame x={88} y={58} w={224} h={150} />
 			<circle cx="104" cy="102" r="6" className="fill-amber-400" />
 			<text
@@ -2608,7 +2608,7 @@ function Approval() {
 function Explain() {
 	return (
 		<>
-			<Bg id="ex" from="#8b5cf6" to="#3b82f6" />
+			<Bg id="ex" from="#C4A484" to="#3b82f6" />
 			<circle
 				cx="88"
 				cy="120"
@@ -2669,14 +2669,14 @@ function Rollback() {
 	const states = [110, 170, 230, 290];
 	return (
 		<>
-			<Bg id="rb" from="#6366f1" to="#10b981" />
+			<Bg id="rb" from="#A67B5B" to="#10b981" />
 			{states.map((cx, i) => (
 				<g key={cx}>
 					<circle
 						cx={cx}
 						cy="150"
 						r="10"
-						fill={i === 1 ? "#10b981" : "#6366f1"}
+						fill={i === 1 ? "#10b981" : "#A67B5B"}
 						opacity={i === 3 ? 0.4 : 1}
 					/>
 					{i < 3 && (
@@ -2786,13 +2786,13 @@ function Cylinder({
 function DbEngines() {
 	const dbs = [
 		{ x: 60, c: "#3b82f6", label: "Postgres" },
-		{ x: 130, c: "#8b5cf6", label: "MySQL" },
+		{ x: 130, c: "#C4A484", label: "MySQL" },
 		{ x: 200, c: "#10b981", label: "Mongo" },
 		{ x: 270, c: "#f59e0b", label: "Redis" },
 	];
 	return (
 		<>
-			<Bg id="dbe" from="#6366f1" to="#10b981" />
+			<Bg id="dbe" from="#A67B5B" to="#10b981" />
 			{dbs.map((d, i) => (
 				<g key={d.label}>
 					<Cylinder x={d.x} y={110} w={62} h={64} fill={d.c} />
@@ -2833,7 +2833,7 @@ function DbEngines() {
 function BackupSchedule() {
 	return (
 		<>
-			<Bg id="bk" from="#3b82f6" to="#8b5cf6" />
+			<Bg id="bk" from="#3b82f6" to="#C4A484" />
 			{/* clock */}
 			<circle
 				cx="96"
@@ -2925,7 +2925,7 @@ function BackupSchedule() {
 				</circle>
 			))}
 			{/* bucket */}
-			<Cylinder x={224} y={116} w={70} h={64} fill="#8b5cf6" />
+			<Cylinder x={224} y={116} w={70} h={64} fill="#C4A484" />
 			<text
 				x="259"
 				y="150"
@@ -2953,9 +2953,9 @@ function BackupSchedule() {
 function Volume() {
 	return (
 		<>
-			<Bg id="vol" from="#6366f1" to="#3b82f6" />
+			<Bg id="vol" from="#A67B5B" to="#3b82f6" />
 			{/* volume disk stack */}
-			<Cylinder x={110} y={100} w={90} h={80} fill="#6366f1" />
+			<Cylinder x={110} y={100} w={90} h={80} fill="#A67B5B" />
 			<ellipse
 				cx="155"
 				cy="126"
@@ -3039,9 +3039,9 @@ function S3dest() {
 	];
 	return (
 		<>
-			<Bg id="s3" from="#10b981" to="#6366f1" />
+			<Bg id="s3" from="#10b981" to="#A67B5B" />
 			{/* source */}
-			<Cylinder x={54} y={118} w={70} h={60} fill="#6366f1" />
+			<Cylinder x={54} y={118} w={70} h={60} fill="#A67B5B" />
 			<text
 				x="89"
 				y="210"
@@ -3113,7 +3113,7 @@ function Servers() {
 	];
 	return (
 		<>
-			<Bg id="srv" from="#0ea5e9" to="#6366f1" />
+			<Bg id="srv" from="#0ea5e9" to="#A67B5B" />
 			{/* control plane */}
 			<circle cx="70" cy="150" r="26" className="fill-primary/80" />
 			<rect x="58" y="142" width="24" height="4" rx="2" fill="#fff" />
@@ -3221,11 +3221,11 @@ function Terminal() {
 	const cmds = [
 		{ w: 120, c: "#10b981" },
 		{ w: 170, c: "#3b82f6" },
-		{ w: 90, c: "#8b5cf6" },
+		{ w: 90, c: "#C4A484" },
 	];
 	return (
 		<>
-			<Bg id="term" from="#6366f1" to="#8b5cf6" />
+			<Bg id="term" from="#A67B5B" to="#C4A484" />
 			<Frame x={60} y={58} w={280} h={184} />
 			{cmds.map((c, i) => {
 				const y = 104 + i * 30;
@@ -3282,7 +3282,7 @@ function ProxyGraphic() {
 	];
 	return (
 		<>
-			<Bg id="px" from="#10b981" to="#6366f1" />
+			<Bg id="px" from="#10b981" to="#A67B5B" />
 			{/* incoming */}
 			<text
 				x="60"
@@ -3383,14 +3383,14 @@ function ProxyGraphic() {
 /* Multi-channel notifications */
 function Channels() {
 	const chans = [
-		{ x: 150, y: 84, label: "Slack", c: "#8b5cf6" },
-		{ x: 300, y: 120, label: "Discord", c: "#6366f1" },
+		{ x: 150, y: 84, label: "Slack", c: "#C4A484" },
+		{ x: 300, y: 120, label: "Discord", c: "#A67B5B" },
 		{ x: 300, y: 190, label: "Email", c: "#3b82f6" },
 		{ x: 150, y: 216, label: "Telegram", c: "#0ea5e9" },
 	];
 	return (
 		<>
-			<Bg id="ch" from="#3b82f6" to="#8b5cf6" />
+			<Bg id="ch" from="#3b82f6" to="#C4A484" />
 			{/* hub */}
 			<circle cx="80" cy="150" r="26" className="fill-primary/80" />
 			<path d="M68 144 h24 v14 l-6 -4 h-18 Z" fill="#fff" />
@@ -3429,7 +3429,7 @@ function Channels() {
 function AlertSummary() {
 	return (
 		<>
-			<Bg id="al" from="#8b5cf6" to="#3b82f6" />
+			<Bg id="al" from="#C4A484" to="#3b82f6" />
 			<Frame x={72} y={64} w={256} h={172} dots={false} />
 			<circle cx="94" cy="88" r="8" className="fill-amber-400" />
 			<path
@@ -3509,7 +3509,7 @@ function Severity() {
 	];
 	return (
 		<>
-			<Bg id="sev" from="#f87171" to="#6366f1" />
+			<Bg id="sev" from="#f87171" to="#A67B5B" />
 			<Frame x={60} y={58} w={280} h={184} dots={false} />
 			<text
 				x="80"
@@ -3587,8 +3587,8 @@ function Avatar({ x, y, c }: { x: number; y: number; c: string }) {
 function Developer() {
 	return (
 		<>
-			<Bg id="dev" from="#6366f1" to="#8b5cf6" />
-			<Avatar x={150} y={140} c="#6366f1" />
+			<Bg id="dev" from="#A67B5B" to="#C4A484" />
+			<Avatar x={150} y={140} c="#A67B5B" />
 			{/* code window */}
 			<Frame x={210} y={96} w={130} h={92} dots={false} />
 			{[116, 130, 144, 158, 172].map((y, i) => (
@@ -3648,7 +3648,7 @@ function Developer() {
 function DevopsEng() {
 	return (
 		<>
-			<Bg id="doe" from="#0ea5e9" to="#6366f1" />
+			<Bg id="doe" from="#0ea5e9" to="#A67B5B" />
 			<Avatar x={120} y={140} c="#0ea5e9" />
 			{/* gear */}
 			<g>
@@ -3731,7 +3731,7 @@ function DevopsEng() {
 function Qa() {
 	return (
 		<>
-			<Bg id="qa" from="#10b981" to="#6366f1" />
+			<Bg id="qa" from="#10b981" to="#A67B5B" />
 			<Avatar x={110} y={150} c="#10b981" />
 			{/* test checklist */}
 			<Frame x={190} y={82} w={150} h={136} dots={false} />
@@ -3893,7 +3893,7 @@ function ManagedInfra() {
 function CodeReview() {
 	return (
 		<>
-			<Bg id="cr" from="#8b5cf6" to="#6366f1" />
+			<Bg id="cr" from="#C4A484" to="#A67B5B" />
 			{/* calendar */}
 			<Frame x={64} y={70} w={120} h={120} dots={false} />
 			<rect
@@ -3925,7 +3925,7 @@ function CodeReview() {
 							width="18"
 							height="18"
 							rx="4"
-							fill={active ? "#8b5cf6" : undefined}
+							fill={active ? "#C4A484" : undefined}
 							className={active ? undefined : "fill-muted/50"}
 						>
 							{active && (
@@ -3986,7 +3986,7 @@ function CodeReview() {
 function Security() {
 	return (
 		<>
-			<Bg id="sec" from="#f87171" to="#6366f1" />
+			<Bg id="sec" from="#f87171" to="#A67B5B" />
 			<path
 				d="M200 66 l48 18 v36 c0 32 -24 52 -48 62 c-24 -10 -48 -30 -48 -62 v-36 Z"
 				className="fill-card stroke-border"
@@ -4038,7 +4038,7 @@ function Security() {
 function CodeSmell() {
 	return (
 		<>
-			<Bg id="cs" from="#f59e0b" to="#6366f1" />
+			<Bg id="cs" from="#f59e0b" to="#A67B5B" />
 			<Frame x={64} y={56} w={272} h={188} />
 			{[
 				{ w: 180, warn: false },
@@ -4125,7 +4125,7 @@ function CodeSmell() {
 function Report() {
 	return (
 		<>
-			<Bg id="rep" from="#6366f1" to="#10b981" />
+			<Bg id="rep" from="#A67B5B" to="#10b981" />
 			<Frame x={72} y={54} w={256} h={192} dots={false} />
 			<text
 				x="92"
@@ -4219,13 +4219,13 @@ function Report() {
 /* Role-based access control */
 function Rbac() {
 	const roles = [
-		{ x: 120, label: "Owner", c: "#8b5cf6" },
+		{ x: 120, label: "Owner", c: "#C4A484" },
 		{ x: 200, label: "Admin", c: "#3b82f6" },
 		{ x: 280, label: "Member", c: "#10b981" },
 	];
 	return (
 		<>
-			<Bg id="rbac" from="#6366f1" to="#8b5cf6" />
+			<Bg id="rbac" from="#A67B5B" to="#C4A484" />
 			<circle cx="200" cy="80" r="18" className="fill-primary/80" />
 			<path
 				d="M191 80 l6 6 l11 -12"
@@ -4284,10 +4284,10 @@ function Rbac() {
 function Sso() {
 	return (
 		<>
-			<Bg id="sso" from="#3b82f6" to="#6366f1" />
+			<Bg id="sso" from="#3b82f6" to="#A67B5B" />
 			{/* providers */}
 			{[
-				{ y: 100, label: "SSO", c: "#8b5cf6" },
+				{ y: 100, label: "SSO", c: "#C4A484" },
 				{ y: 150, label: "SAML", c: "#3b82f6" },
 				{ y: 200, label: "OAuth", c: "#10b981" },
 			].map((p, i) => (
@@ -4368,7 +4368,7 @@ function Sso() {
 function Audit() {
 	return (
 		<>
-			<Bg id="aud" from="#6366f1" to="#3b82f6" />
+			<Bg id="aud" from="#A67B5B" to="#3b82f6" />
 			<Frame x={64} y={54} w={272} h={192} dots={false} />
 			<text
 				x="84"
@@ -4408,7 +4408,7 @@ function Audit() {
 							width="70"
 							height="5"
 							rx="2.5"
-							fill={["#8b5cf6", "#3b82f6", "#10b981", "#f59e0b", "#8b5cf6"][i]}
+							fill={["#C4A484", "#3b82f6", "#10b981", "#f59e0b", "#C4A484"][i]}
 						/>
 						<rect
 							x="188"
@@ -4447,15 +4447,15 @@ function Audit() {
 function Templates() {
 	const tps = [
 		{ label: "WordPress", c: "#3b82f6" },
-		{ label: "Ghost", c: "#8b5cf6" },
+		{ label: "Ghost", c: "#C4A484" },
 		{ label: "n8n", c: "#f87171" },
 		{ label: "Redis", c: "#10b981" },
-		{ label: "Postgres", c: "#6366f1" },
+		{ label: "Postgres", c: "#A67B5B" },
 		{ label: "Metabase", c: "#f59e0b" },
 	];
 	return (
 		<>
-			<Bg id="tpl" from="#8b5cf6" to="#3b82f6" />
+			<Bg id="tpl" from="#C4A484" to="#3b82f6" />
 			{tps.map((t, i) => {
 				const col = i % 3;
 				const row = Math.floor(i / 3);
@@ -4614,7 +4614,7 @@ function Cron() {
 function Mcp() {
 	return (
 		<>
-			<Bg id="mcp" from="#6366f1" to="#8b5cf6" />
+			<Bg id="mcp" from="#A67B5B" to="#C4A484" />
 			{/* central MCP core */}
 			<circle cx="200" cy="150" r="34" className="fill-primary/15">
 				<animate
@@ -4666,7 +4666,7 @@ function Mcp() {
 							width="12"
 							height="12"
 							rx="3"
-							fill={["#3b82f6", "#8b5cf6", "#10b981", "#f59e0b"][i % 4]}
+							fill={["#3b82f6", "#C4A484", "#10b981", "#f59e0b"][i % 4]}
 						>
 							<animate
 								attributeName="opacity"

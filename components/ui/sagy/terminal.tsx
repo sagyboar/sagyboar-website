@@ -123,7 +123,7 @@ export function Terminal({
 		>
 			<div
 				ref={containerRef}
-				className="overflow-y-auto p-4 sm:p-5 leading-relaxed"
+				className="overflow-y-auto p-4 leading-relaxed [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:p-5"
 				style={{ minHeight }}
 				role="log"
 				aria-live="polite"

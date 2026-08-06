@@ -9,7 +9,7 @@ export function JobsWhyWork() {
 	return (
 		<ScrollReveal
 			as="section"
-			className={cn("border-b border-white/[0.08]", spacing.sectionY)}
+			className={cn("border-b border-sagy-border", spacing.sectionY)}
 			aria-label="Why work at Sagyboar"
 			stagger
 		>
@@ -31,10 +31,10 @@ export function JobsWhyWork() {
 
 						return (
 							<ScrollRevealItem key={card.title}>
-								<article className="grid overflow-hidden sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface shadow-sagy-card transition-colors duration-300 hover:border-sagy-accent/25 sm:grid-cols-2">
+								<article className="grid overflow-hidden sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface shadow-sagy-card transition-colors duration-300 hover:border-sagy-accent/25 sm:grid-cols-2">
 									<div
 										className={cn(
-											"relative min-h-[14rem] border-b border-white/[0.08] bg-sagy-surface-elevated/70 sm:min-h-[19rem] sm:border-b-0",
+											"relative min-h-[14rem] border-b border-sagy-border bg-sagy-surface-elevated/70 sm:min-h-[19rem] sm:border-b-0",
 											mediaRight
 												? "sm:order-2 sm:border-l"
 												: "sm:order-1 sm:border-r",
@@ -55,7 +55,7 @@ export function JobsWhyWork() {
 									>
 										<div className="flex items-center gap-3">
 											<span
-												className="font-display text-2xl leading-none text-white/[0.14]"
+												className="font-display text-2xl leading-none text-sagy-heading/[0.14]"
 												aria-hidden="true"
 											>
 												{String(index + 1).padStart(2, "0")}
@@ -65,7 +65,7 @@ export function JobsWhyWork() {
 												aria-hidden="true"
 											/>
 										</div>
-										<h3 className="mt-4 font-display text-xl uppercase leading-tight tracking-tight text-white sm:text-2xl">
+										<h3 className="mt-4 font-display text-xl uppercase leading-tight tracking-tight text-sagy-heading sm:text-2xl">
 											{card.title}
 										</h3>
 										<p className="mt-3 font-sans text-sm leading-relaxed text-sagy-body sm:text-base">

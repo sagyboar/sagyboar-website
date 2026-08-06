@@ -44,7 +44,7 @@ export function PaidPlanCard({
 			className={cn(
 				"sagy-spotlight relative flex flex-col rounded-xl border bg-sagy-surface shadow-sagy-card transition-colors",
 				compact ? "px-5 py-6" : "px-6 py-8",
-				plan.recommended ? "border-sagy-accent/30" : "border-white/[0.08]",
+				plan.recommended ? "border-sagy-accent/30" : "border-sagy-border",
 			)}
 		>
 			{plan.recommended ? (
@@ -53,7 +53,7 @@ export function PaidPlanCard({
 
 			<h3
 				className={cn(
-					"font-display uppercase tracking-tight text-white",
+					"font-display uppercase tracking-tight text-sagy-heading",
 					compact ? "text-base" : "text-lg",
 				)}
 			>
@@ -97,7 +97,7 @@ export function PaidPlanCard({
 			</div>
 
 			<div className={compact ? "mt-4" : "mt-6"}>
-				<p className="text-xs font-semibold uppercase tracking-wider text-white">
+				<p className="text-xs font-semibold uppercase tracking-wider text-sagy-heading">
 					Includes
 				</p>
 				<ul
@@ -193,7 +193,7 @@ function BillingCycleToggle({
 			<div
 				role="tablist"
 				aria-label="Billing cycle"
-				className="flex w-fit items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.04] p-1"
+				className="flex w-fit items-center gap-1 rounded-full border border-sagy-border bg-sagy-heading/[0.04] p-1"
 			>
 				{options.map((option) => {
 					const selected = value === option.id;
@@ -209,7 +209,7 @@ function BillingCycleToggle({
 								"relative rounded-full px-5 py-2 text-sm font-medium transition-colors",
 								selected
 									? "text-background"
-									: "text-sagy-body hover:text-white",
+									: "text-sagy-body hover:text-sagy-heading",
 							)}
 						>
 							{selected ? (
@@ -263,7 +263,7 @@ function IndiePlanCard({
 			id={plan.id}
 			className={cn(
 				"sagy-spotlight relative flex flex-col rounded-xl border bg-sagy-surface px-5 py-6 shadow-sagy-card transition-colors sm:px-6 sm:py-8",
-				plan.recommended ? "border-sagy-accent/30" : "border-white/[0.08]",
+				plan.recommended ? "border-sagy-accent/30" : "border-sagy-border",
 				plan.comingSoon && "opacity-60",
 			)}
 		>
@@ -273,7 +273,7 @@ function IndiePlanCard({
 					className={cn(
 						"absolute -top-2.5 left-5 sm:left-6",
 						plan.comingSoon &&
-							"border-white/[0.08] bg-white/[0.04] text-sagy-body",
+							"border-sagy-border bg-sagy-heading/[0.04] text-sagy-body",
 					)}
 				>
 					{plan.badge}
@@ -310,22 +310,22 @@ function IndiePlanCard({
 							className={cn(
 								"flex gap-2",
 								item.keyDifferentiator &&
-									"rounded-lg border border-white/[0.08] bg-white/[0.04] px-2 py-1.5 font-medium text-white",
+									"rounded-lg border border-sagy-border bg-sagy-heading/[0.04] px-2 py-1.5 font-medium text-sagy-heading",
 								item.accent &&
-									"rounded-lg bg-white/5 px-2 py-1.5 font-semibold text-white",
+									"rounded-lg bg-sagy-heading/5 px-2 py-1.5 font-semibold text-sagy-heading",
 							)}
 						>
 							<Check
 								className={cn(
 									"mt-0.5 h-4 w-4 shrink-0",
 									item.accent
-										? "text-white"
+										? "text-sagy-heading"
 										: item.keyDifferentiator
-											? "text-white"
+											? "text-sagy-heading"
 											: "text-sagy-accent",
 								)}
 							/>
-							<span className={cn(item.accent && "font-semibold text-white")}>
+							<span className={cn(item.accent && "font-semibold text-sagy-heading")}>
 								{item.text}
 							</span>
 						</li>
@@ -423,7 +423,7 @@ export function IndiePricing({
 				</span>
 			</p>
 
-			<div className="mx-auto mt-8 max-w-3xl sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-5 py-4 text-center shadow-sagy-card sm:px-6">
+			<div className="mx-auto mt-8 max-w-3xl sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface px-5 py-4 text-center shadow-sagy-card sm:px-6">
 				<p className="font-sans text-sm leading-relaxed text-sagy-body">
 					{indieExclusionNote}
 				</p>

@@ -10,7 +10,7 @@ const columns = [
 ];
 
 const SagyboarHeaderClass =
-	"bg-sagy-accent/15 text-white dark:bg-sagy-accent/25";
+	"bg-sagy-accent/15 text-sagy-heading dark:bg-sagy-accent/25";
 
 const SagyboarCellClass =
 	"bg-sagy-accent/10 text-sagy-heading dark:bg-sagy-accent/15 dark:text-sagy-heading";
@@ -27,9 +27,9 @@ function isPositiveValue(value: string) {
 
 export function MarketComparisonTable() {
 	return (
-		<div className="overflow-x-auto sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface shadow-sagy-card">
+		<div className="overflow-x-auto sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface shadow-sagy-card">
 			<div className="min-w-[560px]">
-				<div className="grid grid-cols-4 border-b border-white/[0.08] bg-white/[0.02]">
+				<div className="grid grid-cols-4 border-b border-sagy-border bg-sagy-heading/[0.02]">
 					<div className="p-3 font-sans text-sm font-medium text-sagy-body">
 						Feature
 					</div>
@@ -48,9 +48,9 @@ export function MarketComparisonTable() {
 				{marketComparison.map((row, rowIndex) => (
 					<div
 						key={row.feature}
-						className="grid grid-cols-4 border-b border-white/[0.06] last:border-b-0"
+						className="grid grid-cols-4 border-b border-sagy-heading/6 last:border-b-0"
 					>
-						<div className="flex items-center p-3 font-sans text-sm font-medium text-white transition-colors hover:bg-white/[0.02]">
+						<div className="flex items-center p-3 font-sans text-sm font-medium text-sagy-heading transition-colors hover:bg-sagy-heading/[0.02]">
 							{row.feature}
 						</div>
 						{columns.map((col) => {
@@ -69,7 +69,7 @@ export function MarketComparisonTable() {
 													rowIndex === marketComparison.length - 1 &&
 														"rounded-b-xl",
 												)
-											: "text-sagy-body hover:bg-white/[0.02]",
+											: "text-sagy-body hover:bg-sagy-heading/[0.02]",
 										positive && "text-emerald-500 dark:text-emerald-400",
 									)}
 								>

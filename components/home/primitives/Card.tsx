@@ -37,7 +37,7 @@ export function Card({
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 			className={cn(
-				"relative overflow-hidden rounded-xl border border-white/[0.08] bg-sagy-surface p-6 shadow-sagy-card transition-colors duration-300",
+				"relative overflow-hidden rounded-xl border border-sagy-border bg-sagy-surface p-6 shadow-sagy-card transition-colors duration-300",
 				accent && "border-sagy-accent/30",
 				className,
 			)}
@@ -54,7 +54,7 @@ export function Card({
 							left: position.x,
 							top: position.y,
 							background:
-								"radial-gradient(circle, rgba(109, 94, 248, 0.12) 0%, transparent 70%)",
+								"radial-gradient(circle, rgba(61, 38, 26, 0.12) 0%, transparent 70%)",
 						}}
 					/>
 				</div>

@@ -166,8 +166,8 @@ const config = {
 					"100%": { left: "100%", opacity: "0" },
 				},
 				"agent-pulse": {
-					"0%, 100%": { boxShadow: "0 0 0 0 rgba(109, 94, 248, 0.4)" },
-					"50%": { boxShadow: "0 0 12px 2px rgba(109, 94, 248, 0.25)" },
+					"0%, 100%": { boxShadow: "0 0 0 0 rgba(166, 123, 91, 0.4)" },
+					"50%": { boxShadow: "0 0 12px 2px rgba(166, 123, 91, 0.3)" },
 				},
 			},
 			animation: {

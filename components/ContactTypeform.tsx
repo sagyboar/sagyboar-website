@@ -44,7 +44,7 @@ export function ContactTypeform() {
 		<PageShell>
 			<ScrollReveal
 				as="section"
-				className={cn("border-b border-white/[0.08]", spacing.sectionYLarge)}
+				className={cn("border-b border-sagy-border", spacing.sectionYLarge)}
 				aria-label="Contact us"
 				stagger
 			>
@@ -68,9 +68,9 @@ export function ContactTypeform() {
 								<ScrollRevealItem key={channel.label}>
 									<a
 										href={channel.href}
-										className="group block sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface p-5 shadow-sagy-card transition-colors duration-300 hover:border-sagy-accent/30"
+										className="group block sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface p-5 shadow-sagy-card transition-colors duration-300 hover:border-sagy-accent/30"
 									>
-										<span className="flex size-10 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04]">
+										<span className="flex size-10 items-center justify-center rounded-lg border border-sagy-border bg-sagy-heading/[0.04]">
 											<channel.icon
 												className="size-5 text-sagy-accent"
 												strokeWidth={1.75}
@@ -80,7 +80,7 @@ export function ContactTypeform() {
 										<p className="mt-4 font-mono text-[10px] uppercase tracking-wider text-sagy-muted">
 											{channel.label}
 										</p>
-										<p className="mt-1 break-all font-sans text-sm text-white group-hover:text-sagy-accent">
+										<p className="mt-1 break-all font-sans text-sm text-sagy-heading group-hover:text-sagy-accent">
 											{channel.value}
 										</p>
 										<p className="mt-2 font-sans text-sm leading-relaxed text-sagy-body">
@@ -91,7 +91,7 @@ export function ContactTypeform() {
 							))}
 
 							<ScrollRevealItem>
-								<div className="sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface p-5 shadow-sagy-card">
+								<div className="sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface p-5 shadow-sagy-card">
 									<div className="flex items-center gap-2">
 										<StatusDot status="running" />
 										<p className="font-mono text-[10px] uppercase tracking-wider text-sagy-body">
@@ -110,7 +110,7 @@ export function ContactTypeform() {
 													<dt className="font-mono text-[10px] uppercase tracking-wider text-sagy-muted">
 														{fact.label}
 													</dt>
-													<dd className="mt-1 font-sans text-sm text-white">
+													<dd className="mt-1 font-sans text-sm text-sagy-heading">
 														{fact.value}
 													</dd>
 												</div>
@@ -122,8 +122,8 @@ export function ContactTypeform() {
 						</div>
 
 						<ScrollRevealItem>
-							<div className="sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface p-6 shadow-sagy-card sm:p-8">
-								<h2 className="font-display text-xl uppercase tracking-tight text-white">
+							<div className="sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface p-6 shadow-sagy-card sm:p-8">
+								<h2 className="font-display text-xl uppercase tracking-tight text-sagy-heading">
 									Send us a message
 								</h2>
 								<p className="mt-2 font-sans text-sm leading-relaxed text-sagy-body">

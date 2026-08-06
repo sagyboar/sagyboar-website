@@ -73,7 +73,7 @@ export function SolutionStackGraphic({
 }
 
 /**
- * Ambient layer behind every diagram — indigo core bloom plus two slow orbit
+ * Ambient layer behind every diagram — brand-brown core bloom plus two slow orbit
  * rings, matching the platform hero graphic. No filled panel, so the diagram
  * reads as lit content on the card surface. `from`/`to` are legacy per-graphic
  * tints, no longer used.
@@ -91,8 +91,8 @@ function BackgroundLayer({
 		<>
 			<defs>
 				<radialGradient id={`${id}-glow`} cx="50%" cy="50%" r="50%">
-					<stop offset="0%" stopColor="#6D5EF8" stopOpacity="0.3" />
-					<stop offset="100%" stopColor="#6D5EF8" stopOpacity="0" />
+					<stop offset="0%" stopColor="#A67B5B" stopOpacity="0.3" />
+					<stop offset="100%" stopColor="#A67B5B" stopOpacity="0" />
 				</radialGradient>
 			</defs>
 			<ellipse cx="200" cy="150" rx="185" ry="145" fill={`url(#${id}-glow)`}>
@@ -155,7 +155,7 @@ function AppsGraphic() {
 	const gridH = rows * tileH + (rows - 1) * gapY;
 	const startX = (400 - gridW) / 2;
 	const startY = (300 - gridH) / 2 + 6;
-	const accents = ["#3b82f6", "#8b5cf6", "#10b981"];
+	const accents = ["#3b82f6", "#C4A484", "#10b981"];
 
 	const tiles = [];
 	for (let r = 0; r < rows; r++) {
@@ -172,7 +172,7 @@ function AppsGraphic() {
 
 	return (
 		<>
-			<BackgroundLayer id="apps" from="#3b82f6" to="#8b5cf6" />
+			<BackgroundLayer id="apps" from="#3b82f6" to="#C4A484" />
 
 			{tiles.map((t) => (
 				<g key={`${t.x}-${t.y}`}>
@@ -274,11 +274,11 @@ function InfrastructureGraphic() {
 
 	return (
 		<>
-			<BackgroundLayer id="infra" from="#0ea5e9" to="#6366f1" />
+			<BackgroundLayer id="infra" from="#0ea5e9" to="#A67B5B" />
 			<defs>
 				<linearGradient id="infra-cloud" x1="0" y1="0" x2="1" y2="1">
 					<stop offset="0%" stopColor="#60a5fa" />
-					<stop offset="100%" stopColor="#6366f1" />
+					<stop offset="100%" stopColor="#A67B5B" />
 				</linearGradient>
 			</defs>
 
@@ -349,7 +349,7 @@ function InfrastructureGraphic() {
 						width="6"
 						height="20"
 						rx="3"
-						fill="#6366f1"
+						fill="#A67B5B"
 					/>
 					{/* slot lines */}
 					<rect
@@ -415,11 +415,11 @@ function AiOpsGraphic() {
 
 	return (
 		<>
-			<BackgroundLayer id="aiops" from="#6366f1" to="#8b5cf6" />
+			<BackgroundLayer id="aiops" from="#A67B5B" to="#C4A484" />
 			<defs>
 				<linearGradient id="aiops-core" x1="0" y1="0" x2="1" y2="1">
-					<stop offset="0%" stopColor="#8b5cf6" />
-					<stop offset="100%" stopColor="#6366f1" />
+					<stop offset="0%" stopColor="#C4A484" />
+					<stop offset="100%" stopColor="#A67B5B" />
 				</linearGradient>
 			</defs>
 
@@ -531,7 +531,7 @@ function AiOpsGraphic() {
 			/>
 			<path
 				d="M56 258 L88 258 L100 240 L112 268 L124 250 L140 258 L344 258"
-				stroke="#8b5cf6"
+				stroke="#C4A484"
 				strokeWidth="2"
 				strokeLinecap="round"
 				strokeLinejoin="round"
@@ -555,7 +555,7 @@ function TeamGraphic() {
 	const coreY = 176;
 	const roles = [
 		{ x: 116, y: 96, color: "#3b82f6", label: "Dev", delay: "0s" },
-		{ x: 200, y: 74, color: "#8b5cf6", label: "DevOps", delay: "0.6s" },
+		{ x: 200, y: 74, color: "#C4A484", label: "DevOps", delay: "0.6s" },
 		{ x: 284, y: 96, color: "#10b981", label: "QA", delay: "1.2s" },
 	];
 
@@ -564,8 +564,8 @@ function TeamGraphic() {
 			<BackgroundLayer id="team" from="#3b82f6" to="#10b981" />
 			<defs>
 				<linearGradient id="team-core" x1="0" y1="0" x2="1" y2="1">
-					<stop offset="0%" stopColor="#6366f1" />
-					<stop offset="100%" stopColor="#8b5cf6" />
+					<stop offset="0%" stopColor="#A67B5B" />
+					<stop offset="100%" stopColor="#C4A484" />
 				</linearGradient>
 			</defs>
 
@@ -862,8 +862,8 @@ function EnterpriseGraphic() {
 	const hex = "200,110 234.6,130 234.6,170 200,190 165.4,170 165.4,130";
 	const nodes = [
 		{ x: 152, y: 34, w: 96, h: 38, label: "Your cloud", color: "#3b82f6" },
-		{ x: 296, y: 126, w: 76, h: 48, label: "Servers", color: "#6366f1" },
-		{ x: 28, y: 126, w: 76, h: 48, label: "Monitoring", color: "#8b5cf6" },
+		{ x: 296, y: 126, w: 76, h: 48, label: "Servers", color: "#A67B5B" },
+		{ x: 28, y: 126, w: 76, h: 48, label: "Monitoring", color: "#C4A484" },
 		{
 			x: 150,
 			y: 224,
@@ -883,11 +883,11 @@ function EnterpriseGraphic() {
 
 	return (
 		<>
-			<BackgroundLayer id="ent" from="#3b82f6" to="#8b5cf6" />
+			<BackgroundLayer id="ent" from="#3b82f6" to="#C4A484" />
 			<defs>
 				<linearGradient id="ent-core" x1="0" y1="0" x2="1" y2="1">
-					<stop offset="0%" stopColor="#8b5cf6" />
-					<stop offset="100%" stopColor="#6366f1" />
+					<stop offset="0%" stopColor="#C4A484" />
+					<stop offset="100%" stopColor="#A67B5B" />
 				</linearGradient>
 			</defs>
 
@@ -931,7 +931,7 @@ function EnterpriseGraphic() {
 
 			{/* flowing dots toward the core */}
 			{flows.map((f, i) => (
-				<circle key={i} r="2.5" fill="#6366f1">
+				<circle key={i} r="2.5" fill="#A67B5B">
 					{f.axis === "y" ? (
 						<animate
 							attributeName="cy"
@@ -1076,7 +1076,7 @@ function OpsGraphic() {
 	const stages = [
 		{ x: 96, color: "#f87171", label: "Detect", glyph: "!" },
 		{ x: 168, color: "#fbbf24", label: "Route", glyph: "→" },
-		{ x: 240, color: "#8b5cf6", label: "AI Fix", glyph: "AI" },
+		{ x: 240, color: "#C4A484", label: "AI Fix", glyph: "AI" },
 		{ x: 312, color: "#10b981", label: "Resolved", glyph: "✓" },
 	];
 	const metrics = [
@@ -1087,10 +1087,10 @@ function OpsGraphic() {
 
 	return (
 		<>
-			<BackgroundLayer id="ops" from="#6366f1" to="#10b981" />
+			<BackgroundLayer id="ops" from="#A67B5B" to="#10b981" />
 			<defs>
 				<linearGradient id="ops-flow" x1="0" y1="0" x2="1" y2="0">
-					<stop offset="0%" stopColor="#6366f1" />
+					<stop offset="0%" stopColor="#A67B5B" />
 					<stop offset="100%" stopColor="#10b981" />
 				</linearGradient>
 			</defs>
@@ -1275,10 +1275,10 @@ function ScaleGraphic() {
 	const line = "M56 236 L110 214 L156 220 L206 184 L252 192 L300 140 L344 92";
 	return (
 		<>
-			<BackgroundLayer id="scale" from="#6366f1" to="#10b981" />
+			<BackgroundLayer id="scale" from="#A67B5B" to="#10b981" />
 			<defs>
 				<linearGradient id="scale-line" x1="0" y1="0" x2="1" y2="0">
-					<stop offset="0%" stopColor="#6366f1" />
+					<stop offset="0%" stopColor="#A67B5B" />
 					<stop offset="100%" stopColor="#10b981" />
 				</linearGradient>
 				<linearGradient id="scale-area" x1="0" y1="0" x2="0" y2="1">
@@ -1317,7 +1317,7 @@ function ScaleGraphic() {
 			{/* app nodes multiplying along the curve */}
 			{[
 				{ x: 110, y: 214, d: "0s", c: "#3b82f6" },
-				{ x: 206, y: 184, d: "0.5s", c: "#8b5cf6" },
+				{ x: 206, y: 184, d: "0.5s", c: "#C4A484" },
 				{ x: 300, y: 140, d: "1s", c: "#10b981" },
 			].map((n) => (
 				<g key={n.x}>
@@ -1359,7 +1359,7 @@ function ScaleGraphic() {
 					strokeWidth="1"
 				/>
 				<circle cx="344" cy="92" r="3.5" fill="#ffffff" />
-				<path d="M331 105 l-6 8 l8 -3 Z" fill="#6366f1" />
+				<path d="M331 105 l-6 8 l8 -3 Z" fill="#A67B5B" />
 				<path d="M357 105 l6 8 l-8 -3 Z" fill="#10b981" />
 				{/* flame */}
 				<path d="M340 109 l4 12 l4 -12 Z" fill="#fbbf24">
@@ -1406,11 +1406,11 @@ function FiveAppsGraphic() {
 	const total = 5 * tileW + 4 * gap;
 	const startX = (400 - total) / 2;
 	const y = (300 - tileH) / 2 + 6;
-	const accents = ["#3b82f6", "#8b5cf6", "#10b981", "#3b82f6", "#8b5cf6"];
+	const accents = ["#3b82f6", "#C4A484", "#10b981", "#3b82f6", "#C4A484"];
 
 	return (
 		<>
-			<BackgroundLayer id="five" from="#3b82f6" to="#8b5cf6" />
+			<BackgroundLayer id="five" from="#3b82f6" to="#C4A484" />
 
 			{accents.map((c, i) => {
 				const x = startX + i * (tileW + gap);
@@ -1508,7 +1508,7 @@ function FiveAppsGraphic() {
 function DeployGraphic() {
 	const stages = [
 		{ x: 84, color: "#3b82f6", label: "Commit", glyph: "⎇" },
-		{ x: 164, color: "#8b5cf6", label: "Build", glyph: "⚙" },
+		{ x: 164, color: "#C4A484", label: "Build", glyph: "⚙" },
 		{ x: 244, color: "#f59e0b", label: "Deploy", glyph: "↑" },
 		{ x: 324, color: "#10b981", label: "Live", glyph: "✓" },
 	];
@@ -1664,11 +1664,11 @@ function DeployGraphic() {
 function MonitoringGraphic() {
 	return (
 		<>
-			<BackgroundLayer id="mon" from="#6366f1" to="#8b5cf6" />
+			<BackgroundLayer id="mon" from="#A67B5B" to="#C4A484" />
 			<defs>
 				<linearGradient id="mon-line" x1="0" y1="0" x2="1" y2="0">
-					<stop offset="0%" stopColor="#6366f1" />
-					<stop offset="100%" stopColor="#8b5cf6" />
+					<stop offset="0%" stopColor="#A67B5B" />
+					<stop offset="100%" stopColor="#C4A484" />
 				</linearGradient>
 			</defs>
 
@@ -1820,19 +1820,19 @@ function MonitoringGraphic() {
 /* 4. AI-assisted engineering — a code editor where AI writes & fixes code */
 function AiEngineerGraphic() {
 	const lines = [
-		{ y: 96, w: 120, c: "#8b5cf6" },
+		{ y: 96, w: 120, c: "#C4A484" },
 		{ y: 116, w: 168, c: "#3b82f6" },
 		{ y: 136, w: 96, c: "#10b981" },
-		{ y: 156, w: 148, c: "#8b5cf6" },
+		{ y: 156, w: 148, c: "#C4A484" },
 		{ y: 176, w: 76, c: "#3b82f6" },
 	];
 	return (
 		<>
-			<BackgroundLayer id="eng" from="#8b5cf6" to="#3b82f6" />
+			<BackgroundLayer id="eng" from="#C4A484" to="#3b82f6" />
 			<defs>
 				<linearGradient id="eng-core" x1="0" y1="0" x2="1" y2="1">
-					<stop offset="0%" stopColor="#8b5cf6" />
-					<stop offset="100%" stopColor="#6366f1" />
+					<stop offset="0%" stopColor="#C4A484" />
+					<stop offset="100%" stopColor="#A67B5B" />
 				</linearGradient>
 			</defs>
 
@@ -1972,10 +1972,10 @@ function AiEngineerGraphic() {
 function SupportGraphic() {
 	return (
 		<>
-			<BackgroundLayer id="sup" from="#3b82f6" to="#6366f1" />
+			<BackgroundLayer id="sup" from="#3b82f6" to="#A67B5B" />
 			<defs>
 				<linearGradient id="sup-bubble" x1="0" y1="0" x2="1" y2="1">
-					<stop offset="0%" stopColor="#6366f1" />
+					<stop offset="0%" stopColor="#A67B5B" />
 					<stop offset="100%" stopColor="#3b82f6" />
 				</linearGradient>
 			</defs>
@@ -2155,16 +2155,16 @@ function NoPayrollGraphic() {
 	const cy = 176;
 	const roles = [
 		{ x: 116, y: 92, color: "#3b82f6", label: "Dev", delay: "0s" },
-		{ x: 200, y: 74, color: "#8b5cf6", label: "DevOps", delay: "0.6s" },
+		{ x: 200, y: 74, color: "#C4A484", label: "DevOps", delay: "0.6s" },
 		{ x: 284, y: 92, color: "#10b981", label: "QA", delay: "1.2s" },
 	];
 	return (
 		<>
-			<BackgroundLayer id="pay" from="#6366f1" to="#10b981" />
+			<BackgroundLayer id="pay" from="#A67B5B" to="#10b981" />
 			<defs>
 				<linearGradient id="pay-core" x1="0" y1="0" x2="1" y2="1">
-					<stop offset="0%" stopColor="#6366f1" />
-					<stop offset="100%" stopColor="#8b5cf6" />
+					<stop offset="0%" stopColor="#A67B5B" />
+					<stop offset="100%" stopColor="#C4A484" />
 				</linearGradient>
 			</defs>
 
@@ -2327,11 +2327,11 @@ function NoPayrollGraphic() {
 function SideProjectGraphic() {
 	return (
 		<>
-			<BackgroundLayer id="side" from="#8b5cf6" to="#3b82f6" />
+			<BackgroundLayer id="side" from="#C4A484" to="#3b82f6" />
 			<defs>
 				<linearGradient id="side-accent" x1="0" y1="0" x2="1" y2="1">
-					<stop offset="0%" stopColor="#8b5cf6" />
-					<stop offset="100%" stopColor="#6366f1" />
+					<stop offset="0%" stopColor="#C4A484" />
+					<stop offset="100%" stopColor="#A67B5B" />
 				</linearGradient>
 			</defs>
 
@@ -2346,9 +2346,9 @@ function SideProjectGraphic() {
 					className="fill-card stroke-border"
 					strokeWidth="1.5"
 				/>
-				<circle cx="64" cy="142" r="4" fill="#8b5cf6" />
-				<circle cx="64" cy="162" r="4" fill="#8b5cf6" />
-				<circle cx="88" cy="152" r="4" fill="#8b5cf6" />
+				<circle cx="64" cy="142" r="4" fill="#C4A484" />
+				<circle cx="64" cy="162" r="4" fill="#C4A484" />
+				<circle cx="88" cy="152" r="4" fill="#C4A484" />
 				<path
 					d="M64 146 L64 158 M64 162 a0 0 0 0 0 0 0 M64 152 q0 10 20 0"
 					className="stroke-primary/50"
@@ -2378,7 +2378,7 @@ function SideProjectGraphic() {
 				strokeDasharray="3 4"
 			/>
 			{[0, 1].map((k) => (
-				<circle key={k} cy="150" r="2.5" fill="#6366f1">
+				<circle key={k} cy="150" r="2.5" fill="#A67B5B">
 					<animate
 						attributeName="cx"
 						values="112;176"
@@ -2517,11 +2517,11 @@ function SideProjectGraphic() {
 function OneAppGraphic() {
 	return (
 		<>
-			<BackgroundLayer id="one" from="#3b82f6" to="#8b5cf6" />
+			<BackgroundLayer id="one" from="#3b82f6" to="#C4A484" />
 			<defs>
 				<linearGradient id="one-accent" x1="0" y1="0" x2="1" y2="1">
 					<stop offset="0%" stopColor="#3b82f6" />
-					<stop offset="100%" stopColor="#8b5cf6" />
+					<stop offset="100%" stopColor="#C4A484" />
 				</linearGradient>
 			</defs>
 
@@ -2664,11 +2664,11 @@ function OneAppGraphic() {
 function ManagedHostingGraphic() {
 	return (
 		<>
-			<BackgroundLayer id="host" from="#0ea5e9" to="#6366f1" />
+			<BackgroundLayer id="host" from="#0ea5e9" to="#A67B5B" />
 			<defs>
 				<linearGradient id="host-accent" x1="0" y1="0" x2="1" y2="1">
 					<stop offset="0%" stopColor="#60a5fa" />
-					<stop offset="100%" stopColor="#6366f1" />
+					<stop offset="100%" stopColor="#A67B5B" />
 				</linearGradient>
 			</defs>
 
@@ -2737,7 +2737,7 @@ function ManagedHostingGraphic() {
 				strokeDasharray="3 4"
 			/>
 			{[0, 1].map((k) => (
-				<circle key={k} cx="200" r="2.5" fill="#6366f1">
+				<circle key={k} cx="200" r="2.5" fill="#A67B5B">
 					<animate
 						attributeName="cy"
 						values="122;150"
@@ -2830,7 +2830,7 @@ function ManagedHostingGraphic() {
 					/>
 					<path
 						d="M156 197 l2.4 0 l1 -3 l2.5 1 l-0.6 3 l2 1.4 l2.6 -1.6 l1.8 1.8 l-1.6 2.6 l1.4 2 l3 -0.6 l1 2.5 l-3 1 l0 2.4 l3 1 l-1 2.5 l-3 -0.6 l-1.4 2 l1.6 2.6 l-1.8 1.8 l-2.6 -1.6 l-2 1.4 l0.6 3 l-2.5 1 l-1 -3 l-2.4 0 Z"
-						fill="#6366f1"
+						fill="#A67B5B"
 						opacity="0.8"
 					/>
 					<circle cx="156" cy="205" r="3.5" className="fill-card" />
@@ -2885,7 +2885,7 @@ function ManagedHostingGraphic() {
 function UptimeGraphic() {
 	return (
 		<>
-			<BackgroundLayer id="up" from="#10b981" to="#6366f1" />
+			<BackgroundLayer id="up" from="#10b981" to="#A67B5B" />
 			<defs>
 				<linearGradient id="up-line" x1="0" y1="0" x2="1" y2="0">
 					<stop offset="0%" stopColor="#10b981" />
@@ -3039,11 +3039,11 @@ function UptimeGraphic() {
 function TicketsGraphic() {
 	return (
 		<>
-			<BackgroundLayer id="tick" from="#6D5EF8" to="#6366f1" />
+			<BackgroundLayer id="tick" from="#A67B5B" to="#A67B5B" />
 			<defs>
 				<linearGradient id="tick-accent" x1="0" y1="0" x2="1" y2="1">
-					<stop offset="0%" stopColor="#6366f1" />
-					<stop offset="100%" stopColor="#8b5cf6" />
+					<stop offset="0%" stopColor="#A67B5B" />
+					<stop offset="100%" stopColor="#C4A484" />
 				</linearGradient>
 			</defs>
 
@@ -3093,7 +3093,7 @@ function TicketsGraphic() {
 				strokeWidth="1.5"
 				strokeDasharray="3 4"
 			/>
-			<circle cy="132" r="2.5" fill="#8b5cf6">
+			<circle cy="132" r="2.5" fill="#C4A484">
 				<animate
 					attributeName="cx"
 					values="116;176"
@@ -3234,11 +3234,11 @@ function TicketsGraphic() {
 function DatabaseGraphic() {
 	return (
 		<>
-			<BackgroundLayer id="db" from="#6366f1" to="#10b981" />
+			<BackgroundLayer id="db" from="#A67B5B" to="#10b981" />
 			<defs>
 				<linearGradient id="db-accent" x1="0" y1="0" x2="0" y2="1">
-					<stop offset="0%" stopColor="#8b5cf6" />
-					<stop offset="100%" stopColor="#6366f1" />
+					<stop offset="0%" stopColor="#C4A484" />
+					<stop offset="100%" stopColor="#A67B5B" />
 				</linearGradient>
 			</defs>
 
@@ -3367,7 +3367,7 @@ function DatabaseGraphic() {
 				</text>
 				{[
 					{ x: 190, c: "#3b82f6", d: "0s" },
-					{ x: 212, c: "#8b5cf6", d: "0.3s" },
+					{ x: 212, c: "#C4A484", d: "0.3s" },
 					{ x: 234, c: "#10b981", d: "0.6s" },
 				].map((a) => (
 					<g key={a.x}>
@@ -3410,15 +3410,15 @@ function DatabaseGraphic() {
 function QuickShipGraphic() {
 	const steps = [
 		{ x: 116, label: "Repo", color: "#3b82f6" },
-		{ x: 200, label: "Stack", color: "#8b5cf6" },
+		{ x: 200, label: "Stack", color: "#C4A484" },
 		{ x: 284, label: "Deploy", color: "#10b981" },
 	];
 	return (
 		<>
-			<BackgroundLayer id="quick" from="#8b5cf6" to="#10b981" />
+			<BackgroundLayer id="quick" from="#C4A484" to="#10b981" />
 			<defs>
 				<linearGradient id="quick-flow" x1="0" y1="0" x2="1" y2="0">
-					<stop offset="0%" stopColor="#8b5cf6" />
+					<stop offset="0%" stopColor="#C4A484" />
 					<stop offset="100%" stopColor="#10b981" />
 				</linearGradient>
 			</defs>

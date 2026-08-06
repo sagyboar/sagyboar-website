@@ -16,7 +16,7 @@ export function SideProjectsHero({ data }: SideProjectsHeroProps) {
 		<ScrollReveal
 			as="section"
 			className={cn(
-				"relative border-b border-white/[0.08]",
+				"relative border-b border-sagy-border",
 				spacing.sectionYLarge,
 			)}
 			aria-label="Hero"
@@ -32,7 +32,7 @@ export function SideProjectsHero({ data }: SideProjectsHeroProps) {
 								<span className="text-sagy-body">Side Projects</span>
 							</p>
 
-							<div className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1.5">
+							<div className="mt-5 inline-flex items-center gap-2 rounded-full border border-sagy-border bg-sagy-heading/[0.04] px-3 py-1.5">
 								<Sparkles
 									className="size-4 text-sagy-accent"
 									strokeWidth={1.75}

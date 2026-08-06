@@ -21,7 +21,7 @@ export function FeatureCapabilities({
 	return (
 		<ScrollReveal
 			as="section"
-			className={cn("border-b border-white/[0.08]", spacing.sectionY)}
+			className={cn("border-b border-sagy-border", spacing.sectionY)}
 			aria-label="What's included"
 			stagger
 		>
@@ -43,7 +43,7 @@ export function FeatureCapabilities({
 							<li key={item.name}>
 								<a
 									href={`#${anchorId(index)}`}
-									className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 font-sans text-xs text-sagy-body transition-colors hover:border-sagy-accent/30 hover:bg-sagy-accent/10 hover:text-white"
+									className="inline-flex items-center gap-2 rounded-full border border-sagy-border bg-sagy-heading/[0.04] px-3 py-1.5 font-sans text-xs text-sagy-body transition-colors hover:border-sagy-accent/30 hover:bg-sagy-accent/10 hover:text-sagy-heading"
 								>
 									<span className="font-mono text-[10px] text-sagy-accent">
 										{stepLabel(index)}
@@ -68,7 +68,7 @@ export function FeatureCapabilities({
 									<div className={cn("min-w-0", mediaFirst && "lg:order-2")}>
 										<div className="flex items-center gap-3">
 											<span
-												className="font-display text-3xl leading-none text-white/[0.12]"
+												className="font-display text-3xl leading-none text-sagy-heading/[0.12]"
 												aria-hidden="true"
 											>
 												{stepLabel(index)}
@@ -80,7 +80,7 @@ export function FeatureCapabilities({
 											<FeatureBadge badge={item.badge} />
 										</div>
 
-										<h3 className="mt-5 font-display text-2xl uppercase tracking-tight text-white sm:text-3xl">
+										<h3 className="mt-5 font-display text-2xl uppercase tracking-tight text-sagy-heading sm:text-3xl">
 											{item.name}
 										</h3>
 										<p className="mt-4 font-sans text-base leading-relaxed text-sagy-body sm:text-lg">

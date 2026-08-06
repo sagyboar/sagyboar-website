@@ -42,13 +42,13 @@ export function HomeTestimonials() {
 								</blockquote>
 								<footer className="mt-6 flex items-center gap-3">
 									<div
-										className="flex size-10 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.04] font-mono text-sm text-white"
+										className="flex size-10 items-center justify-center rounded-full border border-sagy-border bg-sagy-heading/[0.04] font-mono text-sm text-sagy-heading"
 										aria-hidden="true"
 									>
 										{t.initial}
 									</div>
 									<div>
-										<p className="font-sans text-sm font-medium text-white">
+										<p className="font-sans text-sm font-medium text-sagy-heading">
 											{t.name}
 										</p>
 										<p className="font-mono text-xs text-sagy-muted">

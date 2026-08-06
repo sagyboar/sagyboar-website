@@ -40,7 +40,7 @@ export function FeaturesIndexPage() {
 			<ScrollReveal
 				as="section"
 				className={cn(
-					"relative border-b border-white/[0.08]",
+					"relative border-b border-sagy-border",
 					spacing.sectionYLarge,
 				)}
 				aria-label="Features hero"
@@ -83,7 +83,7 @@ export function FeaturesIndexPage() {
 						key={group}
 						id={group === "Platform" ? "platform" : "ai-operations"}
 						as="section"
-						className={cn("border-b border-white/[0.08]", spacing.sectionY)}
+						className={cn("border-b border-sagy-border", spacing.sectionY)}
 						aria-label={group}
 						stagger
 					>
@@ -119,7 +119,7 @@ export function FeaturesIndexPage() {
 				);
 			})}
 
-			{/* CTA — indigo panel matching homepage finale */}
+			{/* CTA — brand panel matching homepage finale */}
 			<CtaPanel
 				title="Ready to ship with Sagyboar?"
 				titleHighlight="Sagyboar?"

@@ -18,7 +18,7 @@ type SolutionFaqProps = {
 export function SolutionFaq({ data }: SolutionFaqProps) {
 	return (
 		<section
-			className={cn("border-b border-white/[0.08]", spacing.sectionY)}
+			className={cn("border-b border-sagy-border", spacing.sectionY)}
 			aria-label="FAQ"
 		>
 			<div className="mx-auto max-w-3xl px-4 sm:px-6">
@@ -33,15 +33,15 @@ export function SolutionFaq({ data }: SolutionFaqProps) {
 				<Accordion
 					type="single"
 					collapsible
-					className="mt-10 sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-5 shadow-sagy-card sm:px-6"
+					className="mt-10 sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface px-5 shadow-sagy-card sm:px-6"
 				>
 					{data.items.map((faq, index) => (
 						<AccordionItem
 							key={faq.question}
 							value={`${index}`}
-							className="border-white/[0.08]"
+							className="border-sagy-border"
 						>
-							<AccordionTrigger className="text-left font-sans text-sm text-white hover:no-underline sm:text-base">
+							<AccordionTrigger className="text-left font-sans text-sm text-sagy-heading hover:no-underline sm:text-base">
 								{faq.question}
 							</AccordionTrigger>
 							<AccordionContent className="font-sans text-sm leading-relaxed text-sagy-body">

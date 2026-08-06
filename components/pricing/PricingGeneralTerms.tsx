@@ -42,17 +42,17 @@ export function PricingGeneralTerms({ audience }: PricingGeneralTermsProps) {
 						{planLimitations.map((plan) => (
 							<article
 								key={plan.id}
-								className="flex flex-col sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface p-5 shadow-sagy-card"
+								className="flex flex-col sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface p-5 shadow-sagy-card"
 							>
-								<div className="border-b border-white/[0.08] pb-3">
-									<h3 className="font-display text-base uppercase tracking-tight text-white">
+								<div className="border-b border-sagy-border pb-3">
+									<h3 className="font-display text-base uppercase tracking-tight text-sagy-heading">
 										{plan.name}
 									</h3>
 									<p className="mt-0.5 font-sans text-xs text-sagy-body">
 										{plan.price}
 									</p>
 								</div>
-								<p className="mt-3 text-xs font-semibold uppercase tracking-wider text-white">
+								<p className="mt-3 text-xs font-semibold uppercase tracking-wider text-sagy-heading">
 									Limitations
 								</p>
 								<ul className="mt-3 flex flex-col gap-2 font-sans text-xs leading-relaxed text-sagy-body">

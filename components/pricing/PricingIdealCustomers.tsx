@@ -39,12 +39,12 @@ export function PricingIdealCustomers({
 										delay: index * 0.08,
 										ease: [0.22, 1, 0.36, 1],
 									}}
-									className="flex flex-col items-center gap-3 sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface p-6 text-center shadow-sagy-card transition-colors hover:border-sagy-accent/25"
+									className="flex flex-col items-center gap-3 sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface p-6 text-center shadow-sagy-card transition-colors hover:border-sagy-accent/25"
 								>
-									<div className="flex size-10 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04]">
+									<div className="flex size-10 items-center justify-center rounded-lg border border-sagy-border bg-sagy-heading/[0.04]">
 										<Icon className="size-4 text-sagy-body" strokeWidth={1.5} />
 									</div>
-									<span className="font-sans text-sm font-medium text-white">
+									<span className="font-sans text-sm font-medium text-sagy-heading">
 										{customer.title}
 									</span>
 								</motion.div>
@@ -52,7 +52,7 @@ export function PricingIdealCustomers({
 						})}
 					</div>
 
-					<p className="mx-auto mt-8 max-w-3xl sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-6 py-5 text-center font-sans text-sagy-body shadow-sagy-card">
+					<p className="mx-auto mt-8 max-w-3xl sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface px-6 py-5 text-center font-sans text-sagy-body shadow-sagy-card">
 						{thread}
 					</p>
 				</motion.div>

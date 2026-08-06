@@ -12,7 +12,7 @@ export function JobsOpenPositions() {
 		<ScrollReveal
 			as="section"
 			id="open-positions"
-			className={cn("border-b border-white/[0.08]", spacing.sectionY)}
+			className={cn("border-b border-sagy-border", spacing.sectionY)}
 			aria-label="Open positions"
 			stagger
 		>
@@ -25,8 +25,8 @@ export function JobsOpenPositions() {
 							titleHighlight="role"
 							subline={`${count} open role${count === 1 ? "" : "s"} right now. Open a listing for the full description, then apply with your resume.`}
 						/>
-						<div className="shrink-0 sagy-spotlight rounded-xl border border-white/[0.08] bg-sagy-surface px-5 py-4 text-center shadow-sagy-card">
-							<p className="font-display text-3xl uppercase tracking-tight text-white">
+						<div className="shrink-0 sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface px-5 py-4 text-center shadow-sagy-card">
+							<p className="font-display text-3xl uppercase tracking-tight text-sagy-heading">
 								{count}
 							</p>
 							<p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-sagy-muted">

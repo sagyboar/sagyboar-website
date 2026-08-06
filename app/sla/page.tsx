@@ -63,10 +63,10 @@ export default function SlaPage() {
 					time, and support coverage. Higher tiers receive faster response and
 					priority handling.
 				</p>
-				<div className="sagy-spotlight overflow-x-auto rounded-xl border border-white/[0.08] bg-sagy-surface-elevated shadow-sagy-card">
+				<div className="sagy-spotlight overflow-x-auto rounded-xl border border-sagy-border bg-sagy-surface-elevated shadow-sagy-card">
 					<table className="w-full min-w-[640px] text-left text-sm">
 						<thead>
-							<tr className="border-b border-white/[0.08] bg-white/[0.04]">
+							<tr className="border-b border-sagy-border bg-sagy-heading/[0.04]">
 								<th className="font-semibold">Package</th>
 								<th className="font-semibold">Uptime SLA</th>
 								<th className="font-semibold">Response time</th>
@@ -79,11 +79,11 @@ export default function SlaPage() {
 									key={row.plan}
 									className={
 										index < slaPackages.length - 1
-											? "border-b border-white/[0.06]"
+											? "border-b border-sagy-heading/6"
 											: undefined
 									}
 								>
-									<td className="font-medium text-white">{row.plan}</td>
+									<td className="font-medium text-sagy-heading">{row.plan}</td>
 									<td>{row.uptime}</td>
 									<td>{row.responseTime}</td>
 									<td>{row.support}</td>
@@ -104,7 +104,7 @@ export default function SlaPage() {
 					We commit to the monthly uptime percentages shown in the table above
 					for each eligible plan. Uptime is measured as:
 				</p>
-				<p className="rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 font-mono text-sm text-white">
+				<p className="rounded-xl border border-sagy-border bg-sagy-heading/[0.04] px-4 py-3 font-mono text-sm text-sagy-heading">
 					((Total minutes in month − Downtime minutes) ÷ Total minutes in month)
 					× 100
 				</p>
@@ -243,20 +243,20 @@ export default function SlaPage() {
 					applied to a future invoice. Service credits are your sole and
 					exclusive remedy for SLA failures — they are not cash refunds.
 				</p>
-				<div className="sagy-spotlight overflow-x-auto rounded-xl border border-white/[0.08] bg-sagy-surface-elevated shadow-sagy-card">
+				<div className="sagy-spotlight overflow-x-auto rounded-xl border border-sagy-border bg-sagy-surface-elevated shadow-sagy-card">
 					<table className="w-full min-w-[480px] text-left text-sm">
 						<thead>
-							<tr className="border-b border-white/[0.08] bg-white/[0.04]">
+							<tr className="border-b border-sagy-border bg-sagy-heading/[0.04]">
 								<th className="font-semibold">Monthly uptime achieved</th>
 								<th className="font-semibold">Service credit</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr className="border-b border-white/[0.06]">
+							<tr className="border-b border-sagy-heading/6">
 								<td>99.0% – below plan target</td>
 								<td>10% of monthly fees</td>
 							</tr>
-							<tr className="border-b border-white/[0.06]">
+							<tr className="border-b border-sagy-heading/6">
 								<td>95.0% – 99.0%</td>
 								<td>25% of monthly fees</td>
 							</tr>
@@ -278,7 +278,7 @@ export default function SlaPage() {
 				<h2 className="text-2xl font-semibold">7. Example</h2>
 				<p>Here is a simple illustration of how this SLA works in practice:</p>
 				<div className="rounded-xl border border-sagy-accent/20 bg-sagy-accent/[0.06] p-5">
-					<p className="text-white">
+					<p className="text-sagy-heading">
 						You are on the <strong>{growthPlan.name}</strong> plan. We commit to{" "}
 						<strong>99.9% uptime</strong> and a <strong>1-hour</strong> response
 						target for critical issues.

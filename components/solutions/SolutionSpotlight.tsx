@@ -15,7 +15,7 @@ export function SolutionSpotlight({ data }: SolutionSpotlightProps) {
 		<ScrollReveal
 			as="section"
 			className={cn(
-				"border-b border-white/[0.08] bg-sagy-surface/40",
+				"border-b border-sagy-border bg-sagy-surface/40",
 				spacing.sectionY,
 			)}
 			aria-label={data.title}

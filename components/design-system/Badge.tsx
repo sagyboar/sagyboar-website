@@ -13,7 +13,7 @@ type BadgeProps = {
 	className?: string;
 };
 
-/** Feature badge — CORE neutral, AI/NEW indigo, MANAGED green */
+/** Feature badge — CORE neutral, AI/NEW brand accent, MANAGED green */
 export function Badge({ variant, className }: BadgeProps) {
 	return (
 		<span

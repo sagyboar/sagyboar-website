@@ -28,7 +28,7 @@ export function PricingAudienceToggle({
 			role="tablist"
 			aria-label="Pricing audience"
 			className={cn(
-				"mx-auto flex w-fit items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.04] p-1",
+				"mx-auto flex w-fit items-center gap-1 rounded-full border border-sagy-border bg-sagy-heading/[0.04] p-1",
 				className,
 			)}
 		>
@@ -44,7 +44,7 @@ export function PricingAudienceToggle({
 						onClick={() => onChange(option.id)}
 						className={cn(
 							"relative rounded-full px-5 py-2 text-sm font-medium transition-colors",
-							selected ? "text-background" : "text-sagy-body hover:text-white",
+							selected ? "text-background" : "text-sagy-body hover:text-sagy-heading",
 						)}
 					>
 						{selected ? (

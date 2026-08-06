@@ -1,8 +1,8 @@
 "use client";
 
-import { CommandKChip } from "@/components/design-system/CommandKChip";
 import { GlowButton } from "@/components/design-system/GlowButton";
 import { NavMegaMenu } from "@/components/design-system/NavMegaMenu";
+import { ThemeToggle } from "@/components/ui/sagy/theme-toggle";
 import { Sagyboar_LOGO_SRC, Sagyboar_PORTAL_URL } from "@/constants/branding";
 import { navMenuSections } from "@/constants/navigation";
 import {
@@ -91,7 +91,7 @@ export function SiteNav() {
 				<nav
 					aria-label="Main navigation"
 					className={cn(
-						"relative z-20 flex items-center justify-between gap-4 rounded-full border border-white/[0.08] px-4 py-2.5 backdrop-blur-xl transition-all duration-300 sm:px-5",
+						"relative z-20 flex items-center justify-between gap-4 rounded-full border border-sagy-border px-4 py-2.5 backdrop-blur-xl transition-all duration-300 sm:px-5",
 						scrolled ? "bg-sagy-bg/80 shadow-sagy-soft" : "bg-sagy-bg/50",
 					)}
 				>
@@ -109,10 +109,10 @@ export function SiteNav() {
 							className="size-8 object-contain"
 							aria-hidden="true"
 						/>
-						<span className="hidden font-display text-sm uppercase tracking-wide text-white sm:inline">
+						<span className="hidden font-display text-sm uppercase tracking-wide text-sagy-heading sm:inline">
 							Sagyboar
 						</span>
-						<span className="rounded-md border border-white/[0.08] bg-white/[0.04] px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-sagy-muted">
+						<span className="rounded-md border border-sagy-border bg-sagy-heading/[0.04] px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-sagy-muted">
 							AI-DevOps
 						</span>
 					</Link>
@@ -144,8 +144,8 @@ export function SiteNav() {
 										className={cn(
 											"flex items-center gap-1 rounded-lg px-3 py-1.5 font-sans text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sagy-accent",
 											active || expanded
-												? "bg-sagy-accent/15 text-white"
-												: "text-sagy-body hover:text-white",
+												? "bg-sagy-accent/15 text-sagy-heading"
+												: "text-sagy-body hover:text-sagy-heading",
 										)}
 										aria-current={active ? "page" : undefined}
 										aria-expanded={link.menu ? expanded : undefined}
@@ -177,7 +177,7 @@ export function SiteNav() {
 
 					{/* Right actions */}
 					<div className="flex items-center gap-2 sm:gap-3">
-						<CommandKChip className="hidden sm:inline-flex" />
+						<ThemeToggle />
 						<GlowButton
 							href={Sagyboar_PORTAL_URL}
 							external
@@ -187,7 +187,7 @@ export function SiteNav() {
 						</GlowButton>
 						<button
 							type="button"
-							className="inline-flex size-9 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04] text-sagy-body lg:hidden"
+							className="inline-flex size-9 items-center justify-center rounded-lg border border-sagy-border bg-sagy-heading/[0.04] text-sagy-body lg:hidden"
 							onClick={() => setMobileOpen((o) => !o)}
 							aria-expanded={mobileOpen}
 							aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -208,7 +208,7 @@ export function SiteNav() {
 						role="tablist"
 						aria-label="Feature categories"
 					>
-						<div className="inline-flex rounded-full border border-white/[0.08] bg-sagy-bg/60 p-1 backdrop-blur-xl">
+						<div className="inline-flex rounded-full border border-sagy-border bg-sagy-bg/60 p-1 backdrop-blur-xl">
 							{featuresSubTabs.map((tab) => {
 								const active =
 									hash === `#${tab.id}` || (!hash && tab.id === "platform");
@@ -221,7 +221,7 @@ export function SiteNav() {
 										className={cn(
 											"rounded-full px-4 py-1.5 font-mono text-[11px] uppercase tracking-wider transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sagy-accent",
 											active
-												? "bg-sagy-accent text-white"
+												? "bg-sagy-accent text-sagy-accent-foreground"
 												: "text-sagy-muted hover:text-sagy-body",
 										)}
 									>
@@ -235,7 +235,7 @@ export function SiteNav() {
 
 				{/* Mobile menu */}
 				{mobileOpen && (
-					<div className="relative z-10 rounded-xl border border-white/[0.08] bg-sagy-surface p-3 shadow-sagy-soft lg:hidden">
+					<div className="relative z-10 rounded-xl border border-sagy-border bg-sagy-surface p-3 shadow-sagy-soft lg:hidden">
 						<ul className="space-y-1">
 							{siteNavLinks.map((link) => {
 								const active = isNavLinkActive(link, pathname, hash);
@@ -253,8 +253,8 @@ export function SiteNav() {
 												className={cn(
 													"flex-1 rounded-lg px-3 py-2.5 font-sans text-sm transition-colors",
 													active
-														? "bg-sagy-accent/15 text-white"
-														: "text-sagy-body hover:text-white",
+														? "bg-sagy-accent/15 text-sagy-heading"
+														: "text-sagy-body hover:text-sagy-heading",
 												)}
 											>
 												{link.label}
@@ -267,7 +267,7 @@ export function SiteNav() {
 													}
 													aria-expanded={expanded}
 													aria-label={`${expanded ? "Hide" : "Show"} ${link.label} pages`}
-													className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04] text-sagy-body transition-colors hover:text-white"
+													className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-sagy-border bg-sagy-heading/[0.04] text-sagy-body transition-colors hover:text-sagy-heading"
 												>
 													<ChevronDown
 														className={cn(
@@ -281,7 +281,7 @@ export function SiteNav() {
 										</div>
 
 										{link.menu && expanded && (
-											<div className="mt-1 mb-2 ml-3 space-y-3 border-l border-white/[0.08] pl-3">
+											<div className="mt-1 mb-2 ml-3 space-y-3 border-l border-sagy-border pl-3">
 												{navMenuSections[link.menu].map((section) => (
 													<div key={section.label}>
 														<p className="px-2 font-mono text-[10px] uppercase tracking-[0.2em] text-sagy-muted">
@@ -292,7 +292,7 @@ export function SiteNav() {
 																<li key={item.href}>
 																	<Link
 																		href={item.href}
-																		className="flex items-center gap-2.5 rounded-lg px-2 py-2 font-sans text-sm text-sagy-body transition-colors hover:bg-white/[0.04] hover:text-white"
+																		className="flex items-center gap-2.5 rounded-lg px-2 py-2 font-sans text-sm text-sagy-body transition-colors hover:bg-sagy-heading/[0.04] hover:text-sagy-heading"
 																	>
 																		<item.icon
 																			className="size-4 shrink-0 text-sagy-accent"
@@ -317,7 +317,7 @@ export function SiteNav() {
 								);
 							})}
 						</ul>
-						<div className="mt-3 border-t border-white/[0.08] pt-3">
+						<div className="mt-3 border-t border-sagy-border pt-3">
 							<GlowButton
 								href={Sagyboar_PORTAL_URL}
 								external

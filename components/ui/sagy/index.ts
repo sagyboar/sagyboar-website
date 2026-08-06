@@ -11,7 +11,6 @@ export { Badge } from "@/components/design-system/Badge";
 export { GlowButton } from "@/components/design-system/GlowButton";
 export { BrowserFrame } from "@/components/design-system/BrowserFrame";
 export { StatusDot } from "@/components/design-system/StatusDot";
-export { CommandKChip } from "@/components/design-system/CommandKChip";
 export { FinalCTA } from "@/components/design-system/FinalCTA";
 export { CtaPanel } from "@/components/design-system/CtaPanel";
 export { PageShell } from "@/components/design-system/PageShell";
