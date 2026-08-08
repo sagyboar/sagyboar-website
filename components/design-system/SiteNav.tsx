@@ -4,6 +4,7 @@ import { GlowButton } from "@/components/design-system/GlowButton";
 import { NavMegaMenu } from "@/components/design-system/NavMegaMenu";
 import { ThemeToggle } from "@/components/ui/sagy/theme-toggle";
 import { Sagyboar_LOGO_SRC, Sagyboar_PORTAL_URL } from "@/constants/branding";
+import { FREE_DEPLOY_LANDING_PATH } from "@/constants/free-deploy";
 import { navMenuSections } from "@/constants/navigation";
 import {
 	type SiteNavMenuKey,
@@ -32,6 +33,7 @@ export function SiteNav() {
 	);
 	const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const isFeaturesPage = pathname === "/features";
+	const isFreeDeployPage = pathname === FREE_DEPLOY_LANDING_PATH;
 
 	const cancelClose = () => {
 		if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -81,7 +83,7 @@ export function SiteNav() {
 	useEffect(() => cancelClose, []);
 
 	return (
-		<header className="sticky top-0 z-50 px-4 pt-4 sm:px-6">
+		<header className="sticky top-[var(--announcement-bar-height,0px)] z-50 px-4 pt-4 sm:px-6">
 			<div className="mx-auto max-w-6xl space-y-2">
 				{/*
 				 * `backdrop-blur` makes the nav its own stacking context, so the
@@ -118,7 +120,12 @@ export function SiteNav() {
 					</Link>
 
 					{/* Center tabs — desktop */}
-					<ul className="hidden items-center gap-0.5 lg:flex">
+					<ul
+						className={cn(
+							"hidden items-center gap-0.5 lg:flex",
+							isFreeDeployPage && "lg:hidden",
+						)}
+					>
 						{siteNavLinks.map((link) => {
 							const active = isNavLinkActive(link, pathname, hash);
 							const expanded = link.menu ? openMenu === link.menu : false;
@@ -177,27 +184,38 @@ export function SiteNav() {
 
 					{/* Right actions */}
 					<div className="flex items-center gap-2 sm:gap-3">
-						<ThemeToggle />
+						{!isFreeDeployPage && <ThemeToggle />}
 						<GlowButton
-							href={Sagyboar_PORTAL_URL}
-							external
-							className="hidden !px-4 !py-2 sm:inline-flex"
-						>
-							Launch App
-						</GlowButton>
-						<button
-							type="button"
-							className="inline-flex size-9 items-center justify-center rounded-lg border border-sagy-border bg-sagy-heading/[0.04] text-sagy-body lg:hidden"
-							onClick={() => setMobileOpen((o) => !o)}
-							aria-expanded={mobileOpen}
-							aria-label={mobileOpen ? "Close menu" : "Open menu"}
-						>
-							{mobileOpen ? (
-								<X className="size-4" />
-							) : (
-								<Menu className="size-4" />
+							href={
+								isFreeDeployPage
+									? `${FREE_DEPLOY_LANDING_PATH}#claim-slot`
+									: Sagyboar_PORTAL_URL
+							}
+							external={!isFreeDeployPage}
+							variant={isFreeDeployPage ? "ghost" : "primary"}
+							className={cn(
+								isFreeDeployPage
+									? "inline-flex !px-3 !py-1.5 !text-[10px]"
+									: "hidden !px-4 !py-2 sm:inline-flex",
 							)}
-						</button>
+						>
+							{isFreeDeployPage ? "Claim slot" : "Launch App"}
+						</GlowButton>
+						{!isFreeDeployPage && (
+							<button
+								type="button"
+								className="inline-flex size-9 items-center justify-center rounded-lg border border-sagy-border bg-sagy-heading/[0.04] text-sagy-body lg:hidden"
+								onClick={() => setMobileOpen((o) => !o)}
+								aria-expanded={mobileOpen}
+								aria-label={mobileOpen ? "Close menu" : "Open menu"}
+							>
+								{mobileOpen ? (
+									<X className="size-4" />
+								) : (
+									<Menu className="size-4" />
+								)}
+							</button>
+						)}
 					</div>
 				</nav>
 
@@ -234,7 +252,7 @@ export function SiteNav() {
 				)}
 
 				{/* Mobile menu */}
-				{mobileOpen && (
+				{mobileOpen && !isFreeDeployPage && (
 					<div className="relative z-10 rounded-xl border border-sagy-border bg-sagy-surface p-3 shadow-sagy-soft lg:hidden">
 						<ul className="space-y-1">
 							{siteNavLinks.map((link) => {

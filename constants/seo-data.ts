@@ -103,6 +103,19 @@ export const pageSeo = {
 			"self-healing infrastructure",
 		],
 	},
+	freeDeploy: {
+		title: "Free Deployment — 3 Months Managed Hosting",
+		description:
+			"Deploy static sites, SPAs, or WordPress free for 3 months. One-click deploy with AI monitoring, health checks, and zero setup. No credit card required.",
+		path: "/free-deploy",
+		ogLabel: "Free Deploy",
+		keywords: [
+			"free website deployment",
+			"free managed hosting",
+			"WordPress deployment",
+			"SPA hosting",
+		],
+	},
 	contact: {
 		title: "Contact Us",
 		description:
