@@ -367,3 +367,39 @@ export function getIndiePlanPrice(
 /** Canonical tier display names by model (cheap → premium) */
 export const indieTierNames = indiePricingPlans.map((p) => p.name);
 export const teamTierNames = teamPricingPlans.map((p) => p.name);
+
+/** Solution pages → canonical pricing plan mapping */
+export const solutionPricingPlans = {
+	sideProjects: {
+		/** Indie Solo — entry tier for solo devs & side projects */
+		indie: indiePricingPlans.find((plan) => plan.id === "solo")!,
+	},
+	scaleUps: {
+		/** Team Starter — entry BYOC tier for growing teams */
+		team: teamPricingPlans.find((plan) => plan.id === "starter")!,
+	},
+	organizations: {
+		/** Team Enterprise — premium BYOC tier with SLA */
+		team: teamPricingPlans.find((plan) => plan.id === "enterprise")!,
+	},
+} as const;
+
+/** Compact price chip for nav dropdowns, e.g. "$249/mo" */
+export function formatSolutionNavPrice(
+	key: keyof typeof solutionPricingPlans,
+): string {
+	if (key === "sideProjects") {
+		return `$${solutionPricingPlans.sideProjects.indie.monthlyPrice}/mo`;
+	}
+	if (key === "scaleUps") {
+		return `$${solutionPricingPlans.scaleUps.team.price}/mo`;
+	}
+	return `$${solutionPricingPlans.organizations.team.price}/mo`;
+}
+
+/** Long-form price for solution page hero copy, e.g. "$249/month" */
+export function formatSolutionHeroPrice(
+	key: keyof typeof solutionPricingPlans,
+): string {
+	return formatSolutionNavPrice(key).replace("/mo", "/month");
+}

@@ -1,16 +1,23 @@
 import { Sagyboar_PORTAL_URL } from "@/constants/branding";
+import {
+	formatSolutionHeroPrice,
+	solutionPricingPlans,
+} from "@/lib/pricing";
 import type { SolutionPageData } from "./solution-types";
+
+/** Side Projects maps to the Indie Solo tier on /pricing */
+const soloPlan = solutionPricingPlans.sideProjects.indie;
+const soloPrice = formatSolutionHeroPrice("sideProjects");
 
 export const sideProjectsSolutionPage: SolutionPageData = {
 	hero: {
 		title: "Side Projects",
 		headline: "Deploy your side projects without the DevOps headache",
 		headlineHighlight: "DevOps headache",
-		description:
-			"For solo developers, MVPs, and personal projects. Get managed hosting, AI monitoring, automated issue tickets, and community support — all from $49/month.",
-		price: "$49/month",
-		cta: "Get started",
-		ctaHref: Sagyboar_PORTAL_URL,
+		description: `${soloPlan.tagline} Always-on hosting on our managed VPS, AI alerts with auto-tickets to your repo, and email support — from ${soloPrice}.`,
+		price: soloPrice,
+		cta: soloPlan.cta,
+		ctaHref: soloPlan.ctaHref ?? Sagyboar_PORTAL_URL,
 		ctaExternal: true,
 		heroImage: "/Hobby.png",
 		heroImageAlt: "Deploy your side projects without the DevOps headache",
@@ -18,61 +25,61 @@ export const sideProjectsSolutionPage: SolutionPageData = {
 		icon: "sparkles",
 	},
 	stack: {
-		title: "Everything for Side Projects",
-		titleHighlight: "Side Projects",
+		title: "Everything in Solo",
+		titleHighlight: "Solo",
 		subtitle:
-			"Scroll through five core capabilities included for side-project builders.",
+			"Side Projects runs on the Indie Solo plan — same specs and pricing as on our pricing page.",
 		sections: [
 			{
-				title: "One application, fully managed",
+				title: "One project on managed VPS",
 				description:
-					"Deploy a production app without wiring servers yourself. Side Projects includes one managed application on Sagyboar infrastructure with SSL and a custom domain.",
+					"Deploy one production app on Sagyboar-managed infrastructure with SSL, always-on uptime, and one custom subdomain — no cloud account required.",
 				image: "/Default.png",
 				imageAlt: "Sagyboar projects dashboard",
 				graphic: "oneApp",
 			},
 			{
-				title: "Managed hosting included",
+				title: "512 MB RAM, always-on",
 				description:
-					"Skip the infrastructure rabbit hole. Your app runs on our managed stack so you can focus on building — not patching servers or chasing uptime.",
+					"512 MB RAM pooled across your project with always-on scheduling — your app stays reachable without cold starts after idle time.",
 				image: "/Default.png",
 				imageAlt: "Managed servers on Sagyboar",
 				graphic: "managedHosting",
 			},
 			{
-				title: "AI monitoring & alerts",
+				title: "AI alerts & auto-tickets",
 				description:
-					"Basic AI monitoring watches your app around the clock and surfaces uptime issues before your users do.",
+					"AI monitoring sends alerts and opens structured auto-tickets in your connected GitHub or GitLab repo when issues are detected.",
 				image: "/Default.png",
 				imageAlt: "AI monitoring dashboard",
 				graphic: "uptime",
 			},
 			{
-				title: "Automated issue tickets",
+				title: "Bring your own database",
 				description:
-					"When something breaks, Sagyboar can open structured issue tickets in your repo so fixes start faster.",
+					"Connect your own database — Supabase, Neon, MongoDB Atlas, or any external provider. Managed databases are not included on Indie plans.",
 				image: "/Default.png",
-				imageAlt: "Deployment and issue tracking",
-				graphic: "tickets",
+				imageAlt: "External database connection",
+				graphic: "database",
 			},
 			{
-				title: "Database, storage & support",
+				title: "Disk, bandwidth & email support",
 				description:
-					"Includes one managed database, 10 GB storage, and community support — everything a solo builder needs to ship confidently.",
+					"Includes 3 GB disk, 200 build minutes/month, 25 GB bandwidth/month, and email support with a 48-hour response time.",
 				image: "/Default.png",
-				imageAlt: "Compose and database management",
-				graphic: "database",
+				imageAlt: "Plan resources and support",
+				graphic: "tickets",
 			},
 		],
 	},
 	spotlight: {
-		eyebrow: "Built for builders",
+		eyebrow: "Indie Solo plan",
 		title: "Ship your side project in minutes, not weekends",
 		titleHighlight: "not weekends",
 		description:
-			"Connect your repo, pick a stack, and deploy to managed infrastructure with SSL and monitoring already wired up. Side Projects gives solo builders production-grade hosting without learning Kubernetes.",
-		cta: "Get started",
-		ctaHref: Sagyboar_PORTAL_URL,
+			"Connect your repo, attach your own database, and deploy to our managed VPS with SSL and monitoring already wired up — priced for students, freelancers, and solo builders.",
+		cta: soloPlan.cta,
+		ctaHref: soloPlan.ctaHref ?? Sagyboar_PORTAL_URL,
 		ctaExternal: true,
 		image: "/Hobby.png",
 		imageAlt: "Ship your side project in minutes, not weekends",
@@ -81,37 +88,36 @@ export const sideProjectsSolutionPage: SolutionPageData = {
 	faq: {
 		title: "Side Projects FAQ",
 		titleHighlight: "FAQ",
-		subtitle: "Common questions about deploying side projects on Sagyboar.",
+		subtitle: "Common questions about the Indie Solo plan for side projects.",
 		items: [
 			{
 				question: "What is included for Side Projects?",
+				answer: `Side Projects uses the Indie Solo plan (${soloPrice}): 1 project, 512 MB RAM pooled, 3 GB disk, always-on hosting, 200 build minutes/month, 25 GB bandwidth/month, 1 subdomain, AI monitoring with alerts and auto-tickets to your repo, and email support with a 48-hour response. You must bring your own database (Supabase, Neon, Mongo Atlas, etc.) — managed databases are not included.`,
+			},
+			{
+				question: "Is a managed database included?",
 				answer:
-					"Side Projects includes one managed application, basic AI monitoring, automated issue tickets, one managed database, 10 GB storage, custom domain with SSL, and community support — all for $49/month.",
+					"No. Indie plans require you to bring your own database. Connect Supabase, Neon, MongoDB Atlas, PlanetScale, or any external provider. Managed databases are exclusive to Team (BYOC) plans.",
 			},
 			{
 				question: "Where is my app hosted?",
 				answer:
-					"Side Projects uses managed hosting on Sagyboar infrastructure. We handle servers, SSL, and uptime monitoring so you can focus on building.",
+					"On Sagyboar-managed VPS infrastructure — not on your own cloud account. We handle the server, SSL, and uptime monitoring so you can focus on building.",
 			},
 			{
 				question: "How does automated issue ticketing work?",
 				answer:
-					"When our AI monitoring detects an error or anomaly, it opens a structured ticket in your connected GitHub or GitLab repo with context, severity, and suggested next steps.",
+					"When AI monitoring detects an error or anomaly, it opens a structured ticket in your connected GitHub or GitLab repo with context, severity, and suggested next steps.",
 			},
 			{
-				question: "Can I upgrade to Scale-ups later?",
+				question: "Can I upgrade later?",
 				answer:
-					"Yes. You can upgrade at any time from the dashboard. Upgrades take effect immediately so you can scale as your project grows.",
+					"Yes. Move up to Builder or Studio on Indie for more projects, RAM, and auto-heal — or switch to Team BYOC plans when you need shared DevOps, managed databases, and SLA-backed support.",
 			},
 			{
-				question: "What does the fair usage policy mean for Side Projects?",
+				question: "What does the fair usage policy mean?",
 				answer:
-					"Side Projects is built for low-to-moderate traffic side projects and MVPs. Additional storage, bandwidth, or compute beyond included limits is billed separately.",
-			},
-			{
-				question: "What kind of support do I get?",
-				answer:
-					"Side Projects includes community support through our channels. For faster response times and dedicated engineering help, consider upgrading to Scale-ups.",
+					"Indie plans include monthly build minutes and bandwidth caps. Additional compute, storage, or bandwidth beyond included limits may be billed separately under our fair usage policy.",
 			},
 		],
 	},
@@ -119,9 +125,9 @@ export const sideProjectsSolutionPage: SolutionPageData = {
 		title: "Ready to deploy without the DevOps grind?",
 		titleHighlight: "DevOps grind?",
 		description:
-			"Join solo developers shipping faster on Sagyboar. Get started with Side Projects today or talk to us if you have questions.",
-		primaryCta: "Get started",
-		primaryHref: Sagyboar_PORTAL_URL,
+			"Join solo developers shipping on the Indie Solo plan. Get started today or contact us if you have questions.",
+		primaryCta: soloPlan.cta,
+		primaryHref: soloPlan.ctaHref ?? Sagyboar_PORTAL_URL,
 		primaryExternal: true,
 		secondaryCta: "Contact us",
 		secondaryHref: "/contact",

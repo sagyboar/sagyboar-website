@@ -3,6 +3,10 @@ import {
 	featurePages,
 } from "@/components/features/features-data";
 import type { SiteNavMenuKey } from "@/constants/site-nav";
+import {
+	formatSolutionHeroPrice,
+	formatSolutionNavPrice,
+} from "@/lib/pricing";
 import type { LucideIcon } from "lucide-react";
 import {
 	Briefcase,
@@ -77,10 +81,9 @@ export const solutionLinks: NavLinkItem[] = [
 		title: "Side Projects",
 		footerLabel: "Side Projects",
 		href: "/solutions/side-projects",
-		description:
-			"For solo developers, MVPs, and personal projects. Managed hosting, AI monitoring, and community support from $49/month.",
+		description: `For solo developers, MVPs, and personal projects. Managed VPS hosting, AI monitoring, and email support from ${formatSolutionHeroPrice("sideProjects")}. Bring your own database.`,
 		tagline: "Solo devs, MVPs, and personal projects",
-		price: "$49/mo",
+		price: formatSolutionNavPrice("sideProjects"),
 		icon: Sparkles,
 		backgroundImage: "/Hobby.png",
 	},
@@ -88,10 +91,9 @@ export const solutionLinks: NavLinkItem[] = [
 		title: "Scale-ups",
 		footerLabel: "Scale-ups",
 		href: "/solutions/scale-ups",
-		description:
-			"For growing companies that need reliable DevOps without hiring full-time. AI-assisted engineering and on-demand DevOps from $249/month.",
+		description: `Team Starter BYOC plan for growing companies — up to 10 projects, AI deployment & monitoring, auto tickets, and shared DevOps from ${formatSolutionHeroPrice("scaleUps")}.`,
 		tagline: "Growing teams without a DevOps hire",
-		price: "$249/mo",
+		price: formatSolutionNavPrice("scaleUps"),
 		icon: Rocket,
 		backgroundImage: "/startup.png",
 	},
@@ -99,10 +101,9 @@ export const solutionLinks: NavLinkItem[] = [
 		title: "Organizations",
 		footerLabel: "Organizations",
 		href: "/solutions/organizations",
-		description:
-			"Dedicated infrastructure, a fully managed platform team, SLA-backed uptime, and custom onboarding from $1,499/month.",
+		description: `Team Enterprise BYOC plan — up to 30 projects, auto-heal, 8 agents, SSO, premium SLA, and dedicated tech contact from ${formatSolutionHeroPrice("organizations")}.`,
 		tagline: "Dedicated infra with SLA-backed uptime",
-		price: "$1,499/mo",
+		price: formatSolutionNavPrice("organizations"),
 		icon: Building2,
 		backgroundImage: "/Enterprise.png",
 	},

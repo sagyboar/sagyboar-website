@@ -1,5 +1,6 @@
-import { homeFaqs } from "@/constants/home-faqs";
 import { Sagyboar_BRAND_NAME } from "@/constants/branding";
+import { homeFaqs } from "@/constants/home-faqs";
+import { formatSolutionHeroPrice } from "@/lib/pricing";
 
 export const SITE_URL = "https://sagyboar.space";
 export const SITE_NAME = Sagyboar_BRAND_NAME;
@@ -140,7 +141,7 @@ export const pageSeo = {
 	solutionsSideProjects: {
 		title: "Side Projects — Deploy Without DevOps",
 		description:
-			"Fully managed application deployment for solo developers and MVPs. AI monitoring, auto-healing, and zero lock-in from $49/month.",
+			`Indie Solo plan for solo developers and MVPs — managed VPS hosting, AI alerts with auto-tickets, email support, and bring-your-own-database from ${formatSolutionHeroPrice("sideProjects")}.`,
 		path: "/solutions/side-projects",
 		ogLabel: "Side Projects",
 		keywords: [
@@ -151,7 +152,7 @@ export const pageSeo = {
 	solutionsScaleUps: {
 		title: "Scale-ups — Scale Without a Full DevOps Hire",
 		description:
-			"AI-native DevOps for growing companies: auto-healing deployments, advanced monitoring, and managed engineering from $249/month.",
+			`Team Starter BYOC for growing companies — up to 10 projects on your cloud, AI deployment, auto incident detection, and shared DevOps from ${formatSolutionHeroPrice("scaleUps")}.`,
 		path: "/solutions/scale-ups",
 		ogLabel: "Scale-ups",
 		keywords: [
@@ -162,7 +163,7 @@ export const pageSeo = {
 	solutionsOrganizations: {
 		title: "Organizations — Fully Managed DevOps Platform",
 		description:
-			"SLA-backed uptime, dedicated infrastructure, and a fully managed application deployment platform for enterprises from $1,499/month.",
+			`Team Enterprise BYOC — up to 30 projects on your cloud, auto-heal, 8 agents, SSO, premium SLA, and dedicated technical contact from ${formatSolutionHeroPrice("organizations")}.`,
 		path: "/solutions/organizations",
 		ogLabel: "Organizations",
 		keywords: [

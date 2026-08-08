@@ -1,16 +1,23 @@
 import { Sagyboar_PORTAL_URL } from "@/constants/branding";
+import {
+	formatSolutionHeroPrice,
+	solutionPricingPlans,
+} from "@/lib/pricing";
 import type { SolutionPageData } from "./solution-types";
+
+/** Scale-ups maps to the Team Starter tier on /pricing */
+const starterPlan = solutionPricingPlans.scaleUps.team;
+const starterPrice = formatSolutionHeroPrice("scaleUps");
 
 export const scaleUpsSolutionPage: SolutionPageData = {
 	hero: {
 		title: "Scale-ups",
 		headline: "Scale your product without hiring a full DevOps team",
 		headlineHighlight: "DevOps team",
-		description:
-			"For growing companies that need reliable deployments, advanced monitoring, and real engineering help. Run up to five apps with AI-assisted support and on-demand DevOps from $249/month.",
-		price: "$249/month",
-		cta: "Get started",
-		ctaHref: Sagyboar_PORTAL_URL,
+		description: `${starterPlan.tagline} Run up to 10 projects on your own cloud with AI deployment, monitoring, auto incident detection, and shared DevOps support — from ${starterPrice}.`,
+		price: starterPrice,
+		cta: starterPlan.cta,
+		ctaHref: starterPlan.ctaHref ?? Sagyboar_PORTAL_URL,
 		ctaExternal: true,
 		heroImage: "/startup.png",
 		heroImageAlt: "Scale your product without hiring a full DevOps team",
@@ -18,61 +25,61 @@ export const scaleUpsSolutionPage: SolutionPageData = {
 		icon: "rocket",
 	},
 	stack: {
-		title: "Everything for Scale-ups",
-		titleHighlight: "Scale-ups",
+		title: "Everything in Starter",
+		titleHighlight: "Starter",
 		subtitle:
-			"Five capabilities that help growing companies ship faster with less overhead.",
+			"Scale-ups runs on the Team Starter plan — same specs and BYOC model as on our pricing page.",
 		sections: [
 			{
-				title: "Up to five applications",
+				title: "Up to 10 projects",
 				description:
-					"Run multiple production services from one platform. Scale-ups supports up to five managed applications with one-click deployments and shared observability.",
+					"Deploy and manage up to 10 production projects from one platform — with AI-assisted deployment, monitoring, and shared observability across your stack.",
 				image: "/Default.png",
 				imageAlt: "Multiple projects on Sagyboar",
 				graphic: "fiveApps",
 			},
 			{
-				title: "One-click deployments",
+				title: "Bring your own cloud",
 				description:
-					"Push to main and ship. Connect your repo and deploy with automated builds, rollbacks, and environment management built in.",
+					"Connect AWS, GCP, Azure, or DigitalOcean. Infrastructure is billed directly to your cloud account at cost — no markup and no vendor lock-in on compute.",
 				image: "/Default.png",
-				imageAlt: "One-click deployment logs",
+				imageAlt: "Bring your own cloud",
 				graphic: "deploy",
 			},
 			{
-				title: "Advanced AI monitoring",
+				title: "AI deployment & monitoring",
 				description:
-					"Go beyond uptime checks with log analysis, anomaly detection, and prioritized alerts so your company catches issues before customers do.",
+					"AI-powered deployment pipelines plus monitoring and auto incident detection so your team catches production issues before customers do.",
 				image: "/Default.png",
-				imageAlt: "Advanced monitoring dashboard",
+				imageAlt: "AI deployment and monitoring",
 				graphic: "monitoring",
 			},
 			{
-				title: "AI-assisted engineering",
+				title: "Auto ticket generate",
 				description:
-					"Get up to 10 hours per month of AI-assisted engineering for operational tasks, bug fixes, deployments, and minor enhancements.",
+					"When incidents are detected, Sagyboar automatically generates structured tickets with context and severity so fixes start faster.",
 				image: "/Default.png",
-				imageAlt: "Managed infrastructure for scale-ups",
+				imageAlt: "Automated incident tickets",
 				graphic: "aiEngineer",
 			},
 			{
-				title: "On-demand DevOps & support",
+				title: "Shared DevOps support",
 				description:
-					"Email and chat support with a 48-hour response target, plus on-demand DevOps assistance when you need an expert in the loop.",
+					"Shared DevOps support during business hours — platform guidance, deployment help, and operational backup without hiring full-time.",
 				image: "/Default.png",
-				imageAlt: "Collaboration on Sagyboar",
+				imageAlt: "Shared DevOps support",
 				graphic: "support",
 			},
 		],
 	},
 	spotlight: {
-		eyebrow: "Grow without the hire",
+		eyebrow: "Team Starter plan",
 		title: "Your DevOps team — without the payroll",
 		titleHighlight: "the payroll",
 		description:
-			"Scale-ups replaces the early infrastructure hire with managed hosting, advanced monitoring, and hands-on engineering support. Focus your runway on product, not server firefights.",
-		cta: "Get started",
-		ctaHref: Sagyboar_PORTAL_URL,
+			"Starter replaces an early infrastructure hire with a BYOC DevOps platform: you keep your cloud account and bill, we run AI deployment, monitoring, and shared DevOps on top.",
+		cta: starterPlan.cta,
+		ctaHref: starterPlan.ctaHref ?? Sagyboar_PORTAL_URL,
 		ctaExternal: true,
 		image: "/startup.png",
 		imageAlt: "A full DevOps team without the payroll",
@@ -81,47 +88,45 @@ export const scaleUpsSolutionPage: SolutionPageData = {
 	faq: {
 		title: "Scale-ups FAQ",
 		titleHighlight: "FAQ",
-		subtitle:
-			"Common questions about scaling production apps on Sagyboar Scale-ups.",
+		subtitle: "Common questions about the Team Starter plan for scale-ups.",
 		items: [
 			{
 				question: "What is included for Scale-ups?",
-				answer:
-					"Scale-ups includes up to five applications, one-click deployments, advanced AI monitoring, prioritized issue tickets, up to three managed databases, 50 GB storage, AI-assisted engineering (up to 10 hrs/month), on-demand DevOps assistance, and email & chat support.",
+				answer: `Scale-ups uses the Team Starter plan (${starterPrice}): up to 10 projects, AI deployment and monitoring, auto incident detection, auto ticket generate, and shared DevOps support. You bring your own cloud (AWS, GCP, Azure, or DigitalOcean) — cloud usage is billed directly to your provider account.`,
 			},
 			{
-				question: "What does AI-assisted engineering support cover?",
+				question: "Do I need my own cloud account?",
 				answer:
-					"It covers operational tasks, bug fixes, deployments, and minor enhancements — up to 10 hours per month. Custom development outside this scope is quoted separately.",
+					"Yes. Team plans are BYOC (bring your own cloud). You connect your AWS, GCP, Azure, or DigitalOcean account and pay the provider directly at cost. Sagyboar charges only for the platform and managed DevOps.",
 			},
 			{
-				question: "How fast is support on Scale-ups?",
+				question: "Is auto-heal with pull requests included?",
 				answer:
-					"Scale-ups includes email and chat support with a 48-hour response target. Critical production issues are prioritized through our on-demand DevOps channel.",
+					"Not on Starter. Auto heal with pull ticket, agent assignment, and priority support are available on Growth and Enterprise Team plans.",
 			},
 			{
-				question: "Can I run multiple environments?",
+				question: "How does shared DevOps support work?",
 				answer:
-					"Yes. Deploy staging and production apps across your included application slots and manage them from a single dashboard.",
+					"Shared DevOps support during business hours covers platform guidance, deployment troubleshooting, and operational help — without a dedicated engineer on your payroll.",
 			},
 			{
-				question: "What happens if I outgrow Scale-ups?",
+				question: "What happens if I outgrow Starter?",
 				answer:
-					"You can move to Organizations for dedicated infrastructure, SLA-backed uptime, and a fully managed platform team. Upgrades take effect immediately.",
+					"Upgrade to Growth for up to 20 projects, auto-heal with pull tickets, 5 agents, and faster support — or Enterprise for SSO, premium SLA, and a dedicated technical contact.",
 			},
 			{
-				question: "How does fair usage work on Scale-ups?",
+				question: "How does fair usage work on Team plans?",
 				answer:
-					"Scale-ups includes standard infrastructure allocation suited to growing companies. Additional cloud resources, storage, bandwidth, or databases beyond included limits are billed separately.",
+					"Fair usage applies to platform resources and agent usage across all Team tiers. Cloud infrastructure is always billed separately by your provider. Custom development outside plan scope is quoted separately.",
 			},
 		],
 	},
 	cta: {
 		title: "Ready to scale without slowing down?",
 		description:
-			"Join companies shipping faster on Sagyboar. Get started with Scale-ups or talk to us about your stack.",
-		primaryCta: "Get started",
-		primaryHref: Sagyboar_PORTAL_URL,
+			"Join teams shipping on the Team Starter plan. Get started today or talk to us about your stack.",
+		primaryCta: starterPlan.cta,
+		primaryHref: starterPlan.ctaHref ?? Sagyboar_PORTAL_URL,
 		primaryExternal: true,
 		secondaryCta: "Contact us",
 		secondaryHref: "/contact",

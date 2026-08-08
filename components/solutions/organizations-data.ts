@@ -1,15 +1,23 @@
+import {
+	formatSolutionHeroPrice,
+	solutionPricingPlans,
+} from "@/lib/pricing";
 import type { SolutionPageData } from "./solution-types";
+
+/** Organizations maps to the Team Enterprise tier on /pricing */
+const enterprisePlan = solutionPricingPlans.organizations.team;
+const enterprisePrice = formatSolutionHeroPrice("organizations");
+const enterpriseCtaHref = enterprisePlan.ctaHref ?? "/contact";
 
 export const organizationsSolutionPage: SolutionPageData = {
 	hero: {
 		title: "Organizations",
-		headline: "Dedicated infrastructure and a platform team on your stack",
-		headlineHighlight: "your stack",
-		description:
-			"For businesses that need SLA-backed uptime, dedicated cloud infrastructure, and a fully managed DevOps team. AWS, GCP, Azure, or your own account — from $1,499/month.",
-		price: "$1,499/month",
-		cta: "Talk to sales",
-		ctaHref: "/contact",
+		headline: "Enterprise DevOps on your cloud — without building an ops department",
+		headlineHighlight: "ops department",
+		description: `${enterprisePlan.tagline} Up to 30 projects on your own cloud with auto-heal, 8 agents, SSO, premium SLA, and a dedicated technical contact — from ${enterprisePrice}.`,
+		price: enterprisePrice,
+		cta: enterprisePlan.cta,
+		ctaHref: enterpriseCtaHref,
 		heroImage: "/Enterprise.png",
 		heroImageAlt:
 			"Sagyboar platform connecting your cloud, servers, team and monitoring",
@@ -17,109 +25,108 @@ export const organizationsSolutionPage: SolutionPageData = {
 		icon: "building2",
 	},
 	stack: {
-		title: "Everything for Organizations",
-		titleHighlight: "Organizations",
+		title: "Everything in Enterprise",
+		titleHighlight: "Enterprise",
 		subtitle:
-			"Five enterprise-grade capabilities for teams that cannot afford downtime.",
+			"Organizations runs on the Team Enterprise plan — same specs and BYOC model as on our pricing page.",
 		sections: [
 			{
-				title: "Unlimited applications",
+				title: "Up to 30 projects",
 				description:
-					"Deploy across your entire product surface with unlimited managed applications, subject to fair usage. One platform for every service your business runs.",
+					"Run up to 30 production projects from one platform — with everything in Growth plus enterprise-grade controls, SLAs, and priority incident handling.",
 				image: "/Default.png",
 				imageAlt: "Organization project management",
 				graphic: "apps",
 			},
 			{
-				title: "Dedicated infrastructure",
+				title: "Bring your own cloud",
 				description:
-					"Run on dedicated AWS, GCP, or Azure infrastructure — or bring your own cloud account. Full control with Sagyboar managing the operational layer.",
+					"Connect AWS, GCP, Azure, or DigitalOcean. Cloud usage is billed directly to your provider at cost — Sagyboar charges for the platform and managed DevOps only.",
 				image: "/Default.png",
-				imageAlt: "Dedicated server permissions",
+				imageAlt: "Bring your own cloud infrastructure",
 				graphic: "infrastructure",
 			},
 			{
-				title: "Complete AI DevOps suite",
+				title: "Auto-heal & 8 agents",
 				description:
-					"Advanced monitoring, log analysis, automated ticket routing, and escalation workflows tuned for high-stakes production environments.",
+					"Auto heal with pull ticket, auto ticket generate and assign to agent, plus 8 agents for deeper automation across your production stack.",
 				image: "/Default.png",
-				imageAlt: "Organization monitoring suite",
+				imageAlt: "Auto-heal and agent automation",
 				graphic: "aiops",
 			},
 			{
-				title: "Dedicated platform team",
+				title: "SSO, audit logs & premium SLA",
 				description:
-					"Get a dedicated AI-powered developer, DevOps engineer, and QA support on demand — an extension of your engineering org without the hiring cycle.",
+					"Enterprise access controls with SSO and audit logs, plus premium SLA commitments and priority incident handling for high-stakes environments.",
 				image: "/Default.png",
-				imageAlt: "Custom roles and team access",
+				imageAlt: "SSO and audit logging",
 				graphic: "team",
 			},
 			{
-				title: "SLA, onboarding & integrations",
+				title: "Integrations & dedicated contact",
 				description:
-					"99.9% uptime commitment, 4-hour critical response targets, custom integrations, and white-glove onboarding to get your stack production-ready.",
+					"Custom integrations plus a dedicated technical contact who knows your stack — for onboarding, escalations, and ongoing platform partnership.",
 				image: "/Default.png",
-				imageAlt: "Git permissions and integrations",
+				imageAlt: "Custom integrations and dedicated support",
 				graphic: "sla",
 			},
 		],
 	},
 	spotlight: {
-		eyebrow: "Built for scale",
+		eyebrow: "Team Enterprise plan",
 		title: "Enterprise-grade ops without building an ops department",
 		titleHighlight: "ops department",
 		description:
-			"Hand off infrastructure, monitoring, and incident response to a team that lives in production. Organizations gives you SLA-backed reliability and dedicated engineers who know your stack.",
-		cta: "Talk to sales",
-		ctaHref: "/contact",
+			"Enterprise gives established teams BYOC DevOps at scale: your cloud account, our AI deployment and monitoring, auto-heal with pull tickets, and a dedicated technical contact when production cannot afford to wait.",
+		cta: enterprisePlan.cta,
+		ctaHref: enterpriseCtaHref,
 		image: "/Enterprise.png",
-		imageAlt: "Managed ops command center resolving incidents automatically",
+		imageAlt: "Enterprise ops with SLA-backed support",
 		graphic: "ops",
 	},
 	faq: {
 		title: "Organizations FAQ",
 		titleHighlight: "FAQ",
 		subtitle:
-			"Common questions about dedicated infrastructure and managed teams for organizations on Sagyboar.",
+			"Common questions about the Team Enterprise plan for organizations.",
 		items: [
 			{
 				question: "What is included for Organizations?",
-				answer:
-					"Organizations includes unlimited applications (fair usage), dedicated infrastructure on AWS/GCP/Azure or client-owned cloud, the complete AI DevOps suite, unlimited managed databases (fair usage), 200 GB storage, a dedicated AI-powered developer, dedicated DevOps engineer, QA on demand, 4-hour SLA response, 99.9% uptime commitment, and custom integrations with onboarding.",
+				answer: `Organizations uses the Team Enterprise plan (${enterprisePrice}): up to 30 projects, everything in Growth, auto heal with pull ticket, auto ticket generate and assign to agent, 8 agents, SSO, audit logs, premium SLA, priority incident handling, custom integrations, and a dedicated technical contact. You bring your own cloud — infrastructure is billed directly to your provider.`,
 			},
 			{
 				question: "Can we use our own cloud account?",
 				answer:
-					"Yes. Organization clients may use their own AWS, GCP, or Azure account. Infrastructure costs beyond included allocations are billed separately at actual cost.",
+					"Yes. All Team plans are BYOC (bring your own cloud). Connect AWS, GCP, Azure, or DigitalOcean and pay your provider directly at cost. Sagyboar bills only for the platform subscription and managed DevOps.",
 			},
 			{
-				question: "What does the SLA guarantee mean?",
+				question: "What does premium SLA include?",
 				answer:
-					"We guarantee 99.9% uptime and a 4-hour maximum response time on all critical issues. If we miss these targets, you receive a credit on your next invoice.",
+					"Enterprise includes premium SLA with priority incident handling. Specific uptime and response targets are defined in your agreement — contact sales for details tailored to your organization.",
 			},
 			{
-				question: "How does ticket routing and escalation work?",
+				question: "How do the 8 agents work?",
 				answer:
-					"Our AI engine routes incidents by severity, assigns them to the right engineer, and escalates automatically when response targets are at risk.",
+					"Agents automate operational workflows — incident detection, ticket generation and assignment, and auto-heal with pull tickets. Enterprise includes 8 agents for broader coverage across your projects.",
 			},
 			{
 				question: "Is custom development included?",
 				answer:
-					"Organizations covers operational tasks, deployments, monitoring, and platform management. Custom development requests outside plan scope are quoted separately.",
+					"Enterprise covers platform operations, deployments, monitoring, and integrations within plan scope. Custom development or work outside plan scope is quoted separately.",
 			},
 			{
-				question: "How does onboarding work?",
+				question: "How do I get started on Enterprise?",
 				answer:
-					"Every Organizations engagement includes custom onboarding: infrastructure review, integration setup, access controls, and a runbook tailored to your stack and compliance needs.",
+					"Talk to sales to review your stack, cloud setup, compliance needs, and onboarding plan. We'll align SSO, audit logging, and integrations before you go live.",
 			},
 		],
 	},
 	cta: {
-		title: "Ready for a platform team on your side?",
+		title: "Ready for enterprise DevOps on your cloud?",
 		description:
-			"Talk to our sales team about dedicated infrastructure, SLAs, and a managed DevOps partnership built for your business.",
-		primaryCta: "Talk to sales",
-		primaryHref: "/contact",
+			"Talk to our team about the Enterprise plan — premium SLA, dedicated technical contact, and BYOC at scale.",
+		primaryCta: enterprisePlan.cta,
+		primaryHref: enterpriseCtaHref,
 		secondaryCta: "View pricing",
 		secondaryHref: "/pricing",
 	},
