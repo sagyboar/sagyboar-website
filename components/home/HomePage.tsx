@@ -1,4 +1,6 @@
 import { PageShell } from "@/components/design-system/PageShell";
+import { AiNativeDefinition } from "@/components/home/sections/AiNativeDefinition";
+import { ComparisonSection } from "@/components/home/sections/ComparisonSection";
 import { DashboardShowcase } from "@/components/home/sections/DashboardShowcase";
 import { FaqSection } from "@/components/home/sections/FaqSection";
 import { FeaturesBento } from "@/components/home/sections/FeaturesBento";
@@ -16,9 +18,11 @@ export function HomePage() {
 			<HeroSection />
 			<PipelineSection />
 			<TrustStrip />
+			<AiNativeDefinition />
 			<FeaturesBento />
 			<DashboardShowcase />
 			<PerformanceStats />
+			<ComparisonSection />
 			<HomeTestimonials />
 			<FaqSection />
 			<FinalCta />

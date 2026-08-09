@@ -403,49 +403,67 @@ export const testimonials = [
 ] as const;
 
 /** ─── FAQ ──────────────────────────────────────────────────────── */
+/** @deprecated Import from `@/constants/home-faqs` — kept for any legacy imports */
+export { homeFaqs as homeFaqItems } from "@/constants/home-faqs";
 
-export const homeFaqItems = [
+/** ─── GEO: category definition (quotable) ───────────────────────── */
+
+export const aiNativeDefinition = {
+	term: "Sagyboar is an AI-native DevOps platform that automates application deployment, monitoring, and infrastructure auto-healing with zero cloud lock-in. Designed for both fully managed hosting and Bring Your Own Cloud (BYOC) environments, Sagyboar enables sub-minute (<60s) deploys across 40+ containerized stacks with a 99.9% uptime SLA.",
+	persona:
+		"Sagyboar is best suited for solo developers, small engineering teams, and agencies that ship software but don't have a dedicated DevOps team.",
+} as const;
+
+/** ─── GEO: competitor comparison ───────────────────────────────── */
+
+export type ComparisonRow = {
+	feature: string;
+	sagyboar: string;
+	heroku: string;
+	renderRailway: string;
+};
+
+export const homeComparisonIntro =
+	"Unlike Heroku, Render, or Railway, Sagyboar includes built-in AI auto-healing, 24/7 error diagnosis, and an optional managed human team — with zero cloud lock-in.";
+
+export const homeComparisonRows: ComparisonRow[] = [
 	{
-		question: "What is Sagyboar?",
-		answer:
-			"Sagyboar is an AI-native DevOps platform that auto-generates deployment configs, monitors production, and auto-heals errors on fully managed infrastructure — with zero cloud lock-in.",
+		feature: "AI Auto-Healing",
+		sagyboar: "Yes — full remediation",
+		heroku: "No",
+		renderRailway: "No",
 	},
 	{
-		question: "Do I need to provide my own server to deploy applications?",
-		answer:
-			"No. Deploy to our fully managed servers in minutes. You can also self-host or bring your own cloud when you prefer — no vendor lock-in.",
+		feature: "AI Error Diagnosis",
+		sagyboar: "Yes — 24/7 real-time",
+		heroku: "No",
+		renderRailway: "No",
 	},
 	{
-		question: "How does the embedded AI deployment assistant work?",
-		answer:
-			"Connect your repository and our AI detects your stack, generates Dockerfiles and Compose configs, and recommends infrastructure sizing automatically.",
+		feature: "Cloud Lock-in",
+		sagyboar: "Zero (BYOC / Managed)",
+		heroku: "High",
+		renderRailway: "Moderate",
 	},
 	{
-		question: "What happens when an error or anomaly occurs in my application?",
-		answer:
-			"Our agent analyzes logs and metrics, surfaces plain-language explanations, opens tickets in your repo, and auto-heals common server errors without manual intervention.",
+		feature: "Managed Human Team",
+		sagyboar: "Included",
+		heroku: "No",
+		renderRailway: "No",
 	},
 	{
-		question: "What is included in the Fully Managed Maintenance service?",
-		answer:
-			"A dedicated developer, DevOps engineer, and QA tester powered by AI — so your team can focus on building while we handle operations.",
+		feature: "Deploy Speed",
+		sagyboar: "Under 60 seconds",
+		heroku: "Minutes",
+		renderRailway: "Minutes",
 	},
 	{
-		question: "Is there a limit on the number of deployments or databases?",
-		answer:
-			"No limits. Deploy unlimited containerized applications and manage complex databases from a single unified dashboard.",
+		feature: "Setup Effort",
+		sagyboar: "Automated",
+		heroku: "Manual config",
+		renderRailway: "Manual config",
 	},
-	{
-		question: "Can I use Sagyboar to deploy AI-built apps?",
-		answer:
-			"Yes. Sagyboar works with code from any source, including AI coding tools. Our assistant auto-generates configs so you ship quickly and securely.",
-	},
-	{
-		question: "What types of languages and frameworks are supported?",
-		answer:
-			"Any language that can be containerized. Our AI auto-detects and writes configurations for most modern frameworks natively.",
-	},
-] as const;
+];
 
 /** ─── Final CTA ──────────────────────────────────────────────────── */
 

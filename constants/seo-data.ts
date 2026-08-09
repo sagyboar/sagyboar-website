@@ -208,7 +208,11 @@ export const organizationJsonLd = {
 	url: SITE_URL,
 	logo: `${SITE_URL}/Sagyboar-logo.png`,
 	description: SITE_DESCRIPTION,
-	sameAs: ["https://github.com/Sagyboar/Sagyboar", "https://x.com/getSagyboar"],
+	sameAs: [
+		"https://github.com/sagyboar/sagyboar-website",
+		"https://x.com/Sagyboar",
+		"https://www.linkedin.com/company/sagyboar",
+	],
 };
 
 export const websiteJsonLd = {
@@ -230,7 +234,7 @@ export const softwareApplicationJsonLd = {
 	"@type": "SoftwareApplication",
 	name: SITE_NAME,
 	applicationCategory: "DeveloperApplication",
-	operatingSystem: "Web",
+	operatingSystem: "Cloud, Web",
 	url: SITE_URL,
 	description: SITE_DESCRIPTION,
 	offers: {
@@ -240,12 +244,11 @@ export const softwareApplicationJsonLd = {
 		description: "Free tier available — fully managed application deployment",
 	},
 	featureList: [
-		"AI-native DevOps control plane",
-		"Auto-healing deployments",
-		"Anomaly detection and auto ticketing",
-		"Fully managed application hosting",
-		"Zero cloud lock-in / BYOC",
-		"Heroku alternative",
+		"AI Auto-Healing",
+		"<60s Deployment",
+		"24/7 AI Monitoring",
+		"Zero Cloud Lock-in",
+		"BYOC Deployment",
 	],
 };
 
@@ -261,4 +264,51 @@ export const homeFaqJsonLd = {
 			text: faq.answer,
 		},
 	})),
+};
+
+/**
+ * Homepage GEO graph — Organization + SoftwareApplication + FAQPage.
+ * FAQ answers are identical to the visible FAQ (constants/home-faqs.ts).
+ */
+export const homePageJsonLd = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "Organization",
+			"@id": `${SITE_URL}/#organization`,
+			name: "Sagyboar",
+			url: SITE_URL,
+			logo: `${SITE_URL}/Sagyboar-logo.png`,
+			description: SITE_DESCRIPTION,
+			sameAs: [
+				"https://github.com/sagyboar/sagyboar-website",
+				"https://x.com/Sagyboar",
+				"https://www.linkedin.com/company/sagyboar",
+			],
+		},
+		{
+			"@type": "SoftwareApplication",
+			"@id": `${SITE_URL}/#software`,
+			name: "Sagyboar",
+			applicationCategory: "DeveloperApplication",
+			operatingSystem: "Cloud, Web",
+			url: SITE_URL,
+			description: SITE_DESCRIPTION,
+			offers: softwareApplicationJsonLd.offers,
+			featureList: softwareApplicationJsonLd.featureList,
+			publisher: { "@id": `${SITE_URL}/#organization` },
+		},
+		{
+			"@type": "FAQPage",
+			"@id": `${SITE_URL}/#faq`,
+			mainEntity: homeFaqs.map((faq) => ({
+				"@type": "Question",
+				name: faq.question,
+				acceptedAnswer: {
+					"@type": "Answer",
+					text: faq.answer,
+				},
+			})),
+		},
+	],
 };

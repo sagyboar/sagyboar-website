@@ -6,7 +6,7 @@ import {
 } from "@/components/design-system/ScrollReveal";
 import { SectionHeading } from "@/components/design-system/SectionHeading";
 import { useReducedMotion } from "@/components/design-system/useReducedMotion";
-import { homeFaqItems } from "@/components/home/data/home-content";
+import { homeFaqs } from "@/constants/home-faqs";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
@@ -87,7 +87,7 @@ export function FaqSection() {
 
 				<ScrollRevealItem>
 					<div className="sagy-spotlight rounded-xl border border-sagy-border bg-sagy-surface px-5 sm:px-6">
-						{homeFaqItems.map((item, i) => (
+						{homeFaqs.map((item, i) => (
 							<FaqItem
 								key={item.question}
 								question={item.question}
