@@ -7,10 +7,12 @@ import {
 	SAGYBOAR_SPACE_MD_PATH,
 	SITE_URL,
 } from "@/constants/seo-data";
+import { getPosts } from "@/lib/sanity/queries";
 import type { MetadataRoute } from "next";
 
 const corePages: { path: string; priority: number }[] = [
 	{ path: "/about", priority: 0.8 },
+	{ path: "/blog", priority: 0.8 },
 	{ path: "/features", priority: 0.85 },
 	{ path: "/pricing", priority: 0.9 },
 	{ path: "/watch/intro", priority: 0.75 },
@@ -36,6 +38,7 @@ const agentPaths = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const now = new Date();
+	const posts = await getPosts().catch(() => []);
 
 	return [
 		{
@@ -73,6 +76,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			lastModified: now,
 			changeFrequency: "monthly" as const,
 			priority: 0.6,
+		})),
+		...posts.map((post) => ({
+			url: `${SITE_URL}/blog/${post.slug}`,
+			lastModified: post.publishedAt ? new Date(post.publishedAt) : now,
+			changeFrequency: "weekly" as const,
+			priority: 0.65,
 		})),
 	];
 }

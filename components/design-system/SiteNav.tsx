@@ -134,7 +134,6 @@ export function SiteNav() {
 							return (
 								<li
 									key={link.label}
-									className="relative"
 									onMouseEnter={
 										link.menu ? () => openMenuNow(link.menu!) : undefined
 									}
@@ -169,18 +168,21 @@ export function SiteNav() {
 											/>
 										)}
 									</Link>
-
-									{link.menu && expanded && (
-										<NavMegaMenu
-											menu={link.menu}
-											id={`nav-menu-${link.menu}`}
-											onNavigate={() => setOpenMenu(null)}
-										/>
-									)}
 								</li>
 							);
 						})}
 					</ul>
+
+					{/* Full-width megamenu — matches navbar width */}
+					{openMenu && (
+						<NavMegaMenu
+							menu={openMenu}
+							id={`nav-menu-${openMenu}`}
+							onNavigate={() => setOpenMenu(null)}
+							onMouseEnter={cancelClose}
+							onMouseLeave={scheduleClose}
+						/>
+					)}
 
 					{/* Right actions */}
 					<div className="flex items-center gap-2 sm:gap-3">

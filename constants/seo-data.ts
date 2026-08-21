@@ -131,6 +131,18 @@ export const pageSeo = {
 		path: "/about",
 		ogLabel: "About Us",
 	},
+	blog: {
+		title: "Blog — AI-Native DevOps Insights",
+		description:
+			"Product updates, DevOps thinking, and how Sagyboar helps teams ship with AI-native deployment and auto-healing infrastructure.",
+		path: "/blog",
+		ogLabel: "Blog",
+		keywords: [
+			"AI DevOps blog",
+			"auto-healing deployment",
+			"managed DevOps insights",
+		],
+	},
 	jobs: {
 		title: "Careers & Open Positions",
 		description:

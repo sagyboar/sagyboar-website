@@ -35,6 +35,7 @@ export const siteNavLinks: SiteNavLink[] = [
 		href: "/about",
 		matchPrefixes: [
 			"/about",
+			"/blog",
 			"/jobs",
 			"/contact",
 			"/terms-of-service",

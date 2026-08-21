@@ -9,6 +9,10 @@ const nextConfig = {
 				protocol: "https",
 				hostname: "ik.imagekit.io",
 			},
+			{
+				protocol: "https",
+				hostname: "cdn.sanity.io",
+			},
 		],
 	},
 	async redirects() {
