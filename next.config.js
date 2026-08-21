@@ -3,6 +3,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	output: "standalone",
+	// Sanity ships some packages with JSX/modern syntax in .js files that
+	// webpack won't compile unless we opt them into Next's transpiler.
+	transpilePackages: [
+		"next-sanity",
+		"sanity",
+		"@sanity/vision",
+		"@sanity/ui",
+		"@sanity/icons",
+		"@sanity/sdk",
+		"@sanity/sdk-react",
+	],
 	images: {
 		remotePatterns: [
 			{
