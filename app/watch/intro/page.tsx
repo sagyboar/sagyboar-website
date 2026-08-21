@@ -37,7 +37,7 @@ const videoJsonLd = {
 
 export default function WatchIntroPage() {
 	return (
-		<div className="min-h-screen bg-background pt-28 pb-16 sm:pt-32 sm:pb-24">
+		<div className="min-h-screen pt-28 pb-16 sm:pt-32 sm:pb-24">
 			<JsonLd data={videoJsonLd} />
 			<Container>
 				<div className="mx-auto max-w-3xl">

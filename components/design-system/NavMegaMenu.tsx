@@ -187,7 +187,7 @@ export function NavMegaMenu({
 											<p className="px-1 font-mono text-[10px] uppercase tracking-[0.2em] text-sagy-muted">
 												{section.label}
 											</p>
-											<div className="grid flex-1 grid-cols-2 gap-3 sm:grid-cols-4">
+											<div className="grid flex-1 grid-cols-2 gap-3 sm:grid-cols-3">
 												{section.items.map((item) => (
 													<NavMenuRow
 														key={item.href}

@@ -150,6 +150,19 @@ export const pageSeo = {
 		path: "/jobs",
 		ogLabel: "Careers",
 	},
+	partners: {
+		title: "Partner Program — Refer, Resell, Co-Deliver",
+		description:
+			"Refer, resell, or co-deliver on an AI-native DevOps platform. We handle deploy, host, and 24/7 healing — you keep the client and the margin.",
+		path: "/partners",
+		ogLabel: "Partner Program",
+		keywords: [
+			"Sagyboar partner program",
+			"white-label DevOps",
+			"referral partner hosting",
+			"agency DevOps partner",
+		],
+	},
 	solutionsSideProjects: {
 		title: "Side Projects — Deploy Without DevOps",
 		description:

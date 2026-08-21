@@ -26,7 +26,7 @@ function FooterLinkItem({ href, label, icon: Icon }: FooterLink) {
 export function Footer() {
 	return (
 		<footer
-			className="relative z-10 border-t border-border bg-background"
+			className="relative z-10 border-t border-border"
 			role="contentinfo"
 		>
 			<Container>

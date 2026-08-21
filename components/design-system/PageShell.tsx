@@ -1,8 +1,7 @@
 import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
-import { PageBackground } from "./PageBackground";
 
-/** Dark page wrapper with shared background layers */
+/** Page wrapper — background layers live in SiteChrome so every route gets them */
 export function PageShell({
 	children,
 	className,
@@ -12,8 +11,7 @@ export function PageShell({
 }) {
 	return (
 		<div className={cn("sagy-page relative min-h-screen", className)}>
-			<PageBackground />
-			<div className="relative z-10">{children}</div>
+			{children}
 		</div>
 	);
 }

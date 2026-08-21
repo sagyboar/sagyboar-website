@@ -37,6 +37,7 @@ export const siteNavLinks: SiteNavLink[] = [
 			"/about",
 			"/blog",
 			"/jobs",
+			"/partners",
 			"/contact",
 			"/terms-of-service",
 			"/privacy",

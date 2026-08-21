@@ -12,6 +12,7 @@
 | Features | https://sagyboar.space/features |
 | Product intro video | https://sagyboar.space/watch/intro |
 | Contact | https://sagyboar.space/contact |
+| Partner Program | https://sagyboar.space/partners |
 | Support email | help@sagyboar.space |
 
 ## Crawler entrypoints

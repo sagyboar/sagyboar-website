@@ -109,9 +109,9 @@ html {
     @apply bg-sagy-bg font-sans text-sagy-body antialiased;
   }
 
-  /* Sagyboar page shell */
+  /* Sagyboar page shell — fill comes from SiteChrome so the grid shows through */
   .sagy-page {
-    @apply bg-sagy-bg font-sans text-sagy-body;
+    @apply font-sans text-sagy-body;
   }
 }
 
@@ -259,6 +259,120 @@ html {
   .sagy-grid-overlay {
     @apply pointer-events-none absolute inset-0 z-[0] bg-sagy-grid;
     background-size: 24px 24px;
+  }
+
+  /*
+   * Dark-only spider-web: a whisper of square grid, with concentric rings and
+   * radial spokes as the visible pattern.
+   */
+  .sagy-spiderweb-overlay {
+    display: none;
+  }
+
+  .dark .sagy-grid-overlay {
+    opacity: 0;
+  }
+
+  .dark .sagy-spiderweb-overlay {
+    display: block;
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image:
+      linear-gradient(
+        to right,
+        rgb(var(--sagy-heading) / 0.012) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgb(var(--sagy-heading) / 0.012) 1px,
+        transparent 1px
+      );
+    background-size: 56px 56px;
+  }
+
+  .dark .sagy-spiderweb-overlay::before,
+  .dark .sagy-spiderweb-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .dark .sagy-spiderweb-overlay::before {
+    background: repeating-radial-gradient(
+      circle at 50% 0%,
+      transparent 0,
+      transparent 72px,
+      rgb(var(--sagy-heading) / 0.1) 72px,
+      rgb(var(--sagy-heading) / 0.1) 74px
+    );
+    mask-image: radial-gradient(
+      ellipse 95% 90% at 50% 0%,
+      #000 0%,
+      transparent 82%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse 95% 90% at 50% 0%,
+      #000 0%,
+      transparent 82%
+    );
+  }
+
+  .dark .sagy-spiderweb-overlay::after {
+    background: repeating-conic-gradient(
+      from 0deg at 50% 0%,
+      rgb(var(--sagy-heading) / 0.11) 0deg,
+      rgb(var(--sagy-heading) / 0.11) 0.28deg,
+      transparent 0.28deg,
+      transparent 18deg
+    );
+    mask-image: radial-gradient(
+      ellipse 100% 95% at 50% 0%,
+      #000 8%,
+      transparent 80%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse 100% 95% at 50% 0%,
+      #000 8%,
+      transparent 80%
+    );
+  }
+
+  .sagy-web-spider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 48px;
+    height: 48px;
+    color: rgb(var(--sagy-accent));
+    opacity: 0;
+    will-change: transform;
+    filter: drop-shadow(0 0 8px rgb(var(--sagy-accent) / 0.4));
+  }
+
+  .sagy-web-spider-static {
+    top: 24px;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
+    will-change: auto;
+  }
+
+  .sagy-web-silk {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .sagy-web-silk-strand {
+    stroke: rgb(var(--sagy-heading) / 0.11);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   .sagy-radial-glow {

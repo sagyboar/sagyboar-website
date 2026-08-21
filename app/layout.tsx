@@ -170,7 +170,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			>
 				<ThemeProvider>
 					<GoogleAnalytics gaId="G-3YPQZXP48E" />
-					<div className="flex min-h-full flex-col bg-background">
+					<div className="flex min-h-full flex-col bg-sagy-bg">
 						<SiteChrome>{children}</SiteChrome>
 					</div>
 				</ThemeProvider>

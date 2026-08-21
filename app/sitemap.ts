@@ -21,6 +21,7 @@ const corePages: { path: string; priority: number }[] = [
 	{ path: "/solutions/organizations", priority: 0.9 },
 	{ path: "/contact", priority: 0.7 },
 	{ path: "/jobs", priority: 0.7 },
+	{ path: "/partners", priority: 0.75 },
 ];
 
 const featurePaths = featurePagesData.map(
